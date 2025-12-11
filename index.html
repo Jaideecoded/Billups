@@ -34,7 +34,13 @@
             --accent: #00ff00;
             --accent-light: #90ff90;
             
-            /* Secondary Accent Palette */
+            /* Service Tier Colors */
+            --tier-1: #00a8ff;  /* Blue - Hourly */
+            --tier-2: #00ff00;  /* Green - Half Day (Most Popular) */
+            --tier-3: #ff9500;  /* Orange - Full Day */
+            --tier-custom: #bc00ff; /* Purple - Custom */
+            
+            /* Section Colors */
             --purple-dark: #1a0b2e;
             --purple-medium: #2d1b4e;
             --purple-light: #3d2968;
@@ -47,9 +53,9 @@
             --text-secondary: rgba(255, 255, 255, 0.95);
             --text-body: rgba(255, 255, 255, 0.8);
             --text-muted: rgba(255, 255, 255, 0.6);
-            --border-color: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.15);
             
-            /* Typography - Following guide exactly */
+            /* Typography */
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -78,15 +84,7 @@
         /* ===== LOGO ANIMATIONS ===== */
         @keyframes logo-3d-rotate {
             0% { transform: rotateY(0deg) scale(1); }
-            25% { transform: rotateY(90deg) scale(1.02); }
-            50% { transform: rotateY(180deg) scale(1); }
-            75% { transform: rotateY(270deg) scale(1.02); }
             100% { transform: rotateY(360deg) scale(1); }
-        }
-        
-        @keyframes logo-special-spin {
-            0% { transform: rotateY(0deg) scale(1); }
-            100% { transform: rotateY(1080deg) scale(1); }
         }
         
         /* ===== HEADER & NAVIGATION ===== */
@@ -190,7 +188,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(42, 15, 84, 0.85), rgba(26, 11, 46, 0.95));
+            background: linear-gradient(45deg, rgba(42, 15, 84, 0.7), rgba(26, 11, 46, 0.8));
             z-index: 2;
         }
         
@@ -265,6 +263,17 @@
             position: relative;
         }
         
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.4; /* Increased visibility */
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -294,18 +303,25 @@
         
         /* ===== ABOUT SECTION WITH COLUMNS ===== */
         .about {
-            background-color: var(--purple-dark);
+            background-color: rgba(26, 11, 46, 0.6); /* More transparent */
             position: relative;
         }
         
-        .about-grid {
+        .about-table {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
+            gap: 4rem;
+            align-items: start;
         }
         
-        .about-text h2 {
+        .about-column {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .about-column h2 {
             font-size: 3.5rem;
             font-weight: 900;
             margin-bottom: 2rem;
@@ -313,19 +329,19 @@
             color: var(--text-primary);
         }
         
-        .about-text h2 span {
+        .about-column h2 span {
             color: var(--accent);
             display: block;
         }
         
-        .about-text p {
+        .about-column p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             color: var(--text-secondary);
             line-height: 1.7;
         }
         
-        .about-text .highlight {
+        .about-column .highlight {
             font-size: 1.6rem;
             font-weight: 700;
             color: var(--accent);
@@ -333,164 +349,165 @@
             line-height: 1.5;
         }
         
-        .about-features {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
+        .features-table {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
         
-        .feature-card {
-            background: var(--purple-medium);
-            border-radius: 15px;
-            padding: 2.5rem;
+        .feature-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             transition: var(--transition);
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        .feature-row:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateX(5px);
         }
         
         .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
         }
         
-        .feature-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+        .feature-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             color: var(--text-primary);
         }
         
-        .feature-desc {
+        .feature-content p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
             color: var(--text-body);
-            line-height: 1.6;
         }
         
         /* ===== SERVICES SECTION ===== */
         .services {
-            background-color: var(--purple-medium);
+            background-color: rgba(45, 27, 78, 0.6); /* More transparent */
             position: relative;
         }
         
-        .services-grid {
+        /* Services Table Layout */
+        .services-table {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             margin-top: 3rem;
         }
         
-        .service-card {
-            background: var(--purple-dark);
-            border-radius: 15px;
-            padding: 2.8rem;
+        .service-header-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        
+        .service-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
             border: 1px solid var(--border-color);
             transition: var(--transition);
             position: relative;
         }
         
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        .service-row:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
-        .service-card.popular {
-            background: var(--purple-light);
-            border: 2px solid var(--accent);
-            position: relative;
-            overflow: visible;
+        .service-row.tier-1 {
+            border-left: 4px solid var(--tier-1);
         }
         
-        .popular-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--orange-accent);
-            color: var(--white);
-            padding: 0.6rem 2rem;
-            border-radius: 25px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            z-index: 10;
-            min-width: 160px;
-            text-align: center;
+        .service-row.tier-2 {
+            border-left: 4px solid var(--tier-2);
+        }
+        
+        .service-row.tier-3 {
+            border-left: 4px solid var(--tier-3);
+        }
+        
+        .service-row.tier-custom {
+            border-left: 4px solid var(--tier-custom);
+        }
+        
+        .service-name {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
         
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.8rem;
+            font-size: 2rem;
         }
         
         .service-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: var(--text-primary);
         }
         
         .service-price {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: var(--accent);
-            margin: 1.5rem 0;
-            line-height: 1;
         }
         
         .service-price span {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-body);
             font-weight: 600;
         }
         
-        .service-price small {
-            font-size: 1rem;
-            color: var(--text-body);
-            display: block;
-            margin-top: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .service-description {
+        .service-duration {
             font-size: 1.1rem;
-            margin-bottom: 2rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            font-weight: 600;
         }
         
-        .service-features {
-            list-style: none;
-            margin: 2rem 0;
+        .service-action .btn-primary {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+            width: 100%;
         }
         
-        .service-feature {
-            padding: 0.8rem 0;
-            color: var(--text-body);
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .service-feature:last-child {
-            border-bottom: none;
-        }
-        
-        .service-feature:before {
-            content: "•";
-            color: var(--blue-accent);
+        .popular-tag {
             position: absolute;
-            left: 0;
-            font-size: 1.5rem;
+            top: -10px;
+            right: 20px;
+            background: var(--tier-2);
+            color: var(--black);
+            padding: 0.4rem 1.5rem;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .deposit-notice {
-            background: rgba(255, 107, 53, 0.18);
+            background: rgba(255, 107, 53, 0.15);
             border: 1px solid var(--orange-accent);
             border-radius: 12px;
             padding: 2.5rem;
@@ -503,7 +520,7 @@
         
         /* ===== GALLERY SECTION ===== */
         .gallery {
-            background-color: var(--purple-dark);
+            background-color: rgba(26, 11, 46, 0.6); /* More transparent */
             position: relative;
         }
         
@@ -545,52 +562,66 @@
         
         /* ===== CONTACT SECTION ===== */
         .contact {
-            background-color: var(--purple-medium);
+            background-color: rgba(45, 27, 78, 0.6); /* More transparent */
             position: relative;
         }
         
-        .contact-grid {
+        .contact-table {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            gap: 4rem;
             margin-top: 3rem;
         }
         
-        .contact-info h3 {
+        .contact-column {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .contact-column h3 {
             font-size: 2.2rem;
             margin-bottom: 2.5rem;
             color: var(--text-primary);
         }
         
         .contact-methods {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 1.2rem;
         }
         
-        .contact-method {
-            display: flex;
-            align-items: center;
+        .contact-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
             gap: 1.5rem;
+            align-items: center;
             padding: 1.2rem;
-            background: rgba(255, 255, 255, 0.07);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             text-decoration: none;
             color: inherit;
             transition: var(--transition);
         }
         
-        .contact-method:hover {
+        .contact-row:hover {
             background: rgba(77, 138, 240, 0.18);
             border-color: var(--blue-accent);
-            transform: translateX(8px);
+            transform: translateX(5px);
+        }
+        
+        .contact-row a {
+            text-decoration: none;
+            color: inherit;
+            display: contents;
         }
         
         .method-icon {
             font-size: 1.6rem;
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: rgba(77, 138, 240, 0.2);
             display: flex;
@@ -633,9 +664,9 @@
         }
         
         .contact-form {
-            background: var(--purple-light);
+            background: rgba(255, 255, 255, 0.05);
             padding: 3rem;
-            border-radius: 18px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
         }
         
@@ -665,9 +696,9 @@
         input, textarea, select {
             width: 100%;
             padding: 1.2rem;
-            background: rgba(255, 255, 255, 0.09);
+            background: rgba(255, 255, 255, 0.07);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 8px;
             color: var(--text-primary);
             font-family: var(--font-primary);
             font-size: 1.1rem;
@@ -688,18 +719,23 @@
         
         /* ===== FOOTER ===== */
         .footer {
-            background-color: var(--black);
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 5rem 2rem 3rem;
             border-top: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
         }
         
-        .footer-grid {
+        .footer-table {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 4rem;
             margin-bottom: 4rem;
+        }
+        
+        .footer-column {
+            display: flex;
+            flex-direction: column;
         }
         
         .footer-logo {
@@ -768,7 +804,7 @@
             width: 100%;
             height: 150px;
             z-index: -1;
-            opacity: 0.1;
+            opacity: 0.15; /* Adjusted for better visibility */
             overflow: hidden;
             pointer-events: none;
         }
@@ -953,8 +989,9 @@
                 font-size: 4rem;
             }
             
-            .contact-grid {
-                gap: 3rem;
+            .service-header-row,
+            .service-row {
+                grid-template-columns: 1.5fr 1fr 1fr 1fr;
             }
         }
         
@@ -967,18 +1004,25 @@
                 height: 150px;
             }
             
-            .about-grid {
+            .about-table,
+            .contact-table {
                 grid-template-columns: 1fr;
-                gap: 4rem;
+                gap: 3rem;
             }
             
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 4rem;
+            .footer-table {
+                grid-template-columns: 1fr 1fr;
             }
             
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .service-header-row,
+            .service-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+            
+            .service-header-row .header-duration,
+            .service-row .service-duration {
+                display: none;
             }
         }
         
@@ -1020,15 +1064,11 @@
                 grid-template-columns: 1fr;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
             
-            .footer-grid {
+            .footer-table {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
@@ -1043,6 +1083,24 @@
             
             .equalizer-container {
                 display: none;
+            }
+            
+            .service-header-row,
+            .service-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .service-name {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .popular-tag {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 1rem;
             }
         }
         
@@ -1060,17 +1118,13 @@
                 font-size: 1.1rem;
             }
             
-            .service-card {
+            .about-column,
+            .contact-column {
                 padding: 2rem;
             }
             
             .contact-form {
                 padding: 2rem;
-            }
-            
-            .popular-badge {
-                font-size: 0.8rem;
-                padding: 0.5rem 1.5rem;
             }
         }
     </style>
@@ -1134,12 +1188,18 @@
         </div>
     </section>
 
-    <!-- About Section with Columns -->
+    <!-- About Section with Table/Columns -->
     <section class="about section" id="about">
+        <img class="section-bg" src="images/about-studio.jpg" alt="Studio interior" onerror="this.style.display='none'">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-text">
-                    <h2>Real Studio.<br><span>Real Energy.</span></h2>
+            <div class="section-header">
+                <h2 class="section-title">Real Studio. Real Energy.</h2>
+                <p class="section-subtitle">Where culture meets clean sound</p>
+            </div>
+            
+            <div class="about-table">
+                <div class="about-column">
+                    <h2>Our<br><span>Studio</span></h2>
                     
                     <p>
                         Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
@@ -1152,79 +1212,118 @@
                     </p>
                 </div>
                 
-                <div class="about-features">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎚️</div>
-                        <h3 class="feature-title">Pro Sound</h3>
-                        <p class="feature-desc">Industry-standard equipment with pristine acoustic treatment for radio-ready recordings.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">🧹</div>
-                        <h3 class="feature-title">Clean Space</h3>
-                        <p class="feature-desc">Immaculate, inspiring environment designed for creativity and focus without distractions.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">👥</div>
-                        <h3 class="feature-title">Good People</h3>
-                        <p class="feature-desc">Experienced engineers who understand artists and know how to bring out your best performance.</p>
+                <div class="about-column">
+                    <div class="features-table">
+                        <div class="feature-row">
+                            <div class="feature-icon">🎚️</div>
+                            <div class="feature-content">
+                                <h3>Pro Sound</h3>
+                                <p>Industry-standard equipment with pristine acoustic treatment for radio-ready recordings.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-row">
+                            <div class="feature-icon">🧹</div>
+                            <div class="feature-content">
+                                <h3>Clean Space</h3>
+                                <p>Immaculate, inspiring environment designed for creativity and focus without distractions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-row">
+                            <div class="feature-icon">👥</div>
+                            <div class="feature-content">
+                                <h3>Good People</h3>
+                                <p>Experienced engineers who understand artists and know how to bring out your best performance.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section with Table Layout -->
     <section class="services section" id="services">
+        <img class="section-bg" src="images/studio-bg.jpg" alt="Studio background" onerror="this.style.display='none'">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Lock In a Session</h2>
                 <p class="section-subtitle">That Fits Your Grind</p>
             </div>
             
-            <div class="services-grid">
-                <!-- Hourly -->
-                <div class="service-card">
-                    <div class="service-icon">🎧</div>
-                    <h3 class="service-title">Hourly</h3>
+            <div class="services-table">
+                <!-- Table Header -->
+                <div class="service-header-row">
+                    <div>Session Type</div>
+                    <div>Price</div>
+                    <div class="header-duration">Duration</div>
+                    <div>Action</div>
+                </div>
+                
+                <!-- Hourly - Tier 1 (Blue) -->
+                <div class="service-row tier-1">
+                    <div class="service-name">
+                        <div class="service-icon">🎧</div>
+                        <div>
+                            <div class="service-title">Hourly</div>
+                            <div style="font-size: 0.9rem; color: var(--text-body);">Engineer included</div>
+                        </div>
+                    </div>
                     <div class="service-price">£30<span>/hr</span></div>
-                    <p class="service-description">Slide in, drop heat, get pro results. Engineer included.</p>
-                    <ul class="service-features">
-                        <li class="service-feature">Full studio access with professional equipment</li>
-                        <li class="service-feature">On-site engineer for recording support</li>
-                        <li class="service-feature">Perfect for quick sessions or vocal takes</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary" style="width: 100%; text-align: center; padding: 1rem;">Book Hourly</a>
+                    <div class="service-duration">Flexible</div>
+                    <div class="service-action">
+                        <a href="#contact" class="btn-primary" style="background-color: var(--tier-1);">Book Now</a>
+                    </div>
                 </div>
                 
-                <!-- Half Day -->
-                <div class="service-card popular">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <div class="service-icon">🎧</div>
-                    <h3 class="service-title">Half Day</h3>
-                    <div class="service-price">£140<small>(5 Hours)</small></div>
-                    <p class="service-description">5-hour slot. Full access + full support.</p>
-                    <ul class="service-features">
-                        <li class="service-feature">Great for EPs, batch sessions or back-to-back takes</li>
-                        <li class="service-feature">Professional setup with mix-ready recordings</li>
-                        <li class="service-feature">Dedicated engineer throughout your session</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary" style="width: 100%; text-align: center; padding: 1rem;">Book Half Day</a>
+                <!-- Half Day - Tier 2 (Green - Most Popular) -->
+                <div class="service-row tier-2">
+                    <div class="popular-tag">MOST POPULAR</div>
+                    <div class="service-name">
+                        <div class="service-icon">🎧</div>
+                        <div>
+                            <div class="service-title">Half Day</div>
+                            <div style="font-size: 0.9rem; color: var(--text-body);">Full access + full support</div>
+                        </div>
+                    </div>
+                    <div class="service-price">£140</div>
+                    <div class="service-duration">5 Hours</div>
+                    <div class="service-action">
+                        <a href="#contact" class="btn-primary" style="background-color: var(--tier-2);">Book Now</a>
+                    </div>
                 </div>
                 
-                <!-- Full Day -->
-                <div class="service-card">
-                    <div class="service-icon">🎧</div>
-                    <h3 class="service-title">Full Day</h3>
-                    <div class="service-price">£240<small>(10 Hours)</small></div>
-                    <p class="service-description">All-day pass. 10 hours, engineer on hand, zero distractions.</p>
-                    <ul class="service-features">
-                        <li class="service-feature">Ideal for projects, collabs, or build-a-tape days</li>
-                        <li class="service-feature">Full creative control with professional results</li>
-                        <li class="service-feature">Complete studio access for extended sessions</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary" style="width: 100%; text-align: center; padding: 1rem;">Book Full Day</a>
+                <!-- Full Day - Tier 3 (Orange) -->
+                <div class="service-row tier-3">
+                    <div class="service-name">
+                        <div class="service-icon">🎧</div>
+                        <div>
+                            <div class="service-title">Full Day</div>
+                            <div style="font-size: 0.9rem; color: var(--text-body);">Zero distractions</div>
+                        </div>
+                    </div>
+                    <div class="service-price">£240</div>
+                    <div class="service-duration">10 Hours</div>
+                    <div class="service-action">
+                        <a href="#contact" class="btn-primary" style="background-color: var(--tier-3);">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Custom Session - Tier Custom (Purple) -->
+                <div class="service-row tier-custom">
+                    <div class="service-name">
+                        <div class="service-icon">🎧</div>
+                        <div>
+                            <div class="service-title">Custom Session</div>
+                            <div style="font-size: 0.9rem; color: var(--text-body);">Tailored to your needs</div>
+                        </div>
+                    </div>
+                    <div class="service-price" style="color: var(--tier-custom);">Enquiry</div>
+                    <div class="service-duration">Flexible</div>
+                    <div class="service-action">
+                        <a href="#contact" class="btn-primary" style="background-color: var(--tier-custom);">Enquire</a>
+                    </div>
                 </div>
             </div>
             
@@ -1236,6 +1335,7 @@
 
     <!-- Gallery Section -->
     <section class="gallery section" id="gallery">
+        <img class="section-bg" src="images/studio1.jpg" alt="Gallery background" onerror="this.style.display='none'">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Inside</h2>
@@ -1248,19 +1348,20 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section with Table/Columns -->
     <section class="contact section" id="contact">
+        <img class="section-bg" src="images/studio2.jpg" alt="Contact background" onerror="this.style.display='none'">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Talk to Us or</h2>
                 <p class="section-subtitle">Lock in a Session</p>
             </div>
             
-            <div class="contact-grid">
-                <div class="contact-info">
+            <div class="contact-table">
+                <div class="contact-column">
                     <h3>Get In Touch</h3>
                     <div class="contact-methods">
-                        <a href="tel:07710593113" class="contact-method">
+                        <a href="tel:07710593113" class="contact-row">
                             <div class="method-icon"><i class="fas fa-phone"></i></div>
                             <div class="method-text">
                                 <strong>07710 593113</strong>
@@ -1268,7 +1369,7 @@
                             </div>
                         </a>
                         
-                        <div class="contact-method">
+                        <div class="contact-row">
                             <div class="method-icon"><i class="fas fa-envelope"></i></div>
                             <div class="method-text">
                                 <span class="contact-name">Studio Email</span>
@@ -1276,7 +1377,7 @@
                             </div>
                         </div>
                         
-                        <div class="contact-method">
+                        <div class="contact-row">
                             <div class="method-icon"><i class="fas fa-user"></i></div>
                             <div class="method-text">
                                 <span class="contact-name">jaidee</span>
@@ -1284,7 +1385,7 @@
                             </div>
                         </div>
                         
-                        <div class="contact-method">
+                        <div class="contact-row">
                             <div class="method-icon"><i class="fas fa-user"></i></div>
                             <div class="method-text">
                                 <span class="contact-name">dsoul</span>
@@ -1292,7 +1393,7 @@
                             </div>
                         </div>
                         
-                        <a href="https://instagram.com/billups_studio" target="_blank" class="contact-method">
+                        <a href="https://instagram.com/billups_studio" target="_blank" class="contact-row">
                             <div class="method-icon"><i class="fab fa-instagram"></i></div>
                             <div class="method-text">
                                 <strong>@billups_studio</strong>
@@ -1300,7 +1401,7 @@
                             </div>
                         </a>
                         
-                        <div class="contact-method">
+                        <div class="contact-row">
                             <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div class="method-text">
                                 <strong>Cutenhoe Road, Luton LU1 3NB</strong>
@@ -1310,59 +1411,61 @@
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <h3>Book Your Session</h3>
-                    <form id="bookingForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" id="name" name="name" required>
+                <div class="contact-column">
+                    <div class="contact-form">
+                        <h3>Book Your Session</h3>
+                        <form id="bookingForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
                             </div>
+                            
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
                             </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="session-type">Session Type</label>
-                            <select id="session-type" name="session-type" required>
-                                <option value="">Select session</option>
-                                <option value="hourly">Hourly (£30/hr)</option>
-                                <option value="half-day">Half Day (£140)</option>
-                                <option value="full-day">Full Day (£240)</option>
-                                <option value="custom">Custom Session</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="preferred-contact">Preferred Contact Method</label>
-                            <select id="preferred-contact" name="preferred-contact">
-                                <option value="">Any method is fine</option>
-                                <option value="studio-email">Studio Email</option>
-                                <option value="jaidee">Contact jaidee directly</option>
-                                <option value="phone">Phone Call</option>
-                                <!-- dsoul removed from form dropdown as requested -->
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message / Project Details</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary" style="width: 100%;">Send Booking Request</button>
-                        
-                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 255, 0, 0.1); border-radius: 8px; border: 1px solid rgba(0, 255, 0, 0.2); font-size: 0.9rem; text-align: center;">
-                            <strong>✉️ Your message will be sent to:</strong><br>
-                            <span style="color: var(--accent-light);">billupsltd@gmail.com, joellhead05@gmail.com</span>
-                        </div>
-                    </form>
+                            
+                            <div class="form-group">
+                                <label for="session-type">Session Type</label>
+                                <select id="session-type" name="session-type" required>
+                                    <option value="">Select session</option>
+                                    <option value="hourly">Hourly (£30/hr)</option>
+                                    <option value="half-day">Half Day (£140)</option>
+                                    <option value="full-day">Full Day (£240)</option>
+                                    <option value="custom">Custom Session</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="preferred-contact">Preferred Contact Method</label>
+                                <select id="preferred-contact" name="preferred-contact">
+                                    <option value="">Any method is fine</option>
+                                    <option value="studio-email">Studio Email</option>
+                                    <option value="jaidee">Contact jaidee directly</option>
+                                    <option value="phone">Phone Call</option>
+                                    <!-- dsoul removed from form dropdown as requested -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message / Project Details</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary" style="width: 100%;">Send Booking Request</button>
+                            
+                            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 255, 0, 0.1); border-radius: 8px; border: 1px solid rgba(0, 255, 0, 0.2); font-size: 0.9rem; text-align: center;">
+                                <strong>✉️ Your message will be sent to:</strong><br>
+                                <span style="color: var(--accent-light);">billupsltd@gmail.com, joellhead05@gmail.com</span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1371,8 +1474,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div>
+            <div class="footer-table">
+                <div class="footer-column">
                     <img src="images/logo.png" alt="Billups Studio" class="footer-logo">
                     <p class="footer-description">
                         Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
@@ -1380,7 +1483,7 @@
                     </p>
                 </div>
                 
-                <div>
+                <div class="footer-column">
                     <h4 class="footer-heading">Quick Links</h4>
                     <ul class="footer-links">
                         <li class="footer-link"><a href="#home">Home</a></li>
@@ -1390,7 +1493,7 @@
                     </ul>
                 </div>
                 
-                <div>
+                <div class="footer-column">
                     <h4 class="footer-heading">Studio Hours</h4>
                     <ul class="footer-links">
                         <li class="footer-link"><a href="#" style="pointer-events: none;">Monday - Sunday</a></li>
@@ -1413,10 +1516,15 @@
         // ===== CONFIGURATION =====
         const CONFIG = {
             logoPath: 'images/logo.png',
-            // Expected images in /images folder
-            imageFiles: [
-                'hero-bg.jpg',
-                'about-studio.jpg',
+            // Background images for sections
+            backgroundImages: {
+                about: 'images/about-studio.jpg',
+                services: 'images/studio-bg.jpg',
+                gallery: 'images/studio1.jpg',
+                contact: 'images/studio2.jpg'
+            },
+            // Expected gallery images
+            galleryImages: [
                 'studio1.jpg',
                 'studio2.jpg',
                 'studio3.jpg',
@@ -1426,12 +1534,7 @@
                 'studio7.jpg',
                 'studio8.jpg',
                 'studio9.jpg',
-                'studio10.jpg',
-                'studio11.jpg',
-                'studio12.jpg',
-                'studio13.jpg',
-                'studio14.jpg',
-                'studio15.jpg'
+                'studio10.jpg'
             ]
         };
 
@@ -1451,30 +1554,24 @@
             }
         });
 
-        // ===== LOGO 3D ROTATION =====
-        let logoAnimationActive = false;
-        
-        function triggerLogo3DRotation() {
-            if (logoAnimationActive) return;
+        // ===== LOGO 3D ROTATION EVERY 5 SECONDS =====
+        function startLogoRotation() {
+            // Initial rotation after 1 second
+            setTimeout(rotateLogo, 1000);
             
-            logoAnimationActive = true;
-            
-            // Add the 3D rotation animation
-            mainLogo.style.animation = 'logo-special-spin 2s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards';
-            
-            // After animation completes, return to normal
-            setTimeout(() => {
-                mainLogo.style.animation = '';
-                logoAnimationActive = false;
-                
-                // Schedule next animation in 8-12 seconds
-                const nextDelay = 8000 + Math.random() * 4000;
-                setTimeout(triggerLogo3DRotation, nextDelay);
-            }, 2000);
+            // Then rotate every 5 seconds
+            setInterval(rotateLogo, 5000);
         }
         
-        // Start the logo animation cycle
-        setTimeout(triggerLogo3DRotation, 10000);
+        function rotateLogo() {
+            // Add the 3D rotation animation
+            mainLogo.style.animation = 'logo-3d-rotate 1s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards';
+            
+            // After animation completes, reset for next rotation
+            setTimeout(() => {
+                mainLogo.style.animation = '';
+            }, 1000);
+        }
 
         // ===== HERO BACKGROUND =====
         function setHeroBackground() {
@@ -1504,10 +1601,36 @@
             
             heroSection.insertBefore(heroBg, heroSection.firstChild);
             
-            // Add overlay
+            // Add overlay (with increased transparency)
             const overlay = document.createElement('div');
             overlay.className = 'hero-overlay';
             heroSection.insertBefore(overlay, heroSection.children[1]);
+        }
+
+        // ===== SET SECTION BACKGROUNDS =====
+        function setSectionBackgrounds() {
+            // Set about section background
+            const aboutBg = document.querySelector('.about .section-bg');
+            if (aboutBg) {
+                const testImg = new Image();
+                testImg.src = CONFIG.backgroundImages.about;
+                testImg.onload = function() {
+                    aboutBg.src = CONFIG.backgroundImages.about;
+                };
+            }
+            
+            // Set other section backgrounds
+            const sectionBgs = document.querySelectorAll('.section-bg');
+            sectionBgs.forEach((bg, index) => {
+                bg.onerror = function() {
+                    // Try to use studio1.jpg as fallback
+                    const fallbackTest = new Image();
+                    fallbackTest.src = 'images/studio1.jpg';
+                    fallbackTest.onload = function() {
+                        bg.src = 'images/studio1.jpg';
+                    };
+                };
+            });
         }
 
         // ===== GALLERY LOADER =====
@@ -1516,17 +1639,17 @@
             
             galleryContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--accent);">Loading studio images...</div>';
             
-            // Try to load all images from the CONFIG.imageFiles array
+            // Try to load gallery images
             const loadedImages = [];
             let imagesChecked = 0;
             
-            CONFIG.imageFiles.forEach(filename => {
+            CONFIG.galleryImages.forEach(filename => {
                 const testImg = new Image();
                 testImg.src = `images/${filename}`;
                 testImg.onload = function() {
                     loadedImages.push({
                         src: `images/${filename}`,
-                        alt: filename.replace('.jpg', '').replace('-', ' ').replace('studio', 'Studio ')
+                        alt: `Studio image ${filename.replace('studio', '').replace('.jpg', '')}`
                     });
                     imagesChecked++;
                     checkIfAllImagesChecked();
@@ -1538,12 +1661,12 @@
             });
             
             function checkIfAllImagesChecked() {
-                if (imagesChecked === CONFIG.imageFiles.length) {
+                if (imagesChecked === CONFIG.galleryImages.length) {
                     if (loadedImages.length > 0) {
                         displayGalleryImages(loadedImages);
                     } else {
                         galleryContainer.innerHTML = '<div style="text-align: center; padding: 3rem; color: var(--accent);">' +
-                            'Add images to the /images folder.<br>Name them: hero-bg.jpg, about-studio.jpg, studio1.jpg, studio2.jpg, etc.' +
+                            'Add images to the /images folder.<br>Name them: studio1.jpg, studio2.jpg, etc.' +
                             '</div>';
                     }
                 }
@@ -1553,14 +1676,8 @@
         function displayGalleryImages(images) {
             galleryContainer.innerHTML = '';
             
-            // Sort to ensure hero-bg.jpg appears first
-            const sortedImages = images.sort((a, b) => {
-                if (a.src.includes('hero-bg')) return -1;
-                if (b.src.includes('hero-bg')) return 1;
-                return 0;
-            });
-            
-            sortedImages.forEach((image, index) => {
+            // Display all loaded images
+            images.forEach((image, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
                 
@@ -1589,7 +1706,7 @@
                 timestamp: new Date().toISOString()
             };
             
-            // Determine which contacts to notify (dsoul removed from form)
+            // Determine which contacts to notify
             let contactsToNotify = [];
             switch(formData.preferredContact) {
                 case 'studio-email':
@@ -1608,7 +1725,7 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Simulate sending (in production, connect to real backend)
+            // Simulate sending
             await new Promise(resolve => setTimeout(resolve, 1500));
             
             // Show success message
@@ -1624,9 +1741,6 @@
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Trigger logo animation as celebration
-            triggerLogo3DRotation();
         });
 
         // ===== SMOOTH SCROLLING =====
@@ -1649,7 +1763,9 @@
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
             setHeroBackground();
+            setSectionBackgrounds();
             loadGalleryImages();
+            startLogoRotation(); // Start the 5-second logo rotation
             
             // Set current year in footer
             const yearElement = document.querySelector('.footer-bottom p');

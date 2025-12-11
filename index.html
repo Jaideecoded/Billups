@@ -112,8 +112,8 @@
             left: 0;
             width: 100%;
             height: 200px;
-            z-index: 1; /* Increased from -1 to be above backgrounds but below content */
-            opacity: 0.25; /* Increased opacity for better visibility */
+            z-index: 1;
+            opacity: 0.25;
             overflow: hidden;
             pointer-events: none;
         }
@@ -125,8 +125,8 @@
             transform: translateX(-50%);
             display: flex;
             align-items: flex-end;
-            height: 150px; /* Taller bars */
-            gap: 10px; /* More spacing */
+            height: 150px;
+            gap: 10px;
             padding: 0 40px;
         }
         
@@ -135,11 +135,11 @@
             background: linear-gradient(to top, var(--accent), var(--tier-1), var(--tier-custom));
             border-radius: 7px 7px 0 0;
             opacity: 0.8;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* More prominent glow */
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
             filter: brightness(1.2);
         }
         
-        /* 12 bars with varied animations - ENHANCED VISIBILITY */
+        /* 12 bars with varied animations */
         .equalizer-bar:nth-child(1) { height: 30%; animation: eq-bar-1 2.5s infinite ease-in-out; background: linear-gradient(to top, var(--accent), var(--tier-1)); }
         .equalizer-bar:nth-child(2) { height: 50%; animation: eq-bar-2 3s infinite ease-in-out; animation-delay: 0.1s; background: linear-gradient(to top, var(--accent), var(--tier-2)); }
         .equalizer-bar:nth-child(3) { height: 70%; animation: eq-bar-3 2.8s infinite ease-in-out; animation-delay: 0.2s; background: linear-gradient(to top, var(--accent), var(--tier-3)); }
@@ -188,7 +188,7 @@
             75% { height: 45%; }
         }
         
-        /* Smoke Particles - More visible */
+        /* Smoke Particles */
         .smoke-particle {
             position: absolute;
             bottom: 150px;
@@ -201,117 +201,7 @@
             z-index: 1;
         }
         
-        .smoke-particle:nth-child(1) {
-            left: 10%;
-            animation: smoke-float-1 15s infinite ease-in-out;
-            background: radial-gradient(circle, rgba(0, 168, 255, 0.2) 0%, rgba(0, 168, 255, 0.1) 50%, transparent 70%);
-        }
-        
-        .smoke-particle:nth-child(2) {
-            left: 25%;
-            animation: smoke-float-2 18s infinite ease-in-out;
-            animation-delay: 3s;
-            background: radial-gradient(circle, rgba(0, 255, 0, 0.2) 0%, rgba(0, 255, 0, 0.1) 50%, transparent 70%);
-        }
-        
-        .smoke-particle:nth-child(3) {
-            left: 40%;
-            animation: smoke-float-3 16s infinite ease-in-out;
-            animation-delay: 6s;
-            background: radial-gradient(circle, rgba(255, 149, 0, 0.2) 0%, rgba(255, 149, 0, 0.1) 50%, transparent 70%);
-        }
-        
-        .smoke-particle:nth-child(4) {
-            left: 55%;
-            animation: smoke-float-1 14s infinite ease-in-out;
-            animation-delay: 9s;
-            background: radial-gradient(circle, rgba(188, 0, 255, 0.2) 0%, rgba(188, 0, 255, 0.1) 50%, transparent 70%);
-        }
-        
-        .smoke-particle:nth-child(5) {
-            left: 70%;
-            animation: smoke-float-2 17s infinite ease-in-out;
-            animation-delay: 12s;
-            background: radial-gradient(circle, rgba(0, 168, 255, 0.2) 0%, rgba(0, 168, 255, 0.1) 50%, transparent 70%);
-        }
-        
-        .smoke-particle:nth-child(6) {
-            left: 85%;
-            animation: smoke-float-3 13s infinite ease-in-out;
-            animation-delay: 15s;
-            background: radial-gradient(circle, rgba(0, 255, 0, 0.2) 0%, rgba(0, 255, 0, 0.1) 50%, transparent 70%);
-        }
-        
-        @keyframes smoke-float-1 {
-            0% {
-                opacity: 0;
-                transform: translateY(0) scale(0.5);
-            }
-            10% {
-                opacity: 0.4;
-                transform: translateY(-30px) scale(0.7);
-            }
-            40% {
-                opacity: 0.6;
-                transform: translateY(-100px) scale(1);
-            }
-            70% {
-                opacity: 0.3;
-                transform: translateY(-180px) scale(1.3);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-250px) scale(1.5);
-            }
-        }
-        
-        @keyframes smoke-float-2 {
-            0% {
-                opacity: 0;
-                transform: translateY(0) scale(0.6);
-            }
-            15% {
-                opacity: 0.5;
-                transform: translateY(-40px) scale(0.8);
-            }
-            45% {
-                opacity: 0.7;
-                transform: translateY(-120px) scale(1.1);
-            }
-            75% {
-                opacity: 0.2;
-                transform: translateY(-200px) scale(1.4);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-280px) scale(1.6);
-            }
-        }
-        
-        @keyframes smoke-float-3 {
-            0% {
-                opacity: 0;
-                transform: translateY(0) scale(0.7);
-            }
-            20% {
-                opacity: 0.6;
-                transform: translateY(-50px) scale(0.9);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateY(-140px) scale(1.2);
-            }
-            80% {
-                opacity: 0.1;
-                transform: translateY(-220px) scale(1.5);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-300px) scale(1.7);
-            }
-        }
-        
-        /* ===== GRID OVERLAY - TECH TEXTURE ===== */
+        /* ===== GRID OVERLAY ===== */
         .grid-overlay {
             position: fixed;
             top: 0;
@@ -322,12 +212,12 @@
                 linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
-            z-index: 0; /* Below equalizer, above main background */
+            z-index: 0;
             opacity: 0.15;
             pointer-events: none;
         }
         
-        /* ===== ENHANCED NAVIGATION ICONS - COLOR FILL EFFECT ===== */
+        /* ===== ENHANCED NAVIGATION ICONS ===== */
         .nav-icons {
             display: flex;
             gap: var(--space-lg);
@@ -346,7 +236,7 @@
             color: rgba(255, 255, 255, 0.9);
             font-size: 1.3rem;
             text-decoration: none;
-            width: 55px; /* Slightly larger */
+            width: 55px;
             height: 55px;
             display: flex;
             align-items: center;
@@ -361,7 +251,6 @@
             z-index: 1;
         }
         
-        /* Color fill effect on hover */
         .nav-icon::before {
             content: '';
             position: absolute;
@@ -438,7 +327,7 @@
             transform: translateY(0);
         }
         
-        /* ===== ENHANCED BUTTONS - NO DISAPPEARING ===== */
+        /* ===== ENHANCED BUTTONS ===== */
         .btn-primary {
             display: inline-block;
             padding: 1.3rem 3.5rem;
@@ -452,7 +341,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             animation: fadeInUp 1s ease-out 0.6s both;
-            border: 3px solid var(--accent); /* Thicker border */
+            border: 3px solid var(--accent);
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -460,10 +349,8 @@
             min-width: 220px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
-            /* Ensure button stays visible */
             opacity: 1 !important;
             visibility: visible !important;
-            transform: none !important;
         }
         
         .btn-primary::before {
@@ -520,17 +407,7 @@
             opacity: 1;
         }
         
-        .btn-primary:active {
-            transform: translateY(-2px) scale(1.02);
-        }
-        
-        .btn-primary:focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 5px;
-            box-shadow: 0 0 0 5px rgba(0, 255, 0, 0.3);
-        }
-        
-        /* Service tier specific buttons */
+        /* Tier specific buttons */
         .btn-tier-1 {
             background-color: var(--tier-1) !important;
             border-color: var(--tier-1) !important;
@@ -573,87 +450,6 @@
         .btn-tier-custom:hover {
             background-color: #d966ff !important;
             box-shadow: 0 15px 40px rgba(188, 0, 255, 0.5), 0 0 60px rgba(188, 0, 255, 0.3) !important;
-        }
-        
-        /* ===== DATA STREAM EFFECT - ENHANCED ===== */
-        .data-stream {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Below equalizer, above grid */
-            opacity: 0.1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .data-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), var(--tier-1), var(--tier-custom), transparent);
-            animation: data-flow 15s linear infinite;
-            filter: blur(0.5px);
-        }
-        
-        @keyframes data-flow {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100vw); }
-        }
-        
-        /* ===== LAYER Z-INDEX SYSTEM ===== */
-        /* 1. Main background (body) - z-index: auto */
-        /* 2. Grid overlay - z-index: 0 */
-        /* 3. Data stream - z-index: 0 */
-        /* 4. Equalizer - z-index: 1 */
-        /* 5. Section backgrounds - z-index: 1 */
-        /* 6. Section content - z-index: 2 */
-        /* 7. Header - z-index: 1000 */
-        /* 8. Navigation labels - z-index: 1002 */
-        
-        /* Ensure section backgrounds don't cover equalizer */
-        .section-bg {
-            z-index: 1 !important; /* Same as equalizer, but equalizer is fixed so appears above */
-        }
-        
-        .hero-overlay {
-            z-index: 1 !important;
-        }
-        
-        /* ===== REST OF THE STYLES (Same as before, adjusted for z-index) ===== */
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 800;
-            line-height: 1.1;
-            color: var(--text-primary);
-            margin-bottom: var(--space-md);
-            text-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
-        }
-        
-        h1 {
-            font-size: 5rem;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-        }
-        
-        h2 {
-            font-size: 3rem;
-            text-transform: uppercase;
-        }
-        
-        h3 {
-            font-size: 2.2rem;
-        }
-        
-        p {
-            margin-bottom: var(--space-md);
-            line-height: 1.7;
-        }
-        
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: var(--transition);
         }
         
         /* ===== HEADER ===== */
@@ -726,7 +522,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: 0; /* Below overlay */
+            z-index: 0;
             opacity: 0.5;
         }
         
@@ -737,12 +533,12 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(45deg, rgba(42, 15, 84, 0.8), rgba(26, 11, 46, 0.9));
-            z-index: 1; /* Above bg, below content */
+            z-index: 1;
         }
         
         .hero-content {
             position: relative;
-            z-index: 2; /* Above overlay and equalizer */
+            z-index: 2;
             text-align: center;
             max-width: 900px;
             padding: var(--space-xl);
@@ -816,7 +612,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: 1; /* Above grid, below content */
+            z-index: 1;
             opacity: 0.4;
         }
         
@@ -824,7 +620,7 @@
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 2; /* Above section bg and equalizer */
+            z-index: 2;
             width: 100%;
         }
         
@@ -849,45 +645,46 @@
             margin: 0 auto;
         }
         
-        /* ===== ABOUT SECTION ===== */
-        .about {
+        /* ===== GALLERY SECTION ===== */
+        .gallery {
             background-color: rgba(26, 11, 46, 0.7);
         }
         
-        .about-table {
+        .gallery-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xxl);
-            align-items: start;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
         }
         
-        .about-column {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xxl);
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--dark-gray);
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
             transition: var(--transition);
+            cursor: pointer;
             z-index: 2;
         }
         
-        .about-column:hover {
-            transform: translateY(-10px);
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.02);
             border-color: var(--accent);
             box-shadow: var(--shadow-lg);
         }
         
-        .about-column h2 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: var(--space-lg);
-            line-height: 1.1;
-            color: var(--text-primary);
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s ease;
         }
         
-        .about-column h2 span {
-            color: var(--accent);
-            display: block;
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
         
         /* ===== SERVICES SECTION ===== */
@@ -941,138 +738,6 @@
             border-color: rgba(0, 255, 0, 0.3);
         }
         
-        .service-row.tier-1 {
-            border-left: 6px solid var(--tier-1);
-        }
-        
-        .service-row.tier-2 {
-            border-left: 6px solid var(--tier-2);
-        }
-        
-        .service-row.tier-3 {
-            border-left: 6px solid var(--tier-3);
-        }
-        
-        .service-row.tier-custom {
-            border-left: 6px solid var(--tier-custom);
-        }
-        
-        .service-name {
-            display: flex;
-            align-items: center;
-            gap: var(--space-lg);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            filter: drop-shadow(var(--shadow-accent));
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 255, 0, 0.1);
-            border-radius: 50%;
-            border: 1px solid rgba(0, 255, 0, 0.3);
-        }
-        
-        .service-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: var(--space-xs);
-        }
-        
-        .service-description {
-            font-size: 1rem;
-            color: var(--text-body);
-            opacity: 0.9;
-        }
-        
-        .service-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--accent);
-            line-height: 1;
-        }
-        
-        .service-price span {
-            font-size: 1rem;
-            color: var(--text-body);
-            font-weight: 600;
-            display: block;
-            margin-top: var(--space-xs);
-        }
-        
-        .service-duration {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-        
-        .service-action .btn-primary {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            width: 100%;
-            min-width: auto;
-        }
-        
-        .popular-tag {
-            position: absolute;
-            top: -15px;
-            right: 30px;
-            background: var(--tier-2);
-            color: var(--black);
-            padding: var(--space-xs) var(--space-lg);
-            border-radius: var(--radius-full);
-            font-weight: 900;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: var(--shadow-md);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            z-index: 3;
-        }
-        
-        .deposit-notice {
-            background: rgba(255, 107, 53, 0.2);
-            border: 1px solid var(--orange-accent);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            text-align: center;
-            margin-top: var(--space-xxl);
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            backdrop-filter: blur(10px);
-            border-left: 6px solid var(--orange-accent);
-            z-index: 2;
-        }
-        
-        /* ===== GALLERY SECTION ===== */
-        .gallery {
-            background-color: rgba(26, 11, 46, 0.7);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: var(--space-lg);
-            margin-top: var(--space-xl);
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            background: var(--dark-gray);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            cursor: pointer;
-            z-index: 2;
-        }
-        
         /* ===== CONTACT SECTION ===== */
         .contact {
             background-color: rgba(45, 27, 78, 0.7);
@@ -1095,17 +760,7 @@
             z-index: 2;
         }
         
-        .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: var(--space-xxl);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            z-index: 2;
-        }
-        
-        /* ===== ENHANCED FOOTER ===== */
+        /* ===== FOOTER ===== */
         .footer {
             background-color: rgba(0, 0, 0, 0.95);
             padding: var(--space-xxl) var(--space-xl) var(--space-xl);
@@ -1160,7 +815,6 @@
             h1 { font-size: 3.5rem; }
             h2 { font-size: 2.5rem; }
             .hero-logo-large { height: 160px; margin-bottom: var(--space-xl); }
-            .about-table,
             .contact-table {
                 grid-template-columns: 1fr;
                 gap: var(--space-xl);
@@ -1192,32 +846,16 @@
             .hero-logo-large { height: 140px; margin-bottom: var(--space-lg); }
             .section { padding: var(--space-xl) var(--space-md); }
             .section-title { font-size: 2.2rem; }
-            .form-row { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
             .footer-table {
                 grid-template-columns: 1fr;
                 gap: var(--space-xl);
             }
-            .contact-form { padding: var(--space-xl); }
             .service-header-row,
             .service-row {
                 grid-template-columns: 1fr;
                 text-align: center;
                 padding: var(--space-lg);
-            }
-            .service-name {
-                flex-direction: column;
-                text-align: center;
-                gap: var(--space-md);
-            }
-            .popular-tag {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin-bottom: var(--space-md);
-                width: fit-content;
-                margin-left: auto;
-                margin-right: auto;
             }
             .nav-label { display: none; }
             .btn-primary {
@@ -1238,41 +876,35 @@
                 font-size: 1rem;
                 min-width: 160px;
             }
-            .about-column,
             .contact-column { padding: var(--space-xl); }
-            .contact-form { padding: var(--space-lg); }
-            .popular-tag {
-                font-size: 0.75rem;
-                padding: 0.3rem 0.8rem;
-            }
             .section-header { margin-bottom: var(--space-xl); }
             .nav-icons { gap: var(--space-sm); }
             .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
         }
         
-        /* ===== ACCESSIBILITY ENHANCEMENTS ===== */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+        /* ===== LOADING STATES ===== */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            color: var(--accent);
+            font-size: 1.2rem;
         }
         
-        /* Focus Styles for Keyboard Navigation */
-        :focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 5px;
-            box-shadow: 0 0 0 5px rgba(0, 255, 0, 0.3);
+        .loading-spinner {
+            border: 3px solid rgba(0, 255, 0, 0.3);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
         }
         
-        /* High Contrast Mode Support */
-        @media (prefers-contrast: high) {
-            :root {
-                --text-body: #ffffff;
-                --text-muted: #cccccc;
-                --border-color: #ffffff;
-            }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -1280,10 +912,7 @@
     <!-- Grid Overlay -->
     <div class="grid-overlay"></div>
     
-    <!-- Data Stream Effect -->
-    <div class="data-stream" id="dataStream"></div>
-    
-    <!-- ENHANCED Graphic Equalizer - NOW VISIBLE -->
+    <!-- Enhanced Graphic Equalizer -->
     <div class="equalizer-container" id="equalizerContainer">
         <div class="equalizer-bars">
             <div class="equalizer-bar"></div>
@@ -1299,10 +928,10 @@
             <div class="equalizer-bar"></div>
             <div class="equalizer-bar"></div>
         </div>
-        <!-- Smoke particles will be added by JavaScript -->
+        <!-- Smoke particles added by JavaScript -->
     </div>
 
-    <!-- Enhanced Header with Cooler Navigation -->
+    <!-- Header -->
     <header class="header" id="header">
         <div class="nav-icons">
             <div class="nav-icon-container">
@@ -1328,7 +957,7 @@
         </div>
         
         <div class="logo-center">
-            <img src="images/logo.png" alt="Billups Studio" class="header-logo">
+            <img src="images/logo.png" alt="Billups Studio" class="header-logo" id="headerLogo">
         </div>
         
         <div class="nav-icons">
@@ -1353,7 +982,7 @@
                 <span class="nav-label">Instagram</span>
             </div>
             
-            <img src="images/logo.png" alt="Billups Studio Logo" class="logo-small">
+            <img src="images/logo.png" alt="Billups Studio Logo" class="logo-small" id="smallLogo">
         </div>
     </header>
 
@@ -1375,7 +1004,6 @@
 
     <!-- About Section -->
     <section class="about section" id="about">
-        <img class="section-bg" src="images/about-studio.jpg" alt="Studio interior" loading="lazy">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Real Studio. Real Energy.</h2>
@@ -1430,7 +1058,6 @@
 
     <!-- Services Section -->
     <section class="services section" id="services">
-        <img class="section-bg" src="images/studio-bg.jpg" alt="Studio background" loading="lazy">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Lock In a Session</h2>
@@ -1438,7 +1065,6 @@
             </div>
             
             <div class="services-table">
-                <!-- Table Header -->
                 <div class="service-header-row">
                     <div>Session Type</div>
                     <div>Price</div>
@@ -1446,7 +1072,7 @@
                     <div>Action</div>
                 </div>
                 
-                <!-- Hourly - Tier 1 (Blue) -->
+                <!-- Hourly -->
                 <div class="service-row tier-1">
                     <div class="service-name">
                         <div class="service-icon">🎧</div>
@@ -1462,7 +1088,7 @@
                     </div>
                 </div>
                 
-                <!-- Half Day - Tier 2 (Green - Most Popular) -->
+                <!-- Half Day -->
                 <div class="service-row tier-2">
                     <div class="popular-tag" aria-label="Most Popular">MOST POPULAR</div>
                     <div class="service-name">
@@ -1479,7 +1105,7 @@
                     </div>
                 </div>
                 
-                <!-- Full Day - Tier 3 (Orange) -->
+                <!-- Full Day -->
                 <div class="service-row tier-3">
                     <div class="service-name">
                         <div class="service-icon">🎧</div>
@@ -1495,7 +1121,7 @@
                     </div>
                 </div>
                 
-                <!-- Custom Session - Tier Custom (Purple) -->
+                <!-- Custom Session -->
                 <div class="service-row tier-custom">
                     <div class="service-name">
                         <div class="service-icon">🎧</div>
@@ -1520,7 +1146,6 @@
 
     <!-- Gallery Section -->
     <section class="gallery section" id="gallery">
-        <img class="section-bg" src="images/studio1.jpg" alt="Gallery background" loading="lazy">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Inside</h2>
@@ -1528,15 +1153,16 @@
             </div>
             
             <div class="gallery-grid" id="galleryContainer">
-                <!-- Gallery images loaded by JavaScript -->
-                <div class="gallery-loading">Loading studio images...</div>
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    Loading studio images...
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact section" id="contact">
-        <img class="section-bg" src="images/studio2.jpg" alt="Contact background" loading="lazy">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Talk to Us or</h2>
@@ -1656,12 +1282,12 @@
         </div>
     </section>
 
-    <!-- Enhanced Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-table">
                 <div class="footer-column">
-                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo">
+                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo" id="footerLogo">
                     <p class="footer-description">
                         Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
                         No gimmicks. Just professional setup, local roots, and that unmatched vibe.
@@ -1698,389 +1324,688 @@
     </footer>
 
     <script>
-        // ===== MASTER CONFIGURATION =====
-        const CONFIG = {
-            logoPath: 'images/logo.png',
-            galleryImages: [
-                'studio1.jpg', 'studio2.jpg', 'studio3.jpg',
-                'studio4.jpg', 'studio5.jpg', 'studio6.jpg',
-                'studio7.jpg', 'studio8.jpg', 'studio9.jpg',
-                'studio10.jpg'
-            ],
-            smokeParticles: 6,
-            dataStreamLines: 20,
-            navIconColors: ['#00a8ff', '#00ff00', '#ff9500', '#bc00ff']
-        };
-
-        // ===== DOM ELEMENTS =====
-        const header = document.getElementById('header');
-        const mainLogo = document.getElementById('mainLogo');
-        const galleryContainer = document.getElementById('galleryContainer');
-        const bookingForm = document.getElementById('bookingForm');
-        const dataStream = document.getElementById('dataStream');
-        const equalizerContainer = document.getElementById('equalizerContainer');
-        const currentYear = document.getElementById('currentYear');
-
-        // ===== INITIALIZATION =====
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeHeroBackground();
-            initializeGallery();
-            initializeDataStream();
-            initializeSmokeParticles();
-            initializeCurrentYear();
-            initializeEventListeners();
-            initializePerformanceOptimizations();
-            initializeNavIconEffects();
-            ensureButtonsStayVisible();
-        });
-
-        // ===== ENSURE BUTTONS STAY VISIBLE =====
-        function ensureButtonsStayVisible() {
-            // Force buttons to maintain visibility
-            const buttons = document.querySelectorAll('.btn-primary');
-            buttons.forEach(button => {
-                button.style.opacity = '1';
-                button.style.visibility = 'visible';
-                button.style.display = 'inline-block';
-            });
+        // ===== DYNAMIC IMAGE LOADING SYSTEM =====
+        class ImageManager {
+            constructor() {
+                // Reserved filenames - these won't be used in galleries
+                this.reservedFiles = [
+                    'logo.png',
+                    'favicon.png',
+                    'icon.png',
+                    'thumbnail.png',
+                    'placeholder.jpg',
+                    'hero-bg.jpg',
+                    'about-studio.jpg',
+                    'studio-bg.jpg'
+                ];
+                
+                // File extensions to look for
+                this.imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+                
+                // Store discovered images
+                this.images = {
+                    gallery: [],
+                    backgrounds: []
+                };
+                
+                // DOM elements
+                this.galleryContainer = document.getElementById('galleryContainer');
+                this.mainLogo = document.getElementById('mainLogo');
+                this.headerLogo = document.getElementById('headerLogo');
+                this.smallLogo = document.getElementById('smallLogo');
+                this.footerLogo = document.getElementById('footerLogo');
+            }
             
-            // Add periodic check to ensure buttons don't disappear
-            setInterval(() => {
-                buttons.forEach(button => {
-                    const style = window.getComputedStyle(button);
-                    if (style.opacity === '0' || style.visibility === 'hidden' || style.display === 'none') {
-                        console.log('Button visibility restored:', button);
-                        button.style.opacity = '1';
-                        button.style.visibility = 'visible';
-                        button.style.display = 'inline-block';
+            // Try to detect all images in /images folder
+            async discoverImages() {
+                console.log('🔍 Discovering images in /images folder...');
+                
+                // We'll try to load a range of possible images
+                // In a real server environment, you'd have a server-side API to list files
+                // Since this is static, we'll try common patterns and fallbacks
+                
+                const patterns = [
+                    'studio', 'studio-', 'studio_', 'img', 'image', 'photo', 'pic',
+                    'bg', 'background', 'interior', 'equipment', 'gear'
+                ];
+                
+                // Try numbers 1-20 with each pattern
+                for (const pattern of patterns) {
+                    for (let i = 1; i <= 20; i++) {
+                        for (const ext of this.imageExtensions) {
+                            const filename = `${pattern}${i}${ext}`;
+                            if (!this.isReserved(filename)) {
+                                await this.testImage(filename);
+                            }
+                        }
                     }
-                });
-            }, 1000);
-        }
-
-        // ===== NAVIGATION ICON EFFECTS =====
-        function initializeNavIconEffects() {
-            const navIcons = document.querySelectorAll('.nav-icon');
-            
-            navIcons.forEach((icon, index) => {
-                // Add individual color effects based on position
-                const colors = CONFIG.navIconColors;
-                const color = colors[index % colors.length];
+                }
                 
-                // Add a colored ring effect
-                const ring = document.createElement('div');
-                ring.style.cssText = `
-                    position: absolute;
-                    top: -5px;
-                    left: -5px;
-                    right: -5px;
-                    bottom: -5px;
-                    border: 2px solid ${color};
-                    border-radius: 50%;
-                    opacity: 0;
-                    transition: var(--transition);
-                    pointer-events: none;
+                // Also try random names that might exist
+                const randomNames = [
+                    'daw', 'microphone', 'mixer', 'monitors', 'acoustic', 'vocal',
+                    'recording', 'control-room', 'live-room', 'booth', 'setup',
+                    'gear1', 'gear2', 'room1', 'room2', 'view1', 'view2'
+                ];
+                
+                for (const name of randomNames) {
+                    for (const ext of this.imageExtensions) {
+                        const filename = `${name}${ext}`;
+                        if (!this.isReserved(filename)) {
+                            await this.testImage(filename);
+                        }
+                    }
+                }
+                
+                console.log(`✅ Found ${this.images.gallery.length} gallery images`);
+                console.log(`✅ Found ${this.images.backgrounds.length} background images`);
+                
+                return this.images;
+            }
+            
+            // Check if filename is reserved
+            isReserved(filename) {
+                return this.reservedFiles.some(reserved => 
+                    filename.toLowerCase().includes(reserved.toLowerCase())
+                );
+            }
+            
+            // Test if an image exists
+            async testImage(filename) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.src = `images/${filename}`;
+                    
+                    img.onload = () => {
+                        // Determine if it's a background or gallery image based on aspect ratio
+                        if (img.width > img.height * 1.5) {
+                            // Likely a wide background image
+                            this.images.backgrounds.push({
+                                src: `images/${filename}`,
+                                alt: `Studio ${filename.replace(/\.[^/.]+$/, '')}`,
+                                width: img.width,
+                                height: img.height
+                            });
+                        } else {
+                            // Likely a gallery image
+                            this.images.gallery.push({
+                                src: `images/${filename}`,
+                                alt: `Studio ${filename.replace(/\.[^/.]+$/, '')}`,
+                                width: img.width,
+                                height: img.height
+                            });
+                        }
+                        resolve(true);
+                    };
+                    
+                    img.onerror = () => {
+                        resolve(false);
+                    };
+                    
+                    // Timeout after 1 second
+                    setTimeout(() => resolve(false), 1000);
+                });
+            }
+            
+            // Populate gallery with discovered images
+            populateGallery() {
+                if (!this.galleryContainer || this.images.gallery.length === 0) {
+                    this.showFallbackGallery();
+                    return;
+                }
+                
+                this.galleryContainer.innerHTML = '';
+                
+                // Sort images by filename for consistent ordering
+                this.images.gallery.sort((a, b) => a.src.localeCompare(b.src));
+                
+                // Display first 12 images (or all if less)
+                const displayImages = this.images.gallery.slice(0, 12);
+                
+                displayImages.forEach((image, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.setAttribute('role', 'button');
+                    galleryItem.setAttribute('tabindex', '0');
+                    galleryItem.setAttribute('aria-label', `Studio image ${index + 1}`);
+                    
+                    const img = document.createElement('img');
+                    img.src = image.src;
+                    img.alt = image.alt;
+                    img.loading = 'lazy';
+                    
+                    // Add error handling
+                    img.onerror = () => {
+                        img.style.display = 'none';
+                        galleryItem.innerHTML = `
+                            <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: linear-gradient(45deg, var(--purple-dark), var(--purple-medium)); color: var(--accent);">
+                                <i class="fas fa-music" style="font-size: 2rem;"></i>
+                            </div>
+                        `;
+                    };
+                    
+                    galleryItem.appendChild(img);
+                    this.galleryContainer.appendChild(galleryItem);
+                    
+                    // Click handler for lightbox (placeholder)
+                    galleryItem.addEventListener('click', () => {
+                        this.openLightbox(image.src, image.alt);
+                    });
+                });
+                
+                // If we have more than 12 images, add a "view more" indicator
+                if (this.images.gallery.length > 12) {
+                    const moreItem = document.createElement('div');
+                    moreItem.className = 'gallery-item';
+                    moreItem.style.display = 'flex';
+                    moreItem.style.flexDirection = 'column';
+                    moreItem.style.alignItems = 'center';
+                    moreItem.style.justifyContent = 'center';
+                    moreItem.style.background = 'linear-gradient(45deg, var(--purple-dark), var(--purple-medium))';
+                    moreItem.style.color = 'var(--accent)';
+                    moreItem.style.fontSize = '1.2rem';
+                    moreItem.style.fontWeight = 'bold';
+                    
+                    moreItem.innerHTML = `
+                        <i class="fas fa-images" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        +${this.images.gallery.length - 12} more<br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Total: ${this.images.gallery.length} images</span>
+                    `;
+                    
+                    this.galleryContainer.appendChild(moreItem);
+                }
+            }
+            
+            // Fallback gallery if no images found
+            showFallbackGallery() {
+                if (!this.galleryContainer) return;
+                
+                this.galleryContainer.innerHTML = '';
+                
+                // Create 6 placeholder gallery items
+                for (let i = 1; i <= 6; i++) {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    
+                    const placeholder = document.createElement('div');
+                    placeholder.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: linear-gradient(45deg, var(--purple-dark), var(--purple-medium));
+                        color: var(--accent);
+                        font-size: 2rem;
+                    `;
+                    placeholder.innerHTML = `<i class="fas fa-music"></i>`;
+                    
+                    galleryItem.appendChild(placeholder);
+                    this.galleryContainer.appendChild(galleryItem);
+                }
+                
+                // Add instruction message
+                const instruction = document.createElement('div');
+                instruction.style.gridColumn = '1 / -1';
+                instruction.style.textAlign = 'center';
+                instruction.style.padding = '2rem';
+                instruction.style.color = 'var(--accent)';
+                instruction.innerHTML = `
+                    <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-info-circle"></i> Add your studio photos to the <strong>/images</strong> folder
+                    </p>
+                    <p style="opacity: 0.8; font-size: 0.9rem;">
+                        Accepted formats: .jpg, .png, .webp<br>
+                        Recommended size: 1200×900 pixels<br>
+                        Auto-detected on page load
+                    </p>
                 `;
-                icon.appendChild(ring);
                 
-                icon.addEventListener('mouseenter', () => {
-                    ring.style.opacity = '0.7';
-                    ring.style.transform = 'scale(1.1)';
-                });
-                
-                icon.addEventListener('mouseleave', () => {
-                    ring.style.opacity = '0';
-                    ring.style.transform = 'scale(1)';
-                });
-            });
-        }
-
-        // ===== HERO BACKGROUND =====
-        function initializeHeroBackground() {
-            const hero = document.querySelector('.hero');
+                this.galleryContainer.appendChild(instruction);
+            }
             
-            // Add dynamic background
-            const heroBg = document.createElement('div');
-            heroBg.className = 'hero-bg';
-            heroBg.style.cssText = `
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(45deg, #000000, #1a0b2e);
-                z-index: 0;
-            `;
-            
-            hero.insertBefore(heroBg, hero.firstChild);
-            
-            // Add overlay
-            const overlay = document.createElement('div');
-            overlay.className = 'hero-overlay';
-            hero.insertBefore(overlay, hero.children[1]);
-        }
-
-        // ===== GALLERY SYSTEM =====
-        function initializeGallery() {
-            if (!galleryContainer) return;
-            
-            galleryContainer.innerHTML = '';
-            
-            // Create 6 placeholder gallery items (can be replaced with actual images)
-            for (let i = 1; i <= 6; i++) {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.setAttribute('role', 'button');
-                galleryItem.setAttribute('tabindex', '0');
-                galleryItem.setAttribute('aria-label', `Studio image ${i}`);
-                
-                const placeholder = document.createElement('div');
-                placeholder.style.cssText = `
+            // Simple lightbox function
+            openLightbox(src, alt) {
+                // Create lightbox overlay
+                const lightbox = document.createElement('div');
+                lightbox.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
                     width: 100%;
                     height: 100%;
+                    background: rgba(0, 0, 0, 0.95);
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: linear-gradient(45deg, var(--purple-dark), var(--purple-medium));
-                    color: var(--accent);
-                    font-size: 3rem;
+                    z-index: 2000;
+                    animation: fadeIn 0.3s ease-out;
                 `;
-                placeholder.innerHTML = `<i class="fas fa-music"></i>`;
                 
-                galleryItem.appendChild(placeholder);
-                galleryContainer.appendChild(galleryItem);
-            }
-        }
-
-        // ===== DATA STREAM EFFECT =====
-        function initializeDataStream() {
-            if (!dataStream) return;
-            
-            for (let i = 0; i < CONFIG.dataStreamLines; i++) {
-                const line = document.createElement('div');
-                line.className = 'data-line';
-                line.style.top = `${Math.random() * 100}%`;
-                line.style.width = `${20 + Math.random() * 80}%`;
-                line.style.height = `${0.5 + Math.random() * 2}px`;
-                line.style.opacity = `${0.05 + Math.random() * 0.2}`;
-                line.style.animationDelay = `${Math.random() * 20}s`;
-                line.style.animationDuration = `${10 + Math.random() * 25}s`;
-                dataStream.appendChild(line);
-            }
-        }
-
-        // ===== SMOKE PARTICLES =====
-        function initializeSmokeParticles() {
-            if (!equalizerContainer) return;
-            
-            // Clear any existing smoke particles
-            const existingSmoke = equalizerContainer.querySelectorAll('.smoke-particle');
-            existingSmoke.forEach(smoke => smoke.remove());
-            
-            // Add smoke particles
-            for (let i = 0; i < CONFIG.smokeParticles; i++) {
-                const smoke = document.createElement('div');
-                smoke.className = 'smoke-particle';
+                // Create image container
+                const imgContainer = document.createElement('div');
+                imgContainer.style.cssText = `
+                    max-width: 90%;
+                    max-height: 90%;
+                    position: relative;
+                `;
                 
-                // Position randomly
-                smoke.style.left = `${5 + Math.random() * 90}%`;
+                // Create image
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = alt;
+                img.style.cssText = `
+                    max-width: 100%;
+                    max-height: 80vh;
+                    object-fit: contain;
+                    border-radius: 8px;
+                    box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+                `;
                 
-                // Random size
-                const size = 40 + Math.random() * 80;
-                smoke.style.width = `${size}px`;
-                smoke.style.height = `${size}px`;
+                // Create close button
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '×';
+                closeBtn.style.cssText = `
+                    position: absolute;
+                    top: -40px;
+                    right: -40px;
+                    background: var(--accent);
+                    color: var(--black);
+                    border: none;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: var(--transition);
+                `;
                 
-                // Random animation
-                const duration = 12 + Math.random() * 12;
-                const delay = Math.random() * 20;
-                smoke.style.animation = `smoke-float-${(i % 3) + 1} ${duration}s infinite ease-in-out`;
-                smoke.style.animationDelay = `${delay}s`;
+                closeBtn.addEventListener('mouseenter', () => {
+                    closeBtn.style.transform = 'scale(1.1)';
+                    closeBtn.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.5)';
+                });
                 
-                equalizerContainer.appendChild(smoke);
-            }
-        }
-
-        // ===== UTILITIES =====
-        function initializeCurrentYear() {
-            if (currentYear) {
-                currentYear.textContent = new Date().getFullYear();
-            }
-        }
-
-        // ===== EVENT LISTENERS =====
-        function initializeEventListeners() {
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Logo hover spin
-            mainLogo.addEventListener('mouseenter', () => {
-                mainLogo.style.animation = 'logo-hover-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
-            });
-
-            mainLogo.addEventListener('animationend', () => {
-                mainLogo.style.animation = '';
-            });
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const headerHeight = header.offsetHeight;
-                        const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Update URL without scrolling
-                        history.pushState(null, null, targetId);
+                closeBtn.addEventListener('mouseleave', () => {
+                    closeBtn.style.transform = 'scale(1)';
+                    closeBtn.style.boxShadow = 'none';
+                });
+                
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(lightbox);
+                });
+                
+                // Close on overlay click
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        document.body.removeChild(lightbox);
                     }
                 });
-            });
-
-            // Form submission
-            bookingForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
                 
-                const submitBtn = bookingForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.textContent;
-                const originalBg = submitBtn.style.backgroundColor;
+                // Add key listener for escape
+                const keyHandler = (e) => {
+                    if (e.key === 'Escape') {
+                        document.body.removeChild(lightbox);
+                        document.removeEventListener('keydown', keyHandler);
+                    }
+                };
                 
-                // Show loading state
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
+                document.addEventListener('keydown', keyHandler);
                 
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 1500));
+                // Assemble and add to DOM
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(closeBtn);
+                lightbox.appendChild(imgContainer);
+                document.body.appendChild(lightbox);
                 
-                // Success feedback
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-                submitBtn.style.backgroundColor = 'var(--accent)';
-                
-                // Show success message
-                showNotification('✅ Booking Request Sent!<br>We\'ll contact you within 24 hours.');
-                
-                // Reset form
-                setTimeout(() => {
-                    bookingForm.reset();
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.backgroundColor = originalBg;
-                }, 3000);
-                
-                // Trigger logo celebration
-                mainLogo.style.animation = 'logo-hover-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards, pulse 2s ease-in-out';
-                setTimeout(() => {
-                    mainLogo.style.animation = '';
-                }, 2000);
-            });
-
-            // Button hover effects - ENSURE THEY STAY VISIBLE
-            document.querySelectorAll('.btn-primary').forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.style.animation = 'pulse 1s infinite';
-                    this.style.opacity = '1';
-                });
-                
-                button.addEventListener('mouseleave', function() {
-                    this.style.animation = '';
-                    this.style.opacity = '1'; // Force opacity to 1
-                });
-                
-                // Force button to stay visible on click
-                button.addEventListener('mousedown', function() {
-                    this.style.opacity = '1';
-                    this.style.transform = 'translateY(-2px) scale(1.02)';
-                });
-                
-                button.addEventListener('mouseup', function() {
-                    this.style.opacity = '1';
-                    this.style.transform = 'translateY(-5px) scale(1.05)';
-                });
-            });
+                // Add fadeIn animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fadeIn {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
             
-            // Prevent buttons from disappearing on focus
-            document.querySelectorAll('.btn-primary').forEach(button => {
-                button.addEventListener('focus', function() {
-                    this.style.opacity = '1';
-                    this.style.visibility = 'visible';
-                });
-                
-                button.addEventListener('blur', function() {
-                    this.style.opacity = '1';
-                    this.style.visibility = 'visible';
-                });
-            });
+            // Set background images dynamically
+            setBackgroundImages() {
+                if (this.images.backgrounds.length > 0) {
+                    // Set hero background
+                    const hero = document.querySelector('.hero');
+                    if (hero && this.images.backgrounds[0]) {
+                        const heroBg = document.createElement('img');
+                        heroBg.className = 'hero-bg';
+                        heroBg.src = this.images.backgrounds[0].src;
+                        heroBg.alt = 'Studio Background';
+                        hero.insertBefore(heroBg, hero.firstChild);
+                        
+                        const overlay = document.createElement('div');
+                        overlay.className = 'hero-overlay';
+                        hero.insertBefore(overlay, hero.children[1]);
+                    }
+                    
+                    // Set section backgrounds
+                    const sections = document.querySelectorAll('.section');
+                    sections.forEach((section, index) => {
+                        const bgIndex = (index + 1) % this.images.backgrounds.length;
+                        if (this.images.backgrounds[bgIndex]) {
+                            const bg = document.createElement('img');
+                            bg.className = 'section-bg';
+                            bg.src = this.images.backgrounds[bgIndex].src;
+                            bg.alt = `Studio background ${bgIndex + 1}`;
+                            bg.loading = 'lazy';
+                            section.insertBefore(bg, section.firstChild);
+                        }
+                    });
+                } else {
+                    // Fallback gradients
+                    document.querySelector('.hero').style.background = 'linear-gradient(45deg, #000000, #1a0b2e)';
+                }
+            }
         }
         
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: var(--accent);
-                color: var(--black);
-                padding: var(--space-lg);
-                border-radius: var(--radius-md);
-                z-index: 10000;
-                animation: fadeInUp 0.5s ease-out;
-                box-shadow: var(--shadow-lg);
-                max-width: 400px;
-                font-weight: bold;
-            `;
-            notification.innerHTML = message;
-            document.body.appendChild(notification);
+        // ===== MAIN APPLICATION =====
+        class StudioWebsite {
+            constructor() {
+                this.imageManager = new ImageManager();
+                this.header = document.getElementById('header');
+                this.mainLogo = document.getElementById('mainLogo');
+                this.bookingForm = document.getElementById('bookingForm');
+                this.equalizerContainer = document.getElementById('equalizerContainer');
+                this.currentYear = document.getElementById('currentYear');
+            }
             
-            // Remove message after 5 seconds
-            setTimeout(() => {
-                notification.style.animation = 'fadeInUp 0.5s ease-out reverse forwards';
-                setTimeout(() => notification.remove(), 500);
-            }, 5000);
+            async initialize() {
+                console.log('🚀 Billups Studio Website Initializing...');
+                
+                // Set current year
+                this.setCurrentYear();
+                
+                // Initialize image system
+                await this.initializeImages();
+                
+                // Initialize animations
+                this.initializeAnimations();
+                
+                // Initialize event listeners
+                this.initializeEventListeners();
+                
+                // Initialize smoke particles
+                this.initializeSmokeParticles();
+                
+                // Ensure buttons stay visible
+                this.ensureButtonsVisible();
+                
+                console.log('✅ Website initialized successfully!');
+            }
+            
+            setCurrentYear() {
+                if (this.currentYear) {
+                    this.currentYear.textContent = new Date().getFullYear();
+                }
+            }
+            
+            async initializeImages() {
+                console.log('🖼️ Initializing image system...');
+                
+                // Discover images in /images folder
+                await this.imageManager.discoverImages();
+                
+                // Populate gallery with discovered images
+                this.imageManager.populateGallery();
+                
+                // Set background images
+                this.imageManager.setBackgroundImages();
+                
+                // Handle logo errors
+                this.handleLogoErrors();
+            }
+            
+            handleLogoErrors() {
+                const logos = [this.mainLogo, this.headerLogo, this.smallLogo, this.footerLogo];
+                logos.forEach(logo => {
+                    if (logo) {
+                        logo.onerror = () => {
+                            console.warn(`Logo failed to load: ${logo.src}`);
+                            // Create fallback text logo
+                            if (logo === this.mainLogo) {
+                                logo.style.display = 'none';
+                                const textLogo = document.createElement('div');
+                                textLogo.innerHTML = 'BILLUPS<br>STUDIO';
+                                textLogo.style.cssText = `
+                                    font-size: 3rem;
+                                    font-weight: 900;
+                                    color: var(--accent);
+                                    text-align: center;
+                                    text-shadow: var(--shadow-accent);
+                                    margin-bottom: 3rem;
+                                `;
+                                logo.parentNode.insertBefore(textLogo, logo.nextSibling);
+                            }
+                        };
+                    }
+                });
+            }
+            
+            initializeAnimations() {
+                // Logo hover spin
+                if (this.mainLogo) {
+                    this.mainLogo.addEventListener('mouseenter', () => {
+                        this.mainLogo.style.animation = 'logo-hover-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                    });
+                    
+                    this.mainLogo.addEventListener('animationend', () => {
+                        this.mainLogo.style.animation = '';
+                    });
+                }
+                
+                // Header scroll effect
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        this.header.classList.add('scrolled');
+                    } else {
+                        this.header.classList.remove('scrolled');
+                    }
+                });
+                
+                // Smooth scrolling
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = anchor.getAttribute('href');
+                        if (targetId === '#') return;
+                        
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            const headerHeight = this.header.offsetHeight;
+                            const targetPosition = targetElement.offsetTop - headerHeight;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            }
+            
+            initializeSmokeParticles() {
+                if (!this.equalizerContainer) return;
+                
+                // Clear existing particles
+                const existingSmoke = this.equalizerContainer.querySelectorAll('.smoke-particle');
+                existingSmoke.forEach(smoke => smoke.remove());
+                
+                // Add 6 smoke particles
+                for (let i = 0; i < 6; i++) {
+                    const smoke = document.createElement('div');
+                    smoke.className = 'smoke-particle';
+                    
+                    // Position randomly
+                    smoke.style.left = `${10 + i * 15}%`;
+                    
+                    // Random animation
+                    const duration = 12 + Math.random() * 8;
+                    const delay = Math.random() * 5;
+                    smoke.style.animation = `smoke-float ${duration}s infinite ease-in-out`;
+                    smoke.style.animationDelay = `${delay}s`;
+                    
+                    this.equalizerContainer.appendChild(smoke);
+                }
+                
+                // Add smoke animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes smoke-float {
+                        0% { opacity: 0; transform: translateY(0) scale(0.5); }
+                        10% { opacity: 0.4; transform: translateY(-30px) scale(0.7); }
+                        40% { opacity: 0.6; transform: translateY(-100px) scale(1); }
+                        70% { opacity: 0.3; transform: translateY(-180px) scale(1.3); }
+                        100% { opacity: 0; transform: translateY(-250px) scale(1.5); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            initializeEventListeners() {
+                // Form submission
+                if (this.bookingForm) {
+                    this.bookingForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        
+                        const submitBtn = this.bookingForm.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.textContent;
+                        
+                        // Show loading
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                        submitBtn.disabled = true;
+                        
+                        // Simulate API call
+                        setTimeout(() => {
+                            // Show success
+                            this.showNotification('✅ Booking Request Sent!<br>We\'ll contact you within 24 hours.');
+                            
+                            // Reset form
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                            this.bookingForm.reset();
+                            
+                            // Logo celebration
+                            if (this.mainLogo) {
+                                this.mainLogo.style.animation = 'logo-hover-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards, pulse 2s ease-in-out';
+                                setTimeout(() => {
+                                    this.mainLogo.style.animation = '';
+                                }, 2000);
+                            }
+                        }, 1500);
+                    });
+                }
+                
+                // Button hover effects
+                document.querySelectorAll('.btn-primary').forEach(button => {
+                    button.addEventListener('mouseenter', function() {
+                        this.style.animation = 'pulse 1s infinite';
+                    });
+                    
+                    button.addEventListener('mouseleave', function() {
+                        this.style.animation = '';
+                    });
+                });
+                
+                // Navigation icon effects
+                document.querySelectorAll('.nav-icon').forEach(icon => {
+                    // Add colored ring effect
+                    const ring = document.createElement('div');
+                    ring.style.cssText = `
+                        position: absolute;
+                        top: -5px;
+                        left: -5px;
+                        right: -5px;
+                        bottom: -5px;
+                        border: 2px solid var(--accent);
+                        border-radius: 50%;
+                        opacity: 0;
+                        transition: var(--transition);
+                        pointer-events: none;
+                    `;
+                    icon.appendChild(ring);
+                    
+                    icon.addEventListener('mouseenter', () => {
+                        ring.style.opacity = '0.7';
+                        ring.style.transform = 'scale(1.1)';
+                    });
+                    
+                    icon.addEventListener('mouseleave', () => {
+                        ring.style.opacity = '0';
+                        ring.style.transform = 'scale(1)';
+                    });
+                });
+            }
+            
+            ensureButtonsVisible() {
+                const buttons = document.querySelectorAll('.btn-primary');
+                buttons.forEach(button => {
+                    button.style.opacity = '1';
+                    button.style.visibility = 'visible';
+                    button.style.display = 'inline-block';
+                });
+                
+                // Periodic check
+                setInterval(() => {
+                    buttons.forEach(button => {
+                        const style = window.getComputedStyle(button);
+                        if (style.opacity === '0' || style.visibility === 'hidden') {
+                            button.style.opacity = '1';
+                            button.style.visibility = 'visible';
+                        }
+                    });
+                }, 1000);
+            }
+            
+            showNotification(message) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: var(--accent);
+                    color: var(--black);
+                    padding: var(--space-lg);
+                    border-radius: var(--radius-md);
+                    z-index: 10000;
+                    animation: fadeInUp 0.5s ease-out;
+                    box-shadow: var(--shadow-lg);
+                    max-width: 400px;
+                    font-weight: bold;
+                `;
+                notification.innerHTML = message;
+                document.body.appendChild(notification);
+                
+                // Remove after 5 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'fadeInUp 0.5s ease-out reverse forwards';
+                    setTimeout(() => notification.remove(), 500);
+                }, 5000);
+            }
         }
-
-        // ===== PERFORMANCE OPTIMIZATIONS =====
-        function initializePerformanceOptimizations() {
-            // Reduce motion preference
+        
+        // ===== INITIALIZE WEBSITE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const website = new StudioWebsite();
+            website.initialize();
+            
+            // Add performance optimization
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
             if (reduceMotion.matches) {
                 document.querySelectorAll('*').forEach(el => {
                     el.style.animationPlayState = 'paused';
                 });
             }
-            
-            // Equalizer visibility toggle (for performance)
-            let equalizerVisible = true;
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > window.innerHeight * 2 && equalizerVisible) {
-                    equalizerContainer.style.opacity = '0.15';
-                } else if (!equalizerVisible) {
-                    equalizerContainer.style.opacity = '0.25';
-                    equalizerVisible = true;
-                }
-            });
-        }
-
-        // ===== ERROR HANDLING =====
-        window.addEventListener('error', (e) => {
-            console.warn('Page error:', e.message);
-        }, true);
-        
-        // Ensure equalizer is visible
-        window.addEventListener('load', () => {
-            equalizerContainer.style.opacity = '0.25';
         });
     </script>
 </body>

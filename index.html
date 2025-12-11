@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billups Studio - Creative Digital Solutions</title>
-    <meta name="description" content="Billups Studio offers innovative digital solutions including web design, branding, and creative development.">
+    <title>Billups Studio | Luton Recording Studio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset and Base Styles */
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -17,20 +16,21 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            color: #f5f5f5;
+            background: #0a0a0a;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* Nav */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(10, 10, 10, 0.9);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1.5rem 5%;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            padding: 1rem 5%;
+            border-bottom: 1px solid #222;
         }
 
         .nav-container {
@@ -43,389 +43,277 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: 700;
-            color: #2d3436;
+            font-weight: 800;
+            color: #fff;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            letter-spacing: 1px;
         }
 
-        .logo-circle {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .nav-cta {
+            background: #ff3b30;
             color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #2d3436;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: #6c5ce7;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
-        .cta-button:hover {
+        .nav-cta:hover {
+            background: #ff5249;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             padding: 0 5%;
-            padding-top: 80px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             position: relative;
-            overflow: hidden;
         }
 
         .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            max-width: 900px;
+            z-index: 2;
         }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: #2d3436;
+        .hero h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        .hero-text p {
-            font-size: 1.2rem;
-            color: #636e72;
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        .hero-tagline {
+            font-size: 1.8rem;
+            font-weight: 300;
             margin-bottom: 2rem;
-            max-width: 500px;
+            color: #ccc;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #6c5ce7, #fd79a8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
         }
 
-        .hero-visual {
-            position: relative;
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: #aaa;
         }
 
-        .floating-shapes {
-            position: relative;
-            height: 400px;
+        /* Features */
+        .features {
+            padding: 5rem 5%;
+            background: #111;
         }
 
-        .shape {
-            position: absolute;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(253, 121, 168, 0.1));
-        }
-
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            top: 0;
-            right: 0;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            bottom: 0;
-            left: 0;
-            animation: float 8s ease-in-out infinite reverse;
-        }
-
-        .shape-3 {
-            width: 150px;
-            height: 150px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: float 7s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 5%;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2d3436;
-        }
-
-        .services-grid {
+        .features-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
+            text-align: center;
         }
 
-        .service-card {
-            background: #f8f9fa;
-            padding: 2.5rem;
-            border-radius: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .feature-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
         }
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .feature-item p {
+            color: #999;
         }
 
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2d3436;
-        }
-
-        .service-card p {
-            color: #636e72;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
+        /* Pricing */
+        .pricing {
             padding: 6rem 5%;
-            background: #f8f9fa;
+            background: #0a0a0a;
         }
 
-        .portfolio-grid {
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .pricing-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
-        .portfolio-item {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
+        .pricing-card {
+            background: #151515;
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 1px solid #252525;
             transition: transform 0.3s;
+            position: relative;
         }
 
-        .portfolio-item:hover {
+        .pricing-card:hover {
             transform: translateY(-10px);
+            border-color: #ff3b30;
         }
 
-        .portfolio-img {
-            height: 250px;
-            background: linear-gradient(135deg, #6c5ce7, #fd79a8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff3b30;
             color: white;
-            font-size: 2rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        .portfolio-content {
-            padding: 2rem;
-        }
-
-        .portfolio-content h3 {
-            font-size: 1.5rem;
+        .pricing-icon {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #2d3436;
         }
 
-        /* Contact Section */
+        .pricing-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .pricing-price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .pricing-duration {
+            font-size: 1rem;
+            color: #aaa;
+            font-weight: normal;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: #ccc;
+            border-bottom: 1px solid #252525;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 3rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Contact */
         .contact {
             padding: 6rem 5%;
-            background: white;
+            background: #111;
         }
 
         .contact-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
         }
 
-        .contact-form {
+        .contact-info h3,
+        .contact-form h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .contact-detail {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: #ccc;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        .contact-detail i {
+            width: 40px;
+            font-size: 1.2rem;
+            color: #ff3b30;
         }
 
-        .form-group label {
-            font-weight: 600;
-            color: #2d3436;
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
         }
 
-        .form-group input,
-        .form-group textarea {
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
             padding: 1rem;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
             font-size: 1rem;
-            transition: border-color 0.3s;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
             outline: none;
-            border-color: #6c5ce7;
+            border-color: #ff3b30;
         }
 
         /* Footer */
         footer {
-            background: #2d3436;
-            color: white;
-            padding: 4rem 5% 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-section p {
-            color: #b2bec3;
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .social-links a:hover {
-            background: #6c5ce7;
-        }
-
-        .footer-bottom {
+            background: #0a0a0a;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #b2bec3;
+            padding: 3rem 5%;
+            border-top: 1px solid #222;
+            color: #666;
         }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .floating-shapes {
-                height: 300px;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .service-card,
-            .portfolio-item {
-                padding: 1.5rem;
-            }
-            
-            .services-grid,
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero h1 { font-size: 3rem; }
+            .hero-tagline { font-size: 1.4rem; }
+            .section-title { font-size: 2.2rem; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .pricing-card { padding: 2rem; }
         }
     </style>
 </head>
@@ -433,196 +321,180 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="logo-circle">B</div>
-                Billups Studio
-            </a>
-            <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#about">About</a>
-                <a href="#contact" class="cta-button">Get Started</a>
-            </div>
+            <a href="#" class="logo">BILLUPS STUDIO</a>
+            <a href="#pricing" class="nav-cta">BOOK NOW</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>Crafting <span class="gradient-text">Digital Experiences</span> That Captivate</h1>
-                <p>We transform ideas into immersive digital solutions. From branding to web development, we create experiences that resonate with your audience and drive results.</p>
-                <a href="#contact" class="cta-button">Start Your Project</a>
+            <h1>BILLUPS STUDIO</h1>
+            <p class="hero-tagline">Pick up the mic,<br>elevate — create.</p>
+            
+            <h2 class="hero-subtitle">Real Studio.<br>Real Energy.</h2>
+            <p class="hero-description">
+                Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
+                From quick bars to full tape lock-ins, this is the studio where your best work comes alive.<br><br>
+                No gimmicks. Just professional setup, local roots, and that unmatched vibe.
+            </p>
+            
+            <a href="#pricing" class="nav-cta">VIEW SESSIONS</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3>Pro Sound</h3>
+                <p>Professional-grade equipment for studio-quality recordings.</p>
             </div>
-            <div class="hero-visual">
-                <div class="floating-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                </div>
+            <div class="feature-item">
+                <h3>Clean Space</h3>
+                <p>A dedicated, inspiring environment to focus on your craft.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Good People</h3>
+                <p>Expert engineers and a supportive creative community.</p>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <h3>Brand Identity</h3>
-                <p>Create a memorable brand that stands out. We design logos, color palettes, and visual systems that tell your story.</p>
-                <a href="#contact" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More</a>
+    <!-- Pricing/Sessions -->
+    <section id="pricing" class="pricing">
+        <h2 class="section-title">Lock In a Session<br>That Fits Your Grind</h2>
+        
+        <div class="pricing-grid">
+            <!-- Hourly -->
+            <div class="pricing-card">
+                <div class="pricing-icon">🎧</div>
+                <h3 class="pricing-title">Hourly</h3>
+                <div class="pricing-price">£30<small class="pricing-duration">/hr</small></div>
+                <p>Slide in, drop heat, get pro results. Engineer included.</p>
+                <ul class="pricing-features">
+                    <li>Full studio access with professional equipment</li>
+                    <li>On-site engineer for recording support</li>
+                    <li>Perfect for quick sessions or vocal takes</li>
+                </ul>
+                <a href="#contact" class="nav-cta" style="display: block; text-align: center;">BOOK NOW</a>
             </div>
             
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>Web Development</h3>
-                <p>Build fast, responsive, and user-friendly websites that work seamlessly across all devices and platforms.</p>
-                <a href="#contact" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More</a>
+            <!-- Half Day -->
+            <div class="pricing-card">
+                <div class="popular-badge">MOST POPULAR</div>
+                <div class="pricing-icon">🎧</div>
+                <h3 class="pricing-title">Half Day</h3>
+                <div class="pricing-price">£140<small class="pricing-duration">(5 Hours)</small></div>
+                <p>5-hour slot. Full access + full support.</p>
+                <ul class="pricing-features">
+                    <li>Great for EPs, batch sessions or back-to-back takes</li>
+                    <li>Professional setup with mix-ready recordings</li>
+                    <li>Dedicated engineer throughout your session</li>
+                </ul>
+                <a href="#contact" class="nav-cta" style="display: block; text-align: center;">BOOK NOW</a>
             </div>
             
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>UI/UX Design</h3>
-                <p>Design intuitive interfaces that enhance user experience and drive engagement through thoughtful interaction design.</p>
-                <a href="#contact" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More</a>
+            <!-- Full Day -->
+            <div class="pricing-card">
+                <div class="pricing-icon">🎧</div>
+                <h3 class="pricing-title">Full Day</h3>
+                <div class="pricing-price">£240<small class="pricing-duration">(10 Hours)</small></div>
+                <p>All-day pass. 10 hours, engineer on hand, zero distractions.</p>
+                <ul class="pricing-features">
+                    <li>Ideal for projects, collabs, or build-a-tape days</li>
+                    <li>Full creative control with professional results</li>
+                    <li>Complete studio access for extended sessions</li>
+                </ul>
+                <a href="#contact" class="nav-cta" style="display: block; text-align: center;">BOOK NOW</a>
+            </div>
+            
+            <!-- Custom -->
+            <div class="pricing-card">
+                <div class="pricing-icon">🎧</div>
+                <h3 class="pricing-title">Custom Session</h3>
+                <div class="pricing-price">Enquiry Only</div>
+                <p>Need extra time or custom support? We'll tailor the session to fit your needs.</p>
+                <ul class="pricing-features">
+                    <li>Flexible scheduling for extended projects</li>
+                    <li>Customized support for labels or recurring artists</li>
+                    <li>Discuss your requirements for a perfect fit</li>
+                </ul>
+                <a href="#contact" class="nav-cta" style="display: block; text-align: center;">ENQUIRE NOW</a>
             </div>
         </div>
+        
+        <p class="pricing-note">⚠️ £30 deposit required to confirm all sessions.</p>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <h2 class="section-title">Featured Work</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <div class="portfolio-img">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>E-commerce Platform</h3>
-                    <p>A modern online shopping experience with seamless checkout and personalized recommendations.</p>
-                </div>
-            </div>
-            
-            <div class="portfolio-item">
-                <div class="portfolio-img">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Analytics Dashboard</h3>
-                    <p>Interactive data visualization platform for real-time business insights and reporting.</p>
-                </div>
-            </div>
-            
-            <div class="portfolio-item">
-                <div class="portfolio-img">
-                    <i class="fas fa-music"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Music Streaming App</h3>
-                    <p>Mobile application with personalized playlists and offline listening capabilities.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact" class="contact">
-        <h2 class="section-title">Let's Create Together</h2>
+        <h2 class="section-title">Talk to Us or<br>Lock in a Session</h2>
+        
         <div class="contact-container">
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Your name">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <span>07710 593113</span>
                 </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <span>billupsltd@gmail.com</span>
                 </div>
-                
-                <div class="form-group">
-                    <label for="message">Project Details</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                <div class="contact-detail">
+                    <i class="fas fa-camera"></i>
+                    <span>@billups_studio</span>
                 </div>
-                
-                <button type="submit" class="cta-button" style="border: none; cursor: pointer; align-self: flex-start;">
-                    Send Message
-                </button>
-            </form>
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Cutenhoe Road, Luton LU1 3NB<br><small>(Full address sent after booking)</small></span>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="" disabled selected>Select Session Type</option>
+                            <option value="hourly">🎧 Hourly (£30/hr)</option>
+                            <option value="half-day">🎧 Half Day (£140/5hrs)</option>
+                            <option value="full-day">🎧 Full Day (£240/10hrs)</option>
+                            <option value="custom">🎧 Custom Session (Enquiry)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message or Project Details..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="nav-cta" style="width: 100%; padding: 1rem;">SEND ENQUIRY</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Billups Studio</h3>
-                <p>Creating digital experiences that inspire and engage. We're passionate about bringing your ideas to life through innovative design and development.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-dribbble"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="#services" style="color: #b2bec3; text-decoration: none;">Services</a></p>
-                <p><a href="#portfolio" style="color: #b2bec3; text-decoration: none;">Portfolio</a></p>
-                <p><a href="#about" style="color: #b2bec3; text-decoration: none;">About Us</a></p>
-                <p><a href="#contact" style="color: #b2bec3; text-decoration: none;">Contact</a></p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <p><i class="fas fa-envelope"></i> hello@billups.studio</p>
-                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                <p><i class="fas fa-map-marker-alt"></i> Digital Studio, Everywhere</p>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 Billups Studio. All rights reserved. | Crafted with ❤️ for the digital world</p>
-        </div>
+        <p>© 2024 Billups Studio | Luton Recording Studio</p>
+        <p>Professional sound. Creative space. Real energy.</p>
     </footer>
 
     <script>
-        // Form submission handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value
-            };
-            
-            // In a real application, you would send this data to a server
-            // For demo purposes, we'll just show an alert
-            alert('Thank you, ' + formData.name + '! We\'ll get back to you soon at ' + formData.email);
-            
-            // Reset form
-            this.reset();
-        });
-        
-        // Smooth scrolling for anchor links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 if(targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
@@ -632,16 +504,21 @@
                 }
             });
         });
-        
-        // Navbar scroll effect
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your enquiry! Billups Studio will contact you soon to confirm your session.');
+            this.reset();
+        });
+
+        // Nav background on scroll
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');
-            if(window.scrollY > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            if(window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 10, 10, 0.97)';
             } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                nav.style.background = 'rgba(10, 10, 10, 0.9)';
             }
         });
     </script>

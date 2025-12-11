@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billups Studio | New Site Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f1f5f9;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #3b82f6;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            font-weight: 300;
+        }
+        
+        .status-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #10b981;
+        }
+        
+        .status-title {
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .info-card h3 {
+            color: #60a5fa;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BILLUPS STUDIO</h1>
+            <p class="subtitle">Luton Recording Studio | GitHub Pages Test</p>
+        </header>
+        
+        <div class="status-box">
+            <div class="status-title">
+                <span>✓</span>
+                <span>GitHub Pages Active</span>
+            </div>
+            <p>This is a test page hosted on GitHub Pages. The site is working correctly and ready for your content.</p>
+        </div>
+        
+        <p>This page confirms your GitHub Pages hosting is working. Once you connect your domain, visitors will see your new website here.</p>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🎵 Real Studio. Real Energy.</h3>
+                <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. Professional setup, local roots, and unmatched vibe.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🔧 Next Steps</h3>
+                <p>1. Upload this file as <code>index.html</code> to GitHub<br>
+                2. Contact Squarespace for DNS access<br>
+                3. Point domain to GitHub Pages</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 3rem 0;">
+            <button class="button" onclick="checkDomain()">Test Domain Connection</button>
+            <p id="domain-result" style="margin-top: 1rem;"></p>
+        </div>
+        
+        <footer>
+            <p>📞 07710 593113 | 📧 billupsltd@gmail.com</p>
+            <p style="margin-top: 0.5rem;">📍 Cutenhoe Road, Luton LU1 3NB</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem;">Domain: billupsstudio.co.uk | Host: GitHub Pages</p>
+        </footer>
+    </div>
+
+    <script>
+        function checkDomain() {
+            const result = document.getElementById('domain-result');
+            result.innerHTML = '<span style="color:#fbbf24;">Checking current domain...</span>';
+            
+            setTimeout(() => {
+                const currentDomain = window.location.hostname;
+                
+                if (currentDomain.includes('github.io')) {
+                    result.innerHTML = '<span style="color:#10b981;">✓ Currently on GitHub Pages subdomain</span><br><small>Domain connection pending</small>';
+                } else if (currentDomain === 'billupsstudio.co.uk') {
+                    result.innerHTML = '<span style="color:#10b981;">✓ Connected via custom domain!</span><br><small>DNS is properly configured</small>';
+                } else {
+                    result.innerHTML = `<span>Current domain: ${currentDomain}</span>`;
+                }
+            }, 800);
+        }
+        
+        // Check on page load
+        window.addEventListener('load', function() {
+            const result = document.getElementById('domain-result');
+            if (!window.location.hostname.includes('github.io') && 
+                window.location.hostname !== 'billupsstudio.co.uk') {
+                result.innerHTML = `<small>Access point: ${window.location.hostname}</small>`;
+            }
+        });
+    </script>
+</body>
+</html>

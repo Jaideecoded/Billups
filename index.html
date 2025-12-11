@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billups Studio | Luton Recording Studio</title>
+    <title>BILLUPS STUDIO | Recording Studio in Luton</title>
     <link rel="icon" type="image/png" href="https://i.postimg.cc/FFsLmzdC/Copy-of-IMG-4015.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
@@ -23,23 +23,16 @@
         }
         
         :root {
-            --charcoal: #121212;
-            --pure-white: #ffffff;
-            --electric-green: #32FF6A;
-            --accent-purple: #A06CFF;
-            --accent-blue: #3C9EFF;
-            --accent-orange: #FF924F;
-            --accent-yellow: #FFD247;
-            --accent-red: #FF4C4C;
-            --gray-800: #1f1f1f;
-            --gray-700: #2a2a2a;
-            --gray-600: #3d3d3d;
-            --gray-400: #a0a0a0;
-            --gray-300: #d1d1d1;
+            --black: #000000;
+            --white: #ffffff;
+            --accent: #00ff00;
+            --accent-light: #90ff90;
+            --gray-dark: #111111;
+            --gray-medium: #222222;
+            --gray-light: #444444;
             
-            --font-druk: 'Space Grotesk', sans-serif;
-            --font-monument: 'Montserrat', sans-serif;
-            --font-satoshi: 'Inter', sans-serif;
+            --font-primary: 'Montserrat', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
         }
         
         html {
@@ -47,38 +40,31 @@
         }
         
         body {
-            font-family: var(--font-satoshi);
-            background-color: var(--charcoal);
-            color: var(--pure-white);
+            font-family: var(--font-secondary);
+            background-color: var(--black);
+            color: var(--white);
             overflow-x: hidden;
             line-height: 1.6;
         }
         
         /* Typography */
-        h1, h2, h3, h4, h5, h6 {
+        h1, h2, h3, h4 {
+            font-family: var(--font-primary);
+            font-weight: 900;
+            letter-spacing: -0.02em;
             line-height: 1.1;
         }
         
-        .font-druk-wide {
-            font-family: var(--font-druk);
+        .font-bold {
             font-weight: 900;
-            letter-spacing: -0.02em;
         }
         
-        .font-monument {
-            font-family: var(--font-monument);
-            font-weight: 900;
-            letter-spacing: -0.02em;
-        }
-        
-        .font-neue-montreal {
-            font-family: var(--font-satoshi);
+        .font-medium {
             font-weight: 500;
         }
         
-        .font-tt-commons {
-            font-family: var(--font-satoshi);
-            font-weight: 700;
+        .accent {
+            color: var(--accent);
         }
         
         /* Utility Classes */
@@ -90,7 +76,7 @@
         }
         
         .section-padding {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
         
         /* Button Styles */
@@ -100,35 +86,27 @@
             justify-content: center;
             gap: 0.5rem;
             padding: 1rem 2.5rem;
-            border-radius: 9999px;
+            border-radius: 50px;
+            font-family: var(--font-primary);
             font-weight: 900;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: none;
             font-size: 1rem;
-            font-family: var(--font-satoshi);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .btn-primary {
-            background-color: var(--electric-green);
-            color: var(--charcoal);
+            background-color: var(--accent);
+            color: var(--black);
         }
         
         .btn-primary:hover {
-            background-color: rgba(50, 255, 106, 0.9);
-            transform: scale(1.05);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--pure-white);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn-secondary:hover {
-            border-color: var(--electric-green);
-            color: var(--electric-green);
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
         }
         
         /* Navigation */
@@ -138,15 +116,16 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
+            padding: 1.5rem 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
         }
         
         .navbar.scrolled {
-            background-color: rgba(18, 18, 18, 0.95);
+            background-color: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(50, 255, 106, 0.1);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
         }
         
         .navbar-container {
@@ -156,34 +135,85 @@
         }
         
         .navbar-logo {
-            height: 3.5rem;
+            height: 40px;
             width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-logo:hover {
+            transform: scale(1.05);
         }
         
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
+            align-items: center;
         }
         
         .nav-link {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-family: var(--font-satoshi);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: var(--font-primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            position: relative;
         }
         
         .nav-link:hover {
-            color: var(--electric-green);
+            color: var(--accent);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .phone-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-family: var(--font-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background: rgba(0, 255, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .phone-link:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: scale(1.05);
         }
         
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            color: var(--pure-white);
+            color: var(--white);
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
         }
         
         /* Hero Section */
@@ -193,101 +223,115 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9));
         }
         
-        .hero-background {
+        .hero-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://i.postimg.cc/sx8rQdk1/C2530-00-00-01-17-Still018.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(18, 18, 18, 0.7);
+            object-fit: cover;
             z-index: -1;
+            opacity: 0.4;
         }
         
         .hero-content {
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-logo {
+            height: 120px;
+            width: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.3));
         }
         
         .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            margin-bottom: 2rem;
-            line-height: 1;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+        
+        .hero-title span {
+            display: block;
         }
         
         .hero-subtitle {
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
             margin-bottom: 3rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
         }
         
-        .hero-subtitle .highlight {
-            color: var(--electric-green);
-        }
-        
-        /* Section Styles */
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title .highlight {
-            color: var(--electric-green);
-        }
-        
-        .title-divider {
-            width: 8rem;
-            height: 4px;
-            background-color: var(--electric-green);
-            margin: 1.5rem auto 3rem;
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         /* About Section */
         .about-section {
-            background-color: var(--charcoal);
+            background-color: var(--black);
+            position: relative;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 70%, rgba(0, 255, 0, 0.05) 100%);
+            pointer-events: none;
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            line-height: 1.6;
         }
         
         .about-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 4rem;
+            align-items: center;
         }
         
         @media (min-width: 992px) {
             .about-grid {
                 grid-template-columns: 1fr 1fr;
-                align-items: center;
             }
         }
         
         .about-content {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            margin-bottom: 2rem;
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
         }
         
-        .about-feature-box {
-            background-color: var(--gray-800);
-            border: 1px solid rgba(50, 255, 106, 0.2);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-top: 2rem;
+        .about-content p {
+            margin-bottom: 1.5rem;
         }
         
         .features-grid {
@@ -299,286 +343,223 @@
         
         .feature-item {
             text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 0, 0.3);
+            background: rgba(0, 255, 0, 0.05);
         }
         
         .feature-icon {
-            width: 4rem;
-            height: 4rem;
-            background-color: var(--electric-green);
-            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-item:hover .feature-icon {
-            transform: scale(1.1);
-        }
-        
-        .feature-icon i {
             font-size: 1.5rem;
-            color: var(--charcoal);
+            color: var(--accent);
         }
         
         .feature-name {
+            font-family: var(--font-primary);
             font-weight: 700;
-            color: var(--pure-white);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .about-image {
-            border-radius: 1rem;
-            overflow: hidden;
             position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
         
         .about-image img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.5s ease;
         }
         
-        .image-glow {
-            position: absolute;
-            bottom: -2rem;
-            right: -2rem;
-            width: 8rem;
-            height: 8rem;
-            background-color: rgba(50, 255, 106, 0.2);
-            border-radius: 50%;
-            filter: blur(3rem);
-            z-index: -1;
+        .about-image:hover img {
+            transform: scale(1.05);
         }
         
-        /* Sessions/Pricing Section */
+        /* Sessions Section */
         .sessions-section {
-            background-color: var(--charcoal);
+            background-color: var(--gray-dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sessions-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 0, 0.05) 0%, transparent 70%);
+            pointer-events: none;
         }
         
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
         }
         
         .pricing-card {
-            background-color: var(--gray-800);
-            border-radius: 1rem;
-            padding: 2.5rem 2rem;
+            background: var(--black);
+            border-radius: 15px;
+            padding: 2.5rem;
             position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
         }
         
         .pricing-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.1);
         }
         
-        .pricing-card.hourly {
-            border-color: var(--electric-green);
-            box-shadow: 0 0 20px rgba(50, 255, 106, 0.3);
-        }
-        
-        .pricing-card.half-day {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 20px rgba(60, 158, 255, 0.3);
-        }
-        
-        .pricing-card.full-day {
-            border-color: var(--accent-red);
-            box-shadow: 0 0 20px rgba(255, 76, 76, 0.3);
-        }
-        
-        .pricing-card.custom {
-            border-color: var(--accent-yellow);
-            border-style: dashed;
-            box-shadow: 0 0 15px rgba(255, 210, 71, 0.2);
+        .pricing-card.popular {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
         }
         
         .popular-badge {
             position: absolute;
-            top: -0.75rem;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--accent-blue);
-            color: var(--pure-white);
+            background: var(--accent);
+            color: var(--black);
             padding: 0.5rem 1.5rem;
-            border-radius: 9999px;
+            border-radius: 20px;
             font-weight: 900;
-            font-size: 0.875rem;
-            white-space: nowrap;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
         }
         
         .pricing-icon {
-            width: 4rem;
-            height: 4rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-        }
-        
-        .hourly .pricing-icon {
-            background-color: var(--electric-green);
-        }
-        
-        .half-day .pricing-icon {
-            background-color: var(--accent-blue);
-        }
-        
-        .full-day .pricing-icon {
-            background-color: var(--accent-red);
-        }
-        
-        .custom .pricing-icon {
-            background-color: var(--accent-yellow);
-        }
-        
-        .pricing-icon i {
+            margin: 0 auto 1rem;
+            color: var(--accent);
             font-size: 1.5rem;
-            color: var(--charcoal);
         }
         
         .pricing-title {
             font-size: 1.5rem;
-            text-align: center;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
         
         .pricing-amount {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 900;
-            text-align: center;
+            color: var(--accent);
+            line-height: 1;
             margin-bottom: 0.25rem;
         }
         
-        .pricing-duration {
-            text-align: center;
+        .pricing-amount span {
+            font-size: 1rem;
             color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 1.5rem;
-        }
-        
-        .pricing-description {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
         }
         
         .pricing-features {
             list-style: none;
-            margin-bottom: 2rem;
+            margin: 2rem 0;
+            flex-grow: 1;
         }
         
         .pricing-feature {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 0.75rem;
             margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .pricing-feature i {
-            margin-top: 0.25rem;
+            color: var(--accent);
             flex-shrink: 0;
-        }
-        
-        .hourly .pricing-feature i {
-            color: var(--electric-green);
-        }
-        
-        .half-day .pricing-feature i {
-            color: var(--accent-blue);
-        }
-        
-        .full-day .pricing-feature i {
-            color: var(--accent-red);
-        }
-        
-        .custom .pricing-feature i {
-            color: var(--accent-yellow);
         }
         
         .pricing-button {
             width: 100%;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            font-weight: 900;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .hourly .pricing-button {
-            background-color: var(--electric-green);
-            color: var(--charcoal);
-        }
-        
-        .half-day .pricing-button {
-            background-color: var(--accent-blue);
-            color: var(--charcoal);
-        }
-        
-        .full-day .pricing-button {
-            background-color: var(--accent-red);
-            color: var(--charcoal);
-        }
-        
-        .custom .pricing-button {
-            background-color: var(--accent-yellow);
-            color: var(--charcoal);
-        }
-        
-        .pricing-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-top: auto;
         }
         
         .deposit-notice {
-            background-color: var(--gray-800);
-            border: 2px solid var(--accent-yellow);
-            border-radius: 1rem;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
             padding: 1.5rem;
             text-align: center;
-            margin-top: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .deposit-notice p {
-            color: var(--accent-yellow);
-            font-weight: 900;
-            font-size: 1.125rem;
+            font-family: var(--font-primary);
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
         }
         
         /* Gallery Section */
         .gallery-section {
-            background-color: var(--charcoal);
+            background-color: var(--black);
+            position: relative;
         }
         
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
+            margin-top: 3rem;
         }
         
         .gallery-item {
             position: relative;
-            border-radius: 1rem;
+            border-radius: 10px;
             overflow: hidden;
+            aspect-ratio: 4/3;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            height: 16rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .gallery-item:hover {
             transform: scale(1.05);
-            border-color: rgba(50, 255, 106, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
         
         .gallery-item img {
@@ -598,7 +579,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(18, 18, 18, 0.4);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             opacity: 0;
             display: flex;
             align-items: center;
@@ -610,39 +591,16 @@
             opacity: 1;
         }
         
-        .zoom-icon {
-            width: 3rem;
-            height: 3rem;
-            background-color: rgba(50, 255, 106, 0.8);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .zoom-icon i {
-            color: var(--charcoal);
-            font-size: 1.5rem;
-        }
-        
-        .image-gradient {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(to top, rgba(18, 18, 18, 0.8), transparent);
-        }
-        
         /* Contact Section */
         .contact-section {
-            background-color: var(--charcoal);
+            background-color: var(--gray-dark);
+            position: relative;
         }
         
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 4rem;
         }
         
         @media (min-width: 992px) {
@@ -654,111 +612,78 @@
         .contact-info h3 {
             font-size: 2rem;
             margin-bottom: 2rem;
+            text-transform: uppercase;
         }
         
         .contact-methods {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
         }
         
         .contact-method {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            background-color: rgba(31, 31, 31, 0.5);
-            border-left: 4px solid;
+            padding: 1.25rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
+            color: inherit;
         }
         
         .contact-method:hover {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            color: var(--pure-white);
-        }
-        
-        .contact-method.phone {
-            border-left-color: var(--electric-green);
-        }
-        
-        .contact-method.email {
-            border-left-color: var(--accent-blue);
-        }
-        
-        .contact-method.instagram {
-            border-left-color: var(--accent-purple);
-        }
-        
-        .contact-method.location {
-            border-left-color: var(--accent-orange);
+            background: rgba(0, 255, 0, 0.1);
+            border-color: var(--accent);
+            transform: translateX(5px);
         }
         
         .method-icon {
-            width: 3.5rem;
-            height: 3.5rem;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            background: rgba(0, 255, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-        }
-        
-        .phone .method-icon {
-            background-color: var(--electric-green);
-        }
-        
-        .email .method-icon {
-            background-color: var(--accent-blue);
-        }
-        
-        .instagram .method-icon {
-            background-color: var(--accent-purple);
-        }
-        
-        .location .method-icon {
-            background-color: var(--accent-orange);
-        }
-        
-        .method-icon i {
-            color: var(--charcoal);
+            color: var(--accent);
             font-size: 1.25rem;
-        }
-        
-        .method-text {
-            flex-grow: 1;
         }
         
         .method-text strong {
             display: block;
-            font-size: 1.125rem;
+            font-family: var(--font-primary);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
         }
         
         .method-text span {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
         }
         
         .contact-map {
-            border-radius: 1rem;
-            overflow: hidden;
-            height: 16rem;
-            border: 2px solid rgba(50, 255, 106, 0.3);
             margin-top: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            height: 200px;
         }
         
         .contact-form-container {
-            background-color: var(--gray-800);
-            border-radius: 1rem;
+            background: var(--black);
+            border-radius: 15px;
             padding: 2.5rem;
-            border: 2px solid rgba(50, 255, 106, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .contact-form-container h3 {
             font-size: 2rem;
             margin-bottom: 2rem;
+            text-transform: uppercase;
         }
         
         .form-group {
@@ -774,58 +699,43 @@
         label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: var(--font-primary);
         }
         
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             padding: 1rem;
-            background-color: var(--charcoal);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 0.75rem;
-            color: var(--pure-white);
-            font-family: var(--font-satoshi);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--font-secondary);
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: var(--electric-green);
+            border-color: var(--accent);
+            background: rgba(0, 255, 0, 0.05);
         }
         
         textarea {
             resize: vertical;
-            min-height: 10rem;
+            min-height: 150px;
         }
         
         .form-button {
             width: 100%;
-            padding: 1rem;
-            background-color: var(--electric-green);
-            color: var(--charcoal);
-            border: none;
-            border-radius: 0.75rem;
-            font-weight: 900;
-            font-size: 1.125rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-        
-        .form-button:hover {
-            background-color: rgba(50, 255, 106, 0.9);
-            transform: scale(1.05);
+            margin-top: 1rem;
         }
         
         /* Footer */
         .footer {
-            background-color: var(--charcoal);
-            border-top: 1px solid rgba(50, 255, 106, 0.2);
+            background-color: var(--black);
+            border-top: 1px solid rgba(0, 255, 0, 0.1);
             padding: 4rem 0 2rem;
         }
         
@@ -837,7 +747,7 @@
         }
         
         .footer-logo {
-            height: 3.5rem;
+            height: 40px;
             width: auto;
             margin-bottom: 1.5rem;
         }
@@ -845,6 +755,7 @@
         .footer-description {
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 2rem;
+            line-height: 1.6;
         }
         
         .footer-contact-item {
@@ -854,58 +765,31 @@
             margin-bottom: 1rem;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
         .footer-contact-item:hover {
-            color: var(--electric-green);
+            color: var(--accent);
         }
         
         .contact-icon {
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-        }
-        
-        .phone-icon {
-            background-color: rgba(50, 255, 106, 0.2);
-        }
-        
-        .phone-icon i {
-            color: var(--electric-green);
-        }
-        
-        .email-icon {
-            background-color: rgba(160, 108, 255, 0.2);
-        }
-        
-        .email-icon i {
-            color: var(--accent-purple);
-        }
-        
-        .location-icon {
-            background-color: rgba(255, 146, 79, 0.2);
-        }
-        
-        .location-icon i {
-            color: var(--accent-orange);
-        }
-        
-        .clock-icon {
-            background-color: rgba(60, 158, 255, 0.2);
-        }
-        
-        .clock-icon i {
-            color: var(--accent-blue);
+            background: rgba(0, 255, 0, 0.1);
+            color: var(--accent);
         }
         
         .footer-heading {
+            font-family: var(--font-primary);
             font-size: 1.25rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
         }
         
         .footer-links {
@@ -916,96 +800,37 @@
             margin-bottom: 0.75rem;
         }
         
-        .footer-link a, .footer-link button {
+        .footer-link a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            background: none;
-            border: none;
-            font-family: inherit;
-            font-size: inherit;
-            cursor: pointer;
             transition: all 0.3s ease;
+            display: inline-block;
         }
         
-        .footer-link a:hover, .footer-link button:hover {
-            color: var(--pure-white);
+        .footer-link a:hover {
+            color: var(--accent);
             transform: translateX(5px);
         }
         
-        .why-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .why-icon {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .why-icon i {
-            font-size: 1rem;
-        }
-        
-        .why-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.875rem;
+        .instagram-widget {
+            margin-top: 1rem;
         }
         
         .instagram-link {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            background: linear-gradient(135deg, rgba(160, 108, 255, 0.1), rgba(255, 146, 79, 0.1));
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
+            border-radius: 50px;
+            font-weight: 600;
             transition: transform 0.3s ease;
         }
         
         .instagram-link:hover {
-            transform: translateY(-5px);
-        }
-        
-        .instagram-icon {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 0.75rem;
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .instagram-icon i {
-            color: var(--pure-white);
-        }
-        
-        .cta-box {
-            background: linear-gradient(to right, rgba(50, 255, 106, 0.2), rgba(50, 255, 106, 0.1));
-            border: 1px solid rgba(50, 255, 106, 0.3);
-            border-radius: 1rem;
-            padding: 1.5rem;
-        }
-        
-        .cta-box h5 {
-            font-size: 1.125rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .cta-box p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
+            transform: translateY(-2px);
         }
         
         .footer-bottom {
@@ -1016,16 +841,19 @@
             justify-content: space-between;
             align-items: center;
             gap: 1.5rem;
+            text-align: center;
         }
         
         @media (min-width: 768px) {
             .footer-bottom {
                 flex-direction: row;
+                text-align: left;
             }
         }
         
         .copyright {
             color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
         
         .footer-legal {
@@ -1033,22 +861,18 @@
             gap: 1.5rem;
         }
         
-        .footer-legal a, .footer-legal button {
-            color: rgba(255, 255, 255, 0.5);
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
-            background: none;
-            border: none;
-            font-family: inherit;
-            font-size: 0.875rem;
-            cursor: pointer;
+            font-size: 0.9rem;
             transition: color 0.3s ease;
         }
         
-        .footer-legal a:hover, .footer-legal button:hover {
-            color: var(--pure-white);
+        .footer-legal a:hover {
+            color: var(--accent);
         }
         
-        /* Modal for Image Gallery */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -1056,10 +880,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 2000;
             align-items: center;
             justify-content: center;
+            padding: 2rem;
         }
         
         .modal.active {
@@ -1075,21 +900,27 @@
         .modal-content img {
             width: 100%;
             height: auto;
-            border-radius: 0.5rem;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
         .modal-close {
             position: absolute;
-            top: -2.5rem;
+            top: -50px;
             right: 0;
             background: none;
             border: none;
-            color: var(--pure-white);
+            color: var(--white);
             font-size: 2rem;
             cursor: pointer;
+            transition: color 0.3s ease;
         }
         
-        /* Mobile Responsiveness */
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1097,9 +928,10 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: var(--charcoal);
+                background: var(--black);
                 flex-direction: column;
-                padding: 1rem;
+                padding: 2rem;
+                gap: 1.5rem;
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
             
@@ -1112,7 +944,7 @@
             }
             
             .section-padding {
-                padding: 3rem 0;
+                padding: 4rem 0;
             }
             
             .hero-title {
@@ -1124,7 +956,7 @@
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .form-row {
@@ -1135,9 +967,44 @@
                 grid-template-columns: 1fr;
             }
             
+            .pricing-card.popular {
+                transform: none;
+            }
+            
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        /* Animation Classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -1145,22 +1012,24 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container navbar-container">
-            <a href="#" class="navbar-logo">
+            <a href="#home" class="navbar-logo">
                 <img src="https://i.postimg.cc/FFsLmzdC/Copy-of-IMG-4015.png" alt="Billups Studio Logo" class="navbar-logo">
             </a>
             
             <div class="nav-links" id="navLinks">
                 <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
                 <a href="#sessions" class="nav-link">Sessions</a>
-                <a href="#gallery" class="nav-link">Inside The Energy</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             
             <div class="navbar-actions">
-                <a href="tel:07710593113" class="nav-link" title="Call us">
+                <a href="tel:07710593113" class="phone-link">
                     <i class="icon-phone"></i>
+                    07710 593113
                 </a>
-                <a href="#booking" class="btn btn-primary">BOOK NOW</a>
+                <a href="#contact" class="btn btn-primary">Book Now</a>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="icon-menu"></i>
                 </button>
@@ -1170,48 +1039,595 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-background"></div>
-        <div class="hero-overlay"></div>
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-studio-microphone-and-mixer-4293-large.mp4" type="video/mp4">
+        </video>
         
         <div class="container">
-            <div class="hero-content">
-                <div class="mobile-logo">
-                    <img src="https://i.postimg.cc/FFsLmzdC/Copy-of-IMG-4015.png" alt="Billups Studio Logo" style="height: 12rem; width: auto; margin: 0 auto 2rem; display: block;">
+            <div class="hero-content animate-fade-in-up">
+                <img src="https://i.postimg.cc/FFsLmzdC/Copy-of-IMG-4015.png" alt="Billups Studio" class="hero-logo">
+                
+                <h1 class="hero-title">
+                    <span>BILLUPS</span>
+                    <span class="accent">STUDIO</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Luton's Premier Recording Studio · Professional Quality · Creative Environment
+                </p>
+                
+                <div class="hero-cta">
+                    <a href="#sessions" class="btn btn-primary">
+                        <i class="icon-calendar"></i>
+                        View Sessions
+                    </a>
+                    <a href="#contact" class="btn" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">
+                        <i class="icon-phone"></i>
+                        Contact Us
+                    </a>
                 </div>
-                
-                <h1 class="hero-title font-druk-wide">BILLUPS STUDIO</h1>
-                
-                <div class="hero-subtitle">
-                    <p class="font-neue-montreal">Pick up the mic,</p>
-                    <p class="highlight font-neue-montreal">elevate — create.</p>
-                </div>
-                
-                <a href="#booking" class="btn btn-primary">BOOK NOW</a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about-section section-padding">
+    <section class="about-section section-padding" id="about">
         <div class="container">
-            <h2 class="section-title font-monument">Real Studio.<br><span class="highlight">Real Energy.</span></h2>
-            <div class="title-divider"></div>
+            <h2 class="section-title">The Studio <span class="accent">Experience</span></h2>
+            
+            <p class="section-subtitle">
+                Professional recording studio in Luton offering high-quality audio production, mixing, and mastering services for artists and creators.
+            </p>
             
             <div class="about-grid">
                 <div class="about-content">
-                    <p class="font-neue-montreal">Based in the heart of Luton, Billups Studio is where culture meets clean sound. From quick bars to full tape lock-ins, this is the studio where your best work comes alive.</p>
+                    <p>Billups Studio is more than just a recording space – it's a creative hub where artists can bring their vision to life. Located in the heart of Luton, we provide state-of-the-art equipment and professional engineering in a comfortable, inspiring environment.</p>
                     
-                    <div class="about-feature-box">
-                        <p class="font-neue-montreal" style="text-align: center; font-size: 1.5rem; font-weight: 700;">No gimmicks. Just professional setup, local roots,<br><span class="highlight">and that unmatched vibe.</span></p>
-                    </div>
+                    <p>Our studio is designed for both quality and creativity, featuring industry-standard gear and acoustic treatment to ensure your music sounds its best. Whether you're recording vocals, instruments, or full band sessions, we have the expertise and equipment to make it happen.</p>
                     
                     <div class="features-grid">
                         <div class="feature-item">
                             <div class="feature-icon">
-                                <i class="icon-volume-2"></i>
+                                <i class="icon-headphones"></i>
                             </div>
-                            <span class="feature-name font-neue-montreal">Pro Sound</span>
+                            <div class="feature-name">Pro Tools HD</div>
                         </div>
                         
                         <div class="feature-item">
-                            <div class
+                            <div class="feature-icon">
+                                <i class="icon-mic"></i>
+                            </div>
+                            <div class="feature-name">Neumann Mics</div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="icon-sliders"></i>
+                            </div>
+                            <div class="feature-name">Analog Gear</div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="icon-monitor"></i>
+                            </div>
+                            <div class="feature-name">Mixing/Mastering</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Recording Studio Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sessions Section -->
+    <section class="sessions-section section-padding" id="sessions">
+        <div class="container">
+            <h2 class="section-title">Session <span class="accent">Packages</span></h2>
+            
+            <p class="section-subtitle">
+                Choose the perfect session for your needs. All packages include professional engineering and basic mixing.
+            </p>
+            
+            <div class="pricing-grid">
+                <!-- Hourly Session -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="icon-clock"></i>
+                        </div>
+                        <h3 class="pricing-title">Hourly</h3>
+                        <div class="pricing-amount">£40<span>/hour</span></div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Perfect for single tracks
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Professional engineering
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Basic mixing included
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Studio quality monitoring
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary pricing-button">
+                        <i class="icon-calendar"></i>
+                        Book Hourly
+                    </a>
+                </div>
+                
+                <!-- Half Day Session -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="icon-sun"></i>
+                        </div>
+                        <h3 class="pricing-title">Half Day</h3>
+                        <div class="pricing-amount">£150</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            4-hour session
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Perfect for singles/EPs
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Advanced mixing
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            File delivery included
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary pricing-button">
+                        <i class="icon-calendar"></i>
+                        Book Half Day
+                    </a>
+                </div>
+                
+                <!-- Full Day Session -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="icon-moon"></i>
+                        </div>
+                        <h3 class="pricing-title">Full Day</h3>
+                        <div class="pricing-amount">£280</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            8-hour session
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Full project recording
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Premium mixing/mastering
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="icon-check"></i>
+                            Priority scheduling
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary pricing-button">
+                        <i class="icon-calendar"></i>
+                        Book Full Day
+                    </a>
+                </div>
+            </div>
+            
+            <div class="deposit-notice">
+                <p>⚠️ A 50% deposit is required to secure your booking. Contact us for custom package inquiries.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section section-padding" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Studio <span class="accent">Gallery</span></h2>
+            
+            <p class="section-subtitle">
+                Take a look inside our professionally designed recording space and see where the magic happens.
+            </p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Studio Control Room">
+                    <div class="gallery-overlay">
+                        <div class="zoom-icon">
+                            <i class="icon-zoom-in"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Vocal Booth">
+                    <div class="gallery-overlay">
+                        <div class="zoom-icon">
+                            <i class="icon-zoom-in"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Mixing Console">
+                    <div class="gallery-overlay">
+                        <div class="zoom-icon">
+                            <i class="icon-zoom-in"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Studio Gear">
+                    <div class="gallery-overlay">
+                        <div class="zoom-icon">
+                            <i class="icon-zoom-in"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section section-padding" id="contact">
+        <div class="container">
+            <h2 class="section-title">Book Your <span class="accent">Session</span></h2>
+            
+            <p class="section-subtitle">
+                Ready to create? Get in touch to book your session or ask any questions about our services.
+            </p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-methods">
+                        <a href="tel:07710593113" class="contact-method">
+                            <div class="method-icon">
+                                <i class="icon-phone"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Call Us</strong>
+                                <span>07710 593113</span>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:info@billupsstudio.co.uk" class="contact-method">
+                            <div class="method-icon">
+                                <i class="icon-mail"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Email Us</strong>
+                                <span>info@billupsstudio.co.uk</span>
+                            </div>
+                        </a>
+                        
+                        <a href="https://instagram.com/billupsstudio" target="_blank" class="contact-method">
+                            <div class="method-icon">
+                                <i class="icon-instagram"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Instagram</strong>
+                                <span>@billupsstudio</span>
+                            </div>
+                        </a>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="icon-map-pin"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Location</strong>
+                                <span>Luton, Bedfordshire</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-map">
+                        <!-- Google Maps Embed -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2462.807692259744!2d-0.42478752303958166!3d51.87962787188992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876414d2e5f5f5f%3A0x93b854b5d9b5b5b5!2sLuton!5e0!3m2!1sen!2suk!4v169876543210!5m2!1sen!2suk" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <h3>Send a Message</h3>
+                    
+                    <form id="bookingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Your name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="07710 593113">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sessionType">Session Type</label>
+                                <select id="sessionType" name="sessionType" required>
+                                    <option value="">Select session</option>
+                                    <option value="hourly">Hourly (£40/hr)</option>
+                                    <option value="half-day">Half Day (£150)</option>
+                                    <option value="full-day">Full Day (£280)</option>
+                                    <option value="custom">Custom Package</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your project, number of tracks, specific requirements, etc."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary form-button">
+                            <i class="icon-send"></i>
+                            Send Booking Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <img src="https://i.postimg.cc/FFsLmzdC/Copy-of-IMG-4015.png" alt="Billups Studio" class="footer-logo">
+                    <p class="footer-description">
+                        Professional recording studio in Luton offering high-quality audio production services for artists, bands, and creators.
+                    </p>
+                    
+                    <a href="tel:07710593113" class="footer-contact-item">
+                        <div class="contact-icon">
+                            <i class="icon-phone"></i>
+                        </div>
+                        <span>07710 593113</span>
+                    </a>
+                    
+                    <a href="mailto:info@billupsstudio.co.uk" class="footer-contact-item">
+                        <div class="contact-icon">
+                            <i class="icon-mail"></i>
+                        </div>
+                        <span>info@billupsstudio.co.uk</span>
+                    </a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#home">Home</a></li>
+                        <li class="footer-link"><a href="#about">About</a></li>
+                        <li class="footer-link"><a href="#sessions">Sessions</a></li>
+                        <li class="footer-link"><a href="#gallery">Gallery</a></li>
+                        <li class="footer-link"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#sessions">Recording</a></li>
+                        <li class="footer-link"><a href="#sessions">Mixing</a></li>
+                        <li class="footer-link"><a href="#sessions">Mastering</a></li>
+                        <li class="footer-link"><a href="#sessions">Voice Overs</a></li>
+                        <li class="footer-link"><a href="#contact">Custom Packages</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Connect</h4>
+                    
+                    <div class="instagram-widget">
+                        <a href="https://instagram.com/billupsstudio" target="_blank" class="instagram-link">
+                            <i class="icon-instagram"></i>
+                            Follow @billupsstudio
+                        </a>
+                    </div>
+                    
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-top: 1.5rem; font-size: 0.9rem;">
+                        Open by appointment only<br>
+                        Monday - Sunday: 10am - 10pm
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    &copy; 2024 BILLUPS STUDIO. All rights reserved.
+                </p>
+                
+                <div class="footer-legal">
+                    <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
+                    <a href="#" onclick="openModal('termsModal')">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <button class="modal-close" onclick="closeModal('imageModal')">
+            <i class="icon-x"></i>
+        </button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Studio Image">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="icon-x"></i>' : 
+                '<i class="icon-menu"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="icon-menu"></i>';
+            });
+        });
+
+        // Gallery modal functionality
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                document.getElementById('modalImage').src = imgSrc;
+                document.getElementById('imageModal').classList.add('active');
+            });
+        });
+
+        // Modal functions
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+
+        // Booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                sessionType: document.getElementById('sessionType').value,
+                date: document.getElementById('date').value,
+                message: document.getElementById('message').value
+            };
+            
+            // In a real application, you would send this to a server
+            // For now, we'll just show an alert and reset the form
+            alert('Thank you for your booking request! We will contact you shortly to confirm your session.');
+            this.reset();
+            
+            // Scroll to top of contact section
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Set minimum date for booking to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.about-grid, .pricing-grid, .gallery-grid, .contact-grid').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -4,523 +4,305 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Billups Studio | Luton Recording Studio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Reset & Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            color: #f5f5f5;
-            background: #0a0a0a;
-            overflow-x: hidden;
-        }
-
-        /* Nav */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            border-bottom: 1px solid #222;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .nav-cta {
-            background: #ff3b30;
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .nav-cta:hover {
-            background: #ff5249;
-            transform: translateY(-2px);
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 5%;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 5.5rem;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-        }
-
-        .hero-tagline {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            color: #ccc;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 3rem;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            color: #aaa;
-        }
-
-        /* Features */
-        .features {
-            padding: 5rem 5%;
-            background: #111;
-        }
-
-        .features-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .feature-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .feature-item p {
-            color: #999;
-        }
-
-        /* Pricing */
-        .pricing {
-            padding: 6rem 5%;
-            background: #0a0a0a;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 4rem;
-            color: #fff;
-            font-weight: 800;
-        }
-
-        .pricing-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: #151515;
-            border-radius: 15px;
-            padding: 2.5rem;
-            border: 1px solid #252525;
-            transition: transform 0.3s;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: #ff3b30;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #ff3b30;
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .pricing-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .pricing-title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
-
-        .pricing-price {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: #fff;
-        }
-
-        .pricing-duration {
-            font-size: 1rem;
-            color: #aaa;
-            font-weight: normal;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features li {
-            padding: 0.5rem 0;
-            color: #ccc;
-            border-bottom: 1px solid #252525;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-note {
-            text-align: center;
-            margin-top: 3rem;
-            color: #999;
-            font-style: italic;
-        }
-
-        /* Contact */
-        .contact {
-            padding: 6rem 5%;
-            background: #111;
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 4rem;
-        }
-
-        .contact-info h3,
-        .contact-form h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            color: #ccc;
-        }
-
-        .contact-detail i {
-            width: 40px;
-            font-size: 1.2rem;
-            color: #ff3b30;
-        }
-
-        .contact-form .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea,
-        .contact-form select {
-            width: 100%;
-            padding: 1rem;
-            background: #222;
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus,
-        .contact-form select:focus {
-            outline: none;
-            border-color: #ff3b30;
-        }
-
-        /* Footer */
-        footer {
-            background: #0a0a0a;
-            text-align: center;
-            padding: 3rem 5%;
-            border-top: 1px solid #222;
-            color: #666;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .hero-tagline { font-size: 1.4rem; }
-            .section-title { font-size: 2.2rem; }
-            .nav-container { flex-direction: column; gap: 1rem; }
-            .pricing-card { padding: 2rem; }
-        }
-    </style>
+    <meta name="description" content="Book studio time in Luton at Billups. Full access, pro engineering, and a serious vibe. Hourly, half-day, full-day and custom sessions available.">
+    <meta name="keywords" content="Luton recording studio, UK music studio hire, pro sound sessions Luton, book studio time, studio for rap/grime/afro music Luton">
+    <meta property="og:title" content="Billups Studio | Luton Recording Studio">
+    <meta property="og:description" content="Book studio time in Luton at Billups. Full access, pro engineering, and a serious vibe.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="./Billups Studio _ Luton Recording Studio_files/Copy-of-IMG-4015.png">
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">BILLUPS STUDIO</a>
-            <a href="#pricing" class="nav-cta">BOOK NOW</a>
+        <div class="container">
+            <div class="logo">
+                <a href="/"><img src="./Billups Studio _ Luton Recording Studio_files/Copy-of-IMG-4015.png" alt="Billups Studio Logo"></a>
+            </div>
+            <div class="nav-links">
+                <button>Home</button>
+                <button>Sessions</button>
+                <button>Inside The Energy</button>
+                <button>Contact</button>
+            </div>
+            <div class="nav-actions">
+                <a href="/login">Sign In</a>
+                <a href="/booking">BOOK NOW</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero">
+        <div class="hero-background"></div>
         <div class="hero-content">
             <h1>BILLUPS STUDIO</h1>
-            <p class="hero-tagline">Pick up the mic,<br>elevate — create.</p>
-            
-            <h2 class="hero-subtitle">Real Studio.<br>Real Energy.</h2>
-            <p class="hero-description">
-                Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
-                From quick bars to full tape lock-ins, this is the studio where your best work comes alive.<br><br>
-                No gimmicks. Just professional setup, local roots, and that unmatched vibe.
-            </p>
-            
-            <a href="#pricing" class="nav-cta">VIEW SESSIONS</a>
+            <p>Pick up the mic,</p>
+            <p class="highlight">elevate — create.</p>
+            <a href="/booking">BOOK NOW</a>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="features">
-        <div class="features-grid">
-            <div class="feature-item">
-                <h3>Pro Sound</h3>
-                <p>Professional-grade equipment for studio-quality recordings.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Clean Space</h3>
-                <p>A dedicated, inspiring environment to focus on your craft.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Good People</h3>
-                <p>Expert engineers and a supportive creative community.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing/Sessions -->
-    <section id="pricing" class="pricing">
-        <h2 class="section-title">Lock In a Session<br>That Fits Your Grind</h2>
-        
-        <div class="pricing-grid">
-            <!-- Hourly -->
-            <div class="pricing-card">
-                <div class="pricing-icon">🎧</div>
-                <h3 class="pricing-title">Hourly</h3>
-                <div class="pricing-price">£30<small class="pricing-duration">/hr</small></div>
-                <p>Slide in, drop heat, get pro results. Engineer included.</p>
-                <ul class="pricing-features">
-                    <li>Full studio access with professional equipment</li>
-                    <li>On-site engineer for recording support</li>
-                    <li>Perfect for quick sessions or vocal takes</li>
-                </ul>
-                <a href="#contact" class="nav-cta" style="display: block; text-align: center;">BOOK NOW</a>
-            </div>
-            
-            <!-- Half Day -->
-            <div class="pricing-card">
-                <div class="popular-badge">MOST POPULAR</div>
-                <div class="pricing-icon">🎧</div>
-                <h3 class="pricing-title">Half Day</h3>
-                <div class="pricing-price">£140<small class="pricing-duration">(5 Hours)</small></div>
-                <p>5-hour slot. Full access + full support.</p>
-                <ul class="pricing-features">
-                    <li>Great for EPs, batch sessions or back-to-back takes</li>
-                    <li>Professional setup with mix-ready recordings</li>
-                    <li>Dedicated engineer throughout your session</li>
-                </ul>
-                <a href="#contact" class="nav-cta" style="display: block; text-align: center;">BOOK NOW</a>
-            </div>
-            
-            <!-- Full Day -->
-            <div class="pricing-card">
-                <div class="pricing-icon">🎧</div>
-                <h3 class="pricing-title">Full Day</h3>
-                <div class="pricing-price">£240<small class="pricing-duration">(10 Hours)</small></div>
-                <p>All-day pass. 10 hours, engineer on hand, zero distractions.</p>
-                <ul class="pricing-features">
-                    <li>Ideal for projects, collabs, or build-a-tape days</li>
-                    <li>Full creative control with professional results</li>
-                    <li>Complete studio access for extended sessions</li>
-                </ul>
-                <a href="#contact" class="nav-cta" style="display: block; text-align: center;">BOOK NOW</a>
-            </div>
-            
-            <!-- Custom -->
-            <div class="pricing-card">
-                <div class="pricing-icon">🎧</div>
-                <h3 class="pricing-title">Custom Session</h3>
-                <div class="pricing-price">Enquiry Only</div>
-                <p>Need extra time or custom support? We'll tailor the session to fit your needs.</p>
-                <ul class="pricing-features">
-                    <li>Flexible scheduling for extended projects</li>
-                    <li>Customized support for labels or recurring artists</li>
-                    <li>Discuss your requirements for a perfect fit</li>
-                </ul>
-                <a href="#contact" class="nav-cta" style="display: block; text-align: center;">ENQUIRE NOW</a>
-            </div>
-        </div>
-        
-        <p class="pricing-note">⚠️ £30 deposit required to confirm all sessions.</p>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-        <h2 class="section-title">Talk to Us or<br>Lock in a Session</h2>
-        
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <div class="contact-detail">
-                    <i class="fas fa-phone"></i>
-                    <span>07710 593113</span>
+    <section id="about">
+        <div class="container">
+            <h2>Real Studio.<br><span class="highlight">Real Energy.</span></h2>
+            <div class="content">
+                <div class="text">
+                    <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. From quick bars to full tape lock-ins, this is the studio where your best work comes alive.</p>
+                    <div class="highlight-box">
+                        <p>No gimmicks. Just professional setup, local roots,<br><span class="highlight">and that unmatched vibe.</span></p>
+                    </div>
+                    <div class="features">
+                        <div class="feature">
+                            <div class="icon">🎧</div>
+                            <span>Pro Sound</span>
+                        </div>
+                        <div class="feature">
+                            <div class="icon">⚡</div>
+                            <span>Clean Space</span>
+                        </div>
+                        <div class="feature">
+                            <div class="icon">👥</div>
+                            <span>Good People</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-detail">
-                    <i class="fas fa-envelope"></i>
-                    <span>billupsltd@gmail.com</span>
+                <div class="image">
+                    <img src="./Billups Studio _ Luton Recording Studio_files/C2530-00-00-01-16-Still017.jpg" alt="Billups Studio professional recording equipment">
                 </div>
-                <div class="contact-detail">
-                    <i class="fas fa-camera"></i>
-                    <span>@billups_studio</span>
-                </div>
-                <div class="contact-detail">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Cutenhoe Road, Luton LU1 3NB<br><small>(Full address sent after booking)</small></span>
-                </div>
-            </div>
-            
-            <div class="contact-form">
-                <h3>Send a Message</h3>
-                <form id="bookingForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="Phone Number">
-                    </div>
-                    <div class="form-group">
-                        <select required>
-                            <option value="" disabled selected>Select Session Type</option>
-                            <option value="hourly">🎧 Hourly (£30/hr)</option>
-                            <option value="half-day">🎧 Half Day (£140/5hrs)</option>
-                            <option value="full-day">🎧 Full Day (£240/10hrs)</option>
-                            <option value="custom">🎧 Custom Session (Enquiry)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message or Project Details..." rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="nav-cta" style="width: 100%; padding: 1rem;">SEND ENQUIRY</button>
-                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section id="sessions">
+        <div class="container">
+            <h2>Lock In a Session<br><span class="highlight">That Fits Your Grind</span></h2>
+            
+            <div class="session-cards">
+                <div class="session-card">
+                    <div class="icon">⏰</div>
+                    <h3>Hourly</h3>
+                    <p class="price">£30/hr</p>
+                    <p>Slide in, drop heat, get pro results. Engineer included.</p>
+                    <ul>
+                        <li>Full studio access with professional equipment</li>
+                        <li>On-site engineer for recording support</li>
+                        <li>Perfect for quick sessions or vocal takes</li>
+                    </ul>
+                    <a href="/booking">BOOK NOW</a>
+                </div>
+
+                <div class="session-card popular">
+                    <div class="badge">MOST POPULAR</div>
+                    <div class="icon">📅</div>
+                    <h3>Half Day</h3>
+                    <p class="price">£140</p>
+                    <p class="duration">(5 Hours)</p>
+                    <p>5-hour slot. Full access + full support.</p>
+                    <ul>
+                        <li>Great for EPs, batch sessions or back-to-back takes</li>
+                        <li>Professional setup with mix-ready recordings</li>
+                        <li>Dedicated engineer throughout your session</li>
+                    </ul>
+                    <a href="/booking">BOOK NOW</a>
+                </div>
+
+                <div class="session-card">
+                    <div class="icon">⚡</div>
+                    <h3>Full Day</h3>
+                    <p class="price">£240</p>
+                    <p class="duration">(10 Hours)</p>
+                    <p>All-day pass. 10 hours, engineer on hand, zero distractions.</p>
+                    <ul>
+                        <li>Ideal for projects, collabs, or build-a-tape days</li>
+                        <li>Full creative control with professional results</li>
+                        <li>Complete studio access for extended sessions</li>
+                    </ul>
+                    <a href="/booking">BOOK NOW</a>
+                </div>
+
+                <div class="session-card">
+                    <div class="icon">💬</div>
+                    <h3>Custom Session</h3>
+                    <p class="price">Enquiry Only</p>
+                    <p>Need extra time or custom support? We'll tailor the session to fit your needs.</p>
+                    <ul>
+                        <li>Flexible scheduling for extended projects</li>
+                        <li>Customized support for labels or recurring artists</li>
+                        <li>Discuss your requirements for a perfect fit</li>
+                    </ul>
+                    <a href="/booking">GET QUOTE</a>
+                </div>
+            </div>
+
+            <div class="notice">
+                <p>⚠️ £30 deposit required to confirm all sessions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Inside<br><span class="highlight">The Energy</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./Billups Studio _ Luton Recording Studio_files/C2530-00-00-01-20-Still021.jpg" alt="Billups Studio mic setup">
+                </div>
+                <div class="gallery-item">
+                    <img src="./Billups Studio _ Luton Recording Studio_files/C2530-00-00-01-17-Still018.jpg" alt="LED studio ceiling lighting">
+                </div>
+                <div class="gallery-item">
+                    <img src="./Billups Studio _ Luton Recording Studio_files/C2530-00-00-01-16-Still017.jpg" alt="Luton music studio recording space">
+                </div>
+                <div class="gallery-item">
+                    <img src="./Billups Studio _ Luton Recording Studio_files/C2530-00-00-01-15-Still016.jpg" alt="Recording space with atmospheric lighting">
+                </div>
+                <div class="gallery-item">
+                    <img src="./Billups Studio _ Luton Recording Studio_files/C2530-00-00-02-17-Still044.jpg" alt="Professional studio setup">
+                </div>
+                <div class="gallery-item">
+                    <img src="./Billups Studio _ Luton Recording Studio_files/C2530-00-00-02-22-Still049.jpg" alt="Recording booth and equipment">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Talk to Us or<br><span class="highlight">Lock in a Session</span></h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-methods">
+                        <a href="tel:07710593113">
+                            <div class="icon">📞</div>
+                            <span>07710 593113</span>
+                        </a>
+                        <a href="mailto:billupsltd@gmail.com">
+                            <div class="icon">📩</div>
+                            <span>billupsltd@gmail.com</span>
+                        </a>
+                        <a href="https://instagram.com/billups_studio" target="_blank">
+                            <div class="icon">📸</div>
+                            <span>@billups_studio</span>
+                        </a>
+                        <div class="address">
+                            <div class="icon">📍</div>
+                            <div>
+                                <span>Cutenhoe Road, Luton LU1 3NB</span>
+                                <span class="note">(Full address sent after booking)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map">
+                        <!-- Google Map would go here -->
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form action="https://formspree.io/f/mwpbdkea" method="POST">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required placeholder="Your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required placeholder="Your last name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required rows="5" placeholder="Tell us about your project, preferred dates, or any questions you have..."></textarea>
+                        </div>
+                        <input type="hidden" name="sessionType" value="Contact Form">
+                        <button type="submit">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>© 2024 Billups Studio | Luton Recording Studio</p>
-        <p>Professional sound. Creative space. Real energy.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BILLUPS STUDIO</h3>
+                    <p>Where culture meets clean sound. Luton's premier recording studio for artists, producers, and creators.</p>
+                    <div class="contact-details">
+                        <a href="tel:07710593113">📞 07710 593113</a>
+                        <a href="mailto:billupsltd@gmail.com">📩 billupsltd@gmail.com</a>
+                        <div class="address">
+                            <span>📍 Cutenhoe Road, Luton LU1 3NB</span>
+                            <span class="note">(Full address sent after booking)</span>
+                        </div>
+                        <div class="hours">
+                            <span>⏰ Open Monday to Saturday</span>
+                            <span class="note">Flexible bookings available</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="links">
+                        <button>Home</button>
+                        <button>Sessions</button>
+                        <button>Inside the Energy</button>
+                        <button>Contact</button>
+                        <a href="/booking">Booking</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Why Choose Us</h4>
+                    <div class="features">
+                        <div class="feature">
+                            <div class="icon">🎧</div>
+                            <span>Industry-grade equipment</span>
+                        </div>
+                        <div class="feature">
+                            <div class="icon">👨‍💼</div>
+                            <span>Engineer always on-site</span>
+                        </div>
+                        <div class="feature">
+                            <div class="icon">🛡️</div>
+                            <span>Clean, secure, pro-ready space</span>
+                        </div>
+                        <div class="feature">
+                            <div class="icon">👍</div>
+                            <span>Trusted by artists across Luton</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://instagram.com/billups_studio" target="_blank" class="social">
+                        <div class="icon">📸</div>
+                        <div>
+                            <span class="handle">@billups_studio</span>
+                            <span class="note">Follow the energy</span>
+                        </div>
+                    </a>
+                    <div class="cta-box">
+                        <h5>💬 Got Questions?</h5>
+                        <p>Drop us a line — or just book and pull up.</p>
+                        <a href="/booking">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Billups Studio. Built for artists, engineered for energy.</p>
+                <div class="legal">
+                    <button>Privacy Policy</button>
+                    <button>Terms & Conditions</button>
+                    <span>Cookies</span>
+                </div>
+            </div>
+        </div>
     </footer>
-
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Form submission
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your enquiry! Billups Studio will contact you soon to confirm your session.');
-            this.reset();
-        });
-
-        // Nav background on scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if(window.scrollY > 50) {
-                nav.style.background = 'rgba(10, 10, 10, 0.97)';
-            } else {
-                nav.style.background = 'rgba(10, 10, 10, 0.9)';
-            }
-        });
-    </script>
 </body>
 </html>

@@ -25,9 +25,9 @@
             --accent-light: #90ff90;
             
             /* New colors from Squarespace site with transparency */
-            --purple-dark: rgba(26, 11, 46, 0.85); /* More transparent */
-            --purple-medium: rgba(45, 27, 78, 0.75); /* More transparent */
-            --purple-light: rgba(61, 41, 104, 0.7); /* More transparent */
+            --purple-dark: rgba(26, 11, 46, 0.85);
+            --purple-medium: rgba(45, 27, 78, 0.75);
+            --purple-light: rgba(61, 41, 104, 0.7);
             --orange-accent: #ff6b35;
             --blue-accent: #4d8af0;
             --blue-light: #6ba3ff;
@@ -54,6 +54,26 @@
             overflow-x: hidden;
         }
         
+        /* ===== LOGO ROTATION ANIMATIONS ===== */
+        @keyframes logo-spin-subtle {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.02); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.02); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        @keyframes logo-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.95; }
+        }
+        
+        @keyframes logo-tilt {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            75% { transform: rotate(-1deg); }
+        }
+        
         /* ===== HEADER & NAVIGATION ===== */
         .header {
             position: fixed;
@@ -70,7 +90,7 @@
         }
         
         .header.scrolled {
-            background-color: rgba(0, 0, 0, 0.85); /* Semi-transparent */
+            background-color: rgba(0, 0, 0, 0.85);
             padding: 1rem 2rem;
             backdrop-filter: blur(10px);
         }
@@ -79,9 +99,24 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            height: 70px; /* Much bigger logo */
+            height: 70px;
             width: auto;
             z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo-center img {
+            height: 100%;
+            width: auto;
+            animation: logo-spin-subtle 45s linear infinite;
+            transition: var(--transition);
+        }
+        
+        .logo-center img:hover {
+            animation-duration: 20s;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.3));
         }
         
         .nav-icons {
@@ -106,6 +141,7 @@
             height: 45px;
             width: auto;
             border-radius: 50%;
+            animation: logo-tilt 8s ease-in-out infinite;
         }
         
         /* ===== HERO SECTION ===== */
@@ -154,6 +190,14 @@
             width: auto;
             margin: 0 auto 3rem;
             display: block;
+            animation: logo-pulse 6s ease-in-out infinite, logo-spin-subtle 60s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.2));
+            transition: var(--transition);
+        }
+        
+        .hero-logo-large:hover {
+            animation: logo-spin-subtle 25s linear infinite, logo-pulse 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px rgba(0, 255, 0, 0.4));
         }
         
         .hero-title {
@@ -163,6 +207,7 @@
             text-transform: uppercase;
             letter-spacing: -0.02em;
             line-height: 1;
+            animation: fadeInUp 1s ease-out;
         }
         
         .hero-subtitle {
@@ -171,6 +216,7 @@
             margin-bottom: 3rem;
             color: rgba(255, 255, 255, 0.95);
             line-height: 1.4;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
         
         .hero-subtitle br {
@@ -190,6 +236,7 @@
             transition: var(--transition);
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
         
         .btn-book:hover {
@@ -213,7 +260,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            opacity: 0.15; /* Very subtle texture */
+            opacity: 0.15;
             filter: blur(1px);
         }
         
@@ -249,7 +296,7 @@
         
         /* ===== ABOUT SECTION ===== */
         .about {
-            background-color: rgba(0, 0, 0, 0.4); /* Very transparent */
+            background-color: rgba(0, 0, 0, 0.4);
         }
         
         .about-content {
@@ -306,7 +353,7 @@
         }
         
         .services .section-bg {
-            opacity: 0.2; /* More visible in services */
+            opacity: 0.2;
         }
         
         .services-grid {
@@ -535,11 +582,13 @@
             font-size: 1rem;
         }
         
-        .method-text .email-name {
+        .method-text .contact-name {
             font-size: 0.95rem;
             color: var(--blue-light);
             margin-bottom: 0.1rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .address-note {
@@ -643,6 +692,7 @@
         .footer-logo {
             height: 50px;
             margin-bottom: 2rem;
+            animation: logo-tilt 10s ease-in-out infinite;
         }
         
         .footer-description {
@@ -686,6 +736,18 @@
             font-size: 1rem;
             position: relative;
             z-index: 1;
+        }
+        
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* ===== RESPONSIVE ===== */
@@ -834,7 +896,9 @@
             <a href="#contact" class="nav-icon"><i class="fas fa-envelope"></i></a>
         </div>
         
-        <img src="images/logo.png" alt="Billups Studio" class="logo-center">
+        <div class="logo-center">
+            <img src="images/logo.png" alt="Billups Studio">
+        </div>
         
         <div class="nav-icons">
             <a href="tel:07710593113" class="nav-icon"><i class="fas fa-phone"></i></a>
@@ -1004,21 +1068,30 @@
                             </div>
                         </a>
                         
-                        <!-- Original Email -->
+                        <!-- Original Studio Email -->
                         <div class="contact-method">
                             <div class="method-icon"><i class="fas fa-envelope"></i></div>
                             <div class="method-text">
-                                <span class="email-name">Studio Email</span>
+                                <span class="contact-name">Studio Email</span>
                                 <strong>billupsltd@gmail.com</strong>
                             </div>
                         </div>
                         
-                        <!-- New Email for jaidee -->
+                        <!-- jaidee's Email -->
                         <div class="contact-method">
-                            <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="method-icon"><i class="fas fa-user"></i></div>
                             <div class="method-text">
-                                <span class="email-name">jaidee</span>
+                                <span class="contact-name">jaidee</span>
                                 <strong>joellhead05@gmail.com</strong>
+                            </div>
+                        </div>
+                        
+                        <!-- dsoul's Email -->
+                        <div class="contact-method">
+                            <div class="method-icon"><i class="fas fa-user"></i></div>
+                            <div class="method-text">
+                                <span class="contact-name">dsoul</span>
+                                <strong>dsoulfiles@gmail.com</strong>
                             </div>
                         </div>
                         
@@ -1070,11 +1143,27 @@
                         </div>
                         
                         <div class="form-group">
+                            <label for="preferred-contact">Preferred Contact Method</label>
+                            <select id="preferred-contact" name="preferred-contact">
+                                <option value="">Any method is fine</option>
+                                <option value="studio-email">Studio Email</option>
+                                <option value="jaidee">Contact jaidee directly</option>
+                                <option value="dsoul">Contact dsoul directly</option>
+                                <option value="phone">Phone Call</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
                             <label for="message">Message / Project Details</label>
                             <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
                         </div>
                         
                         <button type="submit" class="btn-book" style="width: 100%;">Send Booking Request</button>
+                        
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 255, 0, 0.1); border-radius: 8px; border: 1px solid rgba(0, 255, 0, 0.2); font-size: 0.9rem; text-align: center;">
+                            <strong>✉️ Your message will be sent to:</strong><br>
+                            <span style="color: var(--accent-light);">billupsltd@gmail.com, joellhead05@gmail.com, dsoulfiles@gmail.com</span>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -1116,6 +1205,9 @@
             
             <div class="footer-bottom">
                 <p>&copy; 2024 Billups Studio. All rights reserved. Luton, Bedfordshire.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);">
+                    Contact: billupsltd@gmail.com • jaidee: joellhead05@gmail.com • dsoul: dsoulfiles@gmail.com
+                </p>
             </div>
         </div>
     </footer>
@@ -1124,7 +1216,6 @@
         // ===== CONFIGURATION =====
         const CONFIG = {
             logoPath: 'images/logo.png',
-            // Hero image will be included in gallery automatically
             galleryExtensions: ['.jpg', '.jpeg', '.png', '.webp', '.gif'],
             excludeFromGallery: ['logo.png'],
             sectionBackgrounds: [
@@ -1132,9 +1223,13 @@
                 'images/studio-bg.jpg',
                 'images/studio-texture-2.jpg',
                 'images/studio-contact-bg.jpg',
-                'images/footer-bg.jpg',
-                'images/texture-1.jpg',
-                'images/texture-2.jpg'
+                'images/footer-bg.jpg'
+            ],
+            // All contact emails
+            contactEmails: [
+                'billupsltd@gmail.com',
+                'joellhead05@gmail.com',
+                'dsoulfiles@gmail.com'
             ]
         };
 
@@ -1158,7 +1253,6 @@
 
         // ===== HERO BACKGROUND =====
         function setHeroBackground() {
-            // Try different possible hero image names
             const possibleHeroImages = [
                 'images/hero-bg.jpg',
                 'images/hero.jpg',
@@ -1171,34 +1265,29 @@
                 'images/studio2.jpg'
             ];
             
-            // Create background image
             const heroBg = document.createElement('img');
             heroBg.className = 'hero-bg';
             heroBg.alt = 'Studio Background';
             
-            // Try to load hero image
             let heroImageFound = false;
             
             for (let imgPath of possibleHeroImages) {
-                // Create a test image to check if it exists
                 const testImg = new Image();
                 testImg.src = imgPath;
                 testImg.onload = function() {
                     if (!heroImageFound) {
                         heroImageFound = true;
                         heroBg.src = imgPath;
-                        heroImagePath = imgPath; // Store for gallery
+                        heroImagePath = imgPath;
                     }
                 };
             }
             
-            // If no hero image found, use a fallback
             setTimeout(() => {
                 if (!heroImageFound) {
                     heroBg.src = 'images/studio1.jpg';
                     heroImagePath = 'images/studio1.jpg';
                     heroBg.onerror = function() {
-                        // Ultimate fallback - dark background
                         this.style.display = 'none';
                         heroSection.style.background = 'linear-gradient(45deg, #111, #000)';
                     };
@@ -1207,7 +1296,6 @@
             
             heroSection.insertBefore(heroBg, heroSection.firstChild);
             
-            // Add overlay - DARKER PURPLE as requested
             const overlay = document.createElement('div');
             overlay.className = 'hero-overlay';
             heroSection.insertBefore(overlay, heroSection.children[1]);
@@ -1217,9 +1305,7 @@
         function setSectionBackgrounds() {
             const sections = document.querySelectorAll('.section-bg');
             sections.forEach((bg, index) => {
-                // Try to load the specified image, fallback to other textures
                 bg.onerror = function() {
-                    // Try other texture options
                     const fallbacks = [
                         'images/studio1.jpg',
                         'images/studio2.jpg',
@@ -1236,7 +1322,6 @@
                         };
                     }
                     
-                    // If no fallbacks work, hide the background
                     setTimeout(() => {
                         if (bg.src.includes('onerror')) {
                             bg.style.display = 'none';
@@ -1252,9 +1337,7 @@
             
             galleryContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--accent);">Loading studio images...</div>';
             
-            // Manual listing of images - UPDATE THIS WITH YOUR ACTUAL IMAGE NAMES
             const imageFiles = [
-                // Hero image will be added first automatically
                 'images/studio1.jpg',
                 'images/studio2.jpg', 
                 'images/studio3.jpg',
@@ -1273,16 +1356,13 @@
         function displayGalleryImages(imageFiles) {
             galleryContainer.innerHTML = '';
             
-            // Add hero image as first gallery item if it exists
             const allImages = [];
             
             if (heroImagePath && heroImagePath !== '') {
                 allImages.push(heroImagePath);
             }
             
-            // Add other images
             if (imageFiles && imageFiles.length > 0) {
-                // Filter out duplicates (in case hero image is already in the list)
                 const uniqueOtherImages = imageFiles.filter(img => img !== heroImagePath);
                 allImages.push(...uniqueOtherImages);
             }
@@ -1303,7 +1383,6 @@
                 img.alt = `Studio Image ${index + 1}`;
                 img.loading = 'lazy';
                 img.onerror = function() {
-                    // Skip this image if it doesn't exist
                     galleryItem.style.display = 'none';
                 };
                 
@@ -1311,7 +1390,6 @@
                 galleryContainer.appendChild(galleryItem);
             });
             
-            // Show message if no images loaded
             setTimeout(() => {
                 const loadedImages = galleryContainer.querySelectorAll('.gallery-item:not([style*="display: none"])');
                 if (loadedImages.length === 0) {
@@ -1327,22 +1405,51 @@
         bookingForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            // Get form data
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
                 sessionType: document.getElementById('session-type').value,
-                message: document.getElementById('message').value
+                preferredContact: document.getElementById('preferred-contact').value,
+                message: document.getElementById('message').value,
+                // Add timestamp
+                timestamp: new Date().toISOString(),
+                // Add page URL
+                pageUrl: window.location.href
             };
+            
+            // Determine which contacts to notify based on preference
+            let contactsToNotify = [];
+            switch(formData.preferredContact) {
+                case 'studio-email':
+                    contactsToNotify = ['billupsltd@gmail.com'];
+                    break;
+                case 'jaidee':
+                    contactsToNotify = ['joellhead05@gmail.com'];
+                    break;
+                case 'dsoul':
+                    contactsToNotify = ['dsoulfiles@gmail.com'];
+                    break;
+                default:
+                    contactsToNotify = CONFIG.contactEmails; // All contacts
+            }
             
             // Show loading
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
+            submitBtn.textContent = 'Sending to all contacts...';
             submitBtn.disabled = true;
             
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            // Simulate sending to all contacts
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // In a real implementation, you would send the form data to your backend
+            // which would then email all three contacts
+            
+            // Show success message with contact details
+            const contactList = contactsToNotify.join(', ');
+            alert(`Thank you! Your booking request has been sent to:\n\n${contactList}\n\nWe'll contact you within 24 hours.`);
             
             // Reset form
             this.reset();
@@ -1351,12 +1458,31 @@
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
             
-            // Show success
-            alert('Thank you! Your booking request has been sent. We\'ll contact you within 24 hours.');
-            
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // ===== LOGO INTERACTIVITY =====
+        function setupLogoInteractions() {
+            // Add click effects to logos
+            const logos = document.querySelectorAll('.logo-center img, .hero-logo-large, .logo-small, .footer-logo');
+            logos.forEach(logo => {
+                logo.addEventListener('click', function() {
+                    // Briefly speed up rotation on click
+                    const originalAnimation = this.style.animation;
+                    this.style.animation = 'logo-spin-subtle 5s linear infinite';
+                    
+                    // Add glow effect
+                    this.style.filter = 'drop-shadow(0 0 15px rgba(0, 255, 0, 0.5))';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        this.style.animation = originalAnimation;
+                        this.style.filter = '';
+                    }, 2000);
+                });
+            });
+        }
 
         // ===== SMOOTH SCROLLING =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1379,8 +1505,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             setHeroBackground();
             setSectionBackgrounds();
+            setupLogoInteractions();
             
-            // Load gallery after a short delay to ensure hero image is loaded
+            // Load gallery after a short delay
             setTimeout(() => {
                 loadGalleryImages();
             }, 300);

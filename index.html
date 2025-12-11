@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BILLUPS STUDIO | Professional Recording Studio in Luton</title>
-    <meta name="description" content="Luton's premier recording studio offering professional recording, mixing, and mastering services in a creative environment.">
+    <title>Billups Studio | Luton Recording Studio</title>
+    <meta name="description" content="Luton recording studio offering professional recording, mixing and mastering services. Book your session today.">
     <link rel="icon" type="image/png" href="images/logo.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ===== CSS VARIABLES ===== */
+        /* ===== RESET & BASE ===== */
         :root {
-            --black: #0a0a0a;
+            --black: #000000;
             --dark-gray: #111111;
             --medium-gray: #222222;
-            --light-gray: #444444;
             --white: #ffffff;
-            --neon-green: #00ff00;
-            --neon-green-light: #90ff90;
-            --neon-green-dark: #00cc00;
+            --accent: #00ff00;
+            --accent-light: #90ff90;
             
-            --font-heading: 'Montserrat', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
-            --shadow-heavy: 0 10px 40px rgba(0, 255, 0, 0.15);
         }
         
-        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -41,186 +37,76 @@
         
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
         }
         
         body {
-            font-family: var(--font-body);
+            font-family: var(--font-primary);
             background-color: var(--black);
             color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
         }
         
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* ===== TYPOGRAPHY ===== */
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-        }
-        
-        h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 2rem;
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .accent {
-            color: var(--neon-green);
-        }
-        
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            text-align: center;
-        }
-        
-        /* ===== LAYOUT ===== */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .section {
-            padding: 5rem 0;
-        }
-        
-        /* ===== BUTTONS ===== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-decoration: none;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .btn-primary {
-            background-color: var(--neon-green);
-            color: var(--black);
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--neon-green-light);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-heavy);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--neon-green);
-            border: 2px solid var(--neon-green);
-        }
-        
-        .btn-outline:hover {
-            background-color: rgba(0, 255, 0, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        /* ===== HEADER & NAV ===== */
+        /* ===== HEADER & NAVIGATION ===== */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
-            padding: 1rem 0;
-        }
-        
-        .nav-container {
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: transparent;
+            transition: var(--transition);
         }
         
-        .logo {
-            height: 40px;
+        .header.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 2rem;
+        }
+        
+        .logo-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 50px;
             width: auto;
         }
         
-        .nav-desktop {
+        .nav-icons {
             display: flex;
-            gap: 2.5rem;
+            gap: 1.5rem;
             align-items: center;
         }
         
-        .nav-link {
+        .nav-icon {
             color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
             text-decoration: none;
-            font-family: var(--font-heading);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
             transition: var(--transition);
-            position: relative;
-            padding: 0.5rem 0;
         }
         
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--neon-green);
+        .nav-icon:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
         }
         
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--neon-green);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
+        .logo-small {
+            height: 40px;
+            width: auto;
+            border-radius: 50%;
         }
         
         /* ===== HERO SECTION ===== */
         .hero {
             min-height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
-            position: relative;
-            padding-top: 80px;
-            background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.95));
+            justify-content: center;
+            overflow: hidden;
         }
         
         .hero-bg {
@@ -230,118 +116,165 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
-            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(106, 13, 173, 0.6), rgba(0, 0, 0, 0.8));
+            z-index: 2;
         }
         
         .hero-content {
+            position: relative;
+            z-index: 3;
             text-align: center;
             max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero-logo {
-            height: 100px;
-            width: auto;
-            margin: 0 auto 2rem;
+            padding: 2rem;
         }
         
         .hero-title {
-            margin-bottom: 1.5rem;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
         }
         
         .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.5rem;
+            font-weight: 400;
             margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            color: rgba(255, 255, 255, 0.9);
         }
         
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        .btn-book {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background-color: var(--accent);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        /* ===== ABOUT SECTION ===== */
-        .about {
-            background-color: var(--dark-gray);
+        .btn-book:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.2);
         }
         
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
+        /* ===== SECTIONS COMMON ===== */
+        .section {
+            padding: 6rem 2rem;
         }
         
-        @media (min-width: 992px) {
-            .grid-2 {
-                grid-template-columns: 1fr 1fr;
-            }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .about-image img {
-            border-radius: 10px;
-            box-shadow: var(--shadow-heavy);
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            text-transform: uppercase;
         }
         
-        /* ===== SERVICES SECTION ===== */
+        /* ===== SERVICES ===== */
         .services {
             background-color: var(--black);
         }
         
         .services-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
         
-        @media (min-width: 768px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
         .service-card {
-            background: var(--medium-gray);
-            padding: 2.5rem 2rem;
+            background: var(--dark-gray);
             border-radius: 15px;
-            text-align: center;
-            transition: var(--transition);
+            padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
         }
         
         .service-card:hover {
             transform: translateY(-10px);
-            border-color: var(--neon-green);
-            box-shadow: var(--shadow-heavy);
+            border-color: var(--accent);
+        }
+        
+        .service-card.popular {
+            border: 2px solid var(--accent);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--black);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
         
         .service-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
         }
         
-        .price {
-            margin-top: 1rem;
-            color: var(--neon-green);
+        .service-title {
+            font-size: 1.5rem;
             font-weight: 700;
-            font-family: var(--font-heading);
+            margin-bottom: 1rem;
         }
         
-        /* ===== GALLERY SECTION ===== */
+        .service-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin: 1.5rem 0;
+        }
+        
+        .service-price span {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .service-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .service-feature {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* ===== GALLERY ===== */
         .gallery {
             background-color: var(--dark-gray);
         }
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-top: 3rem;
         }
@@ -351,33 +284,77 @@
             border-radius: 10px;
             overflow: hidden;
             aspect-ratio: 4/3;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-heavy);
+            background: var(--medium-gray);
         }
         
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.5s ease;
         }
         
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
-        /* ===== CONTACT SECTION ===== */
+        /* ===== CONTACT ===== */
         .contact {
             background-color: var(--black);
         }
         
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .contact-method:hover {
+            background: rgba(0, 255, 0, 0.1);
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .method-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 255, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justifiy-content: center;
+            color: var(--accent);
+        }
+        
         .contact-form {
-            background: var(--medium-gray);
+            background: var(--dark-gray);
             padding: 2.5rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -389,22 +366,14 @@
         
         .form-row {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
-        }
-        
-        @media (min-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr 1fr;
-            }
         }
         
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            font-family: var(--font-heading);
         }
         
         input, textarea, select {
@@ -414,14 +383,14 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             color: var(--white);
-            font-family: var(--font-body);
+            font-family: var(--font-primary);
             font-size: 1rem;
             transition: var(--transition);
         }
         
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: var(--neon-green);
+            border-color: var(--accent);
             background: rgba(0, 255, 0, 0.05);
         }
         
@@ -430,330 +399,186 @@
             resize: vertical;
         }
         
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-        
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+        .deposit-notice {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid var(--accent);
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .contact-method:hover {
-            background: rgba(0, 255, 0, 0.1);
-            border-color: var(--neon-green);
-            transform: translateX(5px);
-        }
-        
-        .method-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(0, 255, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: var(--neon-green);
-            font-size: 1.25rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 3rem;
+            font-weight: 600;
         }
         
         /* ===== FOOTER ===== */
         .footer {
             background-color: var(--dark-gray);
-            border-top: 1px solid rgba(0, 255, 0, 0.1);
-            padding: 4rem 0 2rem;
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
             margin-bottom: 3rem;
         }
         
-        @media (min-width: 768px) {
-            .footer-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
         .footer-logo {
             height: 40px;
-            width: auto;
             margin-bottom: 1.5rem;
-        }
-        
-        .footer-description {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-        }
-        
-        .footer-heading {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-link {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-link a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-link a:hover {
-            color: var(--neon-green);
-            padding-left: 5px;
         }
         
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
             text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-        
-        /* ===== MODAL ===== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-        }
-        
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .modal-close:hover {
-            color: var(--neon-green);
         }
         
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .section {
-                padding: 4rem 0;
+            .hero-title {
+                font-size: 3.5rem;
             }
             
-            .hero {
-                min-height: 80vh;
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
         @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
+            .header {
+                padding: 1rem;
             }
             
-            .nav-desktop {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--black);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            .logo-center {
+                height: 40px;
             }
             
-            .nav-desktop.active {
-                display: flex;
+            .logo-small {
+                height: 35px;
             }
             
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .btn {
-                width: 100%;
-                max-width: 300px;
+            .hero-subtitle {
+                font-size: 1.2rem;
             }
-        }
-        
-        /* ===== ANIMATIONS ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* ===== LOADING STATES ===== */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(0, 255, 0, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--neon-green);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* ===== UTILITY ===== */
-        .text-center {
-            text-align: center;
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-icons {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="container nav-container">
-            <a href="#home" class="logo">
-                <img src="images/logo.png" alt="Billups Studio Logo" class="logo" onerror="this.style.display='none'">
-            </a>
-            
-            <nav class="nav-desktop" id="mainNav">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span>☰</span>
-            </button>
+    <!-- Header with logo center and icons right -->
+    <header class="header" id="header">
+        <div class="nav-icons">
+            <a href="#home" class="nav-icon"><i class="fas fa-home"></i></a>
+            <a href="#services" class="nav-icon"><i class="fas fa-headphones"></i></a>
+            <a href="#gallery" class="nav-icon"><i class="fas fa-images"></i></a>
+            <a href="#contact" class="nav-icon"><i class="fas fa-envelope"></i></a>
+        </div>
+        
+        <img src="images/logo.png" alt="Billups Studio" class="logo-center">
+        
+        <div class="nav-icons">
+            <a href="tel:07710593113" class="nav-icon"><i class="fas fa-phone"></i></a>
+            <a href="https://instagram.com/billups_studio" target="_blank" class="nav-icon"><i class="fab fa-instagram"></i></a>
+            <img src="images/logo.png" alt="Logo" class="logo-small">
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <!-- Background will be set dynamically -->
-        <div class="container">
-            <div class="hero-content fade-in">
-                <img src="images/logo.png" alt="Billups Studio" class="hero-logo" onerror="this.style.display='none'">
-                
-                <h1 class="hero-title">
-                    SOUND IS OUR <span class="accent">CRAFT</span>
-                </h1>
-                
-                <p class="hero-subtitle">
-                    Luton's premier recording studio offering professional recording, mixing, and mastering services in a creative, inspiring environment.
-                </p>
-                
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Book a Session</a>
-                    <a href="#services" class="btn btn-outline">View Services</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about section" id="about">
-        <div class="container">
-            <h2 class="text-center">About <span class="accent">Billups Studio</span></h2>
-            <p class="section-subtitle">
-                A creative hub where artists bring their vision to life with state-of-the-art equipment and professional engineering.
-            </p>
-            
-            <div class="grid-2 fade-in">
-                <div>
-                    <p>Located in the heart of Luton, Billups Studio provides a professional yet comfortable environment for artists, bands, and creators to produce their best work.</p>
-                    <p>Our acoustically treated studio is equipped with industry-standard gear, ensuring your music sounds exceptional whether you're recording vocals, instruments, or full band sessions.</p>
-                    <p>With over a decade of experience, our team is dedicated to helping you achieve your creative vision with technical excellence and artistic sensitivity.</p>
-                </div>
-                <div class="about-image">
-                    <!-- Image will be loaded dynamically -->
-                </div>
-            </div>
+        <!-- Background image loaded dynamically -->
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">BILLUPS STUDIO</h1>
+            <p class="hero-subtitle">Pick up the mic, elevate — create.</p>
+            <a href="#contact" class="btn-book">BOOK NOW</a>
         </div>
     </section>
 
     <!-- Services Section -->
     <section class="services section" id="services">
         <div class="container">
-            <h2 class="text-center">Our <span class="accent">Services</span></h2>
-            <p class="section-subtitle">
-                Professional audio services tailored to your creative needs. All sessions include expert engineering.
-            </p>
+            <h2 class="section-title">Lock In a Session That Fits Your Grind</h2>
             
             <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">🎙️</div>
-                    <h3>Recording</h3>
-                    <p>Professional recording sessions for vocals, instruments, and full bands in our acoustically treated studio.</p>
-                    <div class="price">From £40/hour</div>
+                <!-- Hourly -->
+                <div class="service-card">
+                    <div class="service-icon">🎧</div>
+                    <h3 class="service-title">Hourly</h3>
+                    <div class="service-price">£30<span>/hr</span></div>
+                    <p>Slide in, drop heat, get pro results. Engineer included.</p>
+                    <ul class="service-features">
+                        <li class="service-feature">Full studio access with professional equipment</li>
+                        <li class="service-feature">On-site engineer for recording support</li>
+                        <li class="service-feature">Perfect for quick sessions or vocal takes</li>
+                    </ul>
+                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center;">Book Hourly</a>
                 </div>
                 
-                <div class="service-card fade-in">
-                    <div class="service-icon">🎚️</div>
-                    <h3>Mixing</h3>
-                    <p>Expert mixing services to balance and enhance your tracks using analog and digital processing.</p>
-                    <div class="price">From £150/session</div>
+                <!-- Half Day -->
+                <div class="service-card popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <div class="service-icon">🎧</div>
+                    <h3 class="service-title">Half Day</h3>
+                    <div class="service-price">£140</div>
+                    <p>5-hour slot. Full access + full support.</p>
+                    <ul class="service-features">
+                        <li class="service-feature">Great for EPs, batch sessions or back-to-back takes</li>
+                        <li class="service-feature">Professional setup with mix-ready recordings</li>
+                        <li class="service-feature">Dedicated engineer throughout your session</li>
+                    </ul>
+                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center;">Book Half Day</a>
                 </div>
                 
-                <div class="service-card fade-in">
-                    <div class="service-icon">🎛️</div>
-                    <h3>Mastering</h3>
-                    <p>Final polish and optimization of your tracks for streaming platforms, CD, and vinyl release.</p>
-                    <div class="price">From £75/track</div>
+                <!-- Full Day -->
+                <div class="service-card">
+                    <div class="service-icon">🎧</div>
+                    <h3 class="service-title">Full Day</h3>
+                    <div class="service-price">£240</div>
+                    <p>All-day pass. 10 hours, engineer on hand, zero distractions.</p>
+                    <ul class="service-features">
+                        <li class="service-feature">Ideal for projects, collabs, or build-a-tape days</li>
+                        <li class="service-feature">Full creative control with professional results</li>
+                        <li class="service-feature">Complete studio access for extended sessions</li>
+                    </ul>
+                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center;">Book Full Day</a>
                 </div>
+            </div>
+            
+            <div class="deposit-notice">
+                ⚠️ £30 deposit required to confirm all sessions.
             </div>
         </div>
     </section>
@@ -761,13 +586,12 @@
     <!-- Gallery Section -->
     <section class="gallery section" id="gallery">
         <div class="container">
-            <h2 class="text-center">Studio <span class="accent">Gallery</span></h2>
-            <p class="section-subtitle">
-                Explore our professionally designed recording space.
-            </p>
-            
+            <h2 class="section-title">Inside The Energy</h2>
             <div class="gallery-grid" id="galleryContainer">
-                <!-- Images loaded dynamically -->
+                <!-- Images loaded automatically from /images folder -->
+                <div style="text-align: center; grid-column: 1 / -1; padding: 3rem; color: var(--accent);">
+                    Loading studio images...
+                </div>
             </div>
         </div>
     </section>
@@ -775,15 +599,48 @@
     <!-- Contact Section -->
     <section class="contact section" id="contact">
         <div class="container">
-            <h2 class="text-center">Book Your <span class="accent">Session</span></h2>
-            <p class="section-subtitle">
-                Ready to create? Get in touch to discuss your project or book studio time.
-            </p>
+            <h2 class="section-title">Talk to Us or Lock in a Session</h2>
             
-            <div class="grid-2 fade-in">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-methods">
+                        <a href="tel:07710593113" class="contact-method">
+                            <div class="method-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <strong>07710 593113</strong>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:billupsltd@gmail.com" class="contact-method">
+                            <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <strong>billupsltd@gmail.com</strong>
+                            </div>
+                        </a>
+                        
+                        <a href="https://instagram.com/billups_studio" target="_blank" class="contact-method">
+                            <div class="method-icon"><i class="fab fa-instagram"></i></div>
+                            <div>
+                                <strong>@billups_studio</strong>
+                            </div>
+                        </a>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <strong>Cutenhoe Road, Luton LU1 3NB</strong>
+                                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: rgba(255, 255, 255, 0.7);">
+                                    (Full address sent after booking)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="contact-form">
-                    <h3>Send a Message</h3>
-                    <form id="contactForm">
+                    <h3>Book Your Session</h3>
+                    <form id="bookingForm">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name</label>
@@ -796,63 +653,28 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Phone Number</label>
                             <input type="tel" id="phone" name="phone" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="service">Service Required</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="recording">Recording</option>
-                                <option value="mixing">Mixing</option>
-                                <option value="mastering">Mastering</option>
-                                <option value="full-production">Full Production</option>
+                            <label for="session-type">Session Type</label>
+                            <select id="session-type" name="session-type" required>
+                                <option value="">Select session</option>
+                                <option value="hourly">Hourly (£30/hr)</option>
+                                <option value="half-day">Half Day (£140)</option>
+                                <option value="full-day">Full Day (£240)</option>
+                                <option value="custom">Custom Session</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">Project Details</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                            <label for="message">Message / Project Details</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <span id="submitText">Send Message</span>
-                            <span id="submitLoading" class="loading" style="display: none;"></span>
-                        </button>
+                        <button type="submit" class="btn-book" style="width: 100%;">Send Booking Request</button>
                     </form>
-                </div>
-                
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-methods">
-                        <a href="tel:07710593113" class="contact-method">
-                            <div class="method-icon">📞</div>
-                            <div>
-                                <strong>Call Us</strong>
-                                <p>07710 593113</p>
-                            </div>
-                        </a>
-                        
-                        <a href="mailto:info@billupsstudio.co.uk" class="contact-method">
-                            <div class="method-icon">✉️</div>
-                            <div>
-                                <strong>Email Us</strong>
-                                <p>info@billupsstudio.co.uk</p>
-                            </div>
-                        </a>
-                        
-                        <div class="contact-method">
-                            <div class="method-icon">📍</div>
-                            <div>
-                                <strong>Location</strong>
-                                <p>Luton, Bedfordshire</p>
-                                <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">
-                                    Open by appointment: Mon-Sun 10am-10pm
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -863,240 +685,229 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo" onerror="this.style.display='none'">
-                    <p class="footer-description">
-                        Professional recording studio in Luton offering high-quality audio production services for artists, bands, and creators.
-                    </p>
+                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo">
+                    <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. No gimmicks. Just professional setup, local roots, and that unmatched vibe.</p>
                 </div>
                 
                 <div>
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li class="footer-link"><a href="#home">Home</a></li>
-                        <li class="footer-link"><a href="#about">About</a></li>
-                        <li class="footer-link"><a href="#services">Services</a></li>
-                        <li class="footer-link"><a href="#gallery">Gallery</a></li>
-                        <li class="footer-link"><a href="#contact">Contact</a></li>
+                    <h4>Quick Links</h4>
+                    <ul class="service-features">
+                        <li class="service-feature"><a href="#home" style="color: inherit; text-decoration: none;">Home</a></li>
+                        <li class="service-feature"><a href="#services" style="color: inherit; text-decoration: none;">Services</a></li>
+                        <li class="service-feature"><a href="#gallery" style="color: inherit; text-decoration: none;">Gallery</a></li>
+                        <li class="service-feature"><a href="#contact" style="color: inherit; text-decoration: none;">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="footer-heading">Services</h4>
-                    <ul class="footer-links">
-                        <li class="footer-link"><a href="#services">Recording</a></li>
-                        <li class="footer-link"><a href="#services">Mixing</a></li>
-                        <li class="footer-link"><a href="#services">Mastering</a></li>
-                        <li class="footer-link"><a href="#services">Voice Overs</a></li>
-                        <li class="footer-link"><a href="#contact">Custom Packages</a></li>
+                    <h4>Studio Hours</h4>
+                    <ul class="service-features">
+                        <li class="service-feature">Monday - Sunday</li>
+                        <li class="service-feature">10:00 AM - 10:00 PM</li>
+                        <li class="service-feature">By appointment only</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 BILLUPS STUDIO. All rights reserved. Luton, Bedfordshire</p>
+                <p>&copy; 2024 Billups Studio. All rights reserved. Luton, Bedfordshire.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Image Modal -->
-    <div class="modal" id="imageModal">
-        <button class="modal-close" id="modalClose">×</button>
-        <div class="modal-content">
-            <img id="modalImage" src="" alt="Studio Image">
-        </div>
-    </div>
 
     <script>
         // ===== CONFIGURATION =====
         const CONFIG = {
             logoPath: 'images/logo.png',
-            excludeFromGallery: ['logo.png', 'hero-bg.jpg', 'about-studio.jpg'],
+            // Hero image will be included in gallery automatically
             galleryExtensions: ['.jpg', '.jpeg', '.png', '.webp', '.gif'],
-            maxGalleryImages: 12
+            excludeFromGallery: ['logo.png']
         };
 
         // ===== DOM ELEMENTS =====
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
+        const header = document.getElementById('header');
         const galleryContainer = document.getElementById('galleryContainer');
-        const contactForm = document.getElementById('contactForm');
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalClose = document.getElementById('modalClose');
-
-        // ===== DYNAMIC IMAGE LOADING =====
+        const bookingForm = document.getElementById('bookingForm');
+        const heroSection = document.querySelector('.hero');
         
-        // Function to get all images from /images folder (simulated)
+        // Store hero image path for gallery inclusion
+        let heroImagePath = '';
+
+        // ===== HEADER SCROLL EFFECT =====
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== HERO BACKGROUND =====
+        function setHeroBackground() {
+            // Try different possible hero image names
+            const possibleHeroImages = [
+                'images/hero-bg.jpg',
+                'images/hero.jpg',
+                'images/hero-bg.png',
+                'images/hero.png',
+                'images/background.jpg',
+                'images/bg.jpg',
+                'images/studio-bg.jpg',
+                'images/studio1.jpg', // Fallback to first studio image
+                'images/studio2.jpg'
+            ];
+            
+            // Create background image
+            const heroBg = document.createElement('img');
+            heroBg.className = 'hero-bg';
+            heroBg.alt = 'Studio Background';
+            
+            // Try to load hero image
+            let heroImageFound = false;
+            
+            for (let imgPath of possibleHeroImages) {
+                // Create a test image to check if it exists
+                const testImg = new Image();
+                testImg.src = imgPath;
+                testImg.onload = function() {
+                    if (!heroImageFound) {
+                        heroImageFound = true;
+                        heroBg.src = imgPath;
+                        heroImagePath = imgPath; // Store for gallery
+                    }
+                };
+            }
+            
+            // If no hero image found, use a fallback
+            setTimeout(() => {
+                if (!heroImageFound) {
+                    heroBg.src = 'images/studio1.jpg';
+                    heroImagePath = 'images/studio1.jpg';
+                    heroBg.onerror = function() {
+                        // Ultimate fallback - dark background
+                        this.style.display = 'none';
+                        heroSection.style.background = 'linear-gradient(45deg, #111, #000)';
+                    };
+                }
+            }, 500);
+            
+            heroSection.insertBefore(heroBg, heroSection.firstChild);
+            
+            // Add overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'hero-overlay';
+            heroSection.insertBefore(overlay, heroSection.children[1]);
+        }
+
+        // ===== GALLERY LOADER =====
         async function loadGalleryImages() {
             if (!galleryContainer) return;
             
-            galleryContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--neon-green)">Loading gallery...</div>';
+            galleryContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--accent);">Loading studio images...</div>';
             
-            // In a real implementation, you would fetch from server API
-            // For static hosting, we need a server-side component or pre-defined list
-            // This is a placeholder - you'll need to implement based on your hosting
-            
-            // Example: If using Node.js/PHP, create an endpoint that lists files
-            // For now, we'll use a fallback with common image names
-            
-            const fallbackImages = [
-                { src: 'images/studio-1.jpg', alt: 'Studio Control Room' },
-                { src: 'images/studio-2.jpg', alt: 'Vocal Booth' },
-                { src: 'images/studio-3.jpg', alt: 'Mixing Console' },
-                { src: 'images/studio-4.jpg', alt: 'Equipment Rack' },
-                { src: 'images/studio-5.jpg', alt: 'Live Room' },
-                { src: 'images/studio-6.jpg', alt: 'Studio Gear' }
+            // Manual listing of images - UPDATE THIS WITH YOUR ACTUAL IMAGE NAMES
+            const imageFiles = [
+                // Hero image will be added first automatically
+                'images/studio1.jpg',
+                'images/studio2.jpg', 
+                'images/studio3.jpg',
+                'images/studio4.jpg',
+                'images/studio5.jpg',
+                'images/studio6.jpg',
+                'images/studio7.jpg',
+                'images/studio8.jpg'
             ];
             
-            displayGalleryImages(fallbackImages);
+            displayGalleryImages(imageFiles);
         }
         
-        function displayGalleryImages(images) {
+        function displayGalleryImages(imageFiles) {
             galleryContainer.innerHTML = '';
             
-            if (!images || images.length === 0) {
-                galleryContainer.innerHTML = '<div style="text-align: center; padding: 2rem;">No images found. Add images to the /images folder.</div>';
+            // Add hero image as first gallery item if it exists
+            const allImages = [];
+            
+            if (heroImagePath && heroImagePath !== '') {
+                allImages.push(heroImagePath);
+            }
+            
+            // Add other images
+            if (imageFiles && imageFiles.length > 0) {
+                // Filter out duplicates (in case hero image is already in the list)
+                const uniqueOtherImages = imageFiles.filter(img => img !== heroImagePath);
+                allImages.push(...uniqueOtherImages);
+            }
+            
+            if (allImages.length === 0) {
+                galleryContainer.innerHTML = '<div style="text-align: center; padding: 3rem;">Add images to the /images folder. Name them studio1.jpg, studio2.jpg, etc.</div>';
                 return;
             }
             
-            images.forEach((image, index) => {
+            allImages.forEach((imageSrc, index) => {
                 const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item fade-in';
-                galleryItem.innerHTML = `
-                    <img src="${image.src}" alt="${image.alt}" loading="lazy" onerror="this.style.display='none'">
-                    <div class="gallery-overlay">
-                        <div style="color: white; font-size: 2rem;">🔍</div>
-                    </div>
-                `;
+                galleryItem.className = 'gallery-item';
                 
-                galleryItem.addEventListener('click', () => openModal(image.src, image.alt));
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.alt = `Studio Image ${index + 1}`;
+                img.loading = 'lazy';
+                img.onerror = function() {
+                    // Skip this image if it doesn't exist
+                    galleryItem.style.display = 'none';
+                };
+                
+                galleryItem.appendChild(img);
                 galleryContainer.appendChild(galleryItem);
-                
-                // Stagger animation
-                setTimeout(() => galleryItem.classList.add('visible'), index * 100);
             });
-        }
-        
-        // Load about image
-        function loadAboutImage() {
-            const aboutImageContainer = document.querySelector('.about-image');
-            if (aboutImageContainer) {
-                aboutImageContainer.innerHTML = `
-                    <img src="images/about-studio.jpg" alt="Studio Interior" onerror="this.src='images/studio-1.jpg'">
-                `;
-            }
-        }
-        
-        // Load hero background
-        function loadHeroBackground() {
-            const heroSection = document.querySelector('.hero');
-            const heroBg = document.createElement('img');
-            heroBg.className = 'hero-bg';
-            heroBg.src = 'images/hero-bg.jpg';
-            heroBg.alt = 'Studio Background';
-            heroBg.onerror = () => heroBg.style.display = 'none';
-            heroSection.insertBefore(heroBg, heroSection.firstChild);
-        }
-
-        // ===== MODAL FUNCTIONS =====
-        function openModal(src, alt) {
-            modalImage.src = src;
-            modalImage.alt = alt;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
+            
+            // Show message if no images loaded
+            setTimeout(() => {
+                const loadedImages = galleryContainer.querySelectorAll('.gallery-item:not([style*="display: none"])');
+                if (loadedImages.length === 0) {
+                    galleryContainer.innerHTML = '<div style="text-align: center; padding: 3rem; color: var(--accent);">' +
+                        'No images found. Please add images to your /images folder.<br>' +
+                        'Suggested names: studio1.jpg, studio2.jpg, hero-bg.jpg, etc.' +
+                        '</div>';
+                }
+            }, 1000);
         }
 
         // ===== FORM HANDLING =====
-        async function handleFormSubmit(e) {
+        bookingForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
+                sessionType: document.getElementById('session-type').value,
                 message: document.getElementById('message').value
             };
             
-            // Show loading state
-            const submitText = document.getElementById('submitText');
-            const submitLoading = document.getElementById('submitLoading');
-            submitText.style.display = 'none';
-            submitLoading.style.display = 'inline-block';
+            // Show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
             
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 1500));
             
             // Reset form
-            contactForm.reset();
+            this.reset();
             
-            // Hide loading state
-            submitText.style.display = 'inline';
-            submitLoading.style.display = 'none';
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
             
-            // Show success message
-            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            // Show success
+            alert('Thank you! Your booking request has been sent. We\'ll contact you within 24 hours.');
             
-            // Scroll to top of contact section
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // ===== NAVIGATION =====
-        function updateActiveNavLink() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // ===== ANIMATIONS =====
-        function initScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        }
-
-        // ===== EVENT LISTENERS =====
-        
-        // Mobile Menu
-        mobileMenuBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? '×' : '☰';
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '☰';
-            });
-        });
-        
-        // Smooth scrolling
+
+        // ===== SMOOTH SCROLLING =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1112,56 +923,26 @@
                 }
             });
         });
-        
-        // Modal close
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-        
-        // Form submission
-        contactForm.addEventListener('submit', handleFormSubmit);
-        
-        // Scroll events
-        window.addEventListener('scroll', updateActiveNavLink);
-        
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
-        });
 
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
-            // Load dynamic images
-            loadHeroBackground();
-            loadAboutImage();
-            loadGalleryImages();
+            setHeroBackground();
             
-            // Initialize animations
-            initScrollAnimations();
-            updateActiveNavLink();
-            
-            // Set minimum date for any date inputs
-            const today = new Date().toISOString().split('T')[0];
-            document.querySelectorAll('input[type="date"]').forEach(input => {
-                if (input) input.min = today;
-            });
-            
-            // Initialize all fade-in elements
+            // Load gallery after a short delay to ensure hero image is loaded
             setTimeout(() => {
-                document.querySelectorAll('.fade-in').forEach(el => {
-                    if (el.getBoundingClientRect().top < window.innerHeight) {
-                        el.classList.add('visible');
-                    }
-                });
-            }, 100);
+                loadGalleryImages();
+            }, 300);
+            
+            // Set current year in footer
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
         });
 
         // ===== ERROR HANDLING =====
         window.addEventListener('error', (e) => {
-            console.error('Error:', e.message);
+            console.error('Page error:', e.message);
         }, true);
     </script>
 </body>

@@ -3,205 +3,645 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billups Studio | New Site Test</title>
+    <title>Billups Studio - Creative Digital Solutions</title>
+    <meta name="description" content="Billups Studio offers innovative digital solutions including web design, branding, and creative development.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #f1f5f9;
-            min-height: 100vh;
-            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
         }
-        
-        .container {
-            max-width: 800px;
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem;
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #3b82f6;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(90deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
-        }
-        
-        .subtitle {
-            font-size: 1.3rem;
-            color: #94a3b8;
-            font-weight: 300;
-        }
-        
-        .status-box {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-left: 4px solid #10b981;
-        }
-        
-        .status-title {
-            color: #10b981;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3436;
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 10px;
         }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2.5rem 0;
-        }
-        
-        .info-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 12px;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-        
-        .info-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        
-        .info-card h3 {
-            color: #60a5fa;
-            margin-bottom: 0.8rem;
+
+        .logo-circle {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
             font-size: 1.2rem;
         }
-        
-        .button {
-            display: inline-block;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d3436;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #6c5ce7;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        
-        .button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
         }
-        
-        footer {
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            padding-top: 80px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #2d3436;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #636e72;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6c5ce7, #fd79a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .floating-shapes {
+            position: relative;
+            height: 400px;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(253, 121, 168, 0.1));
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: 0;
+            right: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 0;
+            left: 0;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .section-title {
             text-align: center;
-            margin-top: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d3436;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3436;
+        }
+
+        .service-card p {
+            color: #636e72;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 5%;
+            background: #f8f9fa;
+        }
+
+        .portfolio-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-img {
+            height: 250px;
+            background: linear-gradient(135deg, #6c5ce7, #fd79a8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3436;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6c5ce7;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3436;
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            color: #b2bec3;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #6c5ce7;
+        }
+
+        .footer-bottom {
+            text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-            font-size: 0.9rem;
+            color: #b2bec3;
         }
-        
-        @media (max-width: 600px) {
-            .container {
-                padding: 1.5rem;
-                margin: 1rem;
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
             
-            h1 {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .hero-text h1 {
                 font-size: 2.5rem;
+            }
+            
+            .floating-shapes {
+                height: 300px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .service-card,
+            .portfolio-item {
+                padding: 1.5rem;
+            }
+            
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>BILLUPS STUDIO</h1>
-            <p class="subtitle">Luton Recording Studio | GitHub Pages Test</p>
-        </header>
-        
-        <div class="status-box">
-            <div class="status-title">
-                <span>✓</span>
-                <span>GitHub Pages Active</span>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-circle">B</div>
+                Billups Studio
+            </a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="cta-button">Get Started</a>
             </div>
-            <p>This is a test page hosted on GitHub Pages. The site is working correctly and ready for your content.</p>
         </div>
-        
-        <p>This page confirms your GitHub Pages hosting is working. Once you connect your domain, visitors will see your new website here.</p>
-        
-        <div class="info-grid">
-            <div class="info-card">
-                <h3>🎵 Real Studio. Real Energy.</h3>
-                <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. Professional setup, local roots, and unmatched vibe.</p>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Crafting <span class="gradient-text">Digital Experiences</span> That Captivate</h1>
+                <p>We transform ideas into immersive digital solutions. From branding to web development, we create experiences that resonate with your audience and drive results.</p>
+                <a href="#contact" class="cta-button">Start Your Project</a>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Brand Identity</h3>
+                <p>Create a memorable brand that stands out. We design logos, color palettes, and visual systems that tell your story.</p>
+                <a href="#contact" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More</a>
             </div>
             
-            <div class="info-card">
-                <h3>🔧 Next Steps</h3>
-                <p>1. Upload this file as <code>index.html</code> to GitHub<br>
-                2. Contact Squarespace for DNS access<br>
-                3. Point domain to GitHub Pages</p>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Build fast, responsive, and user-friendly websites that work seamlessly across all devices and platforms.</p>
+                <a href="#contact" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>UI/UX Design</h3>
+                <p>Design intuitive interfaces that enhance user experience and drive engagement through thoughtful interaction design.</p>
+                <a href="#contact" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <h2 class="section-title">Featured Work</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h3>E-commerce Platform</h3>
+                    <p>A modern online shopping experience with seamless checkout and personalized recommendations.</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Analytics Dashboard</h3>
+                    <p>Interactive data visualization platform for real-time business insights and reporting.</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Music Streaming App</h3>
+                    <p>Mobile application with personalized playlists and offline listening capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Let's Create Together</h2>
+        <div class="contact-container">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                </div>
+                
+                <button type="submit" class="cta-button" style="border: none; cursor: pointer; align-self: flex-start;">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Billups Studio</h3>
+                <p>Creating digital experiences that inspire and engage. We're passionate about bringing your ideas to life through innovative design and development.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#services" style="color: #b2bec3; text-decoration: none;">Services</a></p>
+                <p><a href="#portfolio" style="color: #b2bec3; text-decoration: none;">Portfolio</a></p>
+                <p><a href="#about" style="color: #b2bec3; text-decoration: none;">About Us</a></p>
+                <p><a href="#contact" style="color: #b2bec3; text-decoration: none;">Contact</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-envelope"></i> hello@billups.studio</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-map-marker-alt"></i> Digital Studio, Everywhere</p>
             </div>
         </div>
         
-        <div style="text-align: center; margin: 3rem 0;">
-            <button class="button" onclick="checkDomain()">Test Domain Connection</button>
-            <p id="domain-result" style="margin-top: 1rem;"></p>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Billups Studio. All rights reserved. | Crafted with ❤️ for the digital world</p>
         </div>
-        
-        <footer>
-            <p>📞 07710 593113 | 📧 billupsltd@gmail.com</p>
-            <p style="margin-top: 0.5rem;">📍 Cutenhoe Road, Luton LU1 3NB</p>
-            <p style="margin-top: 1rem; font-size: 0.8rem;">Domain: billupsstudio.co.uk | Host: GitHub Pages</p>
-        </footer>
-    </div>
+    </footer>
 
     <script>
-        function checkDomain() {
-            const result = document.getElementById('domain-result');
-            result.innerHTML = '<span style="color:#fbbf24;">Checking current domain...</span>';
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            setTimeout(() => {
-                const currentDomain = window.location.hostname;
-                
-                if (currentDomain.includes('github.io')) {
-                    result.innerHTML = '<span style="color:#10b981;">✓ Currently on GitHub Pages subdomain</span><br><small>Domain connection pending</small>';
-                } else if (currentDomain === 'billupsstudio.co.uk') {
-                    result.innerHTML = '<span style="color:#10b981;">✓ Connected via custom domain!</span><br><small>DNS is properly configured</small>';
-                } else {
-                    result.innerHTML = `<span>Current domain: ${currentDomain}</span>`;
-                }
-            }, 800);
-        }
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            
+            // In a real application, you would send this data to a server
+            // For demo purposes, we'll just show an alert
+            alert('Thank you, ' + formData.name + '! We\'ll get back to you soon at ' + formData.email);
+            
+            // Reset form
+            this.reset();
+        });
         
-        // Check on page load
-        window.addEventListener('load', function() {
-            const result = document.getElementById('domain-result');
-            if (!window.location.hostname.includes('github.io') && 
-                window.location.hostname !== 'billupsstudio.co.uk') {
-                result.innerHTML = `<small>Access point: ${window.location.hostname}</small>`;
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if(window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
             }
         });
     </script>

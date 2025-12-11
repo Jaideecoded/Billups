@@ -54,13 +54,13 @@
             overflow-x: hidden;
         }
         
-        /* ===== LOGO ROTATION ANIMATIONS ===== */
-        @keyframes logo-spin-subtle {
-            0% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.02); }
-            50% { transform: rotate(180deg) scale(1); }
-            75% { transform: rotate(270deg) scale(1.02); }
-            100% { transform: rotate(360deg) scale(1); }
+        /* ===== LOGO ROTATION ANIMATIONS - UPDATED TO 3D ROTATION ===== */
+        @keyframes logo-spin-3d {
+            0% { transform: rotateY(0deg) scale(1); }
+            25% { transform: rotateY(90deg) scale(1.02); }
+            50% { transform: rotateY(180deg) scale(1); }
+            75% { transform: rotateY(270deg) scale(1.02); }
+            100% { transform: rotateY(360deg) scale(1); }
         }
         
         @keyframes logo-pulse {
@@ -105,12 +105,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            perspective: 1000px;
         }
         
         .logo-center img {
             height: 100%;
             width: auto;
-            animation: logo-spin-subtle 45s linear infinite;
+            animation: logo-spin-3d 45s linear infinite;
             transition: var(--transition);
         }
         
@@ -183,6 +184,7 @@
             max-width: 800px;
             padding: 2rem;
             margin-top: 60px;
+            perspective: 1000px;
         }
         
         .hero-logo-large {
@@ -190,13 +192,13 @@
             width: auto;
             margin: 0 auto 3rem;
             display: block;
-            animation: logo-pulse 6s ease-in-out infinite, logo-spin-subtle 60s linear infinite;
+            animation: logo-pulse 6s ease-in-out infinite, logo-spin-3d 60s linear infinite;
             filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.2));
             transition: var(--transition);
         }
         
         .hero-logo-large:hover {
-            animation: logo-spin-subtle 25s linear infinite, logo-pulse 3s ease-in-out infinite;
+            animation: logo-spin-3d 25s linear infinite, logo-pulse 3s ease-in-out infinite;
             filter: drop-shadow(0 0 25px rgba(0, 255, 0, 0.4));
         }
         
@@ -1148,7 +1150,6 @@
                                 <option value="">Any method is fine</option>
                                 <option value="studio-email">Studio Email</option>
                                 <option value="jaidee">Contact jaidee directly</option>
-                                <option value="dsoul">Contact dsoul directly</option>
                                 <option value="phone">Phone Call</option>
                             </select>
                         </div>
@@ -1428,9 +1429,6 @@
                 case 'jaidee':
                     contactsToNotify = ['joellhead05@gmail.com'];
                     break;
-                case 'dsoul':
-                    contactsToNotify = ['dsoulfiles@gmail.com'];
-                    break;
                 default:
                     contactsToNotify = CONFIG.contactEmails; // All contacts
             }
@@ -1470,7 +1468,7 @@
                 logo.addEventListener('click', function() {
                     // Briefly speed up rotation on click
                     const originalAnimation = this.style.animation;
-                    this.style.animation = 'logo-spin-subtle 5s linear infinite';
+                    this.style.animation = 'logo-spin-3d 5s linear infinite';
                     
                     // Add glow effect
                     this.style.filter = 'drop-shadow(0 0 15px rgba(0, 255, 0, 0.5))';

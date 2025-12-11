@@ -24,10 +24,10 @@
             --accent: #00ff00;
             --accent-light: #90ff90;
             
-            /* New colors from Squarespace site */
-            --purple-dark: #1a0b2e;
-            --purple-medium: #2d1b4e;
-            --purple-light: #3d2968;
+            /* New colors from Squarespace site with transparency */
+            --purple-dark: rgba(26, 11, 46, 0.85); /* More transparent */
+            --purple-medium: rgba(45, 27, 78, 0.75); /* More transparent */
+            --purple-light: rgba(61, 41, 104, 0.7); /* More transparent */
             --orange-accent: #ff6b35;
             --blue-accent: #4d8af0;
             --blue-light: #6ba3ff;
@@ -70,7 +70,7 @@
         }
         
         .header.scrolled {
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(0, 0, 0, 0.85); /* Semi-transparent */
             padding: 1rem 2rem;
             backdrop-filter: blur(10px);
         }
@@ -91,7 +91,7 @@
         }
         
         .nav-icon {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.2rem;
             text-decoration: none;
             transition: var(--transition);
@@ -129,14 +129,14 @@
             z-index: 1;
         }
         
-        /* DARKER PURPLE OVERLAY matching Squarespace */
+        /* DARKER PURPLE OVERLAY - more transparent */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(42, 15, 84, 0.85), rgba(26, 11, 46, 0.95));
+            background: linear-gradient(45deg, rgba(42, 15, 84, 0.75), rgba(26, 11, 46, 0.85));
             z-index: 2;
         }
         
@@ -146,11 +146,11 @@
             text-align: center;
             max-width: 800px;
             padding: 2rem;
-            margin-top: 60px; /* Space for bigger logo */
+            margin-top: 60px;
         }
         
         .hero-logo-large {
-            height: 180px; /* Much larger logo on main page */
+            height: 180px;
             width: auto;
             margin: 0 auto 3rem;
             display: block;
@@ -201,11 +201,32 @@
         /* ===== SECTIONS COMMON ===== */
         .section {
             padding: 7rem 2rem;
+            position: relative;
+        }
+        
+        /* Add subtle background textures to sections */
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.15; /* Very subtle texture */
+            filter: blur(1px);
+        }
+        
+        .section-content {
+            position: relative;
+            z-index: 1;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .section-title {
@@ -219,7 +240,7 @@
         .section-subtitle {
             font-size: 1.5rem;
             text-align: center;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 4rem;
             max-width: 600px;
             margin-left: auto;
@@ -228,7 +249,7 @@
         
         /* ===== ABOUT SECTION ===== */
         .about {
-            background-color: var(--black);
+            background-color: rgba(0, 0, 0, 0.4); /* Very transparent */
         }
         
         .about-content {
@@ -247,7 +268,7 @@
         .about-text {
             font-size: 1.3rem;
             margin-bottom: 3rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             line-height: 1.7;
         }
         
@@ -263,6 +284,11 @@
             text-align: center;
             flex: 1;
             min-width: 200px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .feature-title {
@@ -275,6 +301,12 @@
         /* ===== SERVICES ===== */
         .services {
             background-color: var(--purple-dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services .section-bg {
+            opacity: 0.2; /* More visible in services */
         }
         
         .services-grid {
@@ -288,15 +320,16 @@
             background: var(--purple-medium);
             border-radius: 15px;
             padding: 2.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             transition: var(--transition);
             position: relative;
+            backdrop-filter: blur(8px);
         }
         
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         
         .service-card.popular {
@@ -309,7 +342,7 @@
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--orange-accent); /* Orange accent */
+            background: var(--orange-accent);
             color: var(--white);
             padding: 0.6rem 2rem;
             border-radius: 25px;
@@ -341,13 +374,13 @@
         
         .service-price span {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 600;
         }
         
         .service-price small {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             display: block;
             margin-top: 0.5rem;
             font-weight: 500;
@@ -356,7 +389,7 @@
         .service-description {
             font-size: 1.1rem;
             margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             line-height: 1.6;
         }
         
@@ -367,8 +400,8 @@
         
         .service-feature {
             padding: 0.8rem 0;
-            color: rgba(255, 255, 255, 0.85);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             position: relative;
             padding-left: 1.5rem;
         }
@@ -379,7 +412,7 @@
         
         .service-feature:before {
             content: "•";
-            color: var(--blue-accent); /* Blue accent */
+            color: var(--blue-accent);
             position: absolute;
             left: 0;
             font-size: 1.5rem;
@@ -387,7 +420,7 @@
         
         /* ===== GALLERY ===== */
         .gallery {
-            background-color: var(--black);
+            background-color: rgba(0, 0, 0, 0.4);
         }
         
         .gallery-grid {
@@ -402,7 +435,14 @@
             border-radius: 12px;
             overflow: hidden;
             aspect-ratio: 4/3;
-            background: var(--dark-gray);
+            background: rgba(30, 30, 30, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
         }
         
         .gallery-item img {
@@ -420,6 +460,11 @@
         /* ===== CONTACT ===== */
         .contact {
             background-color: var(--purple-dark);
+            position: relative;
+        }
+        
+        .contact .section-bg {
+            opacity: 0.18;
         }
         
         .contact-grid {
@@ -438,34 +483,35 @@
         .contact-methods {
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
+            gap: 1.2rem;
         }
         
         .contact-method {
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.07);
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             text-decoration: none;
             color: inherit;
             transition: var(--transition);
+            backdrop-filter: blur(5px);
         }
         
         .contact-method:hover {
-            background: rgba(77, 138, 240, 0.15); /* Blue accent with transparency */
+            background: rgba(77, 138, 240, 0.18);
             border-color: var(--blue-accent);
             transform: translateX(8px);
         }
         
         .method-icon {
-            font-size: 1.8rem;
-            width: 60px;
-            height: 60px;
+            font-size: 1.6rem;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            background: rgba(77, 138, 240, 0.2); /* Blue accent background */
+            background: rgba(77, 138, 240, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -479,19 +525,26 @@
         
         .method-text strong {
             display: block;
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
             color: var(--white);
         }
         
         .method-text p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+        }
+        
+        .method-text .email-name {
+            font-size: 0.95rem;
+            color: var(--blue-light);
+            margin-bottom: 0.1rem;
+            font-weight: 600;
         }
         
         .address-note {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.65);
             margin-top: 0.5rem;
             font-style: italic;
         }
@@ -500,7 +553,8 @@
             background: var(--purple-medium);
             padding: 3rem;
             border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
         }
         
         .contact-form h3 {
@@ -529,19 +583,20 @@
         input, textarea, select {
             width: 100%;
             padding: 1.2rem;
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.09);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             color: var(--white);
             font-family: var(--font-primary);
             font-size: 1.1rem;
             transition: var(--transition);
+            backdrop-filter: blur(5px);
         }
         
         input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--blue-accent);
-            background: rgba(77, 138, 240, 0.1);
+            background: rgba(77, 138, 240, 0.12);
             box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
         }
         
@@ -551,7 +606,7 @@
         }
         
         .deposit-notice {
-            background: rgba(255, 107, 53, 0.15); /* Orange accent */
+            background: rgba(255, 107, 53, 0.18);
             border: 1px solid var(--orange-accent);
             border-radius: 12px;
             padding: 2rem;
@@ -560,13 +615,20 @@
             font-weight: 700;
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
         }
         
         /* ===== FOOTER ===== */
         .footer {
-            background-color: var(--black);
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 5rem 2rem 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer .section-bg {
+            opacity: 0.1;
         }
         
         .footer-grid {
@@ -574,6 +636,8 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 4rem;
             margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
         }
         
         .footer-logo {
@@ -582,7 +646,7 @@
         }
         
         .footer-description {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 1.1rem;
             line-height: 1.7;
         }
@@ -603,7 +667,7 @@
         }
         
         .footer-link a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-size: 1.1rem;
             transition: var(--transition);
@@ -617,9 +681,11 @@
         .footer-bottom {
             text-align: center;
             padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 1rem;
+            position: relative;
+            z-index: 1;
         }
         
         /* ===== RESPONSIVE ===== */
@@ -719,6 +785,15 @@
             .contact-form {
                 padding: 2.5rem;
             }
+            
+            .contact-method {
+                padding: 1rem;
+            }
+            
+            .method-icon {
+                width: 50px;
+                height: 50px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -740,6 +815,10 @@
             }
             
             .service-card {
+                padding: 2rem;
+            }
+            
+            .contact-form {
                 padding: 2rem;
             }
         }
@@ -784,6 +863,7 @@
 
     <!-- About Section -->
     <section class="about section">
+        <img class="section-bg" src="images/studio-texture.jpg" alt="Studio texture" onerror="this.style.display='none'">
         <div class="container">
             <div class="about-content">
                 <h2 class="about-title">Real Studio.<br>Real Energy.</h2>
@@ -820,6 +900,7 @@
 
     <!-- Services Section -->
     <section class="services section" id="services">
+        <img class="section-bg" src="images/studio-bg.jpg" alt="Studio background" onerror="this.style.display='none'">
         <div class="container">
             <h2 class="section-title">Lock In a Session</h2>
             <p class="section-subtitle">That Fits Your Grind</p>
@@ -891,6 +972,7 @@
 
     <!-- Gallery Section -->
     <section class="gallery section" id="gallery">
+        <img class="section-bg" src="images/studio-texture-2.jpg" alt="Studio texture" onerror="this.style.display='none'">
         <div class="container">
             <h2 class="section-title">Inside</h2>
             <p class="section-subtitle">The Energy</p>
@@ -906,6 +988,7 @@
 
     <!-- Contact Section -->
     <section class="contact section" id="contact">
+        <img class="section-bg" src="images/studio-contact-bg.jpg" alt="Contact background" onerror="this.style.display='none'">
         <div class="container">
             <h2 class="section-title">Talk to Us or</h2>
             <p class="section-subtitle">Lock in a Session</p>
@@ -921,10 +1004,21 @@
                             </div>
                         </a>
                         
+                        <!-- Original Email -->
                         <div class="contact-method">
                             <div class="method-icon"><i class="fas fa-envelope"></i></div>
                             <div class="method-text">
+                                <span class="email-name">Studio Email</span>
                                 <strong>billupsltd@gmail.com</strong>
+                            </div>
+                        </div>
+                        
+                        <!-- New Email for jaidee -->
+                        <div class="contact-method">
+                            <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="method-text">
+                                <span class="email-name">jaidee</span>
+                                <strong>joellhead05@gmail.com</strong>
                             </div>
                         </div>
                         
@@ -989,6 +1083,7 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <img class="section-bg" src="images/footer-bg.jpg" alt="Footer background" onerror="this.style.display='none'">
         <div class="container">
             <div class="footer-grid">
                 <div>
@@ -1012,9 +1107,9 @@
                 <div>
                     <h4 class="footer-heading">Studio Hours</h4>
                     <ul class="footer-links">
-                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.7);">Monday - Sunday</a></li>
-                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.7);">10:00 AM - 10:00 PM</a></li>
-                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.7);">By appointment only</a></li>
+                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.8);">Monday - Sunday</a></li>
+                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.8);">10:00 AM - 10:00 PM</a></li>
+                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.8);">By appointment only</a></li>
                     </ul>
                 </div>
             </div>
@@ -1031,7 +1126,16 @@
             logoPath: 'images/logo.png',
             // Hero image will be included in gallery automatically
             galleryExtensions: ['.jpg', '.jpeg', '.png', '.webp', '.gif'],
-            excludeFromGallery: ['logo.png']
+            excludeFromGallery: ['logo.png'],
+            sectionBackgrounds: [
+                'images/studio-texture.jpg',
+                'images/studio-bg.jpg',
+                'images/studio-texture-2.jpg',
+                'images/studio-contact-bg.jpg',
+                'images/footer-bg.jpg',
+                'images/texture-1.jpg',
+                'images/texture-2.jpg'
+            ]
         };
 
         // ===== DOM ELEMENTS =====
@@ -1063,7 +1167,7 @@
                 'images/background.jpg',
                 'images/bg.jpg',
                 'images/studio-bg.jpg',
-                'images/studio1.jpg', // Fallback to first studio image
+                'images/studio1.jpg',
                 'images/studio2.jpg'
             ];
             
@@ -1109,6 +1213,39 @@
             heroSection.insertBefore(overlay, heroSection.children[1]);
         }
 
+        // ===== SECTION BACKGROUNDS =====
+        function setSectionBackgrounds() {
+            const sections = document.querySelectorAll('.section-bg');
+            sections.forEach((bg, index) => {
+                // Try to load the specified image, fallback to other textures
+                bg.onerror = function() {
+                    // Try other texture options
+                    const fallbacks = [
+                        'images/studio1.jpg',
+                        'images/studio2.jpg',
+                        'images/studio3.jpg',
+                        'images/studio4.jpg'
+                    ];
+                    
+                    for (let i = 0; i < fallbacks.length; i++) {
+                        const testImg = new Image();
+                        testImg.src = fallbacks[i];
+                        testImg.onload = function() {
+                            bg.src = fallbacks[i];
+                            return;
+                        };
+                    }
+                    
+                    // If no fallbacks work, hide the background
+                    setTimeout(() => {
+                        if (bg.src.includes('onerror')) {
+                            bg.style.display = 'none';
+                        }
+                    }, 1000);
+                };
+            });
+        }
+
         // ===== GALLERY LOADER =====
         async function loadGalleryImages() {
             if (!galleryContainer) return;
@@ -1125,7 +1262,9 @@
                 'images/studio5.jpg',
                 'images/studio6.jpg',
                 'images/studio7.jpg',
-                'images/studio8.jpg'
+                'images/studio8.jpg',
+                'images/studio9.jpg',
+                'images/studio10.jpg'
             ];
             
             displayGalleryImages(imageFiles);
@@ -1239,6 +1378,7 @@
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
             setHeroBackground();
+            setSectionBackgrounds();
             
             // Load gallery after a short delay to ensure hero image is loaded
             setTimeout(() => {

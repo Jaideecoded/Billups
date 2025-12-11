@@ -19,11 +19,18 @@
         /* ===== RESET & BASE ===== */
         :root {
             --black: #000000;
-            --dark-gray: #111111;
-            --medium-gray: #222222;
+            --dark-gray: #0a0a0a;
             --white: #ffffff;
             --accent: #00ff00;
             --accent-light: #90ff90;
+            
+            /* New colors from Squarespace site */
+            --purple-dark: #1a0b2e;
+            --purple-medium: #2d1b4e;
+            --purple-light: #3d2968;
+            --orange-accent: #ff6b35;
+            --blue-accent: #4d8af0;
+            --blue-light: #6ba3ff;
             
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -63,16 +70,18 @@
         }
         
         .header.scrolled {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
         }
         
         .logo-center {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            height: 50px;
+            height: 70px; /* Much bigger logo */
             width: auto;
+            z-index: 1001;
         }
         
         .nav-icons {
@@ -94,7 +103,7 @@
         }
         
         .logo-small {
-            height: 40px;
+            height: 45px;
             width: auto;
             border-radius: 50%;
         }
@@ -107,6 +116,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            text-align: center;
         }
         
         .hero-bg {
@@ -119,13 +129,14 @@
             z-index: 1;
         }
         
+        /* DARKER PURPLE OVERLAY matching Squarespace */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(106, 13, 173, 0.6), rgba(0, 0, 0, 0.8));
+            background: linear-gradient(45deg, rgba(42, 15, 84, 0.85), rgba(26, 11, 46, 0.95));
             z-index: 2;
         }
         
@@ -135,46 +146,61 @@
             text-align: center;
             max-width: 800px;
             padding: 2rem;
+            margin-top: 60px; /* Space for bigger logo */
+        }
+        
+        .hero-logo-large {
+            height: 180px; /* Much larger logo on main page */
+            width: auto;
+            margin: 0 auto 3rem;
+            display: block;
         }
         
         .hero-title {
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 900;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: -0.02em;
+            line-height: 1;
         }
         
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 400;
             margin-bottom: 3rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.4;
+        }
+        
+        .hero-subtitle br {
+            display: block;
+            margin: 0.5rem 0;
         }
         
         .btn-book {
             display: inline-block;
-            padding: 1.2rem 3rem;
+            padding: 1.3rem 3.5rem;
             background-color: var(--accent);
             color: var(--black);
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.2rem;
             border-radius: 50px;
             transition: var(--transition);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
         
         .btn-book:hover {
             background-color: var(--accent-light);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 255, 0, 0.25);
         }
         
         /* ===== SECTIONS COMMON ===== */
         .section {
-            padding: 6rem 2rem;
+            padding: 7rem 2rem;
         }
         
         .container {
@@ -183,108 +209,200 @@
         }
         
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             text-align: center;
             text-transform: uppercase;
         }
         
+        .section-subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background-color: var(--black);
+        }
+        
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+        
+        .about-text {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+        }
+        
+        .feature {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .feature-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            color: var(--white);
+        }
+        
         /* ===== SERVICES ===== */
         .services {
-            background-color: var(--black);
+            background-color: var(--purple-dark);
         }
         
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 3rem;
         }
         
         .service-card {
-            background: var(--dark-gray);
+            background: var(--purple-medium);
             border-radius: 15px;
-            padding: 2.5rem;
+            padding: 2.8rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
+            position: relative;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .service-card.popular {
             border: 2px solid var(--accent);
-            position: relative;
+            background: var(--purple-light);
         }
         
         .popular-badge {
             position: absolute;
-            top: -12px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--black);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.8rem;
+            background: var(--orange-accent); /* Orange accent */
+            color: var(--white);
+            padding: 0.6rem 2rem;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 0.9rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 3rem;
+            margin-bottom: 1.8rem;
         }
         
         .service-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             margin-bottom: 1rem;
+            color: var(--white);
         }
         
         .service-price {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 900;
             color: var(--accent);
             margin: 1.5rem 0;
+            line-height: 1;
         }
         
         .service-price span {
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+        
+        .service-price small {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: block;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .service-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
         }
         
         .service-features {
             list-style: none;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
         }
         
         .service-feature {
-            padding: 0.5rem 0;
-            color: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem 0;
+            color: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .service-feature:last-child {
+            border-bottom: none;
+        }
+        
+        .service-feature:before {
+            content: "•";
+            color: var(--blue-accent); /* Blue accent */
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
         }
         
         /* ===== GALLERY ===== */
         .gallery {
-            background-color: var(--dark-gray);
+            background-color: var(--black);
         }
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
         
         .gallery-item {
             position: relative;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             aspect-ratio: 4/3;
-            background: var(--medium-gray);
+            background: var(--dark-gray);
         }
         
         .gallery-item img {
@@ -292,43 +410,44 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s ease;
+            transition: transform 0.7s ease;
         }
         
         .gallery-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
         
         /* ===== CONTACT ===== */
         .contact {
-            background-color: var(--black);
+            background-color: var(--purple-dark);
         }
         
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             margin-top: 3rem;
         }
         
         .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--white);
         }
         
         .contact-methods {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.8rem;
         }
         
         .contact-method {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+            gap: 1.5rem;
+            padding: 1.5rem;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-decoration: none;
             color: inherit;
@@ -336,117 +455,204 @@
         }
         
         .contact-method:hover {
-            background: rgba(0, 255, 0, 0.1);
-            border-color: var(--accent);
-            transform: translateX(5px);
+            background: rgba(77, 138, 240, 0.15); /* Blue accent with transparency */
+            border-color: var(--blue-accent);
+            transform: translateX(8px);
         }
         
         .method-icon {
-            font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
+            font-size: 1.8rem;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: rgba(0, 255, 0, 0.1);
+            background: rgba(77, 138, 240, 0.2); /* Blue accent background */
             display: flex;
             align-items: center;
-            justifiy-content: center;
-            color: var(--accent);
+            justify-content: center;
+            color: var(--blue-light);
+            flex-shrink: 0;
+        }
+        
+        .method-text {
+            flex-grow: 1;
+        }
+        
+        .method-text strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            color: var(--white);
+        }
+        
+        .method-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+        
+        .address-note {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.5rem;
+            font-style: italic;
         }
         
         .contact-form {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border-radius: 15px;
+            background: var(--purple-medium);
+            padding: 3rem;
+            border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        .contact-form h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--white);
+        }
+        
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
         
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            gap: 1.5rem;
         }
         
         label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
             font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
         }
         
         input, textarea, select {
             width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.07);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--white);
             font-family: var(--font-primary);
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: var(--transition);
         }
         
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: var(--accent);
-            background: rgba(0, 255, 0, 0.05);
+            border-color: var(--blue-accent);
+            background: rgba(77, 138, 240, 0.1);
+            box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
         }
         
         textarea {
-            min-height: 150px;
+            min-height: 180px;
             resize: vertical;
         }
         
         .deposit-notice {
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid var(--accent);
-            border-radius: 10px;
-            padding: 1.5rem;
+            background: rgba(255, 107, 53, 0.15); /* Orange accent */
+            border: 1px solid var(--orange-accent);
+            border-radius: 12px;
+            padding: 2rem;
             text-align: center;
-            margin-top: 3rem;
-            font-weight: 600;
+            margin-top: 4rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
         }
         
         /* ===== FOOTER ===== */
         .footer {
-            background-color: var(--dark-gray);
-            padding: 4rem 2rem 2rem;
+            background-color: var(--black);
+            padding: 5rem 2rem 3rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-bottom: 3rem;
+            gap: 4rem;
+            margin-bottom: 4rem;
         }
         
         .footer-logo {
-            height: 40px;
-            margin-bottom: 1.5rem;
+            height: 50px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .footer-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .footer-link a:hover {
+            color: var(--accent);
+            padding-left: 8px;
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 3rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
         }
         
         /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .contact-grid {
+                gap: 3rem;
+            }
+        }
+        
         @media (max-width: 992px) {
             .hero-title {
                 font-size: 3.5rem;
             }
             
+            .hero-logo-large {
+                height: 150px;
+            }
+            
             .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 4rem;
             }
             
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features {
+                gap: 3rem;
             }
         }
         
@@ -456,7 +662,7 @@
             }
             
             .logo-center {
-                height: 40px;
+                height: 50px;
             }
             
             .logo-small {
@@ -464,15 +670,20 @@
             }
             
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
+            }
+            
+            .hero-logo-large {
+                height: 120px;
+                margin-bottom: 2rem;
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .form-row {
@@ -489,10 +700,47 @@
             
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
             
             .nav-icons {
                 gap: 1rem;
+            }
+            
+            .features {
+                flex-direction: column;
+                gap: 2.5rem;
+            }
+            
+            .feature {
+                min-width: 100%;
+            }
+            
+            .contact-form {
+                padding: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section {
+                padding: 5rem 1.5rem;
+            }
+            
+            .btn-book {
+                padding: 1.1rem 2.5rem;
+                font-size: 1.1rem;
+            }
+            
+            .service-card {
+                padding: 2rem;
             }
         }
     </style>
@@ -521,16 +769,60 @@
         <!-- Background image loaded dynamically -->
         <div class="hero-overlay"></div>
         <div class="hero-content">
+            <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large">
+            
             <h1 class="hero-title">BILLUPS STUDIO</h1>
-            <p class="hero-subtitle">Pick up the mic, elevate — create.</p>
+            
+            <p class="hero-subtitle">
+                Pick up the mic,<br>
+                elevate — create.
+            </p>
+            
             <a href="#contact" class="btn-book">BOOK NOW</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="about-title">Real Studio.<br>Real Energy.</h2>
+                
+                <p class="about-text">
+                    Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
+                    From quick bars to full tape lock-ins, this is the studio where your best work comes alive.
+                </p>
+                
+                <p class="about-text" style="font-size: 1.5rem; font-weight: 600;">
+                    No gimmicks. Just professional setup, local roots,<br>
+                    and that unmatched vibe.
+                </p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div style="font-size: 3rem; color: var(--accent);">🎚️</div>
+                        <h3 class="feature-title">Pro Sound</h3>
+                    </div>
+                    
+                    <div class="feature">
+                        <div style="font-size: 3rem; color: var(--blue-accent);">🧹</div>
+                        <h3 class="feature-title">Clean Space</h3>
+                    </div>
+                    
+                    <div class="feature">
+                        <div style="font-size: 3rem; color: var(--orange-accent);">👥</div>
+                        <h3 class="feature-title">Good People</h3>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Services Section -->
     <section class="services section" id="services">
         <div class="container">
-            <h2 class="section-title">Lock In a Session That Fits Your Grind</h2>
+            <h2 class="section-title">Lock In a Session</h2>
+            <p class="section-subtitle">That Fits Your Grind</p>
             
             <div class="services-grid">
                 <!-- Hourly -->
@@ -538,13 +830,13 @@
                     <div class="service-icon">🎧</div>
                     <h3 class="service-title">Hourly</h3>
                     <div class="service-price">£30<span>/hr</span></div>
-                    <p>Slide in, drop heat, get pro results. Engineer included.</p>
+                    <p class="service-description">Slide in, drop heat, get pro results. Engineer included.</p>
                     <ul class="service-features">
                         <li class="service-feature">Full studio access with professional equipment</li>
                         <li class="service-feature">On-site engineer for recording support</li>
                         <li class="service-feature">Perfect for quick sessions or vocal takes</li>
                     </ul>
-                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center;">Book Hourly</a>
+                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center; padding: 1rem;">Book Hourly</a>
                 </div>
                 
                 <!-- Half Day -->
@@ -552,28 +844,42 @@
                     <div class="popular-badge">MOST POPULAR</div>
                     <div class="service-icon">🎧</div>
                     <h3 class="service-title">Half Day</h3>
-                    <div class="service-price">£140</div>
-                    <p>5-hour slot. Full access + full support.</p>
+                    <div class="service-price">£140<small>(5 Hours)</small></div>
+                    <p class="service-description">5-hour slot. Full access + full support.</p>
                     <ul class="service-features">
                         <li class="service-feature">Great for EPs, batch sessions or back-to-back takes</li>
                         <li class="service-feature">Professional setup with mix-ready recordings</li>
                         <li class="service-feature">Dedicated engineer throughout your session</li>
                     </ul>
-                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center;">Book Half Day</a>
+                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center; padding: 1rem;">Book Half Day</a>
                 </div>
                 
                 <!-- Full Day -->
                 <div class="service-card">
                     <div class="service-icon">🎧</div>
                     <h3 class="service-title">Full Day</h3>
-                    <div class="service-price">£240</div>
-                    <p>All-day pass. 10 hours, engineer on hand, zero distractions.</p>
+                    <div class="service-price">£240<small>(10 Hours)</small></div>
+                    <p class="service-description">All-day pass. 10 hours, engineer on hand, zero distractions.</p>
                     <ul class="service-features">
                         <li class="service-feature">Ideal for projects, collabs, or build-a-tape days</li>
                         <li class="service-feature">Full creative control with professional results</li>
                         <li class="service-feature">Complete studio access for extended sessions</li>
                     </ul>
-                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center;">Book Full Day</a>
+                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center; padding: 1rem;">Book Full Day</a>
+                </div>
+                
+                <!-- Custom Session -->
+                <div class="service-card" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
+                    <div class="service-icon">🎧</div>
+                    <h3 class="service-title">Custom Session</h3>
+                    <div class="service-price" style="font-size: 2.5rem; color: var(--orange-accent);">Enquiry Only</div>
+                    <p class="service-description">Need extra time or custom support? We'll tailor the session to fit your needs.</p>
+                    <ul class="service-features">
+                        <li class="service-feature">Flexible scheduling for extended projects</li>
+                        <li class="service-feature">Customized support for labels or recurring artists</li>
+                        <li class="service-feature">Discuss your requirements for a perfect fit</li>
+                    </ul>
+                    <a href="#contact" class="btn-book" style="width: 100%; text-align: center; padding: 1rem;">Enquire About Custom</a>
                 </div>
             </div>
             
@@ -586,7 +892,9 @@
     <!-- Gallery Section -->
     <section class="gallery section" id="gallery">
         <div class="container">
-            <h2 class="section-title">Inside The Energy</h2>
+            <h2 class="section-title">Inside</h2>
+            <p class="section-subtitle">The Energy</p>
+            
             <div class="gallery-grid" id="galleryContainer">
                 <!-- Images loaded automatically from /images folder -->
                 <div style="text-align: center; grid-column: 1 / -1; padding: 3rem; color: var(--accent);">
@@ -599,7 +907,8 @@
     <!-- Contact Section -->
     <section class="contact section" id="contact">
         <div class="container">
-            <h2 class="section-title">Talk to Us or Lock in a Session</h2>
+            <h2 class="section-title">Talk to Us or</h2>
+            <p class="section-subtitle">Lock in a Session</p>
             
             <div class="contact-grid">
                 <div class="contact-info">
@@ -607,32 +916,30 @@
                     <div class="contact-methods">
                         <a href="tel:07710593113" class="contact-method">
                             <div class="method-icon"><i class="fas fa-phone"></i></div>
-                            <div>
+                            <div class="method-text">
                                 <strong>07710 593113</strong>
                             </div>
                         </a>
                         
-                        <a href="mailto:billupsltd@gmail.com" class="contact-method">
+                        <div class="contact-method">
                             <div class="method-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
+                            <div class="method-text">
                                 <strong>billupsltd@gmail.com</strong>
                             </div>
-                        </a>
+                        </div>
                         
                         <a href="https://instagram.com/billups_studio" target="_blank" class="contact-method">
                             <div class="method-icon"><i class="fab fa-instagram"></i></div>
-                            <div>
+                            <div class="method-text">
                                 <strong>@billups_studio</strong>
                             </div>
                         </a>
                         
                         <div class="contact-method">
                             <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div>
+                            <div class="method-text">
                                 <strong>Cutenhoe Road, Luton LU1 3NB</strong>
-                                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: rgba(255, 255, 255, 0.7);">
-                                    (Full address sent after booking)
-                                </p>
+                                <p class="address-note">(Full address sent after booking)</p>
                             </div>
                         </div>
                     </div>
@@ -686,25 +993,28 @@
             <div class="footer-grid">
                 <div>
                     <img src="images/logo.png" alt="Billups Studio" class="footer-logo">
-                    <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. No gimmicks. Just professional setup, local roots, and that unmatched vibe.</p>
+                    <p class="footer-description">
+                        Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
+                        No gimmicks. Just professional setup, local roots, and that unmatched vibe.
+                    </p>
                 </div>
                 
                 <div>
-                    <h4>Quick Links</h4>
-                    <ul class="service-features">
-                        <li class="service-feature"><a href="#home" style="color: inherit; text-decoration: none;">Home</a></li>
-                        <li class="service-feature"><a href="#services" style="color: inherit; text-decoration: none;">Services</a></li>
-                        <li class="service-feature"><a href="#gallery" style="color: inherit; text-decoration: none;">Gallery</a></li>
-                        <li class="service-feature"><a href="#contact" style="color: inherit; text-decoration: none;">Contact</a></li>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#home">Home</a></li>
+                        <li class="footer-link"><a href="#services">Services</a></li>
+                        <li class="footer-link"><a href="#gallery">Gallery</a></li>
+                        <li class="footer-link"><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4>Studio Hours</h4>
-                    <ul class="service-features">
-                        <li class="service-feature">Monday - Sunday</li>
-                        <li class="service-feature">10:00 AM - 10:00 PM</li>
-                        <li class="service-feature">By appointment only</li>
+                    <h4 class="footer-heading">Studio Hours</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.7);">Monday - Sunday</a></li>
+                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.7);">10:00 AM - 10:00 PM</a></li>
+                        <li class="footer-link"><a href="#" style="pointer-events: none; color: rgba(255, 255, 255, 0.7);">By appointment only</a></li>
                     </ul>
                 </div>
             </div>
@@ -793,7 +1103,7 @@
             
             heroSection.insertBefore(heroBg, heroSection.firstChild);
             
-            // Add overlay
+            // Add overlay - DARKER PURPLE as requested
             const overlay = document.createElement('div');
             overlay.className = 'hero-overlay';
             heroSection.insertBefore(overlay, heroSection.children[1]);
@@ -839,7 +1149,9 @@
             }
             
             if (allImages.length === 0) {
-                galleryContainer.innerHTML = '<div style="text-align: center; padding: 3rem;">Add images to the /images folder. Name them studio1.jpg, studio2.jpg, etc.</div>';
+                galleryContainer.innerHTML = '<div style="text-align: center; padding: 3rem; color: var(--accent);">' +
+                    'Add images to the /images folder.<br>Name them: studio1.jpg, studio2.jpg, hero-bg.jpg, etc.' +
+                    '</div>';
                 return;
             }
             

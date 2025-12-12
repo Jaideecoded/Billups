@@ -105,29 +105,18 @@
             min-height: 100vh;
         }
         
-        /* ===== GRID OVERLAY ===== */
+        /* ===== REMOVED GRID OVERLAY - CLEANER DESIGN ===== */
         .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            opacity: 0.1;
-            pointer-events: none;
+            display: none;
         }
         
-        /* ===== ENHANCED REACTIVE HEADER EQUALIZER - TALLER & MORE REACTIVE ===== */
+        /* ===== ENHANCED REACTIVE HEADER EQUALIZER - CLEANER VERSION ===== */
         .header-equalizer {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 14px; /* INCREASED FROM 8px TO 14px FOR MORE VISUAL IMPACT */
+            height: 14px;
             display: none;
             z-index: 1001;
             overflow: hidden;
@@ -154,7 +143,7 @@
         
         .header-equalizer-bar {
             width: 5px;
-            height: 60%; /* Start at 60% - will be animated to full range */
+            height: 60%;
             background: linear-gradient(to top, var(--accent), var(--tier-2));
             border-radius: 3px 3px 0 0;
             opacity: 0.8;
@@ -166,238 +155,93 @@
             transition: height 0.15s ease-out;
         }
         
-        /* Enhanced animations - more reactive with different rhythms */
+        /* Equalizer animations */
         @keyframes headerEqPulse1 {
-            0%, 100% { 
-                height: 40%;
-                opacity: 0.7;
-                filter: brightness(1.1);
-            }
-            20% { 
-                height: 85%;
-                opacity: 0.95;
-                filter: brightness(1.4);
-            }
-            40% { 
-                height: 60%;
-                opacity: 0.8;
-                filter: brightness(1.2);
-            }
-            60% { 
-                height: 95%;
-                opacity: 1;
-                filter: brightness(1.5);
-                box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
-            }
-            80% { 
-                height: 45%;
-                opacity: 0.75;
-                filter: brightness(1.1);
-            }
+            0%, 100% { height: 40%; }
+            20% { height: 85%; }
+            40% { height: 60%; }
+            60% { height: 95%; }
+            80% { height: 45%; }
         }
         
         @keyframes headerEqPulse2 {
-            0%, 100% { 
-                height: 65%;
-                opacity: 0.8;
-            }
-            30% { 
-                height: 35%;
-                opacity: 0.7;
-            }
-            50% { 
-                height: 90%;
-                opacity: 1;
-                filter: brightness(1.6);
-            }
-            70% { 
-                height: 55%;
-                opacity: 0.85;
-            }
-            90% { 
-                height: 75%;
-                opacity: 0.9;
-            }
+            0%, 100% { height: 65%; }
+            30% { height: 35%; }
+            50% { height: 90%; }
+            70% { height: 55%; }
+            90% { height: 75%; }
         }
         
         @keyframes headerEqPulse3 {
-            0% { 
-                height: 50%;
-                opacity: 0.7;
-            }
-            25% { 
-                height: 80%;
-                opacity: 0.9;
-            }
-            50% { 
-                height: 30%;
-                opacity: 0.6;
-            }
-            75% { 
-                height: 100%;
-                opacity: 1;
-                filter: brightness(1.7);
-            }
-            100% { 
-                height: 45%;
-                opacity: 0.75;
-            }
+            0% { height: 50%; }
+            25% { height: 80%; }
+            50% { height: 30%; }
+            75% { height: 100%; }
+            100% { height: 45%; }
         }
         
         @keyframes headerEqPulse4 {
-            0%, 100% { 
-                height: 75%;
-                opacity: 0.85;
-            }
-            15% { 
-                height: 40%;
-                opacity: 0.7;
-            }
-            35% { 
-                height: 95%;
-                opacity: 1;
-                filter: brightness(1.5);
-            }
-            55% { 
-                height: 60%;
-                opacity: 0.8;
-            }
-            75% { 
-                height: 85%;
-                opacity: 0.95;
-            }
+            0%, 100% { height: 75%; }
+            15% { height: 40%; }
+            35% { height: 95%; }
+            55% { height: 60%; }
+            75% { height: 85%; }
         }
         
         @keyframes headerEqPulse5 {
-            0% { 
-                height: 85%;
-                opacity: 0.9;
-            }
-            20% { 
-                height: 45%;
-                opacity: 0.7;
-            }
-            40% { 
-                height: 100%;
-                opacity: 1;
-                filter: brightness(1.6);
-            }
-            60% { 
-                height: 65%;
-                opacity: 0.85;
-            }
-            80% { 
-                height: 90%;
-                opacity: 0.95;
-            }
-            100% { 
-                height: 70%;
-                opacity: 0.8;
-            }
+            0% { height: 85%; }
+            20% { height: 45%; }
+            40% { height: 100%; }
+            60% { height: 65%; }
+            80% { height: 90%; }
+            100% { height: 70%; }
         }
         
-        /* Apply different animations to create a more dynamic effect */
-        .header-equalizer-bar:nth-child(1) { 
-            animation: headerEqPulse1 2.1s infinite ease-in-out; 
-            animation-delay: 0s; 
-        }
-        .header-equalizer-bar:nth-child(2) { 
-            animation: headerEqPulse2 1.8s infinite ease-in-out; 
-            animation-delay: 0.2s; 
-        }
-        .header-equalizer-bar:nth-child(3) { 
-            animation: headerEqPulse3 2.3s infinite ease-in-out; 
-            animation-delay: 0.1s; 
-        }
-        .header-equalizer-bar:nth-child(4) { 
-            animation: headerEqPulse4 2.0s infinite ease-in-out; 
-            animation-delay: 0.3s; 
-        }
-        .header-equalizer-bar:nth-child(5) { 
-            animation: headerEqPulse5 1.9s infinite ease-in-out; 
-            animation-delay: 0.15s; 
-        }
-        .header-equalizer-bar:nth-child(6) { 
-            animation: headerEqPulse1 2.2s infinite ease-in-out; 
-            animation-delay: 0.25s; 
-        }
-        .header-equalizer-bar:nth-child(7) { 
-            animation: headerEqPulse2 1.7s infinite ease-in-out; 
-            animation-delay: 0.35s; 
-        }
-        .header-equalizer-bar:nth-child(8) { 
-            animation: headerEqPulse3 2.4s infinite ease-in-out; 
-            animation-delay: 0.05s; 
-        }
-        .header-equalizer-bar:nth-child(9) { 
-            animation: headerEqPulse4 2.1s infinite ease-in-out; 
-            animation-delay: 0.4s; 
-        }
-        .header-equalizer-bar:nth-child(10) { 
-            animation: headerEqPulse5 1.6s infinite ease-in-out; 
-            animation-delay: 0.1s; 
-        }
-        .header-equalizer-bar:nth-child(11) { 
-            animation: headerEqPulse1 2.0s infinite ease-in-out; 
-            animation-delay: 0.3s; 
-        }
-        .header-equalizer-bar:nth-child(12) { 
-            animation: headerEqPulse2 1.9s infinite ease-in-out; 
-            animation-delay: 0.2s; 
-        }
-        .header-equalizer-bar:nth-child(13) { 
-            animation: headerEqPulse3 2.3s infinite ease-in-out; 
-            animation-delay: 0.15s; 
-        }
-        .header-equalizer-bar:nth-child(14) { 
-            animation: headerEqPulse4 2.2s infinite ease-in-out; 
-            animation-delay: 0.35s; 
-        }
-        .header-equalizer-bar:nth-child(15) { 
-            animation: headerEqPulse5 1.8s infinite ease-in-out; 
-            animation-delay: 0.25s; 
-        }
+        /* Apply different animations */
+        .header-equalizer-bar:nth-child(1) { animation: headerEqPulse1 2.1s infinite ease-in-out; }
+        .header-equalizer-bar:nth-child(2) { animation: headerEqPulse2 1.8s infinite ease-in-out; animation-delay: 0.2s; }
+        .header-equalizer-bar:nth-child(3) { animation: headerEqPulse3 2.3s infinite ease-in-out; animation-delay: 0.1s; }
+        .header-equalizer-bar:nth-child(4) { animation: headerEqPulse4 2.0s infinite ease-in-out; animation-delay: 0.3s; }
+        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse5 1.9s infinite ease-in-out; animation-delay: 0.15s; }
+        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
+        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
+        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
+        .header-equalizer-bar:nth-child(9) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
+        .header-equalizer-bar:nth-child(10) { animation: headerEqPulse5 1.6s infinite ease-in-out; animation-delay: 0.1s; }
         
-        /* Add a subtle pulse to the entire equalizer */
         @keyframes equalizerFadeIn {
-            from { 
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Add hover interaction */
-        .header-equalizer:hover .header-equalizer-bar {
-            animation-duration: 0.8s !important;
-            filter: brightness(1.8);
-            box-shadow: 
-                0 0 25px rgba(0, 255, 0, 0.8),
-                inset 0 3px 5px rgba(255, 255, 255, 0.5);
+        /* ===== SIMPLIFIED CONTACT STYLING ===== */
+        .contact-role-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
         }
         
-        /* Add a subtle glow effect on the container */
-        .header-equalizer::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(0, 255, 0, 0.2) 20%, 
-                rgba(0, 255, 0, 0.4) 50%, 
-                rgba(0, 255, 0, 0.2) 80%, 
-                transparent 100%);
-            filter: blur(3px);
-            pointer-events: none;
+        /* Studio Owner - Fabian */
+        .fabian-contact .method-icon {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff9500 100%) !important;
+            border-color: #ff6b35 !important;
+            color: white !important;
         }
         
-        /* ===== JAIDEE'S PHONE NUMBER STYLING ===== */
+        .fabian-contact:hover {
+            background: rgba(255, 107, 53, 0.15) !important;
+            border-color: #ff6b35 !important;
+        }
+        
+        /* Studio Manager - Jaidee */
         .jaidee-contact .method-icon {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%) !important;
             border-color: #6a11cb !important;
@@ -409,52 +253,28 @@
             border-color: #6a11cb !important;
         }
         
-        .jaidee-contact:hover .method-icon {
-            animation: gentlePulse 2s infinite;
-            transform: scale(1.1);
-        }
-        
-        @keyframes gentlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .phone-badge {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-top: 5px;
-            font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        /* ===== DSOUL'S CONTACT - ADDED MIX/MASTER BADGE ===== */
+        /* Head Engineer - Dsoul */
         .dsoul-contact .method-icon {
-            background: linear-gradient(135deg, #ff0080 0%, #ff8c00 100%) !important;
-            border-color: #ff0080 !important;
-            color: white !important;
+            background: linear-gradient(135deg, #00ff00 0%, #00cc66 100%) !important;
+            border-color: #00ff00 !important;
+            color: var(--black) !important;
         }
         
         .dsoul-contact:hover {
-            background: rgba(255, 0, 128, 0.15) !important;
-            border-color: #ff0080 !important;
+            background: rgba(0, 255, 0, 0.15) !important;
+            border-color: #00ff00 !important;
         }
         
-        .mix-master-badge {
-            background: linear-gradient(135deg, #ff0080, #ff8c00);
-            color: var(--black);
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-top: 5px;
-            font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* General Studio Contact */
+        .studio-contact .method-icon {
+            background: linear-gradient(135deg, #4d8af0 0%, #6ba3ff 100%) !important;
+            border-color: #4d8af0 !important;
+            color: white !important;
+        }
+        
+        .studio-contact:hover {
+            background: rgba(77, 138, 240, 0.15) !important;
+            border-color: #4d8af0 !important;
         }
         
         /* ===== ENHANCED NAVIGATION ICONS ===== */
@@ -506,27 +326,8 @@
             animation: gradient-flow 8s ease infinite;
         }
         
-        .nav-icon::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-            z-index: -1;
-        }
-        
         .nav-icon:hover::before {
             opacity: 1;
-        }
-        
-        .nav-icon:hover::after {
-            width: 120%;
-            height: 120%;
         }
         
         .nav-icon:hover {
@@ -592,103 +393,11 @@
             visibility: visible !important;
         }
         
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(0, 168, 255, 0.2) 25%,
-                rgba(0, 255, 0, 0.2) 50%,
-                rgba(255, 149, 0, 0.2) 75%,
-                rgba(188, 0, 255, 0.2) 100%);
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                var(--tier-1), 
-                var(--tier-2), 
-                var(--tier-3), 
-                var(--tier-custom));
-            background-size: 400% 400%;
-            border-radius: var(--radius-full);
-            z-index: -2;
-            opacity: 0;
-            transition: var(--transition);
-            animation: gradient-flow 6s ease infinite;
-        }
-        
         .btn-primary:hover {
             background-color: var(--accent-light);
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5), 0 0 60px rgba(0, 255, 0, 0.3);
             color: var(--black);
-            border-color: var(--accent);
-        }
-        
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-        
-        .btn-primary:hover::after {
-            opacity: 1;
-        }
-        
-        /* Tier specific buttons */
-        .btn-tier-1 {
-            background-color: var(--tier-1) !important;
-            border-color: var(--tier-1) !important;
-            box-shadow: 0 8px 25px rgba(0, 168, 255, 0.4) !important;
-        }
-        
-        .btn-tier-1:hover {
-            background-color: #4dc3ff !important;
-            box-shadow: 0 15px 40px rgba(0, 168, 255, 0.5), 0 0 60px rgba(0, 168, 255, 0.3) !important;
-        }
-        
-        .btn-tier-2 {
-            background-color: var(--tier-2) !important;
-            border-color: var(--tier-2) !important;
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4) !important;
-        }
-        
-        .btn-tier-2:hover {
-            background-color: var(--accent-light) !important;
-            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5), 0 0 60px rgba(0, 255, 0, 0.3) !important;
-        }
-        
-        .btn-tier-3 {
-            background-color: var(--tier-3) !important;
-            border-color: var(--tier-3) !important;
-            box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4) !important;
-        }
-        
-        .btn-tier-3:hover {
-            background-color: #ffb347 !important;
-            box-shadow: 0 15px 40px rgba(255, 149, 0, 0.5), 0 0 60px rgba(255, 149, 0, 0.3) !important;
-        }
-        
-        .btn-tier-custom {
-            background-color: var(--tier-custom) !important;
-            border-color: var(--tier-custom) !important;
-            box-shadow: 0 8px 25px rgba(188, 0, 255, 0.4) !important;
-        }
-        
-        .btn-tier-custom:hover {
-            background-color: #d966ff !important;
-            box-shadow: 0 15px 40px rgba(188, 0, 255, 0.5), 0 0 60px rgba(188, 0, 255, 0.3) !important;
         }
         
         /* ===== HEADER ===== */
@@ -1136,7 +845,7 @@
             background-color: rgba(45, 27, 78, 0.7);
         }
         
-        /* Session Calculator - UPDATED: Recording Hours Only */
+        /* Session Calculator */
         .session-calculator {
             background: rgba(0, 0, 0, 0.3);
             border-radius: var(--radius-lg);
@@ -1225,26 +934,26 @@
             margin-bottom: var(--space-md);
         }
         
-        /* Mix & Master Coming Soon Notice - ADDED */
+        /* Mix & Master Notice */
         .mix-master-notice {
-            background: rgba(255, 0, 128, 0.15);
-            border: 1px solid rgba(255, 0, 128, 0.3);
+            background: rgba(0, 255, 0, 0.15);
+            border: 1px solid rgba(0, 255, 0, 0.3);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             text-align: center;
             margin-bottom: var(--space-xxl);
-            border-left: 6px solid #ff0080;
+            border-left: 6px solid var(--accent);
             backdrop-filter: blur(10px);
             transition: var(--transition);
         }
         
         .mix-master-notice:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
         }
         
         .mix-master-notice h3 {
-            color: #ff0080;
+            color: var(--accent);
             margin-bottom: var(--space-sm);
             font-size: 1.8rem;
         }
@@ -1256,7 +965,7 @@
         }
         
         .coming-soon-badge {
-            background: linear-gradient(135deg, #ff0080, #ff8c00);
+            background: var(--accent);
             color: var(--black);
             font-weight: 900;
             padding: 8px 20px;
@@ -1464,7 +1173,7 @@
             transform: scale(1.1);
         }
         
-        /* ===== CONTACT SECTION ===== */
+        /* ===== SIMPLIFIED CONTACT SECTION ===== */
         .contact {
             background-color: rgba(45, 27, 78, 0.7);
         }
@@ -1518,9 +1227,9 @@
         }
         
         .contact-row:hover {
-            background: rgba(77, 138, 240, 0.15);
-            border-color: var(--blue-accent);
+            background: rgba(255, 255, 255, 0.07);
             transform: translateX(10px);
+            border-color: var(--accent);
             box-shadow: var(--shadow-md);
         }
         
@@ -1528,34 +1237,6 @@
             text-decoration: none;
             color: inherit;
             display: contents;
-        }
-        
-        /* WhatsApp Preferred */
-        .preferred-method {
-            border: 2px solid rgba(37, 211, 102, 0.3) !important;
-            background: rgba(37, 211, 102, 0.05) !important;
-        }
-        
-        .preferred-method:hover {
-            border-color: #25D366 !important;
-            background: rgba(37, 211, 102, 0.1) !important;
-        }
-        
-        .whatsapp-icon {
-            background: rgba(37, 211, 102, 0.2) !important;
-            border-color: #25D366 !important;
-            color: #25D366 !important;
-        }
-        
-        .response-badge {
-            background: #25D366;
-            color: var(--black);
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-top: 5px;
-            font-weight: bold;
         }
         
         .method-icon {
@@ -1574,8 +1255,6 @@
         }
         
         .contact-row:hover .method-icon {
-            background: rgba(77, 138, 240, 0.3);
-            border-color: var(--blue-accent);
             transform: scale(1.1);
         }
         
@@ -1586,30 +1265,27 @@
         .method-text strong {
             display: block;
             font-size: 1.3rem;
-            margin-bottom: var(--space-xs);
+            margin-bottom: 4px;
             color: var(--text-primary);
         }
         
         .method-text p {
             color: var(--text-body);
-            font-size: 1.1rem;
-            margin-bottom: 0;
-        }
-        
-        .method-text .contact-name {
             font-size: 1rem;
-            color: var(--blue-light);
-            margin-bottom: var(--space-xs);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            opacity: 0.9;
         }
         
-        .address-note {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: var(--space-xs);
-            font-style: italic;
+        /* WhatsApp Contact */
+        .whatsapp-contact .method-icon {
+            background: rgba(37, 211, 102, 0.2) !important;
+            border-color: #25D366 !important;
+            color: #25D366 !important;
+        }
+        
+        .whatsapp-contact:hover {
+            background: rgba(37, 211, 102, 0.05) !important;
+            border-color: #25D366 !important;
         }
         
         /* Contact Form */
@@ -1754,16 +1430,6 @@
             border-bottom-color: rgba(0, 255, 0, 0.3);
         }
         
-        .footer-link a i {
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        
-        .footer-link a:hover i {
-            transform: translateX(5px);
-            color: var(--accent);
-        }
-        
         .footer-bottom {
             text-align: center;
             padding-top: var(--space-xl);
@@ -1814,56 +1480,6 @@
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow-lg);
             animation: slideUp 0.3s ease-out;
-        }
-        
-        .widget-form h4 {
-            color: var(--accent);
-            margin-bottom: var(--space-md);
-            text-align: center;
-            font-size: 1.2rem;
-        }
-        
-        .widget-form .form-group {
-            margin-bottom: var(--space-sm);
-        }
-        
-        .widget-form input,
-        .widget-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            color: var(--text-primary);
-            font-family: var(--font-primary);
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        
-        .widget-form input:focus,
-        .widget-form textarea:focus {
-            outline: none;
-            border-color: var(--blue-accent);
-            background: rgba(77, 138, 240, 0.12);
-        }
-        
-        .widget-form textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        
-        .widget-form .btn-primary {
-            width: 100%;
-            padding: 0.8rem;
-            font-size: 0.9rem;
-            margin-top: var(--space-sm);
-        }
-        
-        .response-time {
-            text-align: center;
-            margin-top: var(--space-sm);
-            font-size: 0.8rem;
-            opacity: 0.7;
         }
         
         @keyframes slideUp {
@@ -1970,32 +1586,6 @@
                 font-size: 1.1rem;
                 min-width: 180px;
             }
-            .social-proof {
-                margin-top: var(--space-lg);
-            }
-            .trust-badges .badge {
-                font-size: 0.7rem;
-                padding: 4px 8px;
-            }
-            .session-calculator {
-                padding: var(--space-lg);
-                margin-bottom: var(--space-xl);
-            }
-            .calculator-controls {
-                grid-template-columns: 1fr;
-            }
-            .audio-demo {
-                padding: var(--space-lg);
-                margin-top: var(--space-xl);
-            }
-            .audio-toggle {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn-audio {
-                width: 100%;
-                max-width: 200px;
-            }
         }
         
         @media (max-width: 480px) {
@@ -2024,46 +1614,11 @@
             }
             #calculatorResult .recommendation { font-size: 1.2rem; }
             #calculatorResult .price { font-size: 1.8rem; }
-            .audio-demo h3 { font-size: 1.5rem; }
-            .widget-toggle {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            .widget-form {
-                width: 260px;
-                padding: var(--space-md);
-            }
-        }
-        
-        /* ===== LOADING STATES ===== */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 300px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-        
-        .loading-spinner {
-            border: 3px solid rgba(0, 255, 0, 0.3);
-            border-top: 3px solid var(--accent);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin-right: 1rem;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Grid Overlay -->
+    <!-- Grid Overlay (Removed visible green line) -->
     <div class="grid-overlay"></div>
 
     <!-- Header -->
@@ -2120,7 +1675,7 @@
             <img src="images/logo.png" alt="Billups Studio Logo" class="logo-small" id="smallLogo">
         </div>
         
-        <!-- Header Equalizer - ENHANCED VERSION -->
+        <!-- Header Equalizer -->
         <div class="header-equalizer" id="headerEqualizer">
             <div class="header-equalizer-bars">
                 <!-- Bars will be added by JavaScript -->
@@ -2251,14 +1806,14 @@
                 <p class="section-subtitle">That Fits Your Grind</p>
             </div>
             
-            <!-- MIX & MASTER COMING SOON NOTICE - ADDED -->
+            <!-- MIX & MASTER COMING SOON NOTICE -->
             <div class="mix-master-notice">
                 <h3>🎛️ Mix & Master Section Coming Soon</h3>
-                <p>We're currently building out our dedicated mixing & mastering service. All final mixes and masters are handled by dsoul.</p>
+                <p>We're currently building out our dedicated mixing & mastering service. All final mixes and masters are handled by Dsoul.</p>
                 <div class="coming-soon-badge">Launching Soon</div>
             </div>
             
-            <!-- UPDATED SESSION CALCULATOR - RECORDING HOURS ONLY -->
+            <!-- SESSION CALCULATOR -->
             <div class="session-calculator">
                 <h3>💰 Recording Hours Calculator</h3>
                 
@@ -2391,94 +1946,114 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- SIMPLIFIED CONTACT SECTION -->
     <section class="contact section" id="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Talk to Us or</h2>
-                <p class="section-subtitle">Lock in a Session</p>
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Direct Contact with Our Team</p>
             </div>
             
             <div class="contact-table">
                 <div class="contact-column">
-                    <h3>Get In Touch</h3>
+                    <h3>Our Team</h3>
                     <div class="contact-methods">
-                        <a href="tel:07710593113" class="contact-row">
-                            <div class="method-icon"><i class="fas fa-phone"></i></div>
-                            <div class="method-text">
-                                <strong>07710 593113</strong>
-                                <p>Call or text to book</p>
-                            </div>
-                        </a>
-                        
-                        <!-- WHATSAPP CONTACT -->
-                        <a href="https://wa.me/447710593113" class="contact-row preferred-method">
-                            <div class="method-icon whatsapp-icon">
-                                <i class="fab fa-whatsapp"></i>
+                        <!-- Studio Owner - Fabian -->
+                        <div class="contact-row fabian-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-crown"></i>
                             </div>
                             <div class="method-text">
-                                <span class="contact-name">WhatsApp Preferred</span>
-                                <strong>07710 593113</strong>
-                                <p>Fastest response • Send voice notes</p>
-                                <div class="response-badge">⚡ Usually replies in <20 mins</div>
+                                <strong>Fabian</strong>
+                                <div class="contact-role-badge">Studio Owner</div>
+                                <p>For business inquiries & partnerships</p>
+                                <p><small>Contact via studio email</small></p>
                             </div>
-                        </a>
+                        </div>
                         
-                        <!-- JAIDEE'S PHONE NUMBER -->
+                        <!-- Studio Manager - Jaidee -->
                         <a href="tel:07878709110" class="contact-row jaidee-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Jaidee</strong>
+                                <div class="contact-role-badge">Studio Manager</div>
+                                <p>📞 07878 709110</p>
+                                <p>Bookings • Scheduling • Studio queries</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Head Engineer - Dsoul -->
+                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row dsoul-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Dsoul</strong>
+                                <div class="contact-role-badge">Head Engineer</div>
+                                <p>✉️ dsoulfiles@gmail.com</p>
+                                <p>Mixing • Mastering • Production</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Main Studio Contact -->
+                        <a href="tel:07710593113" class="contact-row studio-contact">
                             <div class="method-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div class="method-text">
-                                <span class="contact-name">Jaidee (Studio Manager)</span>
-                                <strong>07878 709110</strong>
-                                <p>Direct calls • Studio scheduling • Equipment queries</p>
-                                <div class="phone-badge">📞 Available 10am-8pm</div>
+                                <strong>Main Studio Line</strong>
+                                <p>📞 07710 593113</p>
+                                <p>General inquiries & quick questions</p>
                             </div>
                         </a>
                         
-                        <!-- DSOUL'S CONTACT - UPDATED WITH MIX/MASTER MENTION -->
-                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row dsoul-contact">
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/447710593113" class="contact-row whatsapp-contact">
                             <div class="method-icon">
-                                <i class="fas fa-user"></i>
+                                <i class="fab fa-whatsapp"></i>
                             </div>
                             <div class="method-text">
-                                <span class="contact-name">dsoul | Engineer/Producer</span>
-                                <strong>dsoulfiles@gmail.com</strong>
-                                <p>Mixing & Mastering • Production • Engineering</p>
-                                <div class="mix-master-badge">🎛️ All final mixes & masters</div>
+                                <strong>WhatsApp</strong>
+                                <p>📱 07710 593113</p>
+                                <p>Fastest response • Send voice notes</p>
                             </div>
                         </a>
                         
-                        <a href="mailto:billupsltd@gmail.com" class="contact-row">
-                            <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                        <!-- Studio Email -->
+                        <a href="mailto:billupsltd@gmail.com" class="contact-row studio-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
                             <div class="method-text">
-                                <span class="contact-name">Studio Email</span>
-                                <strong>billupsltd@gmail.com</strong>
+                                <strong>Studio Email</strong>
+                                <p>✉️ billupsltd@gmail.com</p>
+                                <p>General studio inquiries</p>
                             </div>
                         </a>
                         
-                        <a href="mailto:joellhead05@gmail.com" class="contact-row">
-                            <div class="method-icon"><i class="fas fa-user"></i></div>
-                            <div class="method-text">
-                                <span class="contact-name">jaidee | Engineer/Producer</span>
-                                <strong>joellhead05@gmail.com</strong>
-                            </div>
-                        </a>
-                        
+                        <!-- Instagram -->
                         <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="contact-row">
-                            <div class="method-icon"><i class="fab fa-instagram"></i></div>
+                            <div class="method-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
                             <div class="method-text">
-                                <strong>@billups_studio</strong>
-                                <p>Check our latest work</p>
+                                <strong>Instagram</strong>
+                                <p>@billups_studio</p>
+                                <p>Latest work & updates</p>
                             </div>
                         </a>
                         
+                        <!-- Address -->
                         <div class="contact-row">
-                            <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
                             <div class="method-text">
-                                <strong>Cutenhoe Road, Luton LU1 3NB</strong>
-                                <p class="address-note">(Full address sent after booking)</p>
+                                <strong>Studio Location</strong>
+                                <p>Cutenhoe Road, Luton LU1 3NB</p>
+                                <p><small>Full address sent after booking</small></p>
                             </div>
                         </div>
                     </div>
@@ -2491,22 +2066,22 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="name">Full Name</label>
-                                    <input type="text" id="name" name="name" required aria-required="true">
+                                    <input type="text" id="name" name="name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" required aria-required="true">
+                                    <input type="email" id="email" name="email" required>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" required aria-required="true">
+                                <input type="tel" id="phone" name="phone" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="session-type">Session Type</label>
-                                <select id="session-type" name="session-type" required aria-required="true">
+                                <select id="session-type" name="session-type" required>
                                     <option value="">Select session</option>
                                     <option value="hourly">Hourly (£30/hr)</option>
                                     <option value="half-day">Half Day (£140)</option>
@@ -2516,27 +2091,26 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="preferred-contact">Preferred Contact Method</label>
+                                <label for="preferred-contact">Preferred Contact</label>
                                 <select id="preferred-contact" name="preferred-contact">
-                                    <option value="">Any method is fine</option>
-                                    <option value="studio-email">Studio Email</option>
-                                    <option value="jaidee">Contact jaidee directly</option>
-                                    <option value="dsoul">Contact dsoul for mixing/mastering</option>
+                                    <option value="">Any method</option>
                                     <option value="phone">Phone Call</option>
                                     <option value="whatsapp">WhatsApp</option>
+                                    <option value="jaidee">Contact Jaidee (Studio Manager)</option>
+                                    <option value="dsoul">Contact Dsoul (Head Engineer)</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
-                                <label for="message">Message / Project Details</label>
-                                <textarea id="message" name="message" placeholder="Tell us about your project..." aria-label="Project details"></textarea>
+                                <label for="message">Project Details</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
                             </div>
                             
                             <button type="submit" class="btn-primary" style="width: 100%;">Send Booking Request</button>
                             
                             <div class="form-note">
-                                <strong>✉️ Your message will be sent to:</strong><br>
-                                <span>billupsltd@gmail.com, joellhead05@gmail.com, dsoulfiles@gmail.com</span>
+                                <strong>✉️ Your message will be sent to our team</strong><br>
+                                <span>We'll respond within 24 hours</span>
                             </div>
                         </form>
                     </div>
@@ -2580,7 +2154,7 @@
             <div class="footer-bottom">
                 <p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved. Luton, Bedfordshire.</p>
                 <p style="margin-top: var(--space-sm); font-size: 0.9rem; color: var(--text-muted);">
-                    Contact: billupsltd@gmail.com • jaidee: joellhead05@gmail.com • dsoul: dsoulfiles@gmail.com (All final mix & master work)
+                    Contact: Fabian (Owner) • Jaidee (Studio Manager): 07878 709110 • Dsoul (Head Engineer): dsoulfiles@gmail.com
                 </p>
             </div>
         </div>
@@ -2618,7 +2192,6 @@
     <script>
         // ===== WEBSITE CONFIGURATION =====
         const CONFIG = {
-            // Image paths
             backgroundImages: {
                 hero: 'images/hero-bg.jpg',
                 about: 'images/about-studio.jpg',
@@ -2627,7 +2200,6 @@
                 contact: 'images/studio2.jpg'
             },
             
-            // Gallery image patterns to try
             galleryPatterns: [
                 'studio1.jpg', 'studio2.jpg', 'studio3.jpg',
                 'studio4.jpg', 'studio5.jpg', 'studio6.jpg',
@@ -2637,14 +2209,6 @@
                 'image1.jpg', 'image2.jpg', 'image3.jpg',
                 'photo1.jpg', 'photo2.jpg', 'photo3.jpg',
                 'img1.jpg', 'img2.jpg', 'img3.jpg'
-            ],
-            
-            // Reserved files
-            reservedFiles: [
-                'logo.png',
-                'hero-bg.jpg',
-                'about-studio.jpg',
-                'studio-bg.jpg'
             ]
         };
 
@@ -2656,7 +2220,6 @@
             initializeBackgroundImages();
             initializeGallery();
             initializeEventListeners();
-            initializeAnimations();
             initializeCurrentYear();
             initializeHeaderEqualizer();
             initializeQuickWins();
@@ -2664,131 +2227,57 @@
             console.log('✅ Website initialized successfully!');
         });
 
-        // ===== ENHANCED REACTIVE HEADER EQUALIZER =====
+        // ===== HEADER EQUALIZER =====
         function initializeHeaderEqualizer() {
-            console.log('🔊 Initializing enhanced reactive header equalizer (14px height)...');
+            console.log('🔊 Initializing header equalizer...');
             
             const headerEqualizer = document.getElementById('headerEqualizer');
-            if (!headerEqualizer) {
-                console.log('❌ Header equalizer container not found');
-                return;
-            }
+            if (!headerEqualizer) return;
             
             const barsContainer = headerEqualizer.querySelector('.header-equalizer-bars');
-            if (!barsContainer) {
-                console.log('❌ Header equalizer bars container not found');
-                return;
-            }
+            if (!barsContainer) return;
             
             // Clear any existing bars
             barsContainer.innerHTML = '';
             
-            // Create 15 equalizer bars (more for a denser look)
-            for (let i = 0; i < 15; i++) {
+            // Create 10 equalizer bars
+            for (let i = 0; i < 10; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'header-equalizer-bar';
-                
-                // Add a slight random variation to the initial height
                 const randomInitialHeight = 30 + Math.random() * 40;
                 bar.style.height = `${randomInitialHeight}%`;
-                
-                // Add a subtle random color variation for visual interest
-                if (i % 4 === 0) {
-                    bar.style.background = 'linear-gradient(to top, var(--tier-1), var(--tier-2))';
-                } else if (i % 4 === 1) {
-                    bar.style.background = 'linear-gradient(to top, var(--accent), #00ff88)';
-                } else if (i % 4 === 2) {
-                    bar.style.background = 'linear-gradient(to top, #00ff88, var(--accent))';
-                }
-                
                 barsContainer.appendChild(bar);
             }
-            
-            // Add scroll-based reactivity
-            let lastScrollY = window.scrollY;
-            let lastScrollTime = Date.now();
-            
-            window.addEventListener('scroll', () => {
-                const currentScrollY = window.scrollY;
-                const scrollDelta = Math.abs(currentScrollY - lastScrollY);
-                const currentTime = Date.now();
-                const timeDelta = currentTime - lastScrollTime;
-                
-                // Only react to significant scrolls
-                if (scrollDelta > 10 && timeDelta > 50) {
-                    const bars = document.querySelectorAll('.header-equalizer-bar');
-                    bars.forEach((bar, index) => {
-                        // Briefly speed up animation on scroll
-                        const originalDuration = bar.style.animationDuration;
-                        bar.style.animationDuration = '0.5s';
-                        bar.style.filter = 'brightness(1.8)';
-                        
-                        // Reset after a short time
-                        setTimeout(() => {
-                            bar.style.animationDuration = '';
-                            bar.style.filter = '';
-                        }, 300);
-                    });
-                    
-                    lastScrollTime = currentTime;
-                }
-                
-                lastScrollY = currentScrollY;
-            });
-            
-            // Add click interaction for testing
-            headerEqualizer.addEventListener('click', () => {
-                const bars = document.querySelectorAll('.header-equalizer-bar');
-                bars.forEach((bar, index) => {
-                    // Create a ripple effect
-                    bar.style.transform = `scaleY(${1.2 + Math.random() * 0.5})`;
-                    bar.style.opacity = '1';
-                    
-                    setTimeout(() => {
-                        bar.style.transform = '';
-                        bar.style.opacity = '';
-                    }, 200 + (index * 30));
-                });
-            });
-            
-            console.log('✅ Enhanced reactive header equalizer initialized with 15 animated bars (14px height)');
-            
-            return headerEqualizer;
         }
 
-        // ===== UPDATED QUICK WINS INITIALIZATION =====
+        // ===== QUICK WINS INITIALIZATION =====
         function initializeQuickWins() {
             console.log('⚡ Initializing quick wins...');
             
-            // 1. UPDATED Session Calculator (Recording hours only)
+            // Session Calculator
             initializeSessionCalculator();
             
-            // 2. Live Counter
+            // Live Counter
             initializeLiveCounter();
             
-            // 3. Audio Demo
+            // Audio Demo
             initializeAudioDemo();
             
-            // 4. Quick Question Widget
+            // Quick Question Widget
             initializeQuickQuestionWidget();
             
             console.log('✅ All quick wins initialized');
         }
 
-        // ===== UPDATED SESSION CALCULATOR - RECORDING HOURS ONLY =====
+        // ===== SESSION CALCULATOR =====
         function initializeSessionCalculator() {
             const recordingHours = document.getElementById('recordingHours');
             const sessionType = document.getElementById('sessionType');
             
             if (recordingHours && sessionType) {
-                // Set initial state
                 updateCalculator();
-                
-                // Add event listeners
                 recordingHours.addEventListener('change', updateCalculator);
                 sessionType.addEventListener('change', updateCalculator);
-                
-                console.log('✅ Session calculator updated to recording hours only');
             }
         }
         
@@ -2801,7 +2290,6 @@
             let description = '';
             let buttonClass = 'btn-tier-2';
             
-            // Calculate based on session type and hours
             if (sessionType === 'hourly') {
                 recommendation = 'Hourly Session';
                 const total = recordingHours * 30;
@@ -2832,7 +2320,6 @@
                     <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">Book This Session</a>
                 `;
                 
-                // Add animation
                 resultEl.style.animation = 'none';
                 setTimeout(() => {
                     resultEl.style.animation = 'fadeInUp 0.5s ease-out';
@@ -2850,7 +2337,6 @@
                 
                 const counterEl = document.getElementById('sessionCount');
                 if (counterEl) {
-                    // Animate number change
                     counterEl.style.transform = 'scale(1.2)';
                     setTimeout(() => {
                         counterEl.textContent = estimatedSessions;
@@ -2859,11 +2345,8 @@
                 }
             }
             
-            // Update counter every hour
             updateLiveCounter();
             setInterval(updateLiveCounter, 3600000);
-            
-            console.log('✅ Live counter initialized');
         }
 
         // ===== AUDIO DEMO =====
@@ -2875,20 +2358,12 @@
             if (audioButtons.length > 0) {
                 audioButtons.forEach(btn => {
                     btn.addEventListener('click', function() {
-                        // Update button states
                         document.querySelectorAll('.btn-audio').forEach(b => {
                             b.classList.remove('active');
-                            b.style.background = 'rgba(255, 255, 255, 0.1)';
-                            b.style.color = 'var(--text-body)';
-                            b.style.fontWeight = 'normal';
                         });
                         
                         this.classList.add('active');
-                        this.style.background = 'var(--accent)';
-                        this.style.color = 'var(--black)';
-                        this.style.fontWeight = 'bold';
                         
-                        // Switch audio source
                         const track = this.dataset.track;
                         
                         if (track === 'raw') {
@@ -2897,11 +2372,8 @@
                             audio.src = 'audio/mixed-demo.mp3';
                         }
                         
-                        // Try to load and play
                         audio.load();
                         audio.play().catch(e => {
-                            console.log('Audio play failed:', e);
-                            // Show fallback if audio files don't exist
                             if (audio.error && fallback) {
                                 fallback.style.display = 'block';
                             }
@@ -2909,14 +2381,11 @@
                     });
                 });
                 
-                // Check if audio files exist on load
                 if (audio && fallback) {
                     audio.addEventListener('error', () => {
                         fallback.style.display = 'block';
                     });
                 }
-                
-                console.log('✅ Audio demo initialized');
             }
         }
 
@@ -2932,7 +2401,6 @@
                     const isVisible = questionForm.style.display === 'block';
                     questionForm.style.display = isVisible ? 'none' : 'block';
                     questionToggle.innerHTML = isVisible ? '💬' : '✕';
-                    questionToggle.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(90deg)';
                 });
 
                 sendButton.addEventListener('click', () => {
@@ -2945,28 +2413,21 @@
                         return;
                     }
                     
-                    // Show sending state
                     sendButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                     sendButton.disabled = true;
                     
-                    // Simulate sending
                     setTimeout(() => {
-                        // Success
                         sendButton.innerHTML = '✅ Sent!';
                         sendButton.style.background = '#25D366';
                         
-                        // Reset form
                         document.getElementById('quickName').value = '';
                         document.getElementById('quickContact').value = '';
                         document.getElementById('quickMessage').value = '';
                         
-                        // Hide form after delay
                         setTimeout(() => {
                             questionForm.style.display = 'none';
                             questionToggle.innerHTML = '💬';
-                            questionToggle.style.transform = 'rotate(0deg)';
                             
-                            // Reset button
                             setTimeout(() => {
                                 sendButton.innerHTML = 'Send Quick Question';
                                 sendButton.style.background = 'var(--accent)';
@@ -2976,16 +2437,12 @@
                     }, 1000);
                 });
 
-                // Close form when clicking outside
                 document.addEventListener('click', (e) => {
                     if (!questionToggle.contains(e.target) && !questionForm.contains(e.target)) {
                         questionForm.style.display = 'none';
                         questionToggle.innerHTML = '💬';
-                        questionToggle.style.transform = 'rotate(0deg)';
                     }
                 });
-                
-                console.log('✅ Quick question widget initialized');
             }
         }
 
@@ -3000,20 +2457,14 @@
                 heroBg.className = 'hero-bg';
                 heroBg.alt = 'Studio Background';
                 
-                // Try to load hero-bg.jpg
                 try {
                     await loadImage('images/hero-bg.jpg');
                     heroBg.src = 'images/hero-bg.jpg';
-                    console.log('✅ Hero background loaded: images/hero-bg.jpg');
                 } catch {
-                    // Try studio1.jpg as fallback
                     try {
                         await loadImage('images/studio1.jpg');
                         heroBg.src = 'images/studio1.jpg';
-                        console.log('✅ Hero background fallback: images/studio1.jpg');
                     } catch {
-                        // Use gradient background
-                        console.log('⚠️ No hero background found, using gradient');
                         hero.style.background = 'linear-gradient(45deg, #000000, #1a0b2e)';
                         return;
                     }
@@ -3021,7 +2472,6 @@
                 
                 hero.insertBefore(heroBg, hero.firstChild);
                 
-                // Add overlay
                 const overlay = document.createElement('div');
                 overlay.className = 'hero-overlay';
                 hero.insertBefore(overlay, hero.children[1]);
@@ -3045,15 +2495,11 @@
                     try {
                         await loadImage(image);
                         bg.src = image;
-                        console.log(`✅ Background loaded: ${image}`);
                     } catch {
-                        // Try studio1.jpg as universal fallback
                         try {
                             await loadImage('images/studio1.jpg');
                             bg.src = 'images/studio1.jpg';
-                            console.log(`✅ Fallback background: images/studio1.jpg for ${section}`);
                         } catch {
-                            console.log(`⚠️ No background found for ${section}`);
                             continue;
                         }
                     }
@@ -3069,7 +2515,6 @@
                 img.src = src;
                 img.onload = () => resolve();
                 img.onerror = () => reject();
-                // Timeout after 2 seconds
                 setTimeout(() => reject(), 2000);
             });
         }
@@ -3079,42 +2524,28 @@
             const galleryContainer = document.getElementById('galleryContainer');
             const galleryLoading = galleryContainer.querySelector('.loading');
             
-            if (!galleryContainer) {
-                console.log('❌ Gallery container not found');
-                return;
-            }
+            if (!galleryContainer) return;
             
             console.log('🖼️ Loading gallery images...');
             
-            // Try to load gallery images
             const foundImages = [];
             
-            // Try each pattern
             for (const pattern of CONFIG.galleryPatterns) {
-                const isReserved = CONFIG.reservedFiles.some(reserved => 
-                    pattern.toLowerCase().includes(reserved.toLowerCase())
-                );
-                
-                if (!isReserved) {
-                    try {
-                        await loadImage(`images/${pattern}`);
-                        console.log(`✅ Found gallery image: ${pattern}`);
-                        foundImages.push({
-                            src: `images/${pattern}`,
-                            alt: `Studio image ${pattern.replace(/\.[^/.]+$/, '')}`
-                        });
-                    } catch {
-                        // Image not found, continue
-                    }
+                try {
+                    await loadImage(`images/${pattern}`);
+                    foundImages.push({
+                        src: `images/${pattern}`,
+                        alt: `Studio image ${pattern.replace(/\.[^/.]+$/, '')}`
+                    });
+                } catch {
+                    continue;
                 }
             }
             
-            // Remove loading indicator
             if (galleryLoading) {
                 galleryLoading.style.display = 'none';
             }
             
-            // If we found images, display them
             if (foundImages.length > 0) {
                 displayGalleryImages(foundImages);
             } else {
@@ -3124,7 +2555,6 @@
             function displayGalleryImages(images) {
                 galleryContainer.innerHTML = '';
                 
-                // Show first 8 images (or all if less)
                 const displayImages = images.slice(0, 8);
                 
                 displayImages.forEach((image, index) => {
@@ -3139,7 +2569,6 @@
                     img.alt = image.alt;
                     img.loading = 'lazy';
                     
-                    // Add error handling
                     img.onerror = () => {
                         img.style.display = 'none';
                         galleryItem.innerHTML = `
@@ -3152,13 +2581,11 @@
                     galleryItem.appendChild(img);
                     galleryContainer.appendChild(galleryItem);
                     
-                    // Click handler for lightbox
                     galleryItem.addEventListener('click', () => {
                         openLightbox(image.src, image.alt);
                     });
                 });
                 
-                // If we have more than 8 images, add a "view more" indicator
                 if (images.length > 8) {
                     const moreItem = document.createElement('div');
                     moreItem.className = 'gallery-item';
@@ -3179,16 +2606,11 @@
                     
                     galleryContainer.appendChild(moreItem);
                 }
-                
-                console.log(`✅ Gallery loaded with ${displayImages.length} images`);
             }
             
             function showFallbackGallery() {
-                console.log('⚠️ No gallery images found, showing fallback');
-                
                 galleryContainer.innerHTML = '';
                 
-                // Create 6 placeholder gallery items
                 for (let i = 1; i <= 6; i++) {
                     const galleryItem = document.createElement('div');
                     galleryItem.className = 'gallery-item';
@@ -3209,30 +2631,11 @@
                     galleryItem.appendChild(placeholder);
                     galleryContainer.appendChild(galleryItem);
                 }
-                
-                // Add instruction message
-                const instruction = document.createElement('div');
-                instruction.style.gridColumn = '1 / -1';
-                instruction.style.textAlign = 'center';
-                instruction.style.padding = '2rem';
-                instruction.style.color = 'var(--accent)';
-                instruction.innerHTML = `
-                    <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">
-                        <i class="fas fa-info-circle"></i> Add your studio photos to the <strong>/images</strong> folder
-                    </p>
-                    <p style="opacity: 0.8; font-size: 0.9rem;">
-                        Name them: studio1.jpg, studio2.jpg, etc.<br>
-                        Or any name like: control-room.jpg, vocal-booth.jpg
-                    </p>
-                `;
-                
-                galleryContainer.appendChild(instruction);
             }
         }
 
         // ===== LIGHTBOX FUNCTION =====
         function openLightbox(src, alt) {
-            // Create lightbox overlay
             const lightbox = document.createElement('div');
             lightbox.className = 'lightbox';
             lightbox.style.cssText = `
@@ -3249,7 +2652,6 @@
                 animation: fadeIn 0.3s ease-out;
             `;
             
-            // Create image container
             const imgContainer = document.createElement('div');
             imgContainer.style.cssText = `
                 max-width: 90%;
@@ -3257,7 +2659,6 @@
                 position: relative;
             `;
             
-            // Create image
             const img = document.createElement('img');
             img.src = src;
             img.alt = alt;
@@ -3269,7 +2670,6 @@
                 box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
             `;
             
-            // Create close button
             const closeBtn = document.createElement('button');
             closeBtn.innerHTML = '×';
             closeBtn.style.cssText = `
@@ -3291,28 +2691,16 @@
                 transition: var(--transition);
             `;
             
-            closeBtn.addEventListener('mouseenter', () => {
-                closeBtn.style.transform = 'scale(1.1)';
-                closeBtn.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.5)';
-            });
-            
-            closeBtn.addEventListener('mouseleave', () => {
-                closeBtn.style.transform = 'scale(1)';
-                closeBtn.style.boxShadow = 'none';
-            });
-            
             closeBtn.addEventListener('click', () => {
                 document.body.removeChild(lightbox);
             });
             
-            // Close on overlay click
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) {
                     document.body.removeChild(lightbox);
                 }
             });
             
-            // Add key listener for escape
             const keyHandler = (e) => {
                 if (e.key === 'Escape') {
                     document.body.removeChild(lightbox);
@@ -3322,13 +2710,11 @@
             
             document.addEventListener('keydown', keyHandler);
             
-            // Assemble and add to DOM
             imgContainer.appendChild(img);
             imgContainer.appendChild(closeBtn);
             lightbox.appendChild(imgContainer);
             document.body.appendChild(lightbox);
             
-            // Add fadeIn animation
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes fadeIn {
@@ -3365,7 +2751,7 @@
                 });
             }
             
-            // Smooth scrolling for anchor links
+            // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -3393,22 +2779,18 @@
                     const submitBtn = bookingForm.querySelector('button[type="submit"]');
                     const originalText = submitBtn.textContent;
                     
-                    // Show loading state
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                     submitBtn.disabled = true;
                     
-                    // Simulate API call
                     await new Promise(resolve => setTimeout(resolve, 1500));
                     
                     // Success feedback
                     showNotification('✅ Booking Request Sent!<br>We\'ll contact you within 24 hours.');
                     
-                    // Reset form
                     bookingForm.reset();
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                     
-                    // Logo celebration
                     if (mainLogo) {
                         mainLogo.style.animation = 'logo-hover-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards, pulse 2s ease-in-out';
                         setTimeout(() => {
@@ -3418,47 +2800,6 @@
                 });
             }
             
-            // Button hover effects
-            document.querySelectorAll('.btn-primary').forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.style.animation = 'pulse 1s infinite';
-                });
-                
-                button.addEventListener('mouseleave', function() {
-                    this.style.animation = '';
-                });
-            });
-            
-            // Navigation icon effects
-            document.querySelectorAll('.nav-icon').forEach(icon => {
-                // Add colored ring effect
-                const ring = document.createElement('div');
-                ring.style.cssText = `
-                    position: absolute;
-                    top: -5px;
-                    left: -5px;
-                    right: -5px;
-                    bottom: -5px;
-                    border: 2px solid var(--accent);
-                    border-radius: 50%;
-                    opacity: 0;
-                    transition: var(--transition);
-                    pointer-events: none;
-                `;
-                icon.appendChild(ring);
-                
-                icon.addEventListener('mouseenter', () => {
-                    ring.style.opacity = '0.7';
-                    ring.style.transform = 'scale(1.1)';
-                });
-                
-                icon.addEventListener('mouseleave', () => {
-                    ring.style.opacity = '0';
-                    ring.style.transform = 'scale(1)';
-                });
-            });
-            
-            // Ensure buttons stay visible
             ensureButtonsVisible();
         }
         
@@ -3470,7 +2811,6 @@
                 button.style.display = 'inline-block';
             });
             
-            // Periodic check
             setInterval(() => {
                 buttons.forEach(button => {
                     const style = window.getComputedStyle(button);
@@ -3501,16 +2841,10 @@
             notification.innerHTML = message;
             document.body.appendChild(notification);
             
-            // Remove after 5 seconds
             setTimeout(() => {
                 notification.style.animation = 'fadeInUp 0.5s ease-out reverse forwards';
                 setTimeout(() => notification.remove(), 500);
             }, 5000);
-        }
-
-        // ===== ANIMATIONS =====
-        function initializeAnimations() {
-            console.log('✨ Animations initialized');
         }
 
         // ===== UTILITIES =====
@@ -3525,32 +2859,6 @@
         window.addEventListener('error', (e) => {
             console.warn('Page error:', e.message);
         }, true);
-        
-        // Handle image loading errors
-        window.addEventListener('load', () => {
-            // Check if logo loaded
-            const logos = document.querySelectorAll('img[src*="logo.png"]');
-            logos.forEach(logo => {
-                logo.onerror = () => {
-                    console.warn(`Logo failed to load: ${logo.src}`);
-                    // Replace with text if it's the main logo
-                    if (logo.classList.contains('hero-logo-large')) {
-                        logo.style.display = 'none';
-                        const textLogo = document.createElement('div');
-                        textLogo.innerHTML = 'BILLUPS<br>STUDIO';
-                        textLogo.style.cssText = `
-                            font-size: 3rem;
-                            font-weight: 900;
-                            color: var(--accent);
-                            text-align: center;
-                            text-shadow: var(--shadow-accent);
-                            margin-bottom: 3rem;
-                        `;
-                        logo.parentNode.insertBefore(textLogo, logo.nextSibling);
-                    }
-                };
-            });
-        });
     </script>
 </body>
 </html>

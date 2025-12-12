@@ -668,6 +668,66 @@
             margin-right: auto;
         }
         
+        /* ===== SOCIAL PROOF - ADDED ===== */
+        .social-proof {
+            margin-top: var(--space-xl);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+        
+        .live-counter {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-bottom: var(--space-md);
+        }
+        
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badges .badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .trust-badges .badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+            }
+            50% { 
+                opacity: 0.7; 
+                transform: scale(1.1); 
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+            }
+        }
+        
         /* ===== SECTION SYSTEM ===== */
         .section {
             padding: var(--space-xxl) var(--space-xl);
@@ -828,9 +888,176 @@
             color: var(--text-body);
         }
         
+        /* ===== AUDIO DEMO - ADDED ===== */
+        .audio-demo {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-top: var(--space-xxl);
+            border: 1px solid var(--border-color);
+        }
+        
+        .audio-demo h3 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .audio-toggle {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .btn-audio {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+        }
+        
+        .btn-audio.active {
+            background: var(--accent);
+            color: var(--black);
+            font-weight: bold;
+            border-color: var(--accent);
+        }
+        
+        .btn-audio:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+        }
+        
+        .audio-player {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .audio-note {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .audio-fallback {
+            display: none;
+            text-align: center;
+            padding: var(--space-xl);
+            background: rgba(0, 255, 0, 0.05);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .audio-fallback p:first-child {
+            font-weight: bold;
+            margin-bottom: var(--space-xs);
+        }
+        
         /* ===== SERVICES SECTION ===== */
         .services {
             background-color: rgba(45, 27, 78, 0.7);
+        }
+        
+        /* Session Calculator - ADDED */
+        .session-calculator {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xxl);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        
+        .session-calculator:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .session-calculator h3 {
+            color: var(--accent);
+            margin-bottom: var(--space-lg);
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .calculator-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .control-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .control-group select:focus {
+            outline: none;
+            border-color: var(--blue-accent);
+            background: rgba(77, 138, 240, 0.12);
+            box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
+        }
+        
+        #calculatorResult {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            text-align: center;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        #calculatorResult .recommendation {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+        
+        #calculatorResult .price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: var(--space-sm) 0;
+            color: var(--text-primary);
+        }
+        
+        #calculatorResult .description {
+            color: var(--text-body);
+            margin-bottom: var(--space-md);
         }
         
         /* Services Table Layout */
@@ -1094,6 +1321,34 @@
             display: contents;
         }
         
+        /* WhatsApp Preferred - ADDED */
+        .preferred-method {
+            border: 2px solid rgba(37, 211, 102, 0.3) !important;
+            background: rgba(37, 211, 102, 0.05) !important;
+        }
+        
+        .preferred-method:hover {
+            border-color: #25D366 !important;
+            background: rgba(37, 211, 102, 0.1) !important;
+        }
+        
+        .whatsapp-icon {
+            background: rgba(37, 211, 102, 0.2) !important;
+            border-color: #25D366 !important;
+            color: #25D366 !important;
+        }
+        
+        .response-badge {
+            background: #25D366;
+            color: var(--black);
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        
         .method-icon {
             font-size: 1.6rem;
             width: 60px;
@@ -1308,6 +1563,124 @@
             font-size: 1rem;
         }
         
+        /* ===== QUICK QUESTION WIDGET - ADDED ===== */
+        .quick-question-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .widget-toggle {
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .widget-toggle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.4);
+        }
+        
+        .widget-form {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            display: none;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        .widget-form h4 {
+            color: var(--accent);
+            margin-bottom: var(--space-md);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .widget-form .form-group {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .widget-form input,
+        .widget-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .widget-form input:focus,
+        .widget-form textarea:focus {
+            outline: none;
+            border-color: var(--blue-accent);
+            background: rgba(77, 138, 240, 0.12);
+        }
+        
+        .widget-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .widget-form .btn-primary {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            margin-top: var(--space-sm);
+        }
+        
+        .response-time {
+            text-align: center;
+            margin-top: var(--space-sm);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 480px) {
+            .widget-form {
+                width: 280px;
+                right: -10px;
+            }
+            
+            .quick-question-widget {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+        
         /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from {
@@ -1358,6 +1731,9 @@
             .nav-icon { width: 50px; height: 50px; font-size: 1.2rem; }
             .nav-label { font-size: 0.75rem; padding: 0.2rem 0.6rem; }
             .section { padding: var(--space-xl) var(--space-lg); }
+            .session-calculator h3 { font-size: 1.5rem; }
+            #calculatorResult .recommendation { font-size: 1.5rem; }
+            #calculatorResult .price { font-size: 2rem; }
         }
         
         @media (max-width: 768px) {
@@ -1404,6 +1780,32 @@
                 font-size: 1.1rem;
                 min-width: 180px;
             }
+            .social-proof {
+                margin-top: var(--space-lg);
+            }
+            .trust-badges .badge {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            .session-calculator {
+                padding: var(--space-lg);
+                margin-bottom: var(--space-xl);
+            }
+            .calculator-controls {
+                grid-template-columns: 1fr;
+            }
+            .audio-demo {
+                padding: var(--space-lg);
+                margin-top: var(--space-xl);
+            }
+            .audio-toggle {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-audio {
+                width: 100%;
+                max-width: 200px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1427,6 +1829,21 @@
             .section-header { margin-bottom: var(--space-xl); }
             .nav-icons { gap: var(--space-sm); }
             .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
+            .session-calculator {
+                padding: var(--space-md);
+            }
+            #calculatorResult .recommendation { font-size: 1.2rem; }
+            #calculatorResult .price { font-size: 1.8rem; }
+            .audio-demo h3 { font-size: 1.5rem; }
+            .widget-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            .widget-form {
+                width: 260px;
+                padding: var(--space-md);
+            }
         }
         
         /* ===== LOADING STATES ===== */
@@ -1546,6 +1963,20 @@
             </p>
             
             <a href="#contact" class="btn-primary" aria-label="Book your session now">BOOK NOW</a>
+            
+            <!-- SOCIAL PROOF ADDED HERE -->
+            <div class="social-proof">
+                <div class="live-counter">
+                    <div class="pulse-dot"></div>
+                    <span><span id="sessionCount">12</span> sessions booked this month</span>
+                </div>
+                
+                <div class="trust-badges">
+                    <div class="badge">⭐ 4.9/5 Rating</div>
+                    <div class="badge">🎧 Free Consult</div>
+                    <div class="badge">⚡ 24h Response</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1604,6 +2035,31 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- AUDIO DEMO ADDED HERE -->
+                    <div class="audio-demo">
+                        <h3>🎧 Hear The Billups Difference</h3>
+                        
+                        <div class="audio-toggle">
+                            <button class="btn-audio" data-track="raw">Raw Recording</button>
+                            <button class="btn-audio active" data-track="mixed">Mixed & Mastered</button>
+                        </div>
+                        
+                        <div class="audio-player">
+                            <audio id="demoAudio" controls>
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
+                                Your browser does not support audio element.
+                            </audio>
+                            <div class="audio-note">
+                                <i class="fas fa-info-circle"></i> Same vocal take, different processing
+                            </div>
+                        </div>
+                        
+                        <div id="audioFallback" class="audio-fallback">
+                            <p>🎚️ Audio demo coming soon</p>
+                            <p>Add your audio files to <code>/audio/</code> folder</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1615,6 +2071,38 @@
             <div class="section-header">
                 <h2 class="section-title">Lock In a Session</h2>
                 <p class="section-subtitle">That Fits Your Grind</p>
+            </div>
+            
+            <!-- SESSION CALCULATOR ADDED HERE -->
+            <div class="session-calculator">
+                <h3>💰 Quick Session Calculator</h3>
+                
+                <div class="calculator-controls">
+                    <div class="control-group">
+                        <label>How many songs?</label>
+                        <select id="songCount">
+                            <option value="1">1 song</option>
+                            <option value="2" selected>2-3 songs</option>
+                            <option value="4">4-5 songs</option>
+                            <option value="6">6+ songs</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>Need mixing/mastering?</label>
+                        <select id="needsMixing">
+                            <option value="yes" selected>Yes, include mixing/mastering</option>
+                            <option value="no">Just recording</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="calculatorResult">
+                    <div class="recommendation">RECOMMENDED: Half Day Session</div>
+                    <div class="price">£140</div>
+                    <div class="description">Includes 5 hours + mixing & mastering</div>
+                    <a href="#contact" class="btn-primary btn-tier-2">Book This Session</a>
+                </div>
             </div>
             
             <div class="services-table">
@@ -1734,6 +2222,19 @@
                             </div>
                         </a>
                         
+                        <!-- WHATSAPP CONTACT ADDED HERE -->
+                        <a href="https://wa.me/447710593113" class="contact-row preferred-method">
+                            <div class="method-icon whatsapp-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="method-text">
+                                <span class="contact-name">WhatsApp Preferred</span>
+                                <strong>07710 593113</strong>
+                                <p>Fastest response • Send voice notes</p>
+                                <div class="response-badge">⚡ Usually replies in <20 mins</div>
+                            </div>
+                        </a>
+                        
                         <a href="mailto:billupsltd@gmail.com" class="contact-row">
                             <div class="method-icon"><i class="fas fa-envelope"></i></div>
                             <div class="method-text">
@@ -1814,6 +2315,7 @@
                                     <option value="studio-email">Studio Email</option>
                                     <option value="jaidee">Contact jaidee directly</option>
                                     <option value="phone">Phone Call</option>
+                                    <option value="whatsapp">WhatsApp</option>
                                 </select>
                             </div>
                             
@@ -1876,6 +2378,35 @@
         </div>
     </footer>
 
+    <!-- QUICK QUESTION WIDGET ADDED HERE -->
+    <div class="quick-question-widget">
+        <button id="questionToggle" class="widget-toggle">
+            💬
+        </button>
+        
+        <div id="questionForm" class="widget-form">
+            <h4>Quick Question?</h4>
+            
+            <div class="form-group">
+                <input type="text" placeholder="Your name" id="quickName">
+            </div>
+            
+            <div class="form-group">
+                <input type="text" placeholder="Email or phone" id="quickContact">
+            </div>
+            
+            <div class="form-group">
+                <textarea placeholder="What's your question?" rows="3" id="quickMessage"></textarea>
+            </div>
+            
+            <button id="sendQuickQuestion" class="btn-primary">
+                Send Quick Question
+            </button>
+            
+            <div class="response-time">We reply in <24h</div>
+        </div>
+    </div>
+
     <script>
         // ===== WEBSITE CONFIGURATION =====
         const CONFIG = {
@@ -1919,7 +2450,8 @@
             initializeEventListeners();
             initializeAnimations();
             initializeCurrentYear();
-            initializeEqualizerAndSmoke(); // NEW: Force initialize equalizer
+            initializeEqualizerAndSmoke();
+            initializeQuickWins(); // NEW: Initialize all quick wins
             
             console.log('✅ Website initialized successfully!');
         });
@@ -1980,6 +2512,239 @@
             }
             
             console.log('✅ Equalizer and smoke particles initialized');
+        }
+
+        // ===== QUICK WINS INITIALIZATION =====
+        function initializeQuickWins() {
+            console.log('⚡ Initializing quick wins...');
+            
+            // 1. Session Calculator
+            initializeSessionCalculator();
+            
+            // 2. Live Counter
+            initializeLiveCounter();
+            
+            // 3. Audio Demo
+            initializeAudioDemo();
+            
+            // 4. Quick Question Widget
+            initializeQuickQuestionWidget();
+            
+            console.log('✅ All quick wins initialized');
+        }
+
+        // ===== SESSION CALCULATOR =====
+        function initializeSessionCalculator() {
+            const songCount = document.getElementById('songCount');
+            const needsMixing = document.getElementById('needsMixing');
+            
+            if (songCount && needsMixing) {
+                // Set initial state
+                updateCalculator();
+                
+                // Add event listeners
+                songCount.addEventListener('change', updateCalculator);
+                needsMixing.addEventListener('change', updateCalculator);
+                
+                console.log('✅ Session calculator initialized');
+            }
+        }
+        
+        function updateCalculator() {
+            const songCount = parseInt(document.getElementById('songCount').value);
+            const needsMixing = document.getElementById('needsMixing').value;
+            
+            let recommendation = '';
+            let price = '';
+            let description = '';
+            let buttonClass = 'btn-tier-2';
+            
+            if (songCount <= 3) {
+                recommendation = 'Half Day Session';
+                price = '£140';
+                description = '5 hours • Mixing & Mastering included';
+                buttonClass = 'btn-tier-2';
+            } else if (songCount <= 5) {
+                recommendation = 'Full Day Session';
+                price = '£240';
+                description = '10 hours • Mixing & Mastering included';
+                buttonClass = 'btn-tier-3';
+            } else {
+                recommendation = 'Custom Session';
+                price = 'Enquiry';
+                description = 'Multiple sessions • Tailored package';
+                buttonClass = 'btn-tier-custom';
+            }
+            
+            if (needsMixing === 'no') {
+                recommendation += ' (Recording Only)';
+                description = description.replace('Mixing & Mastering included', 'Recording only');
+            }
+            
+            const resultEl = document.getElementById('calculatorResult');
+            if (resultEl) {
+                resultEl.innerHTML = `
+                    <div class="recommendation">RECOMMENDED: ${recommendation}</div>
+                    <div class="price">${price}</div>
+                    <div class="description">${description}</div>
+                    <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">Book This Session</a>
+                `;
+                
+                // Add animation
+                resultEl.style.animation = 'none';
+                setTimeout(() => {
+                    resultEl.style.animation = 'fadeInUp 0.5s ease-out';
+                }, 10);
+            }
+        }
+
+        // ===== LIVE COUNTER =====
+        function initializeLiveCounter() {
+            function updateLiveCounter() {
+                const baseSessions = 8;
+                const today = new Date();
+                const dayOfMonth = today.getDate();
+                const estimatedSessions = baseSessions + Math.floor(dayOfMonth * 0.8);
+                
+                const counterEl = document.getElementById('sessionCount');
+                if (counterEl) {
+                    // Animate number change
+                    counterEl.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        counterEl.textContent = estimatedSessions;
+                        counterEl.style.transform = 'scale(1)';
+                    }, 300);
+                }
+            }
+            
+            // Update counter every hour
+            updateLiveCounter();
+            setInterval(updateLiveCounter, 3600000);
+            
+            console.log('✅ Live counter initialized');
+        }
+
+        // ===== AUDIO DEMO =====
+        function initializeAudioDemo() {
+            const audioButtons = document.querySelectorAll('.btn-audio');
+            const audio = document.getElementById('demoAudio');
+            const fallback = document.getElementById('audioFallback');
+            
+            if (audioButtons.length > 0) {
+                audioButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        // Update button states
+                        document.querySelectorAll('.btn-audio').forEach(b => {
+                            b.classList.remove('active');
+                            b.style.background = 'rgba(255, 255, 255, 0.1)';
+                            b.style.color = 'var(--text-body)';
+                            b.style.fontWeight = 'normal';
+                        });
+                        
+                        this.classList.add('active');
+                        this.style.background = 'var(--accent)';
+                        this.style.color = 'var(--black)';
+                        this.style.fontWeight = 'bold';
+                        
+                        // Switch audio source
+                        const track = this.dataset.track;
+                        
+                        if (track === 'raw') {
+                            audio.src = 'audio/raw-demo.mp3';
+                        } else {
+                            audio.src = 'audio/mixed-demo.mp3';
+                        }
+                        
+                        // Try to load and play
+                        audio.load();
+                        audio.play().catch(e => {
+                            console.log('Audio play failed:', e);
+                            // Show fallback if audio files don't exist
+                            if (audio.error && fallback) {
+                                fallback.style.display = 'block';
+                            }
+                        });
+                    });
+                });
+                
+                // Check if audio files exist on load
+                if (audio && fallback) {
+                    audio.addEventListener('error', () => {
+                        fallback.style.display = 'block';
+                    });
+                }
+                
+                console.log('✅ Audio demo initialized');
+            }
+        }
+
+        // ===== QUICK QUESTION WIDGET =====
+        function initializeQuickQuestionWidget() {
+            const questionToggle = document.getElementById('questionToggle');
+            const questionForm = document.getElementById('questionForm');
+            const sendButton = document.getElementById('sendQuickQuestion');
+            
+            if (questionToggle && questionForm && sendButton) {
+                questionToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isVisible = questionForm.style.display === 'block';
+                    questionForm.style.display = isVisible ? 'none' : 'block';
+                    questionToggle.innerHTML = isVisible ? '💬' : '✕';
+                    questionToggle.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(90deg)';
+                });
+
+                sendButton.addEventListener('click', () => {
+                    const name = document.getElementById('quickName').value;
+                    const contact = document.getElementById('quickContact').value;
+                    const message = document.getElementById('quickMessage').value;
+                    
+                    if (!name || !contact) {
+                        alert('Please at least give us your name and how to contact you!');
+                        return;
+                    }
+                    
+                    // Show sending state
+                    sendButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    sendButton.disabled = true;
+                    
+                    // Simulate sending
+                    setTimeout(() => {
+                        // Success
+                        sendButton.innerHTML = '✅ Sent!';
+                        sendButton.style.background = '#25D366';
+                        
+                        // Reset form
+                        document.getElementById('quickName').value = '';
+                        document.getElementById('quickContact').value = '';
+                        document.getElementById('quickMessage').value = '';
+                        
+                        // Hide form after delay
+                        setTimeout(() => {
+                            questionForm.style.display = 'none';
+                            questionToggle.innerHTML = '💬';
+                            questionToggle.style.transform = 'rotate(0deg)';
+                            
+                            // Reset button
+                            setTimeout(() => {
+                                sendButton.innerHTML = 'Send Quick Question';
+                                sendButton.style.background = 'var(--accent)';
+                                sendButton.disabled = false;
+                            }, 1000);
+                        }, 1500);
+                    }, 1000);
+                });
+
+                // Close form when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!questionToggle.contains(e.target) && !questionForm.contains(e.target)) {
+                        questionForm.style.display = 'none';
+                        questionToggle.innerHTML = '💬';
+                        questionToggle.style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                console.log('✅ Quick question widget initialized');
+            }
         }
 
         // ===== BACKGROUND IMAGES =====

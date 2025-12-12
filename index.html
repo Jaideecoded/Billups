@@ -1132,9 +1132,385 @@
             border-left: 6px solid var(--orange-accent);
         }
         
+        /* ===== PORTFOLIO SECTION ===== */
+        .portfolio {
+            background-color: rgba(26, 11, 46, 0.7);
+        }
+        
+        .portfolio-tabs {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .portfolio-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: var(--space-lg) var(--space-xl);
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius-md);
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+        
+        .portfolio-tab:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .portfolio-tab.active {
+            background: rgba(0, 255, 0, 0.15);
+            border: 1px solid var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+        
+        .producer-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .producer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--black);
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .dsoul-avatar {
+            background: linear-gradient(135deg, #00ff00 0%, #00cc66 100%);
+        }
+        
+        .jaidee-avatar {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+        
+        .producer-info h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .producer-role {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .portfolio-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .portfolio-content.active {
+            display: block;
+        }
+        
+        .portfolio-header {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            gap: var(--space-xl);
+        }
+        
+        .producer-bio h3 {
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            font-size: 1.8rem;
+        }
+        
+        .producer-bio p {
+            color: var(--text-body);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+        
+        .producer-contact p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: var(--space-xs);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .producer-contact i {
+            color: var(--accent);
+            width: 20px;
+        }
+        
+        .producer-stats {
+            display: flex;
+            gap: var(--space-xl);
+            flex-shrink: 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: var(--space-xs);
+            font-weight: 600;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .portfolio-audio {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--space-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .audio-placeholder {
+            text-align: center;
+            color: var(--accent);
+            font-size: 4rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .audio-placeholder p {
+            font-size: 1.1rem;
+            margin-top: var(--space-sm);
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        
+        .portfolio-info {
+            padding: var(--space-xl);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-info h4 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            font-weight: 700;
+        }
+        
+        .portfolio-info p {
+            color: var(--text-body);
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            gap: var(--space-xs);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .tag {
+            background: rgba(0, 255, 0, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .portfolio-action {
+            margin-top: auto;
+        }
+        
+        .btn-portfolio {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 255, 0, 0.1);
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-portfolio:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+        }
+        
+        .portfolio-footer {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            margin-top: var(--space-xxl);
+            border-left: 6px solid var(--accent);
+            backdrop-filter: blur(10px);
+        }
+        
+        .portfolio-footer p {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-bottom: var(--space-lg);
+            line-height: 1.5;
+        }
+        
+        .portfolio-footer-actions {
+            display: flex;
+            gap: var(--space-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+        
+        /* Responsive Portfolio */
+        @media (max-width: 992px) {
+            .portfolio-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-xl);
+            }
+            
+            .producer-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .portfolio-footer-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .portfolio-tabs {
+                flex-direction: column;
+            }
+            
+            .portfolio-tab {
+                min-width: 100%;
+            }
+            
+            .producer-stats {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .portfolio-header {
+                padding: var(--space-lg);
+            }
+            
+            .portfolio-item {
+                margin-bottom: var(--space-lg);
+            }
+            
+            .portfolio-footer {
+                padding: var(--space-lg);
+            }
+            
+            .portfolio-footer p {
+                font-size: 1.1rem;
+            }
+        }
+        
         /* ===== GALLERY SECTION ===== */
         .gallery {
-            background-color: rgba(26, 11, 46, 0.7);
+            background-color: rgba(45, 27, 78, 0.7);
         }
         
         .gallery-grid {
@@ -1175,7 +1551,7 @@
         
         /* ===== SIMPLIFIED CONTACT SECTION ===== */
         .contact {
-            background-color: rgba(45, 27, 78, 0.7);
+            background-color: rgba(26, 11, 46, 0.7);
         }
         
         .contact-table {
@@ -1639,6 +2015,13 @@
             </div>
             
             <div class="nav-icon-container">
+                <a href="#portfolio" class="nav-icon" aria-label="Portfolio">
+                    <i class="fas fa-star"></i>
+                </a>
+                <span class="nav-label">Portfolio</span>
+            </div>
+            
+            <div class="nav-icon-container">
                 <a href="#gallery" class="nav-icon" aria-label="Gallery">
                     <i class="fas fa-images"></i>
                 </a>
@@ -1929,6 +2312,224 @@
         </div>
     </section>
 
+    <!-- ===== PORTFOLIO SECTION ===== -->
+    <section class="portfolio section" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Producers' Work</h2>
+                <p class="section-subtitle">Hear what our team creates</p>
+            </div>
+            
+            <div class="portfolio-tabs">
+                <button class="portfolio-tab active" data-tab="dsoul">
+                    <div class="producer-header">
+                        <div class="producer-avatar dsoul-avatar">DS</div>
+                        <div class="producer-info">
+                            <h3>Dsoul</h3>
+                            <p class="producer-role">Head Engineer</p>
+                        </div>
+                    </div>
+                </button>
+                
+                <button class="portfolio-tab" data-tab="jaidee">
+                    <div class="producer-header">
+                        <div class="producer-avatar jaidee-avatar">JJ</div>
+                        <div class="producer-info">
+                            <h3>Jaidee</h3>
+                            <p class="producer-role">Studio Manager & Producer</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Dsoul's Portfolio -->
+            <div class="portfolio-content active" id="dsoul-portfolio">
+                <div class="portfolio-header">
+                    <div class="producer-bio">
+                        <h3>Dsoul - Head Engineer</h3>
+                        <p>Specializing in clean mixes, vocal production, and mastering. Known for bringing out the best in every artist with technical precision and creative flair.</p>
+                        <div class="producer-contact">
+                            <p><i class="fas fa-envelope"></i> dsoulfiles@gmail.com</p>
+                            <p><i class="fas fa-sliders-h"></i> Specializes in: Mixing, Mastering, Vocal Production</p>
+                        </div>
+                    </div>
+                    <div class="producer-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Tracks Mixed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-audio">
+                            <div class="audio-placeholder">
+                                <i class="fas fa-music"></i>
+                                <p>Audio Track 1 - Dsoul Mix</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Vocal Mix Example</h4>
+                            <p>Professional vocal mixing with harmonies and effects</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Vocals</span>
+                                <span class="tag">Mixing</span>
+                                <span class="tag">Effects</span>
+                            </div>
+                            <div class="portfolio-action">
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Vocal Mixing&body=Hi Dsoul, I'm interested in your vocal mixing work." class="btn-portfolio">Inquire about this style</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <div class="portfolio-audio">
+                            <div class="audio-placeholder">
+                                <i class="fas fa-sliders-h"></i>
+                                <p>Audio Track 2 - Full Production</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Full Production</h4>
+                            <p>Complete track from raw recording to final master</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Production</span>
+                                <span class="tag">Mastering</span>
+                                <span class="tag">Complete</span>
+                            </div>
+                            <div class="portfolio-action">
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Full Production&body=Hi Dsoul, I'd like to discuss a full production project." class="btn-portfolio">Book Production Session</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <div class="portfolio-audio">
+                            <div class="audio-placeholder">
+                                <i class="fas fa-drum"></i>
+                                <p>Audio Track 3 - Beat Making</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Beat Making</h4>
+                            <p>Original production with custom sound design</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Production</span>
+                                <span class="tag">Beat Making</span>
+                                <span class="tag">Sound Design</span>
+                            </div>
+                            <div class="portfolio-action">
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Beat Making&body=Hi Dsoul, I'm interested in your beat making services." class="btn-portfolio">Get Custom Beat</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Jaidee's Portfolio -->
+            <div class="portfolio-content" id="jaidee-portfolio">
+                <div class="portfolio-header">
+                    <div class="producer-bio">
+                        <h3>Jaidee - Studio Manager & Producer</h3>
+                        <p>Bringing years of experience in artist development, creative direction, and project management. Specializes in bringing artists' visions to life.</p>
+                        <div class="producer-contact">
+                            <p><i class="fas fa-phone"></i> 07878 709110</p>
+                            <p><i class="fas fa-calendar-alt"></i> Specializes in: Artist Development, Project Management, Creative Direction</p>
+                        </div>
+                    </div>
+                    <div class="producer-stats">
+                        <div class="stat">
+                            <span class="stat-number">300+</span>
+                            <span class="stat-label">Projects Managed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-audio">
+                            <div class="audio-placeholder">
+                                <i class="fas fa-user-graduate"></i>
+                                <p>Project 1 - Artist Development</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Artist Development</h4>
+                            <p>Guiding emerging artists from concept to release</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Artist Dev</span>
+                                <span class="tag">Coaching</span>
+                                <span class="tag">Strategy</span>
+                            </div>
+                            <div class="portfolio-action">
+                                <a href="tel:07878709110" class="btn-portfolio">Call Jaidee Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <div class="portfolio-audio">
+                            <div class="audio-placeholder">
+                                <i class="fas fa-tasks"></i>
+                                <p>Project 2 - Project Management</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Project Management</h4>
+                            <p>Overseeing complex multi-track projects</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Management</span>
+                                <span class="tag">Coordination</span>
+                                <span class="tag">Planning</span>
+                            </div>
+                            <div class="portfolio-action">
+                                <a href="https://wa.me/447878709110?text=Hi%20Jaidee,%20I'm%20interested%20in%20project%20management%20services" target="_blank" class="btn-portfolio">WhatsApp Jaidee</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <div class="portfolio-audio">
+                            <div class="audio-placeholder">
+                                <i class="fas fa-palette"></i>
+                                <p>Project 3 - Creative Direction</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Creative Direction</h4>
+                            <p>Shaping overall sound and artistic direction</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Creative</span>
+                                <span class="tag">Direction</span>
+                                <span class="tag">Vision</span>
+                            </div>
+                            <div class="portfolio-action">
+                                <a href="mailto:billupsltd@gmail.com?subject=Inquiry about Creative Direction&body=Hi Jaidee, I'd like to discuss creative direction for my project." class="btn-portfolio">Email Jaidee</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-footer">
+                <p>🎯 <strong>Work directly with our producers</strong> - Book a session and work one-on-one with Dsoul or Jaidee for your next project.</p>
+                <div class="portfolio-footer-actions">
+                    <a href="#contact" class="btn-primary">Book Studio Time</a>
+                    <a href="tel:07710593113" class="btn-secondary">Call Studio: 07710 593113</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery Section -->
     <section class="gallery section" id="gallery">
         <div class="container">
@@ -2136,6 +2737,7 @@
                     <ul class="footer-links">
                         <li class="footer-link"><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
                         <li class="footer-link"><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li class="footer-link"><a href="#portfolio"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
                         <li class="footer-link"><a href="#gallery"><i class="fas fa-chevron-right"></i> Gallery</a></li>
                         <li class="footer-link"><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
@@ -2196,6 +2798,7 @@
                 hero: 'images/hero-bg.jpg',
                 about: 'images/about-studio.jpg',
                 services: 'images/studio-bg.jpg',
+                portfolio: 'images/portfolio-bg.jpg',
                 gallery: 'images/studio1.jpg',
                 contact: 'images/studio2.jpg'
             },
@@ -2265,6 +2868,10 @@
             
             // Quick Question Widget
             initializeQuickQuestionWidget();
+            
+            // Portfolio Features
+            initializePortfolioTabs();
+            initializePortfolioAudio();
             
             console.log('✅ All quick wins initialized');
         }
@@ -2389,6 +2996,90 @@
             }
         }
 
+        // ===== PORTFOLIO TAB SWITCHING =====
+        function initializePortfolioTabs() {
+            console.log('🎵 Initializing portfolio tabs...');
+            
+            const tabs = document.querySelectorAll('.portfolio-tab');
+            const contents = document.querySelectorAll('.portfolio-content');
+            
+            if (tabs.length > 0 && contents.length > 0) {
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const tabId = tab.dataset.tab;
+                        
+                        // Remove active class from all tabs
+                        tabs.forEach(t => t.classList.remove('active'));
+                        contents.forEach(c => c.classList.remove('active'));
+                        
+                        // Add active class to clicked tab
+                        tab.classList.add('active');
+                        
+                        // Show corresponding content
+                        const content = document.getElementById(`${tabId}-portfolio`);
+                        if (content) {
+                            content.classList.add('active');
+                            content.style.animation = 'fadeInUp 0.5s ease-out';
+                        }
+                        
+                        // Add visual feedback
+                        tab.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            tab.style.transform = 'translateY(-5px) scale(1)';
+                        }, 150);
+                    });
+                });
+            }
+        }
+
+        // ===== PORTFOLIO AUDIO PLACEHOLDER CLICK =====
+        function initializePortfolioAudio() {
+            const audioPlaceholders = document.querySelectorAll('.audio-placeholder');
+            
+            audioPlaceholders.forEach(placeholder => {
+                placeholder.addEventListener('click', function() {
+                    const producer = this.closest('.portfolio-content').id.replace('-portfolio', '');
+                    const trackNumber = Array.from(this.parentElement.parentElement.parentElement.children)
+                        .indexOf(this.parentElement.parentElement) + 1;
+                    
+                    showPortfolioNotification(producer, trackNumber);
+                });
+            });
+        }
+
+        function showPortfolioNotification(producer, trackNumber) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--accent);
+                color: var(--black);
+                padding: var(--space-lg);
+                border-radius: var(--radius-md);
+                z-index: 10000;
+                animation: fadeInUp 0.5s ease-out;
+                box-shadow: var(--shadow-lg);
+                max-width: 400px;
+                font-weight: bold;
+                text-align: center;
+            `;
+            
+            const producerName = producer === 'dsoul' ? 'Dsoul' : 'Jaidee';
+            notification.innerHTML = `
+                <i class="fas fa-music" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                <strong>${producerName}'s Work - Track ${trackNumber}</strong><br>
+                <small style="font-weight: normal;">Contact ${producerName} directly to hear full examples</small>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeInUp 0.5s ease-out reverse forwards';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
         // ===== QUICK QUESTION WIDGET =====
         function initializeQuickQuestionWidget() {
             const questionToggle = document.getElementById('questionToggle');
@@ -2481,6 +3172,7 @@
             const sections = [
                 { section: '.about', image: 'images/about-studio.jpg' },
                 { section: '.services', image: 'images/studio-bg.jpg' },
+                { section: '.portfolio', image: 'images/portfolio-bg.jpg' },
                 { section: '.gallery', image: 'images/studio1.jpg' },
                 { section: '.contact', image: 'images/studio2.jpg' }
             ];

@@ -121,49 +121,80 @@
             pointer-events: none;
         }
         
-        /* ===== TOP BORDER EQUALIZER FOR BLACK SECTIONS ===== */
-        .black-bg-section {
-            position: relative;
-            padding-top: 4px; /* Space for EQ bar */
-        }
+        /* ===== REMOVED: Top Border Equalizer for Black Sections ===== */
+        /* ===== REMOVED: Bottom Graphic Equalizer ===== */
         
-        .top-equalizer {
+        /* ===== HEADER EQUALIZER - NEW & IMPROVED ===== */
+        .header-equalizer {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 4px;
-            z-index: 15;
+            display: none; /* Hidden by default */
+            z-index: 1001;
             overflow: hidden;
-            pointer-events: none;
+            background: transparent;
         }
         
-        .top-eq-bar {
+        .header.scrolled .header-equalizer {
+            display: block; /* Show only when header has black background */
+        }
+        
+        .header-equalizer-bars {
             position: absolute;
             bottom: 0;
-            width: 3px;
-            background: var(--accent);
-            animation: equalizerPulse 1.2s infinite ease-in-out;
-            border-radius: 2px 2px 0 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 3px;
+            padding: 0 20px;
         }
         
-        @keyframes equalizerPulse {
-            0%, 100% { 
-                height: 2px; 
-                opacity: 0.6;
-            }
-            50% { 
-                height: 100%; 
-                opacity: 1;
-            }
+        .header-equalizer-bar {
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to top, var(--accent), var(--tier-2));
+            border-radius: 2px 2px 0 0;
+            opacity: 0.9;
+            filter: brightness(1.2);
+            animation: headerEqPulse 1.5s infinite ease-in-out;
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
         }
         
         /* Different animation delays for each bar */
-        .top-eq-bar:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .top-eq-bar:nth-child(2) { left: 30%; animation-delay: 0.2s; }
-        .top-eq-bar:nth-child(3) { left: 50%; animation-delay: 0.4s; }
-        .top-eq-bar:nth-child(4) { left: 70%; animation-delay: 0.6s; }
-        .top-eq-bar:nth-child(5) { left: 90%; animation-delay: 0.8s; }
+        .header-equalizer-bar:nth-child(1) { animation-delay: 0s; height: 70%; }
+        .header-equalizer-bar:nth-child(2) { animation-delay: 0.1s; height: 40%; }
+        .header-equalizer-bar:nth-child(3) { animation-delay: 0.2s; height: 90%; }
+        .header-equalizer-bar:nth-child(4) { animation-delay: 0.3s; height: 30%; }
+        .header-equalizer-bar:nth-child(5) { animation-delay: 0.4s; height: 60%; }
+        .header-equalizer-bar:nth-child(6) { animation-delay: 0.5s; height: 80%; }
+        .header-equalizer-bar:nth-child(7) { animation-delay: 0.6s; height: 50%; }
+        .header-equalizer-bar:nth-child(8) { animation-delay: 0.7s; height: 70%; }
+        .header-equalizer-bar:nth-child(9) { animation-delay: 0.8s; height: 40%; }
+        .header-equalizer-bar:nth-child(10) { animation-delay: 0.9s; height: 85%; }
+        
+        @keyframes headerEqPulse {
+            0%, 100% { 
+                opacity: 0.7;
+                transform: scaleY(1);
+            }
+            25% { 
+                opacity: 0.9;
+                transform: scaleY(1.3);
+            }
+            50% { 
+                opacity: 1;
+                transform: scaleY(0.8);
+            }
+            75% { 
+                opacity: 0.8;
+                transform: scaleY(1.5);
+            }
+        }
         
         /* ===== JAIDEE'S PHONE NUMBER STYLING ===== */
         .jaidee-contact .method-icon {
@@ -197,177 +228,6 @@
             margin-top: 5px;
             font-weight: bold;
             border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        /* ===== ENHANCED GRAPHIC EQUALIZER - FIXED VISIBILITY ===== */
-        .equalizer-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            z-index: 10; /* Increased from -1 to be above backgrounds */
-            opacity: 0.35; /* Increased opacity */
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .equalizer-bars {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: flex-end;
-            height: 150px;
-            gap: 10px;
-            padding: 0 40px;
-        }
-        
-        .equalizer-bar {
-            width: 14px;
-            background: linear-gradient(to top, var(--accent), var(--tier-1), var(--tier-custom));
-            border-radius: 7px 7px 0 0;
-            opacity: 0.9; /* Increased opacity */
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); /* More prominent glow */
-            filter: brightness(1.4) drop-shadow(0 0 10px rgba(0, 255, 0, 0.5));
-        }
-        
-        /* Smoke Particles - FIXED VISIBILITY */
-        .smoke-particle {
-            position: absolute;
-            bottom: 150px;
-            width: 120px; /* Larger */
-            height: 120px;
-            background: radial-gradient(circle, 
-                rgba(255, 255, 255, 0.25) 0%, 
-                rgba(0, 255, 0, 0.2) 30%, 
-                rgba(0, 168, 255, 0.15) 50%, 
-                transparent 70%
-            );
-            border-radius: 50%;
-            filter: blur(15px);
-            opacity: 0;
-            z-index: 11; /* Above bars */
-        }
-        
-        /* ===== SMOKE ANIMATIONS - ADDED TO CSS ===== */
-        @keyframes smoke-float-1 {
-            0% {
-                opacity: 0;
-                transform: translateY(0) scale(0.8);
-            }
-            10% {
-                opacity: 0.6;
-                transform: translateY(-40px) scale(1);
-            }
-            40% {
-                opacity: 0.8;
-                transform: translateY(-140px) scale(1.2);
-            }
-            70% {
-                opacity: 0.4;
-                transform: translateY(-240px) scale(1.5);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-350px) scale(1.8);
-            }
-        }
-        
-        @keyframes smoke-float-2 {
-            0% {
-                opacity: 0;
-                transform: translateY(0) scale(0.7);
-            }
-            15% {
-                opacity: 0.7;
-                transform: translateY(-50px) scale(1.1);
-            }
-            45% {
-                opacity: 0.9;
-                transform: translateY(-160px) scale(1.4);
-            }
-            75% {
-                opacity: 0.3;
-                transform: translateY(-270px) scale(1.7);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-380px) scale(2);
-            }
-        }
-        
-        @keyframes smoke-float-3 {
-            0% {
-                opacity: 0;
-                transform: translateY(0) scale(0.9);
-            }
-            20% {
-                opacity: 0.8;
-                transform: translateY(-60px) scale(1.2);
-            }
-            50% {
-                opacity: 1;
-                transform: translateY(-180px) scale(1.5);
-            }
-            80% {
-                opacity: 0.2;
-                transform: translateY(-300px) scale(1.9);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-400px) scale(2.2);
-            }
-        }
-        
-        /* Equalizer Bar Animations */
-        .equalizer-bar:nth-child(1) { height: 30%; animation: eq-bar-1 2.5s infinite ease-in-out; background: linear-gradient(to top, var(--accent), var(--tier-1)); }
-        .equalizer-bar:nth-child(2) { height: 50%; animation: eq-bar-2 3s infinite ease-in-out; animation-delay: 0.1s; background: linear-gradient(to top, var(--accent), var(--tier-2)); }
-        .equalizer-bar:nth-child(3) { height: 70%; animation: eq-bar-3 2.8s infinite ease-in-out; animation-delay: 0.2s; background: linear-gradient(to top, var(--accent), var(--tier-3)); }
-        .equalizer-bar:nth-child(4) { height: 40%; animation: eq-bar-4 3.2s infinite ease-in-out; animation-delay: 0.3s; background: linear-gradient(to top, var(--accent), var(--tier-custom)); }
-        .equalizer-bar:nth-child(5) { height: 60%; animation: eq-bar-5 2.9s infinite ease-in-out; animation-delay: 0.4s; background: linear-gradient(to top, var(--accent), var(--tier-1)); }
-        .equalizer-bar:nth-child(6) { height: 45%; animation: eq-bar-1 3.1s infinite ease-in-out; animation-delay: 0.5s; background: linear-gradient(to top, var(--accent), var(--tier-2)); }
-        .equalizer-bar:nth-child(7) { height: 75%; animation: eq-bar-2 3.3s infinite ease-in-out; animation-delay: 0.6s; background: linear-gradient(to top, var(--accent), var(--tier-3)); }
-        .equalizer-bar:nth-child(8) { height: 35%; animation: eq-bar-3 2.7s infinite ease-in-out; animation-delay: 0.7s; background: linear-gradient(to top, var(--accent), var(--tier-custom)); }
-        .equalizer-bar:nth-child(9) { height: 65%; animation: eq-bar-4 3.4s infinite ease-in-out; animation-delay: 0.8s; background: linear-gradient(to top, var(--accent), var(--tier-1)); }
-        .equalizer-bar:nth-child(10) { height: 55%; animation: eq-bar-5 2.6s infinite ease-in-out; animation-delay: 0.9s; background: linear-gradient(to top, var(--accent), var(--tier-2)); }
-        .equalizer-bar:nth-child(11) { height: 25%; animation: eq-bar-1 3.5s infinite ease-in-out; animation-delay: 1s; background: linear-gradient(to top, var(--accent), var(--tier-3)); }
-        .equalizer-bar:nth-child(12) { height: 80%; animation: eq-bar-2 3s infinite ease-in-out; animation-delay: 1.1s; background: linear-gradient(to top, var(--accent), var(--tier-custom)); }
-        
-        @keyframes eq-bar-1 {
-            0%, 100% { height: 30%; }
-            25% { height: 60%; }
-            50% { height: 40%; }
-            75% { height: 80%; }
-        }
-        
-        @keyframes eq-bar-2 {
-            0%, 100% { height: 50%; }
-            25% { height: 70%; }
-            50% { height: 30%; }
-            75% { height: 90%; }
-        }
-        
-        @keyframes eq-bar-3 {
-            0%, 100% { height: 70%; }
-            25% { height: 40%; }
-            50% { height: 85%; }
-            75% { height: 55%; }
-        }
-        
-        @keyframes eq-bar-4 {
-            0%, 100% { height: 40%; }
-            25% { height: 65%; }
-            50% { height: 25%; }
-            75% { height: 75%; }
-        }
-        
-        @keyframes eq-bar-5 {
-            0%, 100% { height: 60%; }
-            25% { height: 35%; }
-            50% { height: 80%; }
-            75% { height: 45%; }
         }
         
         /* ===== ENHANCED NAVIGATION ICONS ===== */
@@ -624,7 +484,7 @@
             background-color: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(15px) saturate(180%);
             padding: var(--space-md) var(--space-xl);
-            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+            border-bottom: none; /* Remove border, will use equalizer instead */
             box-shadow: var(--shadow-lg);
         }
         
@@ -1758,11 +1618,6 @@
             }
         }
         
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(0, 255, 0, 0.6); }
-        }
-        
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1200px) {
             h1 { font-size: 4rem; }
@@ -1818,7 +1673,6 @@
                 gap: var(--space-xl);
             }
             .contact-form { padding: var(--space-xl); }
-            .equalizer-container { display: block !important; opacity: 0.4 !important; }
             .service-header-row,
             .service-row {
                 grid-template-columns: 1fr;
@@ -1870,19 +1724,6 @@
             .btn-audio {
                 width: 100%;
                 max-width: 200px;
-            }
-            
-            /* Mobile adjustments for top equalizer */
-            .top-equalizer {
-                height: 3px;
-            }
-            
-            .top-eq-bar {
-                width: 2px;
-            }
-            
-            .black-bg-section {
-                padding-top: 3px;
             }
         }
         
@@ -1953,25 +1794,6 @@
 <body>
     <!-- Grid Overlay -->
     <div class="grid-overlay"></div>
-    
-    <!-- Enhanced Graphic Equalizer - FIXED VISIBILITY -->
-    <div class="equalizer-container" id="equalizerContainer">
-        <div class="equalizer-bars">
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-            <div class="equalizer-bar"></div>
-        </div>
-        <!-- Smoke particles will be added by JavaScript -->
-    </div>
 
     <!-- Header -->
     <header class="header" id="header">
@@ -2026,10 +1848,17 @@
             
             <img src="images/logo.png" alt="Billups Studio Logo" class="logo-small" id="smallLogo">
         </div>
+        
+        <!-- Header Equalizer - NEW: Only appears when header has black background -->
+        <div class="header-equalizer" id="headerEqualizer">
+            <div class="header-equalizer-bars">
+                <!-- Bars will be added by JavaScript -->
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero section black-bg-section" id="home">
+    <section class="hero section" id="home">
         <div class="hero-content">
             <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large" id="mainLogo">
             
@@ -2144,7 +1973,7 @@
     </section>
 
     <!-- Services Section -->
-    <section class="services section black-bg-section" id="services">
+    <section class="services section" id="services">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Lock In a Session</h2>
@@ -2429,7 +2258,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer black-bg-section">
+    <footer class="footer">
         <div class="container">
             <div class="footer-table">
                 <div class="footer-column">
@@ -2541,100 +2370,48 @@
             initializeEventListeners();
             initializeAnimations();
             initializeCurrentYear();
-            initializeEqualizerAndSmoke();
-            initializeTopEqualizer(); // NEW: Initialize top border EQ
-            initializeQuickWins(); // NEW: Initialize all quick wins
+            initializeHeaderEqualizer(); // NEW: Initialize header equalizer
+            initializeQuickWins(); // Initialize all quick wins
             
             console.log('✅ Website initialized successfully!');
         });
 
-        // ===== TOP BORDER EQUALIZER =====
-        function initializeTopEqualizer() {
-            console.log('🔊 Initializing top border equalizer...');
+        // ===== HEADER EQUALIZER - NEW & IMPROVED =====
+        function initializeHeaderEqualizer() {
+            console.log('🔊 Initializing header equalizer...');
             
-            const blackSections = document.querySelectorAll('.black-bg-section');
-            
-            blackSections.forEach(section => {
-                // Create equalizer if not exists
-                if (!section.querySelector('.top-equalizer')) {
-                    const equalizer = document.createElement('div');
-                    equalizer.className = 'top-equalizer';
-                    equalizer.innerHTML = `
-                        <div class="top-eq-bar"></div>
-                        <div class="top-eq-bar"></div>
-                        <div class="top-eq-bar"></div>
-                        <div class="top-eq-bar"></div>
-                        <div class="top-eq-bar"></div>
-                    `;
-                    section.insertBefore(equalizer, section.firstChild);
-                }
-                
-                // Add random animation delays for organic movement
-                const bars = section.querySelectorAll('.top-eq-bar');
-                bars.forEach((bar, index) => {
-                    bar.style.animationDelay = `${index * 0.2}s`;
-                });
-            });
-            
-            console.log(`✅ Top equalizer added to ${blackSections.length} sections`);
-        }
-
-        // ===== FORCE INITIALIZE EQUALIZER AND SMOKE =====
-        function initializeEqualizerAndSmoke() {
-            console.log('🎵 Initializing equalizer and smoke particles...');
-            
-            const equalizerContainer = document.getElementById('equalizerContainer');
-            if (!equalizerContainer) {
-                console.log('❌ Equalizer container not found');
+            const headerEqualizer = document.getElementById('headerEqualizer');
+            if (!headerEqualizer) {
+                console.log('❌ Header equalizer container not found');
                 return;
             }
             
-            // Force equalizer to be visible
-            equalizerContainer.style.display = 'block';
-            equalizerContainer.style.opacity = '0.35';
-            equalizerContainer.style.zIndex = '10';
-            
-            // Clear any existing smoke particles
-            const existingSmoke = equalizerContainer.querySelectorAll('.smoke-particle');
-            existingSmoke.forEach(smoke => smoke.remove());
-            
-            // Create smoke particles
-            for (let i = 0; i < 6; i++) {
-                const smoke = document.createElement('div');
-                smoke.className = 'smoke-particle';
-                
-                // Position
-                smoke.style.left = `${10 + (i * 16)}%`;
-                
-                // Random animation type (1, 2, or 3)
-                const animationType = (i % 3) + 1;
-                const duration = 15 + (Math.random() * 10);
-                const delay = Math.random() * 20;
-                
-                smoke.style.animation = `smoke-float-${animationType} ${duration}s infinite ease-in-out`;
-                smoke.style.animationDelay = `${delay}s`;
-                
-                // Color variations
-                const colors = [
-                    'rgba(255, 255, 255, 0.25)',
-                    'rgba(0, 255, 0, 0.25)',
-                    'rgba(0, 168, 255, 0.25)',
-                    'rgba(255, 149, 0, 0.25)',
-                    'rgba(188, 0, 255, 0.25)'
-                ];
-                const color = colors[i % colors.length];
-                
-                smoke.style.background = `radial-gradient(circle, 
-                    ${color} 0%, 
-                    rgba(0, 255, 0, 0.2) 30%, 
-                    rgba(0, 168, 255, 0.15) 50%, 
-                    transparent 70%
-                )`;
-                
-                equalizerContainer.appendChild(smoke);
+            const barsContainer = headerEqualizer.querySelector('.header-equalizer-bars');
+            if (!barsContainer) {
+                console.log('❌ Header equalizer bars container not found');
+                return;
             }
             
-            console.log('✅ Equalizer and smoke particles initialized');
+            // Clear any existing bars
+            barsContainer.innerHTML = '';
+            
+            // Create 10 equalizer bars
+            for (let i = 0; i < 10; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'header-equalizer-bar';
+                barsContainer.appendChild(bar);
+            }
+            
+            console.log('✅ Header equalizer initialized with 10 animated bars');
+            
+            // Add scroll listener to show/hide equalizer
+            const header = document.getElementById('header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    // Equalizer visibility is controlled by CSS (.header.scrolled .header-equalizer)
+                    // The equalizer is already hidden by default and only shows when header has class 'scrolled'
+                });
+            }
         }
 
         // ===== QUICK WINS INITIALIZATION =====
@@ -3391,7 +3168,6 @@
 
         // ===== ANIMATIONS =====
         function initializeAnimations() {
-            // Equalizer animations are already in CSS
             console.log('✨ Animations initialized');
         }
 
@@ -3432,16 +3208,6 @@
                     }
                 };
             });
-            
-            // Force equalizer visibility check
-            const equalizer = document.getElementById('equalizerContainer');
-            if (equalizer) {
-                setTimeout(() => {
-                    equalizer.style.display = 'block';
-                    equalizer.style.opacity = '0.35';
-                    console.log('✅ Equalizer forced visible');
-                }, 100);
-            }
         });
     </script>
 </body>

@@ -121,6 +121,84 @@
             pointer-events: none;
         }
         
+        /* ===== TOP BORDER EQUALIZER FOR BLACK SECTIONS ===== */
+        .black-bg-section {
+            position: relative;
+            padding-top: 4px; /* Space for EQ bar */
+        }
+        
+        .top-equalizer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 15;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .top-eq-bar {
+            position: absolute;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            animation: equalizerPulse 1.2s infinite ease-in-out;
+            border-radius: 2px 2px 0 0;
+        }
+        
+        @keyframes equalizerPulse {
+            0%, 100% { 
+                height: 2px; 
+                opacity: 0.6;
+            }
+            50% { 
+                height: 100%; 
+                opacity: 1;
+            }
+        }
+        
+        /* Different animation delays for each bar */
+        .top-eq-bar:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .top-eq-bar:nth-child(2) { left: 30%; animation-delay: 0.2s; }
+        .top-eq-bar:nth-child(3) { left: 50%; animation-delay: 0.4s; }
+        .top-eq-bar:nth-child(4) { left: 70%; animation-delay: 0.6s; }
+        .top-eq-bar:nth-child(5) { left: 90%; animation-delay: 0.8s; }
+        
+        /* ===== JAIDEE'S PHONE NUMBER STYLING ===== */
+        .jaidee-contact .method-icon {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%) !important;
+            border-color: #6a11cb !important;
+            color: white !important;
+        }
+        
+        .jaidee-contact:hover {
+            background: rgba(106, 17, 203, 0.15) !important;
+            border-color: #6a11cb !important;
+        }
+        
+        .jaidee-contact:hover .method-icon {
+            animation: gentlePulse 2s infinite;
+            transform: scale(1.1);
+        }
+        
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .phone-badge {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 5px;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
         /* ===== ENHANCED GRAPHIC EQUALIZER - FIXED VISIBILITY ===== */
         .equalizer-container {
             position: fixed;
@@ -1668,19 +1746,6 @@
             }
         }
         
-        /* Mobile responsive */
-        @media (max-width: 480px) {
-            .widget-form {
-                width: 280px;
-                right: -10px;
-            }
-            
-            .quick-question-widget {
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-        
         /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from {
@@ -1805,6 +1870,19 @@
             .btn-audio {
                 width: 100%;
                 max-width: 200px;
+            }
+            
+            /* Mobile adjustments for top equalizer */
+            .top-equalizer {
+                height: 3px;
+            }
+            
+            .top-eq-bar {
+                width: 2px;
+            }
+            
+            .black-bg-section {
+                padding-top: 3px;
             }
         }
         
@@ -1951,7 +2029,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero section black-bg-section" id="home">
         <div class="hero-content">
             <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large" id="mainLogo">
             
@@ -2066,7 +2144,7 @@
     </section>
 
     <!-- Services Section -->
-    <section class="services section" id="services">
+    <section class="services section black-bg-section" id="services">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Lock In a Session</h2>
@@ -2235,6 +2313,19 @@
                             </div>
                         </a>
                         
+                        <!-- JAIDEE'S PHONE NUMBER ADDED HERE -->
+                        <a href="tel:07878709110" class="contact-row jaidee-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="method-text">
+                                <span class="contact-name">Jaidee (Studio Manager)</span>
+                                <strong>07878 709110</strong>
+                                <p>Direct calls • Studio scheduling • Equipment queries</p>
+                                <div class="phone-badge">📞 Available 10am-8pm</div>
+                            </div>
+                        </a>
+                        
                         <a href="mailto:billupsltd@gmail.com" class="contact-row">
                             <div class="method-icon"><i class="fas fa-envelope"></i></div>
                             <div class="method-text">
@@ -2338,7 +2429,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer black-bg-section">
         <div class="container">
             <div class="footer-table">
                 <div class="footer-column">
@@ -2451,10 +2542,42 @@
             initializeAnimations();
             initializeCurrentYear();
             initializeEqualizerAndSmoke();
+            initializeTopEqualizer(); // NEW: Initialize top border EQ
             initializeQuickWins(); // NEW: Initialize all quick wins
             
             console.log('✅ Website initialized successfully!');
         });
+
+        // ===== TOP BORDER EQUALIZER =====
+        function initializeTopEqualizer() {
+            console.log('🔊 Initializing top border equalizer...');
+            
+            const blackSections = document.querySelectorAll('.black-bg-section');
+            
+            blackSections.forEach(section => {
+                // Create equalizer if not exists
+                if (!section.querySelector('.top-equalizer')) {
+                    const equalizer = document.createElement('div');
+                    equalizer.className = 'top-equalizer';
+                    equalizer.innerHTML = `
+                        <div class="top-eq-bar"></div>
+                        <div class="top-eq-bar"></div>
+                        <div class="top-eq-bar"></div>
+                        <div class="top-eq-bar"></div>
+                        <div class="top-eq-bar"></div>
+                    `;
+                    section.insertBefore(equalizer, section.firstChild);
+                }
+                
+                // Add random animation delays for organic movement
+                const bars = section.querySelectorAll('.top-eq-bar');
+                bars.forEach((bar, index) => {
+                    bar.style.animationDelay = `${index * 0.2}s`;
+                });
+            });
+            
+            console.log(`✅ Top equalizer added to ${blackSections.length} sections`);
+        }
 
         // ===== FORCE INITIALIZE EQUALIZER AND SMOKE =====
         function initializeEqualizerAndSmoke() {

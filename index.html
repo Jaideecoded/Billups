@@ -1610,6 +1610,23 @@
             color: var(--black);
         }
         
+        /* Coming Soon Button Styling */
+        .btn-coming-soon {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            width: 100%;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
         /* ===== GALLERY SECTION ===== */
         .gallery {
             background-color: rgba(45, 27, 78, 0.7);
@@ -1969,26 +1986,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-        
-        /* ===== VIDEO MODAL STYLING ===== */
-        .video-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            animation: fadeIn 0.3s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         
         /* ===== ANIMATIONS ===== */
@@ -2700,14 +2697,14 @@
                     </div>
                 </div>
                 
-                <!-- FEATURED VIDEOS SECTION -->
+                <!-- FEATURED VIDEOS SECTION - UPDATED WITH YOUR LINKS -->
                 <div class="featured-videos-section">
                     <h3><i class="fas fa-video"></i> Featured Videos & Recent Work</h3>
                     
                     <div class="videos-grid">
-                        <!-- Video 1: Arsenal Cypher -->
+                        <!-- Video 1: Arsenal Cypher - Your YouTube Link -->
                         <div class="video-item">
-                            <div class="video-thumbnail">
+                            <div class="video-thumbnail" onclick="window.open('https://youtu.be/2WaVOTgPwOM?si=Pn5XRfx8KqHjQDdF', '_blank')">
                                 <i class="fas fa-play-circle"></i>
                                 <div class="video-overlay">Watch Now</div>
                             </div>
@@ -2719,17 +2716,17 @@
                                     <span class="tag">Live Event</span>
                                     <span class="tag">Production</span>
                                 </div>
-                                <button class="btn-portfolio video-btn" onclick="showVideoModal('arsenal-cypher')">
+                                <a href="https://youtu.be/2WaVOTgPwOM?si=Pn5XRfx8KqHjQDdF" target="_blank" class="btn-portfolio video-btn">
                                     <i class="fas fa-play"></i> Watch Highlight
-                                </button>
+                                </a>
                             </div>
                         </div>
                         
-                        <!-- Video 2: Studio Sessions -->
+                        <!-- Video 2: Studio Sessions - Coming Soon -->
                         <div class="video-item">
                             <div class="video-thumbnail">
                                 <i class="fas fa-microphone-alt"></i>
-                                <div class="video-overlay">Watch Now</div>
+                                <div class="video-overlay">Coming Soon</div>
                             </div>
                             <div class="video-info">
                                 <h4>Studio Session Highlights</h4>
@@ -2739,15 +2736,16 @@
                                     <span class="tag">Recording</span>
                                     <span class="tag">Behind Scenes</span>
                                 </div>
-                                <button class="btn-portfolio video-btn" onclick="showVideoModal('studio-sessions')">
-                                    <i class="fas fa-play"></i> Watch Preview
+                                <!-- Note: Add YouTube link here when available -->
+                                <button class="btn-coming-soon" disabled>
+                                    <i class="fas fa-clock"></i> Coming Soon
                                 </button>
                             </div>
                         </div>
                         
-                        <!-- Video 3: SamHam Feature -->
+                        <!-- Video 3: SamHam Feature - Your YouTube Link -->
                         <div class="video-item">
-                            <div class="video-thumbnail">
+                            <div class="video-thumbnail" onclick="window.open('https://youtu.be/b8AliqtsSuo?si=_945yhhEXsb21In9', '_blank')">
                                 <i class="fas fa-star"></i>
                                 <div class="video-overlay">Watch Now</div>
                             </div>
@@ -2759,9 +2757,9 @@
                                     <span class="tag">Cypher</span>
                                     <span class="tag">Feature</span>
                                 </div>
-                                <button class="btn-portfolio video-btn" onclick="showVideoModal('samham-cypher')">
+                                <a href="https://youtu.be/b8AliqtsSuo?si=_945yhhEXsb21In9" target="_blank" class="btn-portfolio video-btn">
                                     <i class="fas fa-play"></i> Watch Feature
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -3074,7 +3072,6 @@
             initializeCurrentYear();
             initializeHeaderEqualizer();
             initializeQuickWins();
-            initializeVideoModals();
             
             console.log('✅ Website initialized successfully!');
         });
@@ -3100,87 +3097,6 @@
                 bar.style.height = `${randomInitialHeight}%`;
                 barsContainer.appendChild(bar);
             }
-        }
-
-        // ===== VIDEO MODAL FUNCTIONALITY =====
-        function initializeVideoModals() {
-            window.showVideoModal = function(videoType) {
-                const modal = document.createElement('div');
-                modal.className = 'video-modal';
-                
-                let videoHTML = '';
-                let videoTitle = '';
-                
-                switch(videoType) {
-                    case 'arsenal-cypher':
-                        videoTitle = 'FYI Arsenal Cypher - Organized by Jaidee';
-                        videoHTML = `
-                            <div style="text-align: center; max-width: 800px; padding: 20px;">
-                                <h2 style="color: var(--accent); margin-bottom: 20px;">${videoTitle}</h2>
-                                <div style="background: #222; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                                    <p style="color: #fff; margin-bottom: 15px;">This cypher was organized and produced by Jaidee, showcasing local talent from Luton.</p>
-                                    <p style="color: #aaa;">Video coming soon - Contact Jaidee for preview</p>
-                                </div>
-                                <button onclick="this.parentElement.parentElement.remove()" style="background: var(--accent); color: black; border: none; padding: 10px 30px; border-radius: 5px; font-weight: bold; cursor: pointer;">
-                                    Close
-                                </button>
-                            </div>
-                        `;
-                        break;
-                        
-                    case 'studio-sessions':
-                        videoTitle = 'Studio Session Highlights';
-                        videoHTML = `
-                            <div style="text-align: center; max-width: 800px; padding: 20px;">
-                                <h2 style="color: var(--accent); margin-bottom: 20px;">${videoTitle}</h2>
-                                <div style="background: #222; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                                    <p style="color: #fff; margin-bottom: 15px;">Behind-the-scenes footage from recent studio sessions at Billups.</p>
-                                    <p style="color: #aaa;">Video compilation in production - Contact for preview</p>
-                                </div>
-                                <button onclick="this.parentElement.parentElement.remove()" style="background: var(--accent); color: black; border: none; padding: 10px 30px; border-radius: 5px; font-weight: bold; cursor: pointer;">
-                                    Close
-                                </button>
-                            </div>
-                        `;
-                        break;
-                        
-                    case 'samham-cypher':
-                        videoTitle = 'SamHam Viral Cypher Feature';
-                        videoHTML = `
-                            <div style="text-align: center; max-width: 800px; padding: 20px;">
-                                <h2 style="color: var(--accent); margin-bottom: 20px;">${videoTitle}</h2>
-                                <div style="background: #222; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                                    <p style="color: #fff; margin-bottom: 15px;">Jaidee's feature on the viral SamHam cypher.</p>
-                                    <p style="color: #aaa;">Video link available upon request</p>
-                                </div>
-                                <button onclick="this.parentElement.parentElement.remove()" style="background: var(--accent); color: black; border: none; padding: 10px 30px; border-radius: 5px; font-weight: bold; cursor: pointer;">
-                                    Close
-                                </button>
-                            </div>
-                        `;
-                        break;
-                }
-                
-                modal.innerHTML = videoHTML;
-                document.body.appendChild(modal);
-                
-                // Close on click outside
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.remove();
-                    }
-                });
-                
-                // Close on escape key
-                const keyHandler = (e) => {
-                    if (e.key === 'Escape') {
-                        modal.remove();
-                        document.removeEventListener('keydown', keyHandler);
-                    }
-                };
-                
-                document.addEventListener('keydown', keyHandler);
-            };
         }
 
         // ===== QUICK WINS INITIALIZATION =====

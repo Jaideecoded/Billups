@@ -121,13 +121,13 @@
             pointer-events: none;
         }
         
-        /* ===== ENHANCED HEADER EQUALIZER - TALLER ===== */
+        /* ===== ENHANCED REACTIVE HEADER EQUALIZER - TALLER & MORE REACTIVE ===== */
         .header-equalizer {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 8px; /* INCREASED FROM 4px TO 8px */
+            height: 14px; /* INCREASED FROM 8px TO 14px FOR MORE VISUAL IMPACT */
             display: none;
             z-index: 1001;
             overflow: hidden;
@@ -136,6 +136,7 @@
         
         .header.scrolled .header-equalizer {
             display: block;
+            animation: equalizerFadeIn 0.5s ease-out;
         }
         
         .header-equalizer-bars {
@@ -147,50 +148,253 @@
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            gap: 4px;
-            padding: 0 20px;
+            gap: 3px;
+            padding: 0 15px;
         }
         
         .header-equalizer-bar {
-            width: 4px;
-            height: 100%;
+            width: 5px;
+            height: 60%; /* Start at 60% - will be animated to full range */
             background: linear-gradient(to top, var(--accent), var(--tier-2));
-            border-radius: 2px 2px 0 0;
-            opacity: 0.9;
+            border-radius: 3px 3px 0 0;
+            opacity: 0.8;
             filter: brightness(1.2);
-            animation: headerEqPulse 1.5s infinite ease-in-out;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Enhanced shadow for taller bars */
+            transform-origin: bottom center;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 0, 0.6),
+                inset 0 2px 3px rgba(255, 255, 255, 0.3);
+            transition: height 0.15s ease-out;
         }
         
-        /* Different animation delays for each bar - taller bars */
-        .header-equalizer-bar:nth-child(1) { animation-delay: 0s; height: 75%; }
-        .header-equalizer-bar:nth-child(2) { animation-delay: 0.1s; height: 45%; }
-        .header-equalizer-bar:nth-child(3) { animation-delay: 0.2s; height: 95%; }
-        .header-equalizer-bar:nth-child(4) { animation-delay: 0.3s; height: 35%; }
-        .header-equalizer-bar:nth-child(5) { animation-delay: 0.4s; height: 65%; }
-        .header-equalizer-bar:nth-child(6) { animation-delay: 0.5s; height: 85%; }
-        .header-equalizer-bar:nth-child(7) { animation-delay: 0.6s; height: 55%; }
-        .header-equalizer-bar:nth-child(8) { animation-delay: 0.7s; height: 75%; }
-        .header-equalizer-bar:nth-child(9) { animation-delay: 0.8s; height: 45%; }
-        .header-equalizer-bar:nth-child(10) { animation-delay: 0.9s; height: 90%; }
-        
-        @keyframes headerEqPulse {
+        /* Enhanced animations - more reactive with different rhythms */
+        @keyframes headerEqPulse1 {
             0%, 100% { 
+                height: 40%;
                 opacity: 0.7;
-                transform: scaleY(1);
+                filter: brightness(1.1);
             }
-            25% { 
-                opacity: 0.9;
-                transform: scaleY(1.4); /* More pronounced scaling for taller bars */
+            20% { 
+                height: 85%;
+                opacity: 0.95;
+                filter: brightness(1.4);
+            }
+            40% { 
+                height: 60%;
+                opacity: 0.8;
+                filter: brightness(1.2);
+            }
+            60% { 
+                height: 95%;
+                opacity: 1;
+                filter: brightness(1.5);
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+            }
+            80% { 
+                height: 45%;
+                opacity: 0.75;
+                filter: brightness(1.1);
+            }
+        }
+        
+        @keyframes headerEqPulse2 {
+            0%, 100% { 
+                height: 65%;
+                opacity: 0.8;
+            }
+            30% { 
+                height: 35%;
+                opacity: 0.7;
             }
             50% { 
+                height: 90%;
                 opacity: 1;
-                transform: scaleY(0.9);
+                filter: brightness(1.6);
+            }
+            70% { 
+                height: 55%;
+                opacity: 0.85;
+            }
+            90% { 
+                height: 75%;
+                opacity: 0.9;
+            }
+        }
+        
+        @keyframes headerEqPulse3 {
+            0% { 
+                height: 50%;
+                opacity: 0.7;
+            }
+            25% { 
+                height: 80%;
+                opacity: 0.9;
+            }
+            50% { 
+                height: 30%;
+                opacity: 0.6;
             }
             75% { 
-                opacity: 0.8;
-                transform: scaleY(1.6);
+                height: 100%;
+                opacity: 1;
+                filter: brightness(1.7);
             }
+            100% { 
+                height: 45%;
+                opacity: 0.75;
+            }
+        }
+        
+        @keyframes headerEqPulse4 {
+            0%, 100% { 
+                height: 75%;
+                opacity: 0.85;
+            }
+            15% { 
+                height: 40%;
+                opacity: 0.7;
+            }
+            35% { 
+                height: 95%;
+                opacity: 1;
+                filter: brightness(1.5);
+            }
+            55% { 
+                height: 60%;
+                opacity: 0.8;
+            }
+            75% { 
+                height: 85%;
+                opacity: 0.95;
+            }
+        }
+        
+        @keyframes headerEqPulse5 {
+            0% { 
+                height: 85%;
+                opacity: 0.9;
+            }
+            20% { 
+                height: 45%;
+                opacity: 0.7;
+            }
+            40% { 
+                height: 100%;
+                opacity: 1;
+                filter: brightness(1.6);
+            }
+            60% { 
+                height: 65%;
+                opacity: 0.85;
+            }
+            80% { 
+                height: 90%;
+                opacity: 0.95;
+            }
+            100% { 
+                height: 70%;
+                opacity: 0.8;
+            }
+        }
+        
+        /* Apply different animations to create a more dynamic effect */
+        .header-equalizer-bar:nth-child(1) { 
+            animation: headerEqPulse1 2.1s infinite ease-in-out; 
+            animation-delay: 0s; 
+        }
+        .header-equalizer-bar:nth-child(2) { 
+            animation: headerEqPulse2 1.8s infinite ease-in-out; 
+            animation-delay: 0.2s; 
+        }
+        .header-equalizer-bar:nth-child(3) { 
+            animation: headerEqPulse3 2.3s infinite ease-in-out; 
+            animation-delay: 0.1s; 
+        }
+        .header-equalizer-bar:nth-child(4) { 
+            animation: headerEqPulse4 2.0s infinite ease-in-out; 
+            animation-delay: 0.3s; 
+        }
+        .header-equalizer-bar:nth-child(5) { 
+            animation: headerEqPulse5 1.9s infinite ease-in-out; 
+            animation-delay: 0.15s; 
+        }
+        .header-equalizer-bar:nth-child(6) { 
+            animation: headerEqPulse1 2.2s infinite ease-in-out; 
+            animation-delay: 0.25s; 
+        }
+        .header-equalizer-bar:nth-child(7) { 
+            animation: headerEqPulse2 1.7s infinite ease-in-out; 
+            animation-delay: 0.35s; 
+        }
+        .header-equalizer-bar:nth-child(8) { 
+            animation: headerEqPulse3 2.4s infinite ease-in-out; 
+            animation-delay: 0.05s; 
+        }
+        .header-equalizer-bar:nth-child(9) { 
+            animation: headerEqPulse4 2.1s infinite ease-in-out; 
+            animation-delay: 0.4s; 
+        }
+        .header-equalizer-bar:nth-child(10) { 
+            animation: headerEqPulse5 1.6s infinite ease-in-out; 
+            animation-delay: 0.1s; 
+        }
+        .header-equalizer-bar:nth-child(11) { 
+            animation: headerEqPulse1 2.0s infinite ease-in-out; 
+            animation-delay: 0.3s; 
+        }
+        .header-equalizer-bar:nth-child(12) { 
+            animation: headerEqPulse2 1.9s infinite ease-in-out; 
+            animation-delay: 0.2s; 
+        }
+        .header-equalizer-bar:nth-child(13) { 
+            animation: headerEqPulse3 2.3s infinite ease-in-out; 
+            animation-delay: 0.15s; 
+        }
+        .header-equalizer-bar:nth-child(14) { 
+            animation: headerEqPulse4 2.2s infinite ease-in-out; 
+            animation-delay: 0.35s; 
+        }
+        .header-equalizer-bar:nth-child(15) { 
+            animation: headerEqPulse5 1.8s infinite ease-in-out; 
+            animation-delay: 0.25s; 
+        }
+        
+        /* Add a subtle pulse to the entire equalizer */
+        @keyframes equalizerFadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Add hover interaction */
+        .header-equalizer:hover .header-equalizer-bar {
+            animation-duration: 0.8s !important;
+            filter: brightness(1.8);
+            box-shadow: 
+                0 0 25px rgba(0, 255, 0, 0.8),
+                inset 0 3px 5px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Add a subtle glow effect on the container */
+        .header-equalizer::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 255, 0, 0.2) 20%, 
+                rgba(0, 255, 0, 0.4) 50%, 
+                rgba(0, 255, 0, 0.2) 80%, 
+                transparent 100%);
+            filter: blur(3px);
+            pointer-events: none;
         }
         
         /* ===== JAIDEE'S PHONE NUMBER STYLING ===== */
@@ -1916,7 +2120,7 @@
             <img src="images/logo.png" alt="Billups Studio Logo" class="logo-small" id="smallLogo">
         </div>
         
-        <!-- Header Equalizer - NOW TALLER (8px height) -->
+        <!-- Header Equalizer - ENHANCED VERSION -->
         <div class="header-equalizer" id="headerEqualizer">
             <div class="header-equalizer-bars">
                 <!-- Bars will be added by JavaScript -->
@@ -2460,9 +2664,9 @@
             console.log('✅ Website initialized successfully!');
         });
 
-        // ===== HEADER EQUALIZER - NOW TALLER =====
+        // ===== ENHANCED REACTIVE HEADER EQUALIZER =====
         function initializeHeaderEqualizer() {
-            console.log('🔊 Initializing taller header equalizer (8px height)...');
+            console.log('🔊 Initializing enhanced reactive header equalizer (14px height)...');
             
             const headerEqualizer = document.getElementById('headerEqualizer');
             if (!headerEqualizer) {
@@ -2479,14 +2683,77 @@
             // Clear any existing bars
             barsContainer.innerHTML = '';
             
-            // Create 10 equalizer bars (taller now - 8px container)
-            for (let i = 0; i < 10; i++) {
+            // Create 15 equalizer bars (more for a denser look)
+            for (let i = 0; i < 15; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'header-equalizer-bar';
+                
+                // Add a slight random variation to the initial height
+                const randomInitialHeight = 30 + Math.random() * 40;
+                bar.style.height = `${randomInitialHeight}%`;
+                
+                // Add a subtle random color variation for visual interest
+                if (i % 4 === 0) {
+                    bar.style.background = 'linear-gradient(to top, var(--tier-1), var(--tier-2))';
+                } else if (i % 4 === 1) {
+                    bar.style.background = 'linear-gradient(to top, var(--accent), #00ff88)';
+                } else if (i % 4 === 2) {
+                    bar.style.background = 'linear-gradient(to top, #00ff88, var(--accent))';
+                }
+                
                 barsContainer.appendChild(bar);
             }
             
-            console.log('✅ Taller header equalizer initialized with 10 animated bars (8px height)');
+            // Add scroll-based reactivity
+            let lastScrollY = window.scrollY;
+            let lastScrollTime = Date.now();
+            
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+                const currentTime = Date.now();
+                const timeDelta = currentTime - lastScrollTime;
+                
+                // Only react to significant scrolls
+                if (scrollDelta > 10 && timeDelta > 50) {
+                    const bars = document.querySelectorAll('.header-equalizer-bar');
+                    bars.forEach((bar, index) => {
+                        // Briefly speed up animation on scroll
+                        const originalDuration = bar.style.animationDuration;
+                        bar.style.animationDuration = '0.5s';
+                        bar.style.filter = 'brightness(1.8)';
+                        
+                        // Reset after a short time
+                        setTimeout(() => {
+                            bar.style.animationDuration = '';
+                            bar.style.filter = '';
+                        }, 300);
+                    });
+                    
+                    lastScrollTime = currentTime;
+                }
+                
+                lastScrollY = currentScrollY;
+            });
+            
+            // Add click interaction for testing
+            headerEqualizer.addEventListener('click', () => {
+                const bars = document.querySelectorAll('.header-equalizer-bar');
+                bars.forEach((bar, index) => {
+                    // Create a ripple effect
+                    bar.style.transform = `scaleY(${1.2 + Math.random() * 0.5})`;
+                    bar.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        bar.style.transform = '';
+                        bar.style.opacity = '';
+                    }, 200 + (index * 30));
+                });
+            });
+            
+            console.log('✅ Enhanced reactive header equalizer initialized with 15 animated bars (14px height)');
+            
+            return headerEqualizer;
         }
 
         // ===== UPDATED QUICK WINS INITIALIZATION =====

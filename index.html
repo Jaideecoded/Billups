@@ -1455,7 +1455,7 @@
             border-color: var(--accent);
         }
         
-        /* ===== COLLABORATIONS SECTION ===== */
+        /* ===== UPDATED COLLABORATIONS SECTION ===== */
         .collaborations-section {
             background: rgba(255, 255, 255, 0.03);
             border-radius: var(--radius-md);
@@ -1488,6 +1488,18 @@
             font-size: 0.9rem;
             font-weight: 600;
             border: 1px solid rgba(77, 138, 240, 0.3);
+            transition: var(--transition);
+        }
+        
+        .collab-badge:hover {
+            transform: translateY(-2px);
+            background: rgba(77, 138, 240, 0.3);
+        }
+        
+        .highlight-collab {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(255, 149, 0, 0.2)) !important;
+            color: #ff9500 !important;
+            border-color: #ff6b35 !important;
         }
         
         .collab-note {
@@ -1497,6 +1509,7 @@
             padding: var(--space-sm);
             border-radius: var(--radius-sm);
             border-left: 3px solid var(--orange-accent);
+            margin-top: var(--space-sm);
         }
         
         /* ===== FEATURED VIDEOS SECTION ===== */
@@ -2582,11 +2595,23 @@
                 <div class="portfolio-header">
                     <div class="producer-bio">
                         <h3>Jaidee - Studio Manager & Producer</h3>
-                        <p>Proven track record managing over 100+ recording sessions with appearances on viral cyphers including SamHam. Combines technical expertise with artist development, ensuring every project reaches its full potential while maintaining studio efficiency and creative flow.</p>
+                        <p>With 5 years of industry experience, I bring a comprehensive skill set in studio management, artist development, and creative direction. My expertise spans session coordination, workflow optimization, and bridging the gap between technical production and artistic vision.</p>
+                        
+                        <!-- EXPERIENCE HIGHLIGHTS -->
+                        <div class="collaborations-section">
+                            <h4><i class="fas fa-trophy"></i> Experience Highlights</h4>
+                            <div class="collaborations-grid">
+                                <div class="collab-badge highlight-collab">Studio Management</div>
+                                <div class="collab-badge highlight-collab">Artist Development</div>
+                                <div class="collab-badge highlight-collab">Session Coordination</div>
+                                <div class="collab-badge highlight-collab">Workflow Optimization</div>
+                                <div class="collab-badge highlight-collab">Creative Direction</div>
+                            </div>
+                        </div>
                         
                         <!-- COLLABORATIONS SECTION -->
                         <div class="collaborations-section">
-                            <h4><i class="fas fa-handshake"></i> Notable Collaborations:</h4>
+                            <h4><i class="fas fa-handshake"></i> Notable Collaborations & Projects:</h4>
                             <div class="collaborations-grid">
                                 <div class="collab-badge">Passive</div>
                                 <div class="collab-badge">Nicole Black</div>
@@ -2595,17 +2620,24 @@
                                 <div class="collab-badge">FONZO</div>
                                 <div class="collab-badge">Fendry</div>
                                 <div class="collab-badge">Shapingrime</div>
-                                <div class="collab-badge" style="background: var(--orange-accent);">
-                                    <i class="fas fa-crown"></i> FYI Arsenal Cypher (Organizer)
+                                <div class="collab-badge highlight-collab">
+                                    <i class="fas fa-microphone"></i> Beyond Boundaries Podcast
+                                </div>
+                                <div class="collab-badge">SamHam</div>
+                                <div class="collab-badge highlight-collab">
+                                    <i class="fas fa-crown"></i> FYI Arsenal Cypher
                                 </div>
                             </div>
-                            <p class="collab-note"><strong>FYI Arsenal Cypher</strong> was organized and produced by Jaidee, showcasing his event production and management skills.</p>
+                            <p class="collab-note">
+                                <strong>Beyond Boundaries Podcast:</strong> Co-host with Passive, discussing music industry insights, artist journeys, and creative processes. <br>
+                                <strong>FYI Arsenal Cypher:</strong> Organized and produced the local cypher event, showcasing Luton talent.
+                            </p>
                         </div>
                         
                         <div class="producer-contact">
                             <p><i class="fas fa-phone"></i> 07878 709110</p>
                             <p><i class="fas fa-video"></i> Featured on viral cyphers including SamHam</p>
-                            <p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development, Viral Content Strategy</p>
+                            <p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development, Creative Strategy</p>
                         </div>
                     </div>
                     <div class="producer-stats">
@@ -2614,12 +2646,12 @@
                             <span class="stat-label">Sessions Managed</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">6</span>
+                            <span class="stat-number">5</span>
                             <span class="stat-label">Years Experience</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">Viral</span>
-                            <span class="stat-label">Cypher Features</span>
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Artists Worked With</span>
                         </div>
                     </div>
                 </div>
@@ -2628,20 +2660,20 @@
                     <div class="portfolio-item">
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
-                                <i class="fas fa-bullhorn"></i>
-                                <p>Viral Cypher Feature - SamHam</p>
+                                <i class="fas fa-microphone-alt"></i>
+                                <p>Beyond Boundaries Podcast</p>
                             </div>
                         </div>
                         <div class="portfolio-info">
-                            <h4>Viral Cypher Appearances</h4>
-                            <p>Featured on viral cyphers like SamHam, showcasing performance skills and industry recognition. Brings first-hand experience of what works in viral content to your projects.</p>
+                            <h4>Podcast Co-Host & Producer</h4>
+                            <p>Co-hosting the "Beyond Boundaries" podcast with Passive, diving deep into music industry discussions, artist interviews, and creative processes. Bringing studio insights to podcast audiences.</p>
                             <div class="portfolio-tags">
-                                <span class="tag">Viral</span>
-                                <span class="tag">Cypher</span>
-                                <span class="tag">Performance</span>
+                                <span class="tag">Podcast</span>
+                                <span class="tag">Interview</span>
+                                <span class="tag">Industry Insights</span>
                             </div>
                             <div class="portfolio-action">
-                                <a href="tel:07878709110" class="btn-portfolio">Call Jaidee Now</a>
+                                <a href="https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_" target="_blank" class="btn-portfolio">Watch Podcast Episode</a>
                             </div>
                         </div>
                     </div>
@@ -2654,8 +2686,8 @@
                             </div>
                         </div>
                         <div class="portfolio-info">
-                            <h4>Session Management</h4>
-                            <p>Managed over 100+ recording sessions, ensuring smooth workflow, artist satisfaction, and professional results. Expert in maximizing studio time and maintaining creative energy.</p>
+                            <h4>Studio & Session Management</h4>
+                            <p>Managed over 100+ recording sessions for diverse artists, ensuring smooth workflow, technical quality, and artist satisfaction. Expert in maximizing studio time and maintaining creative momentum.</p>
                             <div class="portfolio-tags">
                                 <span class="tag">Management</span>
                                 <span class="tag">Efficiency</span>
@@ -2676,7 +2708,7 @@
                         </div>
                         <div class="portfolio-info">
                             <h4>Artist Development & Strategy</h4>
-                            <p>Guiding emerging artists from concept to release with a focus on viral growth and sustainable career development. Combines studio expertise with market insight.</p>
+                            <p>Guiding emerging artists through the complete creative process - from initial concept to final release. Combining studio expertise with market insight to develop sustainable artistic careers.</p>
                             <div class="portfolio-tags">
                                 <span class="tag">Strategy</span>
                                 <span class="tag">Development</span>
@@ -2694,15 +2726,35 @@
                     <h3><i class="fas fa-video"></i> Featured Videos & Recent Work</h3>
                     
                     <div class="videos-grid">
-                        <!-- Video 1: Arsenal Cypher - Your YouTube Link -->
+                        <!-- Video 1: Beyond Boundaries Podcast -->
+                        <div class="video-item">
+                            <div class="video-thumbnail" onclick="window.open('https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_', '_blank')">
+                                <i class="fas fa-podcast"></i>
+                                <div class="video-overlay">Watch Now</div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Beyond Boundaries Podcast</h4>
+                                <p>Co-host with Passive discussing music industry insights</p>
+                                <div class="video-tags">
+                                    <span class="tag">Podcast</span>
+                                    <span class="tag">Interview</span>
+                                    <span class="tag">Discussion</span>
+                                </div>
+                                <a href="https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_" target="_blank" class="btn-portfolio video-btn">
+                                    <i class="fas fa-play"></i> Watch Episode
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Video 2: Arsenal Cypher -->
                         <div class="video-item">
                             <div class="video-thumbnail" onclick="window.open('https://youtu.be/2WaVOTgPwOM?si=Pn5XRfx8KqHjQDdF', '_blank')">
-                                <i class="fas fa-play-circle"></i>
+                                <i class="fas fa-users"></i>
                                 <div class="video-overlay">Watch Now</div>
                             </div>
                             <div class="video-info">
                                 <h4>FYI Arsenal Cypher</h4>
-                                <p>Organized & produced by Jaidee - Featuring local talent</p>
+                                <p>Organized & produced local talent showcase</p>
                                 <div class="video-tags">
                                     <span class="tag">Cypher</span>
                                     <span class="tag">Live Event</span>
@@ -2714,28 +2766,7 @@
                             </div>
                         </div>
                         
-                        <!-- Video 2: Studio Sessions - Coming Soon -->
-                        <div class="video-item">
-                            <div class="video-thumbnail">
-                                <i class="fas fa-microphone-alt"></i>
-                                <div class="video-overlay">Coming Soon</div>
-                            </div>
-                            <div class="video-info">
-                                <h4>Studio Session Highlights</h4>
-                                <p>Behind the scenes with artists in the studio</p>
-                                <div class="video-tags">
-                                    <span class="tag">Studio</span>
-                                    <span class="tag">Recording</span>
-                                    <span class="tag">Behind Scenes</span>
-                                </div>
-                                <!-- Note: Add YouTube link here when available -->
-                                <button class="btn-coming-soon" disabled>
-                                    <i class="fas fa-clock"></i> Coming Soon
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Video 3: SamHam Feature - Your YouTube Link -->
+                        <!-- Video 3: SamHam Feature -->
                         <div class="video-item">
                             <div class="video-thumbnail" onclick="window.open('https://youtu.be/b8AliqtsSuo?si=_945yhhEXsb21In9', '_blank')">
                                 <i class="fas fa-star"></i>
@@ -2743,7 +2774,7 @@
                             </div>
                             <div class="video-info">
                                 <h4>SamHam Viral Cypher</h4>
-                                <p>Jaidee's appearance on viral cypher</p>
+                                <p>Feature appearance on popular cypher series</p>
                                 <div class="video-tags">
                                     <span class="tag">Viral</span>
                                     <span class="tag">Cypher</span>

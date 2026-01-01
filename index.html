@@ -27,20 +27,20 @@
     <style>
         /* ===== MASTER DESIGN SYSTEM ===== */
         :root {
-            /* CORE COLOR PALETTE */
+            /* CORE COLOR PALETTE - DO NOT MODIFY */
             --black: #000000;
             --dark-gray: #0a0a0a;
             --white: #ffffff;
             --accent: #00ff00;
             --accent-light: #90ff90;
             
-            /* SERVICE TIER COLORS */
+            /* SERVICE TIER COLORS - STRATEGIC HIERARCHY */
             --tier-1: #00a8ff;
             --tier-2: #00ff00;
             --tier-3: #ff9500;
-            --tier-4: #bc00ff;
+            --tier-custom: #bc00ff;
             
-            /* SECTION COLORS */
+            /* SECTION COLORS - ATMOSPHERIC DEPTH */
             --purple-dark: #1a0b2e;
             --purple-medium: #2d1b4e;
             --purple-light: #3d2968;
@@ -48,18 +48,18 @@
             --blue-accent: #4d8af0;
             --blue-light: #6ba3ff;
             
-            /* TEXT COLORS */
+            /* TEXT COLORS - HIERARCHICAL READABILITY */
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.95);
             --text-body: rgba(255, 255, 255, 0.85);
             --text-muted: rgba(255, 255, 255, 0.65);
             --border-color: rgba(255, 255, 255, 0.2);
             
-            /* TYPOGRAPHY */
+            /* TYPOGRAPHY SYSTEM - GOLDEN RATIO SCALE */
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             
-            /* SPACING */
+            /* SPACING SYSTEM - 8px BASELINE */
             --space-xs: 0.5rem;
             --space-sm: 1rem;
             --space-md: 1.5rem;
@@ -101,9 +101,11 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            min-height: 100vh;
         }
         
-        /* ===== HEADER EQUALIZER ===== */
+        /* ===== ENHANCED REACTIVE HEADER EQUALIZER - CLEANER VERSION ===== */
         .header-equalizer {
             position: absolute;
             bottom: 0;
@@ -112,6 +114,8 @@
             height: 14px;
             display: none;
             z-index: 1001;
+            overflow: hidden;
+            background: transparent;
         }
         
         .header.scrolled .header-equalizer {
@@ -138,30 +142,137 @@
             background: linear-gradient(to top, var(--accent), var(--tier-2));
             border-radius: 3px 3px 0 0;
             opacity: 0.8;
+            filter: brightness(1.2);
             transform-origin: bottom center;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 0, 0.6),
+                inset 0 2px 3px rgba(255, 255, 255, 0.3);
+            transition: height 0.15s ease-out;
         }
         
         /* Equalizer animations */
-        @keyframes headerEqPulse1 { 0%, 100% { height: 40%; } 20% { height: 85%; } 40% { height: 60%; } 60% { height: 95%; } 80% { height: 45%; } }
-        @keyframes headerEqPulse2 { 0%, 100% { height: 65%; } 30% { height: 35%; } 50% { height: 90%; } 70% { height: 55%; } 90% { height: 75%; } }
-        @keyframes headerEqPulse3 { 0% { height: 50%; } 25% { height: 80%; } 50% { height: 30%; } 75% { height: 100%; } 100% { height: 45%; } }
-        @keyframes headerEqPulse4 { 0%, 100% { height: 75%; } 15% { height: 40%; } 35% { height: 95%; } 55% { height: 60%; } 75% { height: 85%; } }
+        @keyframes headerEqPulse1 {
+            0%, 100% { height: 40%; }
+            20% { height: 85%; }
+            40% { height: 60%; }
+            60% { height: 95%; }
+            80% { height: 45%; }
+        }
         
+        @keyframes headerEqPulse2 {
+            0%, 100% { height: 65%; }
+            30% { height: 35%; }
+            50% { height: 90%; }
+            70% { height: 55%; }
+            90% { height: 75%; }
+        }
+        
+        @keyframes headerEqPulse3 {
+            0% { height: 50%; }
+            25% { height: 80%; }
+            50% { height: 30%; }
+            75% { height: 100%; }
+            100% { height: 45%; }
+        }
+        
+        @keyframes headerEqPulse4 {
+            0%, 100% { height: 75%; }
+            15% { height: 40%; }
+            35% { height: 95%; }
+            55% { height: 60%; }
+            75% { height: 85%; }
+        }
+        
+        @keyframes headerEqPulse5 {
+            0% { height: 85%; }
+            20% { height: 45%; }
+            40% { height: 100%; }
+            60% { height: 65%; }
+            80% { height: 90%; }
+            100% { height: 70%; }
+        }
+        
+        /* Apply different animations */
         .header-equalizer-bar:nth-child(1) { animation: headerEqPulse1 2.1s infinite ease-in-out; }
         .header-equalizer-bar:nth-child(2) { animation: headerEqPulse2 1.8s infinite ease-in-out; animation-delay: 0.2s; }
         .header-equalizer-bar:nth-child(3) { animation: headerEqPulse3 2.3s infinite ease-in-out; animation-delay: 0.1s; }
         .header-equalizer-bar:nth-child(4) { animation: headerEqPulse4 2.0s infinite ease-in-out; animation-delay: 0.3s; }
-        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
-        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
-        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
-        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
+        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse5 1.9s infinite ease-in-out; animation-delay: 0.15s; }
+        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
+        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
+        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
+        .header-equalizer-bar:nth-child(9) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
+        .header-equalizer-bar:nth-child(10) { animation: headerEqPulse5 1.6s infinite ease-in-out; animation-delay: 0.1s; }
         
         @keyframes equalizerFadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* ===== NAVIGATION ICONS ===== */
+        /* ===== SIMPLIFIED CONTACT STYLING ===== */
+        .contact-role-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        
+        /* Studio Owner - Fabian */
+        .fabian-contact .method-icon {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff9500 100%) !important;
+            border-color: #ff6b35 !important;
+            color: white !important;
+        }
+        
+        .fabian-contact:hover {
+            background: rgba(255, 107, 53, 0.15) !important;
+            border-color: #ff6b35 !important;
+        }
+        
+        /* Studio Manager - Jaidee */
+        .jaidee-contact .method-icon {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%) !important;
+            border-color: #6a11cb !important;
+            color: white !important;
+        }
+        
+        .jaidee-contact:hover {
+            background: rgba(106, 17, 203, 0.15) !important;
+            border-color: #6a11cb !important;
+        }
+        
+        /* Head Engineer - Dsoul */
+        .dsoul-contact .method-icon {
+            background: linear-gradient(135deg, #00ff00 0%, #00cc66 100%) !important;
+            border-color: #00ff00 !important;
+            color: var(--black) !important;
+        }
+        
+        .dsoul-contact:hover {
+            background: rgba(0, 255, 0, 0.15) !important;
+            border-color: #00ff00 !important;
+        }
+        
+        /* General Studio Contact */
+        .studio-contact .method-icon {
+            background: linear-gradient(135deg, #4d8af0 0%, #6ba3ff 100%) !important;
+            border-color: #4d8af0 !important;
+            color: white !important;
+        }
+        
+        .studio-contact:hover {
+            background: rgba(77, 138, 240, 0.15) !important;
+            border-color: #4d8af0 !important;
+        }
+        
+        /* ===== ENHANCED NAVIGATION ICONS ===== */
         .nav-icons {
             display: flex;
             gap: var(--space-lg);
@@ -190,14 +301,41 @@
             border: 2px solid rgba(255, 255, 255, 0.15);
             transition: var(--transition);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .nav-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--tier-1), var(--tier-2), var(--tier-3), var(--tier-custom));
+            background-size: 400% 400%;
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+            animation: gradient-flow 8s ease infinite;
+        }
+        
+        .nav-icon:hover::before {
+            opacity: 1;
         }
         
         .nav-icon:hover {
             color: var(--black);
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            background: var(--accent);
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
+            transform: translateY(-8px) scale(1.15);
+            border-color: transparent;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.4), 0 0 30px rgba(0, 168, 255, 0.3);
+        }
+        
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .nav-label {
@@ -215,6 +353,7 @@
             background: rgba(0, 0, 0, 0.9);
             padding: var(--space-xs) var(--space-sm);
             border-radius: var(--radius-sm);
+            border: 1px solid rgba(0, 255, 0, 0.3);
             pointer-events: none;
             z-index: 1002;
         }
@@ -222,6 +361,38 @@
         .nav-icon-container:hover .nav-label {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* ===== ENHANCED BUTTONS ===== */
+        .btn-primary {
+            display: inline-block;
+            padding: 1.3rem 3.5rem;
+            background-color: var(--accent);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.2rem;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 3px solid var(--accent);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 220px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5), 0 0 60px rgba(0, 255, 0, 0.3);
+            color: var(--black);
         }
         
         /* ===== HEADER ===== */
@@ -237,12 +408,14 @@
             align-items: center;
             background: transparent;
             transition: var(--transition);
+            backdrop-filter: blur(0px);
         }
         
         .header.scrolled {
             background-color: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px) saturate(180%);
             padding: var(--space-md) var(--space-xl);
+            border-bottom: none;
             box-shadow: var(--shadow-lg);
         }
         
@@ -264,6 +437,14 @@
             filter: drop-shadow(var(--shadow-accent));
         }
         
+        .logo-small {
+            height: 45px;
+            width: auto;
+            border-radius: 50%;
+            filter: drop-shadow(var(--shadow-accent));
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        
         /* ===== HERO SECTION ===== */
         .hero {
             min-height: 100vh;
@@ -272,7 +453,9 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 120px var(--space-xl) var(--space-xxl);
+            text-align: center;
+            padding-top: 120px;
+            padding-bottom: var(--space-xxl);
         }
         
         .hero-bg {
@@ -299,43 +482,64 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
             text-align: center;
+            max-width: 900px;
             padding: var(--space-xl);
+            margin: 0 auto;
         }
         
+        /* ===== FIXED SMOOTHER LOGO ROTATION ===== */
         .hero-logo-large {
-            height: 180px;
+            height: 200px;
             width: auto;
             margin: 0 auto var(--space-xxl);
             display: block;
-            filter: drop-shadow(var(--shadow-accent));
+            filter: drop-shadow(var(--shadow-accent-md));
+            perspective: 1000px;
             cursor: pointer;
-            transition: transform 0.6s ease;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             border-radius: 50%;
             border: 3px solid rgba(0, 255, 0, 0.3);
             padding: var(--space-md);
             background: rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
         }
         
         .hero-logo-large:hover {
-            transform: rotateY(180deg) scale(1.05);
+            animation: smooth-fast-rotate 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border-color: var(--accent);
+            background: rgba(0, 255, 0, 0.1);
+            transform: scale(1.05);
+        }
+        
+        @keyframes smooth-fast-rotate {
+            0% { 
+                transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.05);
+                border-color: rgba(0, 255, 0, 0.3);
+            }
+            50% { 
+                transform: perspective(1000px) rotateY(180deg) rotateX(5deg) scale(1.1);
+                border-color: rgba(0, 255, 0, 0.8);
+            }
+            100% { 
+                transform: perspective(1000px) rotateY(360deg) rotateX(0deg) scale(1.05);
+                border-color: rgba(0, 255, 0, 0.3);
+            }
         }
         
         .hero-title {
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: 900;
             margin-bottom: var(--space-md);
             text-transform: uppercase;
+            letter-spacing: -0.02em;
             line-height: 1;
             color: var(--text-primary);
             text-shadow: var(--shadow-accent);
         }
         
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 400;
             margin-bottom: var(--space-xxl);
             color: var(--text-secondary);
@@ -348,6 +552,7 @@
         /* ===== SOCIAL PROOF ===== */
         .social-proof {
             margin-top: var(--space-xl);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
         }
         
         .live-counter {
@@ -390,53 +595,45 @@
             0%, 100% { 
                 opacity: 1; 
                 transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
             }
             50% { 
                 opacity: 0.7; 
                 transform: scale(1.1); 
             }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+            }
         }
-        
-        /* ===== BUTTONS ===== */
-        .btn-primary {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background-color: var(--accent);
-            color: var(--black);
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1.1rem;
-            border-radius: var(--radius-full);
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 3px solid var(--accent);
-            cursor: pointer;
-            min-width: 200px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--accent-light);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5);
-        }
-        
-        .btn-tier-1 { background: var(--tier-1); border-color: var(--tier-1); }
-        .btn-tier-2 { background: var(--tier-2); border-color: var(--tier-2); }
-        .btn-tier-3 { background: var(--tier-3); border-color: var(--tier-3); }
-        .btn-tier-4 { background: var(--tier-4); border-color: var(--tier-4); color: white; }
         
         /* ===== SECTION SYSTEM ===== */
         .section {
             padding: var(--space-xxl) var(--space-xl);
             position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
             width: 100%;
         }
         
@@ -446,15 +643,16 @@
         }
         
         .section-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
             margin-bottom: var(--space-md);
             text-transform: uppercase;
             color: var(--text-primary);
+            text-shadow: var(--shadow-accent);
         }
         
         .section-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
@@ -462,91 +660,232 @@
         
         /* ===== ABOUT SECTION ===== */
         .about {
-            background: rgba(26, 11, 46, 0.8);
+            background-color: rgba(26, 11, 46, 0.7);
         }
         
-        .about-content {
+        .about-table {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
+            gap: var(--space-xxl);
+            align-items: start;
+        }
+        
+        .about-column {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xxl);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        
+        .about-column:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .about-column h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: var(--space-lg);
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+        
+        .about-column h2 span {
+            color: var(--accent);
+            display: block;
+        }
+        
+        .about-column p {
+            font-size: 1.3rem;
+            margin-bottom: var(--space-lg);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .about-column .highlight {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: var(--space-lg);
+            line-height: 1.5;
+            padding: var(--space-lg);
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--accent);
+        }
+        
+        /* Features Table */
+        .features-table {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+        
+        .feature-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-lg);
+            align-items: start;
+            padding: var(--space-lg);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .feature-row:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateX(10px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            filter: drop-shadow(var(--shadow-accent));
+            width: 60px;
+            height: 60px;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .feature-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        
+        .feature-content p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            color: var(--text-body);
+        }
+        
+        /* ===== AUDIO DEMO ===== */
+        .audio-demo {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-top: var(--space-xxl);
+            border: 1px solid var(--border-color);
+        }
+        
+        .audio-demo h3 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .audio-toggle {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .btn-audio {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+        }
+        
+        .btn-audio.active {
+            background: var(--accent);
+            color: var(--black);
+            font-weight: bold;
+            border-color: var(--accent);
+        }
+        
+        .btn-audio:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+        }
+        
+        .audio-player {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .audio-note {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .audio-fallback {
+            display: none;
+            text-align: center;
+            padding: var(--space-xl);
+            background: rgba(0, 255, 0, 0.05);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .audio-fallback p:first-child {
+            font-weight: bold;
+            margin-bottom: var(--space-xs);
         }
         
         /* ===== SERVICES SECTION ===== */
         .services {
-            background: rgba(45, 27, 78, 0.7);
+            background-color: rgba(45, 27, 78, 0.7);
         }
         
-        /* Service Selection Guide */
-        .service-guide {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-            margin-bottom: var(--space-xxl);
-        }
-        
-        .guide-step {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .guide-step:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            color: var(--black);
-            border-radius: 50%;
-            font-weight: 900;
-            font-size: 1.5rem;
-            line-height: 50px;
-            margin-bottom: var(--space-md);
-        }
-        
-        .guide-step h3 {
-            color: var(--text-primary);
-            margin-bottom: var(--space-sm);
-            font-size: 1.3rem;
-        }
-        
-        /* Smart Session Calculator */
+        /* Session Calculator */
         .session-calculator {
             background: rgba(0, 0, 0, 0.3);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             margin-bottom: var(--space-xxl);
             border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
         }
         
-        .calculator-header {
-            text-align: center;
-            margin-bottom: var(--space-xl);
+        .session-calculator:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
         }
         
-        .calculator-header h3 {
+        .session-calculator h3 {
             color: var(--accent);
+            margin-bottom: var(--space-lg);
+            text-align: center;
             font-size: 1.8rem;
-            margin-bottom: var(--space-sm);
         }
         
         .calculator-controls {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: var(--space-lg);
             margin-bottom: var(--space-lg);
         }
         
-        .control-group {
-            margin-bottom: var(--space-md);
+        @media (max-width: 768px) {
+            .calculator-controls {
+                grid-template-columns: 1fr;
+            }
         }
         
         .control-group label {
@@ -554,192 +893,52 @@
             margin-bottom: var(--space-xs);
             font-weight: 600;
             color: var(--text-secondary);
-            font-size: 1rem;
         }
         
         .control-group select {
             width: 100%;
-            padding: 0.8rem;
+            padding: 1rem;
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             color: var(--text-primary);
             font-family: var(--font-primary);
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: var(--transition);
         }
         
         .control-group select:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--blue-accent);
+            background: rgba(77, 138, 240, 0.12);
+            box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
         }
         
         #calculatorResult {
             background: rgba(0, 255, 0, 0.1);
             border: 1px solid var(--accent);
             border-radius: var(--radius-md);
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             text-align: center;
-            margin-top: var(--space-lg);
+            animation: fadeInUp 0.5s ease-out;
         }
         
-        .result-title {
-            font-size: 1.5rem;
+        #calculatorResult .recommendation {
+            font-size: 1.8rem;
             font-weight: 900;
             color: var(--accent);
-            margin-bottom: var(--space-sm);
         }
         
-        .result-price {
+        #calculatorResult .price {
             font-size: 2.5rem;
             font-weight: 900;
             margin: var(--space-sm) 0;
             color: var(--text-primary);
         }
         
-        .result-description {
+        #calculatorResult .description {
             color: var(--text-body);
             margin-bottom: var(--space-md);
-        }
-        
-        /* Pricing Tiers */
-        .pricing-tiers {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-xl);
-            margin-bottom: var(--space-xxl);
-        }
-        
-        .pricing-tier {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            position: relative;
-            transition: var(--transition);
-        }
-        
-        .pricing-tier:hover {
-            transform: translateY(-10px);
-        }
-        
-        .pricing-tier.popular {
-            border: 2px solid var(--accent);
-            transform: scale(1.02);
-        }
-        
-        .pricing-tier.popular:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
-        
-        .tier-badge {
-            position: absolute;
-            top: -15px;
-            right: 30px;
-            background: var(--accent);
-            color: var(--black);
-            padding: var(--space-xs) var(--space-lg);
-            border-radius: var(--radius-full);
-            font-weight: 900;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .tier-header {
-            text-align: center;
-            margin-bottom: var(--space-xl);
-        }
-        
-        .tier-icon {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-md);
-        }
-        
-        .tier-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--text-primary);
-            margin-bottom: var(--space-xs);
-        }
-        
-        .tier-price {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: var(--space-xs);
-        }
-        
-        .tier-price span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-        
-        .tier-features {
-            list-style: none;
-            margin-bottom: var(--space-xl);
-        }
-        
-        .tier-features li {
-            padding: var(--space-sm) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-        
-        .tier-features li i {
-            color: var(--accent);
-        }
-        
-        .tier-action {
-            text-align: center;
-        }
-        
-        /* Add-On Services */
-        .addons-section {
-            margin-top: var(--space-xxl);
-        }
-        
-        .addons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-        }
-        
-        .addon-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .addon-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-        
-        .addon-icon {
-            font-size: 1.8rem;
-            color: var(--accent);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .addon-card h4 {
-            color: var(--text-primary);
-            margin-bottom: var(--space-xs);
-            font-size: 1.2rem;
-        }
-        
-        .addon-price {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-top: var(--space-sm);
         }
         
         /* Mix & Master Notice */
@@ -751,63 +950,220 @@
             text-align: center;
             margin-bottom: var(--space-xxl);
             border-left: 6px solid var(--accent);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        
+        .mix-master-notice:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
         }
         
         .mix-master-notice h3 {
             color: var(--accent);
             margin-bottom: var(--space-sm);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .mix-master-notice p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: var(--space-md);
         }
         
         .coming-soon-badge {
             background: var(--accent);
             color: var(--black);
             font-weight: 900;
-            padding: 6px 16px;
+            padding: 8px 20px;
             border-radius: var(--radius-full);
             display: inline-block;
             margin-top: var(--space-sm);
             text-transform: uppercase;
             letter-spacing: 1px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        /* Services Table Layout */
+        .services-table {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .service-header-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-md);
+            padding: var(--space-lg) var(--space-xl);
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-md);
+            align-items: center;
+            padding: var(--space-xl);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-row:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(0, 255, 0, 0.3);
+        }
+        
+        /* Tier Color Coding */
+        .service-row.tier-1 {
+            border-left: 6px solid var(--tier-1);
+        }
+        
+        .service-row.tier-2 {
+            border-left: 6px solid var(--tier-2);
+        }
+        
+        .service-row.tier-3 {
+            border-left: 6px solid var(--tier-3);
+        }
+        
+        .service-row.tier-custom {
+            border-left: 6px solid var(--tier-custom);
+        }
+        
+        .service-name {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            filter: drop-shadow(var(--shadow-accent));
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .service-description {
+            font-size: 1rem;
+            color: var(--text-body);
+            opacity: 0.9;
+        }
+        
+        .service-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .service-price span {
+            font-size: 1rem;
+            color: var(--text-body);
+            font-weight: 600;
+            display: block;
+            margin-top: var(--space-xs);
+        }
+        
+        .service-duration {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        
+        .service-action .btn-primary {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            width: 100%;
+            min-width: auto;
+        }
+        
+        /* Popular Tag */
+        .popular-tag {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: var(--tier-2);
+            color: var(--black);
+            padding: var(--space-xs) var(--space-lg);
+            border-radius: var(--radius-full);
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         /* Deposit Notice */
         .deposit-notice {
             background: rgba(255, 107, 53, 0.2);
-            border: 1px solid #ff6b35;
+            border: 1px solid var(--orange-accent);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             text-align: center;
             margin-top: var(--space-xxl);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: var(--text-primary);
-            border-left: 6px solid #ff6b35;
+            backdrop-filter: blur(10px);
+            border-left: 6px solid var(--orange-accent);
         }
         
         /* ===== PORTFOLIO SECTION ===== */
         .portfolio {
-            background: rgba(26, 11, 46, 0.8);
+            background-color: rgba(26, 11, 46, 0.7);
         }
         
         .portfolio-tabs {
             display: flex;
             gap: var(--space-md);
             margin-bottom: var(--space-xl);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: var(--space-md);
             flex-wrap: wrap;
-            justify-content: center;
         }
         
         .portfolio-tab {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
-            padding: var(--space-lg);
+            padding: var(--space-lg) var(--space-xl);
             cursor: pointer;
             transition: var(--transition);
             border-radius: var(--radius-md);
             flex: 1;
-            min-width: 250px;
+            min-width: 200px;
             text-align: left;
+            backdrop-filter: blur(10px);
         }
         
         .portfolio-tab:hover {
@@ -819,6 +1175,7 @@
         .portfolio-tab.active {
             background: rgba(0, 255, 0, 0.15);
             border: 1px solid var(--accent);
+            box-shadow: var(--shadow-md);
             transform: translateY(-5px);
         }
         
@@ -839,6 +1196,8 @@
             font-size: 1.5rem;
             color: var(--black);
             flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-sm);
         }
         
         .dsoul-avatar {
@@ -859,26 +1218,16 @@
             margin: 0;
             color: var(--text-muted);
             font-size: 0.9rem;
+            font-weight: 600;
         }
         
         .portfolio-content {
             display: none;
+            animation: fadeInUp 0.5s ease-out;
         }
         
         .portfolio-content.active {
             display: block;
-            animation: fadeInUp 0.5s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         .portfolio-header {
@@ -890,6 +1239,7 @@
             justify-content: space-between;
             align-items: flex-start;
             border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
             gap: var(--space-xl);
         }
         
@@ -936,6 +1286,7 @@
             font-weight: 900;
             color: var(--accent);
             line-height: 1;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
         
         .stat-label {
@@ -943,6 +1294,7 @@
             font-size: 0.9rem;
             color: var(--text-muted);
             margin-top: var(--space-xs);
+            font-weight: 600;
         }
         
         .portfolio-grid {
@@ -958,11 +1310,16 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: var(--transition);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .portfolio-item:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
         }
         
         .portfolio-audio {
@@ -972,27 +1329,41 @@
             align-items: center;
             justify-content: center;
             min-height: 150px;
+            border-bottom: 1px solid var(--border-color);
         }
         
         .audio-placeholder {
             text-align: center;
             color: var(--accent);
             font-size: 4rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .audio-placeholder p {
+            font-size: 1.1rem;
+            margin-top: var(--space-sm);
+            color: var(--text-secondary);
+            font-weight: 600;
         }
         
         .portfolio-info {
             padding: var(--space-xl);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .portfolio-info h4 {
             font-size: 1.3rem;
             color: var(--text-primary);
             margin-bottom: var(--space-xs);
+            font-weight: 700;
         }
         
         .portfolio-info p {
             color: var(--text-body);
             margin-bottom: var(--space-md);
+            flex-grow: 1;
         }
         
         .portfolio-tags {
@@ -1009,10 +1380,13 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .portfolio-action {
-            margin-top: var(--space-md);
+            margin-top: auto;
         }
         
         .btn-portfolio {
@@ -1026,22 +1400,250 @@
             transition: var(--transition);
             text-align: center;
             border: 1px solid rgba(0, 255, 0, 0.3);
+            font-size: 0.9rem;
+            width: 100%;
         }
         
         .btn-portfolio:hover {
             background: rgba(0, 255, 0, 0.2);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+        }
+        
+        .portfolio-footer {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            margin-top: var(--space-xxl);
+            border-left: 6px solid var(--accent);
+            backdrop-filter: blur(10px);
+        }
+        
+        .portfolio-footer p {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-bottom: var(--space-lg);
+            line-height: 1.5;
+        }
+        
+        .portfolio-footer-actions {
+            display: flex;
+            gap: var(--space-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+        
+        /* ===== UPDATED COLLABORATIONS SECTION ===== */
+        .collaborations-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin: var(--space-lg) 0;
+            border-left: 4px solid var(--blue-accent);
+        }
+        
+        .collaborations-section h4 {
+            color: var(--blue-light);
+            margin-bottom: var(--space-md);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .collaborations-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+        
+        .collab-badge {
+            background: rgba(77, 138, 240, 0.2);
+            color: var(--blue-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(77, 138, 240, 0.3);
+            transition: var(--transition);
+        }
+        
+        .collab-badge:hover {
+            transform: translateY(-2px);
+            background: rgba(77, 138, 240, 0.3);
+        }
+        
+        .highlight-collab {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(255, 149, 0, 0.2)) !important;
+            color: #ff9500 !important;
+            border-color: #ff6b35 !important;
+        }
+        
+        .collab-note {
+            font-size: 0.95rem;
+            color: var(--text-body);
+            background: rgba(255, 107, 53, 0.1);
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--orange-accent);
+            margin-top: var(--space-sm);
+        }
+        
+        /* ===== FEATURED VIDEOS SECTION ===== */
+        .featured-videos-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-top: var(--space-xl);
+            border: 1px solid var(--border-color);
+        }
+        
+        .featured-videos-section h3 {
+            color: var(--accent);
+            margin-bottom: var(--space-xl);
+            font-size: 1.8rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .video-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .video-thumbnail {
+            height: 180px;
+            background: linear-gradient(135deg, var(--purple-medium), var(--purple-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .video-thumbnail i {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 2;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--accent);
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .video-info {
+            padding: var(--space-lg);
+        }
+        
+        .video-info h4 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            font-size: 1.2rem;
+        }
+        
+        .video-info p {
+            color: var(--text-body);
+            margin-bottom: var(--space-md);
+            font-size: 0.95rem;
+        }
+        
+        .video-tags {
+            display: flex;
+            gap: var(--space-xs);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .video-btn {
+            width: 100%;
+            margin-top: var(--space-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .video-btn:hover {
+            background: var(--accent);
+            color: var(--black);
+        }
+        
+        /* Coming Soon Button Styling */
+        .btn-coming-soon {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            width: 100%;
+            cursor: not-allowed;
+            opacity: 0.6;
         }
         
         /* ===== GALLERY SECTION ===== */
         .gallery {
-            background: rgba(45, 27, 78, 0.7);
+            background-color: rgba(45, 27, 78, 0.7);
         }
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: var(--space-md);
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
             margin-top: var(--space-xl);
         }
         
@@ -1057,8 +1659,9 @@
         }
         
         .gallery-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.02);
             border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
         }
         
         .gallery-item img {
@@ -1073,35 +1676,36 @@
             transform: scale(1.1);
         }
         
-        /* ===== CONTACT SECTION ===== */
+        /* ===== SIMPLIFIED CONTACT SECTION ===== */
         .contact {
-            background: rgba(26, 11, 46, 0.8);
+            background-color: rgba(26, 11, 46, 0.7);
         }
         
-        /* Contact Table */
         .contact-table {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
+            gap: var(--space-xxl);
             margin-top: var(--space-xl);
         }
         
         .contact-column {
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-lg);
-            padding: var(--space-xl);
+            padding: var(--space-xxl);
             border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
             transition: var(--transition);
         }
         
         .contact-column:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
+            transform: translateY(-10px);
+            border-color: var(--blue-accent);
+            box-shadow: var(--shadow-lg);
         }
         
         .contact-column h3 {
-            font-size: 2rem;
-            margin-bottom: var(--space-xl);
+            font-size: 2.5rem;
+            margin-bottom: var(--space-xxl);
             color: var(--text-primary);
         }
         
@@ -1114,9 +1718,9 @@
         .contact-row {
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: var(--space-md);
+            gap: var(--space-lg);
             align-items: center;
-            padding: var(--space-md);
+            padding: var(--space-lg);
             background: rgba(255, 255, 255, 0.03);
             border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
@@ -1127,8 +1731,9 @@
         
         .contact-row:hover {
             background: rgba(255, 255, 255, 0.07);
-            transform: translateX(5px);
+            transform: translateX(10px);
             border-color: var(--accent);
+            box-shadow: var(--shadow-md);
         }
         
         .contact-row a {
@@ -1138,17 +1743,22 @@
         }
         
         .method-icon {
-            font-size: 1.4rem;
-            width: 50px;
-            height: 50px;
+            font-size: 1.6rem;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: rgba(77, 138, 240, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6ba3ff;
+            color: var(--blue-light);
             flex-shrink: 0;
             border: 1px solid rgba(77, 138, 240, 0.3);
+            transition: var(--transition);
+        }
+        
+        .contact-row:hover .method-icon {
+            transform: scale(1.1);
         }
         
         .method-text {
@@ -1157,33 +1767,48 @@
         
         .method-text strong {
             display: block;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             margin-bottom: 4px;
             color: var(--text-primary);
         }
         
         .method-text p {
             color: var(--text-body);
-            font-size: 0.9rem;
+            font-size: 1rem;
             margin-bottom: 4px;
+            opacity: 0.9;
+        }
+        
+        /* WhatsApp Contact */
+        .whatsapp-contact .method-icon {
+            background: rgba(37, 211, 102, 0.2) !important;
+            border-color: #25D366 !important;
+            color: #25D366 !important;
+        }
+        
+        .whatsapp-contact:hover {
+            background: rgba(37, 211, 102, 0.05) !important;
+            border-color: #25D366 !important;
         }
         
         /* Contact Form */
         .contact-form {
             background: rgba(255, 255, 255, 0.05);
-            padding: var(--space-xl);
+            padding: var(--space-xxl);
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
             transition: var(--transition);
         }
         
         .contact-form:hover {
             border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
         }
         
         .contact-form h3 {
-            font-size: 2rem;
-            margin-bottom: var(--space-xl);
+            font-size: 2.5rem;
+            margin-bottom: var(--space-xxl);
             color: var(--text-primary);
         }
         
@@ -1202,28 +1827,30 @@
             margin-bottom: var(--space-xs);
             font-weight: 600;
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
         
         input, textarea, select {
             width: 100%;
-            padding: 1rem;
+            padding: 1.2rem 1.5rem;
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             color: var(--text-primary);
             font-family: var(--font-primary);
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: var(--transition);
         }
         
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--blue-accent);
+            background: rgba(77, 138, 240, 0.12);
+            box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
         }
         
         textarea {
-            min-height: 150px;
+            min-height: 200px;
             resize: vertical;
         }
         
@@ -1234,22 +1861,24 @@
             background: rgba(0, 255, 0, 0.1);
             border-radius: var(--radius-md);
             border: 1px solid rgba(0, 255, 0, 0.3);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-align: center;
         }
         
-        /* ===== FOOTER ===== */
+        /* ===== ENHANCED FOOTER ===== */
         .footer {
             background-color: rgba(0, 0, 0, 0.95);
-            padding: var(--space-xl) var(--space-xl) var(--space-lg);
+            padding: var(--space-xxl) var(--space-xl) var(--space-xl);
             border-top: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
         }
         
-        .footer-content {
+        .footer-table {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-xl);
-            margin-bottom: var(--space-xl);
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--space-xxl);
+            margin-bottom: var(--space-xxl);
         }
         
         .footer-column {
@@ -1259,8 +1888,49 @@
         
         .footer-logo {
             height: auto;
-            width: 120px;
+            width: 140px;
             margin-bottom: var(--space-lg);
+            filter: drop-shadow(var(--shadow-accent));
+            object-fit: contain;
+        }
+        
+        .footer-description {
+            color: var(--text-body);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .footer-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            color: var(--text-primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-link a {
+            color: var(--text-body);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-xs) 0;
+            border-bottom: 1px solid transparent;
+        }
+        
+        .footer-link a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+            border-bottom-color: rgba(0, 255, 0, 0.3);
         }
         
         .footer-bottom {
@@ -1268,53 +1938,220 @@
             padding-top: var(--space-xl);
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
+            font-size: 1rem;
+        }
+        
+        /* ===== QUICK QUESTION WIDGET ===== */
+        .quick-question-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .widget-toggle {
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .widget-toggle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.4);
+        }
+        
+        .widget-form {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            display: none;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            h1 { font-size: 4rem; }
+            .hero-logo-large { height: 180px; }
+            .service-header-row,
+            .service-row { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+            .footer-table { gap: var(--space-xl); }
+            .videos-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        }
+        
         @media (max-width: 992px) {
-            .hero-title { font-size: 3rem; }
-            .section-title { font-size: 2.2rem; }
-            .hero-logo-large { height: 140px; }
-            .pricing-tiers { grid-template-columns: 1fr; }
-            .about-content { grid-template-columns: 1fr; }
-            .pricing-tier.popular { transform: scale(1); }
-            .pricing-tier.popular:hover { transform: translateY(-10px); }
-            .contact-table { grid-template-columns: 1fr; }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2.5rem; }
+            .hero-logo-large { height: 160px; margin-bottom: var(--space-xl); }
+            .about-table,
+            .contact-table {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+            .footer-table {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-lg);
+            }
+            .service-header-row,
+            .service-row {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-lg);
+            }
+            .service-header-row .header-duration,
+            .service-row .service-duration { display: none; }
             .nav-icons { gap: var(--space-md); }
-            .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
-            .nav-label { font-size: 0.75rem; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
-            .portfolio-grid { grid-template-columns: 1fr; }
-            .portfolio-header { flex-direction: column; gap: var(--space-lg); }
-            .producer-stats { width: 100%; justify-content: space-around; }
+            .nav-icon { width: 50px; height: 50px; font-size: 1.2rem; }
+            .nav-label { font-size: 0.75rem; padding: 0.2rem 0.6rem; }
+            .section { padding: var(--space-xl) var(--space-lg); }
+            .session-calculator h3 { font-size: 1.5rem; }
+            #calculatorResult .recommendation { font-size: 1.5rem; }
+            #calculatorResult .price { font-size: 2rem; }
+            .collaborations-grid { justify-content: center; }
+            .videos-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
         }
         
         @media (max-width: 768px) {
             .header { padding: var(--space-md) var(--space-lg); }
-            .logo-center { height: 50px; }
-            .hero { padding: 100px var(--space-lg) var(--space-xl); }
-            .hero-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.2rem; }
-            .hero-logo-large { height: 120px; margin-bottom: var(--space-xl); }
-            .section { padding: var(--space-xl) var(--space-lg); }
-            .section-title { font-size: 2rem; }
-            .tier-price { font-size: 2.5rem; }
-            .btn-primary { padding: 1rem 2rem; font-size: 1rem; min-width: 180px; }
-            .calculator-controls { grid-template-columns: 1fr; }
+            .logo-center { height: 60px; }
+            .logo-small { height: 40px; }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .hero-logo-large { height: 140px; margin-bottom: var(--space-lg); }
+            .section { padding: var(--space-xl) var(--space-md); }
+            .section-title { font-size: 2.2rem; }
             .form-row { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
+            .footer-table {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+            .contact-form { padding: var(--space-xl); }
+            .service-header-row,
+            .service-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: var(--space-lg);
+            }
+            .service-name {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-md);
+            }
+            .popular-tag {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: var(--space-md);
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+            }
             .nav-label { display: none; }
-            .portfolio-tab { min-width: 200px; }
+            .btn-primary {
+                padding: 1.1rem 2.5rem;
+                font-size: 1.1rem;
+                min-width: 180px;
+            }
+            .portfolio-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-xl);
+            }
+            .producer-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            .collaborations-grid {
+                justify-content: center;
+                gap: var(--space-xs);
+            }
+            .collab-badge {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
         }
         
         @media (max-width: 480px) {
-            .hero-title { font-size: 2rem; }
-            .section-title { font-size: 1.8rem; }
-            .btn-primary { padding: 0.9rem 1.5rem; min-width: 160px; }
-            .tier-price { font-size: 2rem; }
-            .section { padding: var(--space-xl) var(--space-md); }
             .header { padding: var(--space-sm); }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.8rem; }
+            .hero-subtitle { font-size: 1.3rem; }
+            .btn-primary {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                min-width: 160px;
+            }
+            .about-column,
+            .contact-column { padding: var(--space-xl); }
             .contact-form { padding: var(--space-lg); }
+            .popular-tag {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.8rem;
+            }
+            .section-header { margin-bottom: var(--space-xl); }
+            .nav-icons { gap: var(--space-sm); }
+            .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
+            .session-calculator {
+                padding: var(--space-md);
+            }
+            #calculatorResult .recommendation { font-size: 1.2rem; }
+            #calculatorResult .price { font-size: 1.8rem; }
+            .collaborations-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-xs);
+            }
+            .collab-badge {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+                text-align: center;
+            }
+            .featured-videos-section {
+                padding: var(--space-lg);
+            }
         }
     </style>
 </head>
@@ -1330,10 +2167,10 @@
             </div>
             
             <div class="nav-icon-container">
-                <a href="#about" class="nav-icon" aria-label="About">
-                    <i class="fas fa-info-circle"></i>
+                <a href="#services" class="nav-icon" aria-label="Services">
+                    <i class="fas fa-headphones"></i>
                 </a>
-                <span class="nav-label">About</span>
+                <span class="nav-label">Services</span>
             </div>
             
             <div class="nav-icon-container">
@@ -1342,19 +2179,6 @@
                 </a>
                 <span class="nav-label">Portfolio</span>
             </div>
-        </div>
-        
-        <div class="logo-center">
-            <img src="images/logo.png" alt="Billups Studio" class="header-logo">
-        </div>
-        
-        <div class="nav-icons">
-            <div class="nav-icon-container">
-                <a href="#services" class="nav-icon" aria-label="Services">
-                    <i class="fas fa-headphones"></i>
-                </a>
-                <span class="nav-label">Services</span>
-            </div>
             
             <div class="nav-icon-container">
                 <a href="#gallery" class="nav-icon" aria-label="Gallery">
@@ -1362,13 +2186,35 @@
                 </a>
                 <span class="nav-label">Gallery</span>
             </div>
-            
+        </div>
+        
+        <div class="logo-center">
+            <img src="images/logo.png" alt="Billups Studio" class="header-logo" id="headerLogo">
+        </div>
+        
+        <div class="nav-icons">
             <div class="nav-icon-container">
                 <a href="#contact" class="nav-icon" aria-label="Contact">
                     <i class="fas fa-envelope"></i>
                 </a>
                 <span class="nav-label">Contact</span>
             </div>
+            
+            <div class="nav-icon-container">
+                <a href="tel:07710593113" class="nav-icon" aria-label="Call us">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <span class="nav-label">Call</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="nav-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <span class="nav-label">Instagram</span>
+            </div>
+            
+            <img src="images/logo.png" alt="Billups Studio Logo" class="logo-small" id="smallLogo">
         </div>
         
         <!-- Header Equalizer -->
@@ -1381,33 +2227,29 @@
 
     <!-- Hero Section -->
     <section class="hero section" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="container">
-            <div class="hero-content">
-                <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large" id="mainLogo">
+        <div class="hero-content">
+            <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large" id="mainLogo">
+            
+            <h1 class="hero-title">BILLUPS STUDIO</h1>
+            
+            <p class="hero-subtitle">
+                Pick up the mic,<br>
+                elevate — create.
+            </p>
+            
+            <a href="#contact" class="btn-primary" aria-label="Book your session now">BOOK NOW</a>
+            
+            <!-- SOCIAL PROOF -->
+            <div class="social-proof">
+                <div class="live-counter">
+                    <div class="pulse-dot"></div>
+                    <span><span id="sessionCount">12</span> sessions booked this month</span>
+                </div>
                 
-                <h1 class="hero-title">BILLUPS STUDIO</h1>
-                
-                <p class="hero-subtitle">
-                    Pick up the mic,<br>
-                    elevate — create.
-                </p>
-                
-                <a href="#contact" class="btn-primary">BOOK YOUR SESSION</a>
-                
-                <!-- SOCIAL PROOF -->
-                <div class="social-proof">
-                    <div class="live-counter">
-                        <div class="pulse-dot"></div>
-                        <span><span id="sessionCount">12</span> sessions booked this month</span>
-                    </div>
-                    
-                    <div class="trust-badges">
-                        <div class="badge">⭐ 4.9/5 Rating</div>
-                        <div class="badge">🎧 Free Consult</div>
-                        <div class="badge">⚡ 24h Response</div>
-                    </div>
+                <div class="trust-badges">
+                    <div class="badge">⭐ 4.9/5 Rating</div>
+                    <div class="badge">🎧 Free Consult</div>
+                    <div class="badge">⚡ 24h Response</div>
                 </div>
             </div>
         </div>
@@ -1421,89 +2263,76 @@
                 <p class="section-subtitle">Where culture meets clean sound</p>
             </div>
             
-            <div class="about-content">
-                <div>
-                    <h3 style="font-size: 2.2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
-                        Our Studio
-                    </h3>
+            <div class="about-table">
+                <div class="about-column">
+                    <h2>Our<br><span>Studio</span></h2>
                     
-                    <p style="font-size: 1.1rem; margin-bottom: var(--space-lg); line-height: 1.7;">
+                    <p>
                         Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
                         From quick bars to full tape lock-ins, this is the studio where your best work comes alive.
                     </p>
                     
-                    <p style="font-size: 1.1rem; margin-bottom: var(--space-lg); line-height: 1.7;">
+                    <p>
                         Our Luton-based recording studio delivers expert engineering, mixing, and mastering services 
                         for emerging and established artists. With industry-standard equipment and a dedicated team 
                         of producers, we help you achieve professional-grade sound every time.
                     </p>
                     
-                    <div style="background: rgba(0, 255, 0, 0.1); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: var(--space-xl);">
-                        <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent); line-height: 1.5;">
-                            No gimmicks. Just professional setup, local roots,
-                            and that unmatched vibe.
-                        </p>
-                    </div>
+                    <p class="highlight">
+                        No gimmicks. Just professional setup, local roots,
+                        and that unmatched vibe.
+                    </p>
                 </div>
                 
-                <div>
-                    <h4 style="font-size: 1.3rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
-                        Studio Features
-                    </h4>
-                    
-                    <div style="background: rgba(255, 255, 255, 0.05); padding: var(--space-xl); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-                        <div style="display: grid; gap: var(--space-lg);">
-                            <div>
-                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
-                                    <div style="font-size: 1.8rem;">🎚️</div>
-                                    <strong style="font-size: 1.2rem;">Pro Sound</strong>
-                                </div>
-                                <p style="font-size: 0.95rem; color: var(--text-body);">
-                                    Industry-standard equipment with pristine acoustic treatment for radio-ready recordings.
-                                </p>
+                <div class="about-column">
+                    <div class="features-table">
+                        <div class="feature-row">
+                            <div class="feature-icon">🎚️</div>
+                            <div class="feature-content">
+                                <h3>Pro Sound</h3>
+                                <p>Industry-standard equipment with pristine acoustic treatment for radio-ready recordings. Professional mixing and mastering included with every session.</p>
                             </div>
-                            
-                            <div>
-                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
-                                    <div style="font-size: 1.8rem;">🧹</div>
-                                    <strong style="font-size: 1.2rem;">Clean Space</strong>
-                                </div>
-                                <p style="font-size: 0.95rem; color: var(--text-body);">
-                                    Immaculate, inspiring environment designed for creativity and focus without distractions.
-                                </p>
+                        </div>
+                        
+                        <div class="feature-row">
+                            <div class="feature-icon">🧹</div>
+                            <div class="feature-content">
+                                <h3>Clean Space</h3>
+                                <p>Immaculate, inspiring environment designed for creativity and focus without distractions. Professional grade acoustic treatment throughout.</p>
                             </div>
-                            
-                            <div>
-                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
-                                    <div style="font-size: 1.8rem;">👥</div>
-                                    <strong style="font-size: 1.2rem;">Good People</strong>
-                                </div>
-                                <p style="font-size: 0.95rem; color: var(--text-body);">
-                                    Experienced engineers who understand artists and know how to bring out your best performance.
-                                </p>
+                        </div>
+                        
+                        <div class="feature-row">
+                            <div class="feature-icon">👥</div>
+                            <div class="feature-content">
+                                <h3>Good People</h3>
+                                <p>Experienced engineers who understand artists and know how to bring out your best performance. Direct contact with producers jaidee & dsoul.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Our Team -->
-                    <div style="margin-top: var(--space-xl);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Our Team</h4>
-                        <div style="display: grid; gap: var(--space-md);">
-                            <div>
-                                <strong style="color: var(--text-primary);">Fabian</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; margin-left: var(--space-sm);">Studio Owner</span>
-                                <p style="font-size: 0.9rem; margin-top: 4px; color: var(--text-body);">Business inquiries & partnerships</p>
+                    <!-- AUDIO DEMO -->
+                    <div class="audio-demo">
+                        <h3>🎧 Hear The Billups Difference</h3>
+                        
+                        <div class="audio-toggle">
+                            <button class="btn-audio" data-track="raw">Raw Recording</button>
+                            <button class="btn-audio active" data-track="mixed">Mixed & Mastered</button>
+                        </div>
+                        
+                        <div class="audio-player">
+                            <audio id="demoAudio" controls>
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
+                                Your browser does not support audio element.
+                            </audio>
+                            <div class="audio-note">
+                                <i class="fas fa-info-circle"></i> Same vocal take, different processing
                             </div>
-                            <div>
-                                <strong style="color: var(--text-primary);">Jaidee</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; margin-left: var(--space-sm);">Studio Manager</span>
-                                <p style="font-size: 0.9rem; margin-top: 4px; color: var(--text-body);">Bookings • Scheduling • Artist Development</p>
-                            </div>
-                            <div>
-                                <strong style="color: var(--text-primary);">Dsoul</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; margin-left: var(--space-sm);">Head Engineer</span>
-                                <p style="font-size: 0.9rem; margin-top: 4px; color: var(--text-body);">Mixing • Mastering • Production</p>
-                            </div>
+                        </div>
+                        
+                        <div id="audioFallback" class="audio-fallback">
+                            <p>🎚️ Audio demo coming soon</p>
+                            <p>Add your audio files to <code>/audio/</code> folder</p>
                         </div>
                     </div>
                 </div>
@@ -1515,191 +2344,134 @@
     <section class="services section" id="services">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Our Services</h2>
-                <p class="section-subtitle">Professional recording, mixing & mastering</p>
+                <h2 class="section-title">Lock In a Session</h2>
+                <p class="section-subtitle">That Fits Your Grind</p>
             </div>
             
-            <!-- Service Selection Guide -->
-            <div class="service-guide">
-                <div class="guide-step">
-                    <div class="step-number">1</div>
-                    <h3>Choose Your Goal</h3>
-                    <p>Single, EP, or full project? We'll help you pick the right session.</p>
-                </div>
-                
-                <div class="guide-step">
-                    <div class="step-number">2</div>
-                    <h3>Select Package</h3>
-                    <p>From quick sessions to full production packages.</p>
-                </div>
-                
-                <div class="guide-step">
-                    <div class="step-number">3</div>
-                    <h3>Book & Create</h3>
-                    <p>Secure your session and start creating professional music.</p>
-                </div>
-            </div>
-            
-            <!-- Smart Session Calculator -->
-            <div class="session-calculator">
-                <div class="calculator-header">
-                    <h3><i class="fas fa-calculator"></i> Smart Session Calculator</h3>
-                    <p>Find the perfect session for your needs</p>
-                </div>
-                
-                <div class="calculator-controls">
-                    <div class="control-group">
-                        <label>What's your main goal?</label>
-                        <select id="projectGoal">
-                            <option value="single">Record 1-2 singles</option>
-                            <option value="ep" selected>Record an EP (3-4 songs)</option>
-                            <option value="project">Full project (5+ songs)</option>
-                            <option value="mixing">Just mixing/mastering</option>
-                        </select>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label>Number of artists</label>
-                        <select id="artistCount">
-                            <option value="solo" selected>Solo artist</option>
-                            <option value="duo">Duo/Collaboration</option>
-                            <option value="group">Group session</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div id="calculatorResult">
-                    <div class="result-title">RECOMMENDED: EP Package</div>
-                    <div class="result-price">£140</div>
-                    <div class="result-description">Half Day Session - Perfect for recording 3-4 songs</div>
-                    <p><i class="fas fa-check"></i> Includes: Recording, mixing, basic mastering</p>
-                    <p><i class="fas fa-clock"></i> Duration: 5 hours studio time</p>
-                    <a href="#contact" class="btn-primary btn-tier-2" style="margin-top: var(--space-md);">Book This Package</a>
-                </div>
-            </div>
-            
-            <!-- Mix & Master Coming Soon Notice -->
+            <!-- MIX & MASTER COMING SOON NOTICE -->
             <div class="mix-master-notice">
                 <h3>🎛️ Mix & Master Section Coming Soon</h3>
                 <p>We're currently building out our dedicated mixing & mastering service. All final mixes and masters are handled by Dsoul.</p>
                 <div class="coming-soon-badge">Launching Soon</div>
             </div>
             
-            <!-- Pricing Tiers -->
-            <div class="pricing-tiers">
-                <!-- Tier 1: Quick Session -->
-                <div class="pricing-tier">
-                    <div class="tier-header">
-                        <div class="tier-icon">⚡</div>
-                        <h3 class="tier-title">Quick Session</h3>
-                        <div class="tier-price">£80<span>/song</span></div>
-                        <p>3 hours studio time</p>
+            <!-- SESSION CALCULATOR -->
+            <div class="session-calculator">
+                <h3>💰 Recording Hours Calculator</h3>
+                
+                <div class="calculator-controls">
+                    <div class="control-group">
+                        <label>How many hours do you need?</label>
+                        <select id="recordingHours">
+                            <option value="1">1-2 hours</option>
+                            <option value="3" selected>3-4 hours</option>
+                            <option value="5">5-6 hours</option>
+                            <option value="7">7+ hours</option>
+                        </select>
                     </div>
                     
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 3 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Professional engineer</li>
-                        <li><i class="fas fa-check"></i> Basic mixing included</li>
-                        <li><i class="fas fa-check"></i> Industry equipment</li>
-                        <li><i class="fas fa-check"></i> Perfect for singles</li>
-                    </ul>
-                    
-                    <div class="tier-action">
+                    <div class="control-group">
+                        <label>Session Type</label>
+                        <select id="sessionType">
+                            <option value="hourly">Hourly (Flexible)</option>
+                            <option value="half-day" selected>Half Day Session</option>
+                            <option value="full-day">Full Day Session</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="calculatorResult">
+                    <div class="recommendation">RECOMMENDED: Half Day Session</div>
+                    <div class="price">£140</div>
+                    <div class="description">5 hours of studio recording time</div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-sm);">
+                        <i class="fas fa-info-circle"></i> Studio mix as standard
+                    </p>
+                    <a href="#contact" class="btn-primary btn-tier-2">Book This Session</a>
+                </div>
+            </div>
+            
+            <div class="services-table">
+                <div class="service-header-row">
+                    <div>Session Type</div>
+                    <div>Price</div>
+                    <div class="header-duration">Recording Hours</div>
+                    <div>Action</div>
+                </div>
+                
+                <!-- Hourly -->
+                <div class="service-row tier-1">
+                    <div class="service-name">
+                        <div class="service-icon">🎧</div>
+                        <div>
+                            <div class="service-title">Hourly</div>
+                            <div class="service-description">Engineer included • Flexible booking</div>
+                        </div>
+                    </div>
+                    <div class="service-price">£30<span>/hr</span></div>
+                    <div class="service-duration">Flexible</div>
+                    <div class="service-action">
                         <a href="#contact" class="btn-primary btn-tier-1">Book Now</a>
                     </div>
                 </div>
                 
-                <!-- Tier 2: Half Day (Most Popular) -->
-                <div class="pricing-tier popular">
-                    <div class="tier-badge">MOST POPULAR</div>
-                    <div class="tier-header">
-                        <div class="tier-icon">🎯</div>
-                        <h3 class="tier-title">Half Day</h3>
-                        <div class="tier-price">£140</div>
-                        <p>Best for EPs</p>
+                <!-- Half Day -->
+                <div class="service-row tier-2">
+                    <div class="popular-tag" aria-label="Most Popular">MOST POPULAR</div>
+                    <div class="service-name">
+                        <div class="service-icon">🎧</div>
+                        <div>
+                            <div class="service-title">Half Day</div>
+                            <div class="service-description">Full access + full support</div>
+                        </div>
                     </div>
-                    
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 5 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Recording + mixing</li>
-                        <li><i class="fas fa-check"></i> Basic mastering</li>
-                        <li><i class="fas fa-check"></i> Up to 4 songs</li>
-                        <li><i class="fas fa-check"></i> Professional engineer</li>
-                    </ul>
-                    
-                    <div class="tier-action">
+                    <div class="service-price">£140</div>
+                    <div class="service-duration">5 Hours</div>
+                    <div class="service-action">
                         <a href="#contact" class="btn-primary btn-tier-2">Book Now</a>
                     </div>
                 </div>
                 
-                <!-- Tier 3: Full Day -->
-                <div class="pricing-tier">
-                    <div class="tier-header">
-                        <div class="tier-icon">🔥</div>
-                        <h3 class="tier-title">Full Day</h3>
-                        <div class="tier-price">£240</div>
-                        <p>Complete projects</p>
+                <!-- Full Day -->
+                <div class="service-row tier-3">
+                    <div class="service-name">
+                        <div class="service-icon">🎧</div>
+                        <div>
+                            <div class="service-title">Full Day</div>
+                            <div class="service-description">Zero distractions • Extended time</div>
+                        </div>
                     </div>
-                    
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 10 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Complete production</li>
-                        <li><i class="fas fa-check"></i> Professional mastering</li>
-                        <li><i class="fas fa-check"></i> Up to 8 songs</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                    </ul>
-                    
-                    <div class="tier-action">
+                    <div class="service-price">£240</div>
+                    <div class="service-duration">10 Hours</div>
+                    <div class="service-action">
                         <a href="#contact" class="btn-primary btn-tier-3">Book Now</a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Add-On Services -->
-            <div class="addons-section">
-                <h3 style="text-align: center; color: var(--accent); margin-bottom: var(--space-xl); font-size: 1.8rem;">
-                    <i class="fas fa-plus-circle"></i> Add-On Services
-                </h3>
                 
-                <div class="addons-grid">
-                    <div class="addon-card">
-                        <div class="addon-icon"><i class="fas fa-sliders-h"></i></div>
-                        <h4>Premium Mixing</h4>
-                        <p>Professional studio mix</p>
-                        <div class="addon-price">£40/song</div>
+                <!-- Custom Session -->
+                <div class="service-row tier-custom">
+                    <div class="service-name">
+                        <div class="service-icon">🎧</div>
+                        <div>
+                            <div class="service-title">Custom Session</div>
+                            <div class="service-description">Tailored to your specific needs</div>
+                        </div>
                     </div>
-                    
-                    <div class="addon-card">
-                        <div class="addon-icon"><i class="fas fa-volume-up"></i></div>
-                        <h4>Mastering</h4>
-                        <p>Radio-ready loudness</p>
-                        <div class="addon-price">£25/song</div>
-                    </div>
-                    
-                    <div class="addon-card">
-                        <div class="addon-icon"><i class="fas fa-microphone-alt"></i></div>
-                        <h4>Vocal Tuning</h4>
-                        <p>Professional pitch correction</p>
-                        <div class="addon-price">£15/song</div>
-                    </div>
-                    
-                    <div class="addon-card">
-                        <div class="addon-icon"><i class="fas fa-drum"></i></div>
-                        <h4>Beat Production</h4>
-                        <p>Custom instrumentals</p>
-                        <div class="addon-price">From £50</div>
+                    <div class="service-price" style="color: var(--tier-custom);">Enquiry</div>
+                    <div class="service-duration">Flexible</div>
+                    <div class="service-action">
+                        <a href="#contact" class="btn-primary btn-tier-custom">Enquire</a>
                     </div>
                 </div>
             </div>
             
-            <!-- Deposit Notice -->
             <div class="deposit-notice" role="note">
                 ⚠️ £30 deposit required to confirm all sessions. All sessions include professional engineering support.
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- ===== PORTFOLIO SECTION ===== -->
     <section class="portfolio section" id="portfolio">
         <div class="container">
             <div class="section-header">
@@ -1757,6 +2529,7 @@
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
                                 <i class="fas fa-music"></i>
+                                <p>Audio Track 1 - Dsoul Mix</p>
                             </div>
                         </div>
                         <div class="portfolio-info">
@@ -1777,6 +2550,7 @@
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
                                 <i class="fas fa-sliders-h"></i>
+                                <p>Audio Track 2 - Full Production</p>
                             </div>
                         </div>
                         <div class="portfolio-info">
@@ -1797,6 +2571,7 @@
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
                                 <i class="fas fa-drum"></i>
+                                <p>Audio Track 3 - Beat Making</p>
                             </div>
                         </div>
                         <div class="portfolio-info">
@@ -1815,16 +2590,54 @@
                 </div>
             </div>
             
-            <!-- Jaidee's Portfolio -->
+            <!-- Jaidee's Portfolio - UPDATED SECTION -->
             <div class="portfolio-content" id="jaidee-portfolio">
                 <div class="portfolio-header">
                     <div class="producer-bio">
                         <h3>Jaidee - Studio Manager & Producer</h3>
-                        <p>With 5 years of industry experience, I bring a comprehensive skill set in studio management, artist development, and creative direction.</p>
+                        <p>With 5 years of industry experience, I bring a comprehensive skill set in studio management, artist development, and creative direction. My expertise spans session coordination, workflow optimization, and bridging the gap between technical production and artistic vision.</p>
+                        
+                        <!-- EXPERIENCE HIGHLIGHTS -->
+                        <div class="collaborations-section">
+                            <h4><i class="fas fa-trophy"></i> Experience Highlights</h4>
+                            <div class="collaborations-grid">
+                                <div class="collab-badge highlight-collab">Studio Management</div>
+                                <div class="collab-badge highlight-collab">Artist Development</div>
+                                <div class="collab-badge highlight-collab">Session Coordination</div>
+                                <div class="collab-badge highlight-collab">Workflow Optimization</div>
+                                <div class="collab-badge highlight-collab">Creative Direction</div>
+                            </div>
+                        </div>
+                        
+                        <!-- COLLABORATIONS SECTION -->
+                        <div class="collaborations-section">
+                            <h4><i class="fas fa-handshake"></i> Notable Collaborations & Projects:</h4>
+                            <div class="collaborations-grid">
+                                <div class="collab-badge">Passive</div>
+                                <div class="collab-badge">Nicole Black</div>
+                                <div class="collab-badge">NVM Events</div>
+                                <div class="collab-badge">Twenty8</div>
+                                <div class="collab-badge">FONZO</div>
+                                <div class="collab-badge">Fendry</div>
+                                <div class="collab-badge">Shapingrime</div>
+                                <div class="collab-badge highlight-collab">
+                                    <i class="fas fa-microphone"></i> Beyond Boundaries Podcast
+                                </div>
+                                <div class="collab-badge">SamHam</div>
+                                <div class="collab-badge highlight-collab">
+                                    <i class="fas fa-crown"></i> FYI Arsenal Cypher
+                                </div>
+                            </div>
+                            <p class="collab-note">
+                                <strong>Beyond Boundaries Podcast:</strong> Co-host with Passive, discussing music industry insights, artist journeys, and creative processes. <br>
+                                <strong>FYI Arsenal Cypher:</strong> A collection of the best grime emcees I've worked with.
+                            </p>
+                        </div>
+                        
                         <div class="producer-contact">
                             <p><i class="fas fa-phone"></i> 07878 709110</p>
-                            <p><i class="fas fa-envelope"></i> billupsltd@gmail.com</p>
-                            <p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development</p>
+                            <p><i class="fas fa-video"></i> Featured on viral cyphers including SamHam</p>
+                            <p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development, Creative Strategy</p>
                         </div>
                     </div>
                     <div class="producer-stats">
@@ -1848,11 +2661,33 @@
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
                                 <i class="fas fa-microphone-alt"></i>
+                                <p>Beyond Boundaries Podcast</p>
                             </div>
                         </div>
                         <div class="portfolio-info">
-                            <h4>Session Management</h4>
-                            <p>Managed over 100+ recording sessions for diverse artists, ensuring smooth workflow and technical quality.</p>
+                            <h4>Podcast Co-Host & Producer</h4>
+                            <p>Co-hosting the "Beyond Boundaries" podcast with Passive, diving deep into music industry discussions, artist interviews, and creative processes. Bringing studio insights to podcast audiences.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Podcast</span>
+                                <span class="tag">Interview</span>
+                                <span class="tag">Industry Insights</span>
+                            </div>
+                            <div class="portfolio-action">
+                                <a href="https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_" target="_blank" class="btn-portfolio">Watch Podcast Episode</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <div class="portfolio-audio">
+                            <div class="audio-placeholder">
+                                <i class="fas fa-tasks"></i>
+                                <p>Session Management - 100+ Projects</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Studio & Session Management</h4>
+                            <p>Managed over 100+ recording sessions for diverse artists, ensuring smooth workflow, technical quality, and artist satisfaction. Expert in maximizing studio time and maintaining creative momentum.</p>
                             <div class="portfolio-tags">
                                 <span class="tag">Management</span>
                                 <span class="tag">Efficiency</span>
@@ -1868,41 +2703,97 @@
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
                                 <i class="fas fa-chart-line"></i>
+                                <p>Artist Development Strategy</p>
                             </div>
                         </div>
                         <div class="portfolio-info">
-                            <h4>Artist Development</h4>
-                            <p>Guiding emerging artists through the complete creative process - from initial concept to final release.</p>
+                            <h4>Artist Development & Strategy</h4>
+                            <p>Guiding emerging artists through the complete creative process - from initial concept to final release. Combining studio expertise with market insight to develop sustainable artistic careers.</p>
                             <div class="portfolio-tags">
                                 <span class="tag">Strategy</span>
                                 <span class="tag">Development</span>
                                 <span class="tag">Growth</span>
                             </div>
                             <div class="portfolio-action">
-                                <a href="mailto:billupsltd@gmail.com?subject=Inquiry about Artist Development&body=Hi Jaidee, I'd like to discuss artist development for my project." class="btn-portfolio">Email Jaidee</a>
+                                <a href="mailto:billupsltd@gmail.com?subject=Inquiry about Artist Development&body=Hi Jaidee, I'd like to discuss artist development and strategy for my project." class="btn-portfolio">Email Jaidee</a>
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- FEATURED VIDEOS SECTION - UPDATED WITH YOUR LINKS -->
+                <div class="featured-videos-section">
+                    <h3><i class="fas fa-video"></i> Featured Videos & Recent Work</h3>
                     
-                    <div class="portfolio-item">
-                        <div class="portfolio-audio">
-                            <div class="audio-placeholder">
-                                <i class="fas fa-video"></i>
+                    <div class="videos-grid">
+                        <!-- Video 1: Beyond Boundaries Podcast -->
+                        <div class="video-item">
+                            <div class="video-thumbnail" onclick="window.open('https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_', '_blank')">
+                                <i class="fas fa-podcast"></i>
+                                <div class="video-overlay">Watch Now</div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Beyond Boundaries Podcast</h4>
+                                <p>Co-host with Passive discussing music industry insights</p>
+                                <div class="video-tags">
+                                    <span class="tag">Podcast</span>
+                                    <span class="tag">Interview</span>
+                                    <span class="tag">Discussion</span>
+                                </div>
+                                <a href="https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_" target="_blank" class="btn-portfolio video-btn">
+                                    <i class="fas fa-play"></i> Watch Episode
+                                </a>
                             </div>
                         </div>
-                        <div class="portfolio-info">
-                            <h4>Beyond Boundaries Podcast</h4>
-                            <p>Co-hosting the "Beyond Boundaries" podcast with Passive, diving deep into music industry discussions.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Podcast</span>
-                                <span class="tag">Interview</span>
-                                <span class="tag">Industry Insights</span>
+                        
+                        <!-- Video 2: Arsenal Cypher -->
+                        <div class="video-item">
+                            <div class="video-thumbnail" onclick="window.open('https://youtu.be/2WaVOTgPwOM?si=Pn5XRfx8KqHjQDdF', '_blank')">
+                                <i class="fas fa-users"></i>
+                                <div class="video-overlay">Watch Now</div>
                             </div>
-                            <div class="portfolio-action">
-                                <a href="https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_" target="_blank" class="btn-portfolio">Watch Podcast Episode</a>
+                            <div class="video-info">
+                                <h4>FYI Arsenal Cypher</h4>
+                                <p>Organized & produced local talent showcase</p>
+                                <div class="video-tags">
+                                    <span class="tag">Cypher</span>
+                                    <span class="tag">Live Event</span>
+                                    <span class="tag">Production</span>
+                                </div>
+                                <a href="https://youtu.be/2WaVOTgPwOM?si=Pn5XRfx8KqHjQDdF" target="_blank" class="btn-portfolio video-btn">
+                                    <i class="fas fa-play"></i> Watch Highlight
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Video 3: SamHam Feature -->
+                        <div class="video-item">
+                            <div class="video-thumbnail" onclick="window.open('https://youtu.be/b8AliqtsSuo?si=_945yhhEXsb21In9', '_blank')">
+                                <i class="fas fa-star"></i>
+                                <div class="video-overlay">Watch Now</div>
+                            </div>
+                            <div class="video-info">
+                                <h4>SamHam Viral Cypher</h4>
+                                <p>Feature appearance on popular cypher series</p>
+                                <div class="video-tags">
+                                    <span class="tag">Viral</span>
+                                    <span class="tag">Cypher</span>
+                                    <span class="tag">Feature</span>
+                                </div>
+                                <a href="https://youtu.be/b8AliqtsSuo?si=_945yhhEXsb21In9" target="_blank" class="btn-portfolio video-btn">
+                                    <i class="fas fa-play"></i> Watch Feature
+                                </a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-footer">
+                <p>🎯 <strong>Work directly with our producers</strong> - Book a session and work one-on-one with Dsoul or Jaidee for your next project.</p>
+                <div class="portfolio-footer-actions">
+                    <a href="#contact" class="btn-primary">Book Studio Time</a>
+                    <a href="tel:07710593113" class="btn-secondary">Call Studio: 07710 593113</a>
                 </div>
             </div>
         </div>
@@ -1912,22 +2803,20 @@
     <section class="gallery section" id="gallery">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Studio Gallery</h2>
-                <p class="section-subtitle">Take a look inside our professional recording space</p>
+                <h2 class="section-title">Inside</h2>
+                <p class="section-subtitle">The Energy</p>
             </div>
             
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery items will be loaded dynamically -->
-                <div style="grid-column: 1 / -1; text-align: center; padding: var(--space-xxl); background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 2px dashed var(--border-color);">
-                    <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: var(--space-lg);"></i>
-                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Studio Gallery Coming Soon</h3>
-                    <p style="color: var(--text-body); max-width: 500px; margin: 0 auto;">Photos of our studio setup, equipment, and working environment will be added here.</p>
+            <div class="gallery-grid" id="galleryContainer">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    Loading studio images...
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- SIMPLIFIED CONTACT SECTION -->
     <section class="contact section" id="contact">
         <div class="container">
             <div class="section-header">
@@ -1940,46 +2829,46 @@
                     <h3>Our Team</h3>
                     <div class="contact-methods">
                         <!-- Studio Owner - Fabian -->
-                        <div class="contact-row">
+                        <div class="contact-row fabian-contact">
                             <div class="method-icon">
                                 <i class="fas fa-crown"></i>
                             </div>
                             <div class="method-text">
                                 <strong>Fabian</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Studio Owner</span>
+                                <div class="contact-role-badge">Studio Owner</div>
                                 <p>For business inquiries & partnerships</p>
                                 <p><small>Contact via studio email</small></p>
                             </div>
                         </div>
                         
                         <!-- Studio Manager - Jaidee -->
-                        <a href="tel:07878709110" class="contact-row">
+                        <a href="tel:07878709110" class="contact-row jaidee-contact">
                             <div class="method-icon">
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                             <div class="method-text">
                                 <strong>Jaidee</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Studio Manager</span>
+                                <div class="contact-role-badge">Studio Manager</div>
                                 <p>📞 07878 709110</p>
                                 <p>Bookings • Scheduling • Studio queries</p>
                             </div>
                         </a>
                         
                         <!-- Head Engineer - Dsoul -->
-                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row">
+                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row dsoul-contact">
                             <div class="method-icon">
                                 <i class="fas fa-sliders-h"></i>
                             </div>
                             <div class="method-text">
                                 <strong>Dsoul</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Head Engineer</span>
+                                <div class="contact-role-badge">Head Engineer</div>
                                 <p>✉️ dsoulfiles@gmail.com</p>
                                 <p>Mixing • Mastering • Production</p>
                             </div>
                         </a>
                         
                         <!-- Main Studio Contact -->
-                        <a href="tel:07710593113" class="contact-row">
+                        <a href="tel:07710593113" class="contact-row studio-contact">
                             <div class="method-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
@@ -1991,7 +2880,7 @@
                         </a>
                         
                         <!-- WhatsApp -->
-                        <a href="https://wa.me/447710593113" class="contact-row">
+                        <a href="https://wa.me/447710593113" class="contact-row whatsapp-contact">
                             <div class="method-icon">
                                 <i class="fab fa-whatsapp"></i>
                             </div>
@@ -2003,7 +2892,7 @@
                         </a>
                         
                         <!-- Studio Email -->
-                        <a href="mailto:billupsltd@gmail.com" class="contact-row">
+                        <a href="mailto:billupsltd@gmail.com" class="contact-row studio-contact">
                             <div class="method-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
@@ -2025,6 +2914,18 @@
                                 <p>Latest work & updates</p>
                             </div>
                         </a>
+                        
+                        <!-- Address -->
+                        <div class="contact-row">
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Studio Location</strong>
+                                <p>Cutenhoe Road, Luton LU1 3NB</p>
+                                <p><small>Full address sent after booking</small></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -2056,10 +2957,21 @@
                                 <label for="session-type">Session Type *</label>
                                 <select id="session-type" name="session-type" required>
                                     <option value="">Select session</option>
-                                    <option value="quick-session">Quick Session (£80)</option>
+                                    <option value="hourly">Hourly (£30/hr)</option>
                                     <option value="half-day">Half Day (£140)</option>
                                     <option value="full-day">Full Day (£240)</option>
                                     <option value="custom">Custom Session</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="preferred-contact">Preferred Contact</label>
+                                <select id="preferred-contact" name="preferred-contact">
+                                    <option value="">Any method</option>
+                                    <option value="phone">Phone Call</option>
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="jaidee">Contact Jaidee (Studio Manager)</option>
+                                    <option value="dsoul">Contact Dsoul (Head Engineer)</option>
                                 </select>
                             </div>
                             
@@ -2084,108 +2996,289 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-table">
                 <div class="footer-column">
-                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo">
-                    <p style="color: var(--text-body); line-height: 1.7; font-size: 0.95rem;">
-                        Professional recording studio in Luton. Expert engineering, mixing & mastering. 
-                        Book your session today and elevate your sound.
+                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo" id="footerLogo">
+                    <p class="footer-description">
+                        Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
+                        No gimmicks. Just professional setup, local roots, and that unmatched vibe.
                     </p>
                 </div>
                 
                 <div class="footer-column">
-                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.1rem;">Quick Links</h4>
-                    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
-                        <a href="#home" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Home
-                        </a>
-                        <a href="#about" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> About
-                        </a>
-                        <a href="#services" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Services
-                        </a>
-                        <a href="#portfolio" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Portfolio
-                        </a>
-                        <a href="#gallery" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Gallery
-                        </a>
-                        <a href="#contact" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Contact
-                        </a>
-                    </div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li class="footer-link"><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li class="footer-link"><a href="#portfolio"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                        <li class="footer-link"><a href="#gallery"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li class="footer-link"><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.1rem;">Studio Hours</h4>
-                    <p style="color: var(--text-body); margin-bottom: var(--space-xs); font-size: 0.95rem;">
-                        <i class="fas fa-clock" style="color: var(--accent); margin-right: var(--space-xs);"></i>
-                        Mon-Sun: 10AM - 10PM
-                    </p>
-                    <p style="color: var(--text-body); font-size: 0.95rem;">
-                        <i class="fas fa-calendar-check" style="color: var(--accent); margin-right: var(--space-xs);"></i>
-                        By appointment only
-                    </p>
+                    <h4 class="footer-heading">Studio Hours</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a><i class="fas fa-clock"></i> Monday - Sunday</a></li>
+                        <li class="footer-link"><a><i class="fas fa-calendar-alt"></i> 10:00 AM - 10:00 PM</a></li>
+                        <li class="footer-link"><a><i class="fas fa-calendar-check"></i> By appointment only</a></li>
+                    </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved.</p>
-                <p style="margin-top: var(--space-sm); font-size: 0.85rem;">
-                    Luton, Bedfordshire | 07710 593113
+                <p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved. Luton, Bedfordshire.</p>
+                <p style="margin-top: var(--space-sm); font-size: 0.9rem; color: var(--text-muted);">
+                    Contact: Fabian (Owner) • Jaidee (Studio Manager): 07878 709110 • Dsoul (Head Engineer): dsoulfiles@gmail.com
                 </p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // ===== WEBSITE INITIALIZATION =====
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize components
-            initializeHeader();
-            initializeHeaderEqualizer();
-            initializeCalculator();
-            initializeCurrentYear();
-            initializePortfolioTabs();
-            initializeLiveCounter();
-            initializeGallery();
-            initializeSmoothScrolling();
-            initializeLogoAnimation();
-        });
-
-        // ===== HEADER SCROLL EFFECT =====
-        function initializeHeader() {
-            const header = document.getElementById('header');
+    <!-- QUICK QUESTION WIDGET -->
+    <div class="quick-question-widget">
+        <button id="questionToggle" class="widget-toggle">
+            💬
+        </button>
+        
+        <div id="questionForm" class="widget-form">
+            <h4>Quick Question?</h4>
             
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-        }
+            <!-- Web3Forms Quick Question Form -->
+            <form action="https://api.web3forms.com/submit" method="POST" id="quickQuestionForm">
+                <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6">
+                <input type="hidden" name="subject" value="Quick Question - Billups Studio">
+                
+                <div class="form-group">
+                    <input type="text" placeholder="Your name *" id="quickName" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" placeholder="Email or phone *" id="quickContact" name="contact" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea placeholder="What's your question? *" rows="3" id="quickMessage" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    Send Quick Question
+                </button>
+            </form>
+            
+            <div class="response-time">We reply in <24h</div>
+        </div>
+    </div>
+
+    <script>
+        // ===== WEBSITE CONFIGURATION =====
+        const CONFIG = {
+            backgroundImages: {
+                hero: 'images/hero-bg.jpg',
+                about: 'images/about-studio.jpg',
+                services: 'images/studio-bg.jpg',
+                portfolio: 'images/portfolio-bg.jpg',
+                gallery: 'images/studio1.jpg',
+                contact: 'images/studio2.jpg'
+            },
+            
+            galleryPatterns: [
+                'studio1.jpg', 'studio2.jpg', 'studio3.jpg',
+                'studio4.jpg', 'studio5.jpg', 'studio6.jpg',
+                'studio7.jpg', 'studio8.jpg', 'studio9.jpg',
+                'studio10.jpg', 'studio11.jpg', 'studio12.jpg',
+                'gallery1.jpg', 'gallery2.jpg', 'gallery3.jpg',
+                'image1.jpg', 'image2.jpg', 'image3.jpg',
+                'photo1.jpg', 'photo2.jpg', 'photo3.jpg',
+                'img1.jpg', 'img2.jpg', 'img3.jpg'
+            ]
+        };
+
+        // ===== INITIALIZE WEBSITE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Billups Studio Website Initializing...');
+            
+            // Initialize all components
+            initializeBackgroundImages();
+            initializeGallery();
+            initializeEventListeners();
+            initializeCurrentYear();
+            initializeHeaderEqualizer();
+            initializeQuickWins();
+            
+            console.log('✅ Website initialized successfully!');
+        });
 
         // ===== HEADER EQUALIZER =====
         function initializeHeaderEqualizer() {
+            console.log('🔊 Initializing header equalizer...');
+            
             const headerEqualizer = document.getElementById('headerEqualizer');
             if (!headerEqualizer) return;
             
             const barsContainer = headerEqualizer.querySelector('.header-equalizer-bars');
             if (!barsContainer) return;
             
+            // Clear any existing bars
             barsContainer.innerHTML = '';
             
-            for (let i = 0; i < 8; i++) {
+            // Create 10 equalizer bars
+            for (let i = 0; i < 10; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'header-equalizer-bar';
+                const randomInitialHeight = 30 + Math.random() * 40;
+                bar.style.height = `${randomInitialHeight}%`;
                 barsContainer.appendChild(bar);
+            }
+        }
+
+        // ===== QUICK WINS INITIALIZATION =====
+        function initializeQuickWins() {
+            console.log('⚡ Initializing quick wins...');
+            
+            // Session Calculator
+            initializeSessionCalculator();
+            
+            // Live Counter
+            initializeLiveCounter();
+            
+            // Audio Demo
+            initializeAudioDemo();
+            
+            // Quick Question Widget
+            initializeQuickQuestionWidget();
+            
+            // Portfolio Features
+            initializePortfolioTabs();
+            initializePortfolioAudio();
+            
+            console.log('✅ All quick wins initialized');
+        }
+
+        // ===== SESSION CALCULATOR =====
+        function initializeSessionCalculator() {
+            const recordingHours = document.getElementById('recordingHours');
+            const sessionType = document.getElementById('sessionType');
+            
+            if (recordingHours && sessionType) {
+                updateCalculator();
+                recordingHours.addEventListener('change', updateCalculator);
+                sessionType.addEventListener('change', updateCalculator);
+            }
+        }
+        
+        function updateCalculator() {
+            const recordingHours = parseInt(document.getElementById('recordingHours').value);
+            const sessionType = document.getElementById('sessionType').value;
+            
+            let recommendation = '';
+            let price = '';
+            let description = '';
+            let buttonClass = 'btn-tier-2';
+            
+            if (sessionType === 'hourly') {
+                recommendation = 'Hourly Session';
+                const total = recordingHours * 30;
+                price = `£${total}`;
+                description = `${recordingHours} hours of studio time`;
+                buttonClass = 'btn-tier-1';
+            } else if (sessionType === 'half-day') {
+                recommendation = 'Half Day Session';
+                price = '£140';
+                description = '5 hours of studio recording time';
+                buttonClass = 'btn-tier-2';
+            } else if (sessionType === 'full-day') {
+                recommendation = 'Full Day Session';
+                price = '£240';
+                description = '10 hours of studio recording time';
+                buttonClass = 'btn-tier-3';
+            }
+            
+            const resultEl = document.getElementById('calculatorResult');
+            if (resultEl) {
+                resultEl.innerHTML = `
+                    <div class="recommendation">RECOMMENDED: ${recommendation}</div>
+                    <div class="price">${price}</div>
+                    <div class="description">${description}</div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-sm);">
+                        <i class="fas fa-info-circle"></i> Studio mix as standard
+                    </p>
+                    <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">Book This Session</a>
+                `;
+                
+                resultEl.style.animation = 'none';
+                setTimeout(() => {
+                    resultEl.style.animation = 'fadeInUp 0.5s ease-out';
+                }, 10);
+            }
+        }
+
+        // ===== LIVE COUNTER =====
+        function initializeLiveCounter() {
+            function updateLiveCounter() {
+                const baseSessions = 8;
+                const today = new Date();
+                const dayOfMonth = today.getDate();
+                const estimatedSessions = baseSessions + Math.floor(dayOfMonth * 0.8);
+                
+                const counterEl = document.getElementById('sessionCount');
+                if (counterEl) {
+                    counterEl.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        counterEl.textContent = estimatedSessions;
+                        counterEl.style.transform = 'scale(1)';
+                    }, 300);
+                }
+            }
+            
+            updateLiveCounter();
+            setInterval(updateLiveCounter, 3600000);
+        }
+
+        // ===== AUDIO DEMO =====
+        function initializeAudioDemo() {
+            const audioButtons = document.querySelectorAll('.btn-audio');
+            const audio = document.getElementById('demoAudio');
+            const fallback = document.getElementById('audioFallback');
+            
+            if (audioButtons.length > 0) {
+                audioButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.btn-audio').forEach(b => {
+                            b.classList.remove('active');
+                        });
+                        
+                        this.classList.add('active');
+                        
+                        const track = this.dataset.track;
+                        
+                        if (track === 'raw') {
+                            audio.src = 'audio/raw-demo.mp3';
+                        } else {
+                            audio.src = 'audio/mixed-demo.mp3';
+                        }
+                        
+                        audio.load();
+                        audio.play().catch(e => {
+                            if (audio.error && fallback) {
+                                fallback.style.display = 'block';
+                            }
+                        });
+                    });
+                });
+                
+                if (audio && fallback) {
+                    audio.addEventListener('error', () => {
+                        fallback.style.display = 'block';
+                    });
+                }
             }
         }
 
         // ===== PORTFOLIO TAB SWITCHING =====
         function initializePortfolioTabs() {
+            console.log('🎵 Initializing portfolio tabs...');
+            
             const tabs = document.querySelectorAll('.portfolio-tab');
             const contents = document.querySelectorAll('.portfolio-content');
             
@@ -2205,162 +3298,466 @@
                         const content = document.getElementById(`${tabId}-portfolio`);
                         if (content) {
                             content.classList.add('active');
+                            content.style.animation = 'fadeInUp 0.5s ease-out';
                         }
+                        
+                        // Add visual feedback
+                        tab.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            tab.style.transform = 'translateY(-5px) scale(1)';
+                        }, 150);
                     });
                 });
             }
         }
 
-        // ===== GALLERY INITIALIZATION =====
-        function initializeGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            if (!galleryGrid) return;
+        // ===== PORTFOLIO AUDIO PLACEHOLDER CLICK =====
+        function initializePortfolioAudio() {
+            const audioPlaceholders = document.querySelectorAll('.audio-placeholder');
             
-            // Example gallery images - replace with your actual images
-            const galleryImages = [
-                // Add your image paths here
-                // Example: { src: 'images/gallery/studio1.jpg', alt: 'Studio Control Room' }
-            ];
-            
-            // If there are no images, show the placeholder
-            if (galleryImages.length === 0) {
-                return; // Keep the placeholder
-            }
-            
-            // Clear placeholder and add actual gallery items
-            galleryGrid.innerHTML = '';
-            
-            galleryImages.forEach(image => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${image.src}" alt="${image.alt}" loading="lazy">
-                `;
-                galleryGrid.appendChild(galleryItem);
+            audioPlaceholders.forEach(placeholder => {
+                placeholder.addEventListener('click', function() {
+                    const producer = this.closest('.portfolio-content').id.replace('-portfolio', '');
+                    const trackNumber = Array.from(this.parentElement.parentElement.parentElement.children)
+                        .indexOf(this.parentElement.parentElement) + 1;
+                    
+                    showPortfolioNotification(producer, trackNumber);
+                });
             });
         }
 
-        // ===== SMART SESSION CALCULATOR =====
-        function initializeCalculator() {
-            const projectGoal = document.getElementById('projectGoal');
-            const artistCount = document.getElementById('artistCount');
+        function showPortfolioNotification(producer, trackNumber) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--accent);
+                color: var(--black);
+                padding: var(--space-lg);
+                border-radius: var(--radius-md);
+                z-index: 10000;
+                animation: fadeInUp 0.5s ease-out;
+                box-shadow: var(--shadow-lg);
+                max-width: 400px;
+                font-weight: bold;
+                text-align: center;
+            `;
             
-            if (projectGoal && artistCount) {
-                updateCalculator();
+            const producerName = producer === 'dsoul' ? 'Dsoul' : 'Jaidee';
+            notification.innerHTML = `
+                <i class="fas fa-music" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                <strong>${producerName}'s Work - Track ${trackNumber}</strong><br>
+                <small style="font-weight: normal;">Contact ${producerName} directly to hear full examples</small>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeInUp 0.5s ease-out reverse forwards';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // ===== QUICK QUESTION WIDGET =====
+        function initializeQuickQuestionWidget() {
+            const questionToggle = document.getElementById('questionToggle');
+            const questionForm = document.getElementById('questionForm');
+            
+            if (questionToggle && questionForm) {
+                questionToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isVisible = questionForm.style.display === 'block';
+                    questionForm.style.display = isVisible ? 'none' : 'block';
+                    questionToggle.innerHTML = isVisible ? '💬' : '✕';
+                });
+
+                // Handle quick question form submission
+                const quickQuestionForm = document.getElementById('quickQuestionForm');
+                if (quickQuestionForm) {
+                    quickQuestionForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.innerHTML;
+                        
+                        // Show loading state
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                        submitBtn.disabled = true;
+                        
+                        // Submit form using fetch
+                        fetch(this.action, {
+                            method: 'POST',
+                            body: new FormData(this)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Success feedback
+                                submitBtn.innerHTML = '✅ Sent!';
+                                submitBtn.style.background = '#25D366';
+                                
+                                // Clear form
+                                this.reset();
+                                
+                                // Hide form after 2 seconds
+                                setTimeout(() => {
+                                    questionForm.style.display = 'none';
+                                    questionToggle.innerHTML = '💬';
+                                    submitBtn.innerHTML = originalText;
+                                    submitBtn.disabled = false;
+                                    submitBtn.style.background = '';
+                                }, 2000);
+                            } else {
+                                throw new Error('Failed to send');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            submitBtn.innerHTML = '❌ Failed';
+                            submitBtn.style.background = '#ff0000';
+                            
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                                submitBtn.style.background = '';
+                            }, 2000);
+                        });
+                    });
+                }
+
+                // Close form when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!questionToggle.contains(e.target) && !questionForm.contains(e.target)) {
+                        questionForm.style.display = 'none';
+                        questionToggle.innerHTML = '💬';
+                    }
+                });
+            }
+        }
+
+        // ===== BACKGROUND IMAGES =====
+        async function initializeBackgroundImages() {
+            console.log('🎨 Setting up background images...');
+            
+            // Set hero background
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const heroBg = document.createElement('img');
+                heroBg.className = 'hero-bg';
+                heroBg.alt = 'Studio Background';
                 
-                projectGoal.addEventListener('change', updateCalculator);
-                artistCount.addEventListener('change', updateCalculator);
+                try {
+                    await loadImage('images/hero-bg.jpg');
+                    heroBg.src = 'images/hero-bg.jpg';
+                } catch {
+                    try {
+                        await loadImage('images/studio1.jpg');
+                        heroBg.src = 'images/studio1.jpg';
+                    } catch {
+                        hero.style.background = 'linear-gradient(45deg, #000000, #1a0b2e)';
+                        return;
+                    }
+                }
+                
+                hero.insertBefore(heroBg, hero.firstChild);
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'hero-overlay';
+                hero.insertBefore(overlay, hero.children[1]);
+            }
+            
+            // Set section backgrounds
+            const sections = [
+                { section: '.about', image: 'images/about-studio.jpg' },
+                { section: '.services', image: 'images/studio-bg.jpg' },
+                { section: '.portfolio', image: 'images/portfolio-bg.jpg' },
+                { section: '.gallery', image: 'images/studio1.jpg' },
+                { section: '.contact', image: 'images/studio2.jpg' }
+            ];
+            
+            for (const { section, image } of sections) {
+                const sectionElement = document.querySelector(section);
+                if (sectionElement) {
+                    const bg = document.createElement('img');
+                    bg.className = 'section-bg';
+                    bg.alt = 'Studio Background';
+                    
+                    try {
+                        await loadImage(image);
+                        bg.src = image;
+                    } catch {
+                        try {
+                            await loadImage('images/studio1.jpg');
+                            bg.src = 'images/studio1.jpg';
+                        } catch {
+                            continue;
+                        }
+                    }
+                    
+                    sectionElement.insertBefore(bg, sectionElement.firstChild);
+                }
             }
         }
         
-        function updateCalculator() {
-            const projectGoal = document.getElementById('projectGoal').value;
-            const artistCount = document.getElementById('artistCount').value;
-            
-            let recommendation = '';
-            let price = '';
-            let description = '';
-            let buttonClass = 'btn-tier-2';
-            
-            switch(projectGoal) {
-                case 'single':
-                    recommendation = 'Quick Session';
-                    price = '£80';
-                    description = '3 hours studio time - perfect for singles';
-                    buttonClass = 'btn-tier-1';
-                    break;
-                    
-                case 'ep':
-                    recommendation = 'Half Day Package';
-                    price = '£140';
-                    description = '5 hours studio time - ideal for EPs (3-4 songs)';
-                    buttonClass = 'btn-tier-2';
-                    break;
-                    
-                case 'project':
-                    recommendation = 'Full Day Project';
-                    price = '£240';
-                    description = '10 hours studio time - complete project focus';
-                    buttonClass = 'btn-tier-3';
-                    break;
-                    
-                case 'mixing':
-                    recommendation = 'Professional Mixing';
-                    price = '£40/song';
-                    description = 'Studio quality mixing & mastering';
-                    buttonClass = 'btn-tier-4';
-                    break;
-            }
-            
-            let artistNote = '';
-            if (artistCount === 'duo' && projectGoal !== 'mixing') {
-                const basePrice = parseInt(price.replace('£', '').replace('/song', ''));
-                if (!isNaN(basePrice)) {
-                    const adjustedPrice = basePrice + 40;
-                    price = `£${adjustedPrice}`;
-                    artistNote = '<p><i class="fas fa-users"></i> +£40 for duo collaboration</p>';
-                }
-            } else if (artistCount === 'group' && projectGoal !== 'mixing') {
-                price = 'Custom Quote';
-                artistNote = '<p><i class="fas fa-users"></i> Contact for group rates</p>';
-            }
-            
-            const resultEl = document.getElementById('calculatorResult');
-            if (resultEl) {
-                const isCustom = price.includes('Custom');
-                
-                resultEl.innerHTML = `
-                    <div class="result-title">RECOMMENDED: ${recommendation}</div>
-                    <div class="result-price">${price}</div>
-                    <div class="result-description">${description}</div>
-                    ${artistNote}
-                    <p><i class="fas fa-check"></i> Includes professional engineer & equipment</p>
-                    <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">
-                        ${isCustom ? 'Get Custom Quote' : 'Book This Package'}
-                    </a>
-                `;
-            }
+        async function loadImage(src) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = src;
+                img.onload = () => resolve();
+                img.onerror = () => reject();
+                setTimeout(() => reject(), 2000);
+            });
         }
 
-        // ===== LIVE COUNTER =====
-        function initializeLiveCounter() {
-            function updateLiveCounter() {
-                const baseSessions = 8;
-                const today = new Date();
-                const dayOfMonth = today.getDate();
-                const estimatedSessions = baseSessions + Math.floor(dayOfMonth * 0.8);
-                
-                const counterEl = document.getElementById('sessionCount');
-                if (counterEl) {
-                    counterEl.textContent = estimatedSessions;
+        // ===== GALLERY SYSTEM =====
+        async function initializeGallery() {
+            const galleryContainer = document.getElementById('galleryContainer');
+            const galleryLoading = galleryContainer.querySelector('.loading');
+            
+            if (!galleryContainer) return;
+            
+            console.log('🖼️ Loading gallery images...');
+            
+            const foundImages = [];
+            
+            for (const pattern of CONFIG.galleryPatterns) {
+                try {
+                    await loadImage(`images/${pattern}`);
+                    foundImages.push({
+                        src: `images/${pattern}`,
+                        alt: `Studio image ${pattern.replace(/\.[^/.]+$/, '')}`
+                    });
+                } catch {
+                    continue;
                 }
             }
             
-            updateLiveCounter();
-            // Update every hour
-            setInterval(updateLiveCounter, 3600000);
-        }
-
-        // ===== CURRENT YEAR =====
-        function initializeCurrentYear() {
-            const yearElement = document.getElementById('currentYear');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
+            if (galleryLoading) {
+                galleryLoading.style.display = 'none';
+            }
+            
+            if (foundImages.length > 0) {
+                displayGalleryImages(foundImages);
+            } else {
+                showFallbackGallery();
+            }
+            
+            function displayGalleryImages(images) {
+                galleryContainer.innerHTML = '';
+                
+                const displayImages = images.slice(0, 8);
+                
+                displayImages.forEach((image, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.setAttribute('role', 'button');
+                    galleryItem.setAttribute('tabindex', '0');
+                    galleryItem.setAttribute('aria-label', `Studio image ${index + 1}`);
+                    
+                    const img = document.createElement('img');
+                    img.src = image.src;
+                    img.alt = image.alt;
+                    img.loading = 'lazy';
+                    
+                    img.onerror = () => {
+                        img.style.display = 'none';
+                        galleryItem.innerHTML = `
+                            <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: linear-gradient(45deg, var(--purple-dark), var(--purple-medium)); color: var(--accent);">
+                                <i class="fas fa-music" style="font-size: 2rem;"></i>
+                            </div>
+                        `;
+                    };
+                    
+                    galleryItem.appendChild(img);
+                    galleryContainer.appendChild(galleryItem);
+                    
+                    galleryItem.addEventListener('click', () => {
+                        openLightbox(image.src, image.alt);
+                    });
+                });
+                
+                if (images.length > 8) {
+                    const moreItem = document.createElement('div');
+                    moreItem.className = 'gallery-item';
+                    moreItem.style.display = 'flex';
+                    moreItem.style.flexDirection = 'column';
+                    moreItem.style.alignItems = 'center';
+                    moreItem.style.justifyContent = 'center';
+                    moreItem.style.background = 'linear-gradient(45deg, var(--purple-dark), var(--purple-medium))';
+                    moreItem.style.color = 'var(--accent)';
+                    moreItem.style.fontSize = '1.2rem';
+                    moreItem.style.fontWeight = 'bold';
+                    
+                    moreItem.innerHTML = `
+                        <i class="fas fa-images" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        +${images.length - 8} more<br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Total: ${images.length} images</span>
+                    `;
+                    
+                    galleryContainer.appendChild(moreItem);
+                }
+            }
+            
+            function showFallbackGallery() {
+                galleryContainer.innerHTML = '';
+                
+                for (let i = 1; i <= 6; i++) {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    
+                    const placeholder = document.createElement('div');
+                    placeholder.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: linear-gradient(45deg, var(--purple-dark), var(--purple-medium));
+                        color: var(--accent);
+                        font-size: 2rem;
+                    `;
+                    placeholder.innerHTML = `<i class="fas fa-music"></i>`;
+                    
+                    galleryItem.appendChild(placeholder);
+                    galleryContainer.appendChild(galleryItem);
+                }
             }
         }
 
-        // ===== SMOOTH SCROLLING =====
-        function initializeSmoothScrolling() {
+        // ===== LIGHTBOX FUNCTION =====
+        function openLightbox(src, alt) {
+            const fadeInStyle = document.createElement('style');
+            fadeInStyle.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(fadeInStyle);
+            
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            lightbox.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000;
+                animation: fadeIn 0.3s ease-out;
+            `;
+            
+            const imgContainer = document.createElement('div');
+            imgContainer.style.cssText = `
+                max-width: 90%;
+                max-height: 90%;
+                position: relative;
+            `;
+            
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = alt;
+            img.style.cssText = `
+                max-width: 100%;
+                max-height: 80vh;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            `;
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '×';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: -40px;
+                right: -40px;
+                background: var(--accent);
+                color: var(--black);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 2rem;
+                font-weight: bold;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            `;
+            
+            closeBtn.addEventListener('click', () => {
+                document.body.removeChild(lightbox);
+                document.head.removeChild(fadeInStyle);
+            });
+            
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    document.body.removeChild(lightbox);
+                    document.head.removeChild(fadeInStyle);
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.body.removeChild(lightbox);
+                    document.head.removeChild(fadeInStyle);
+                }
+            });
+            
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(closeBtn);
+            lightbox.appendChild(imgContainer);
+            document.body.appendChild(lightbox);
+        }
+
+        // ===== EVENT LISTENERS =====
+        function initializeEventListeners() {
+            const header = document.getElementById('header');
+            const mainLogo = document.getElementById('mainLogo');
+            const bookingForm = document.getElementById('bookingForm');
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Logo hover animation
+            if (mainLogo) {
+                let isAnimating = false;
+                
+                mainLogo.addEventListener('mouseenter', () => {
+                    if (!isAnimating) {
+                        isAnimating = true;
+                        mainLogo.style.animation = 'smooth-fast-rotate 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                    }
+                });
+                
+                mainLogo.addEventListener('mouseleave', () => {
+                    isAnimating = false;
+                    mainLogo.style.animation = '';
+                });
+            }
+            
+            // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const headerHeight = header.offsetHeight;
                         const targetPosition = targetElement.offsetTop - headerHeight;
                         
                         window.scrollTo({
@@ -2370,46 +3767,45 @@
                     }
                 });
             });
+            
+            // Handle booking form submission
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    // Show loading state
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // Form will submit normally to Web3Forms
+                    // The action attribute will handle the submission
+                });
+            }
+            
+            ensureButtonsVisible();
+        }
+        
+        function ensureButtonsVisible() {
+            const buttons = document.querySelectorAll('.btn-primary');
+            buttons.forEach(button => {
+                button.style.opacity = '1';
+                button.style.visibility = 'visible';
+                button.style.display = 'inline-block';
+            });
         }
 
-        // ===== LOGO HOVER ANIMATION =====
-        function initializeLogoAnimation() {
-            const mainLogo = document.getElementById('mainLogo');
-            if (mainLogo) {
-                mainLogo.addEventListener('mouseenter', () => {
-                    mainLogo.style.transform = 'rotateY(180deg) scale(1.05)';
-                });
-                
-                mainLogo.addEventListener('mouseleave', () => {
-                    mainLogo.style.transform = 'rotateY(0) scale(1)';
-                });
+        // ===== UTILITIES =====
+        function initializeCurrentYear() {
+            const currentYear = document.getElementById('currentYear');
+            if (currentYear) {
+                currentYear.textContent = new Date().getFullYear();
             }
         }
 
-        // ===== FORM HANDLING =====
-        const bookingForm = document.getElementById('bookingForm');
-        if (bookingForm) {
-            bookingForm.addEventListener('submit', function(e) {
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
-                
-                // Form will submit to Web3Forms
-                // Show success message after submission
-                setTimeout(() => {
-                    submitBtn.innerHTML = '✅ Sent!';
-                    submitBtn.style.background = '#25D366';
-                    
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.style.background = '';
-                        this.reset();
-                    }, 3000);
-                }, 1500);
-            });
-        }
+        // ===== ERROR HANDLING =====
+        window.addEventListener('error', (e) => {
+            console.warn('Page error:', e.message);
+        }, true);
     </script>
 </body>
 </html>

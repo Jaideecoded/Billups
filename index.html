@@ -25,36 +25,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ===== CORE VARIABLES ===== */
+        /* ===== MASTER DESIGN SYSTEM ===== */
         :root {
-            /* Color System */
+            /* CORE COLOR PALETTE */
             --black: #000000;
             --dark-gray: #0a0a0a;
             --white: #ffffff;
             --accent: #00ff00;
             --accent-light: #90ff90;
             
-            /* Service Tier Colors */
-            --tier-1: #00a8ff;    /* Blue - Entry */
-            --tier-2: #00ff00;    /* Green - Popular */
-            --tier-3: #ff9500;    /* Orange - Premium */
-            --tier-4: #bc00ff;    /* Purple - Ultimate */
+            /* SERVICE TIER COLORS - STRATEGIC HIERARCHY */
+            --tier-1: #00a8ff;
+            --tier-2: #00ff00;
+            --tier-3: #ff9500;
+            --tier-4: #bc00ff;
             
-            /* UI Colors */
+            /* SECTION COLORS */
+            --purple-dark: #1a0b2e;
+            --purple-medium: #2d1b4e;
+            --purple-light: #3d2968;
+            --orange-accent: #ff6b35;
+            --blue-accent: #4d8af0;
+            --blue-light: #6ba3ff;
+            
+            /* TEXT COLORS */
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.95);
             --text-body: rgba(255, 255, 255, 0.85);
             --text-muted: rgba(255, 255, 255, 0.65);
             --border-color: rgba(255, 255, 255, 0.2);
-            --bg-dark: rgba(26, 11, 46, 0.9);
-            --bg-medium: rgba(45, 27, 78, 0.8);
-            --bg-light: rgba(255, 255, 255, 0.05);
             
-            /* Typography */
+            /* TYPOGRAPHY */
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             
-            /* Spacing */
+            /* SPACING SYSTEM */
             --space-xs: 0.5rem;
             --space-sm: 1rem;
             --space-md: 1.5rem;
@@ -62,17 +67,18 @@
             --space-xl: 3rem;
             --space-xxl: 5rem;
             
-            /* Border Radius */
+            /* BORDER RADIUS */
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-full: 50px;
             
-            /* Shadows */
+            /* SHADOWS */
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
             --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
             --shadow-accent: 0 0 30px rgba(0, 255, 0, 0.3);
+            --shadow-accent-md: 0 0 60px rgba(0, 255, 0, 0.2);
         }
         
         /* ===== RESET & BASE ===== */
@@ -95,6 +101,182 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* ===== HEADER EQUALIZER ===== */
+        .header-equalizer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 14px;
+            display: none;
+            z-index: 1001;
+            overflow: hidden;
+            background: transparent;
+        }
+        
+        .header.scrolled .header-equalizer {
+            display: block;
+            animation: equalizerFadeIn 0.5s ease-out;
+        }
+        
+        .header-equalizer-bars {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 3px;
+            padding: 0 15px;
+        }
+        
+        .header-equalizer-bar {
+            width: 5px;
+            height: 60%;
+            background: linear-gradient(to top, var(--accent), var(--tier-2));
+            border-radius: 3px 3px 0 0;
+            opacity: 0.8;
+            filter: brightness(1.2);
+            transform-origin: bottom center;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 0, 0.6),
+                inset 0 2px 3px rgba(255, 255, 255, 0.3);
+            transition: height 0.15s ease-out;
+        }
+        
+        /* Equalizer animations */
+        @keyframes headerEqPulse1 { 0%, 100% { height: 40%; } 20% { height: 85%; } 40% { height: 60%; } 60% { height: 95%; } 80% { height: 45%; } }
+        @keyframes headerEqPulse2 { 0%, 100% { height: 65%; } 30% { height: 35%; } 50% { height: 90%; } 70% { height: 55%; } 90% { height: 75%; } }
+        @keyframes headerEqPulse3 { 0% { height: 50%; } 25% { height: 80%; } 50% { height: 30%; } 75% { height: 100%; } 100% { height: 45%; } }
+        @keyframes headerEqPulse4 { 0%, 100% { height: 75%; } 15% { height: 40%; } 35% { height: 95%; } 55% { height: 60%; } 75% { height: 85%; } }
+        @keyframes headerEqPulse5 { 0% { height: 85%; } 20% { height: 45%; } 40% { height: 100%; } 60% { height: 65%; } 80% { height: 90%; } 100% { height: 70%; } }
+        
+        .header-equalizer-bar:nth-child(1) { animation: headerEqPulse1 2.1s infinite ease-in-out; }
+        .header-equalizer-bar:nth-child(2) { animation: headerEqPulse2 1.8s infinite ease-in-out; animation-delay: 0.2s; }
+        .header-equalizer-bar:nth-child(3) { animation: headerEqPulse3 2.3s infinite ease-in-out; animation-delay: 0.1s; }
+        .header-equalizer-bar:nth-child(4) { animation: headerEqPulse4 2.0s infinite ease-in-out; animation-delay: 0.3s; }
+        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse5 1.9s infinite ease-in-out; animation-delay: 0.15s; }
+        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
+        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
+        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
+        .header-equalizer-bar:nth-child(9) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
+        .header-equalizer-bar:nth-child(10) { animation: headerEqPulse5 1.6s infinite ease-in-out; animation-delay: 0.1s; }
+        
+        @keyframes equalizerFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ===== CONTACT ROLE BADGES ===== */
+        .contact-role-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        
+        /* ===== NAVIGATION ICONS ===== */
+        .nav-icons {
+            display: flex;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+        
+        .nav-icon-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .nav-icon {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            text-decoration: none;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .nav-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--tier-1), var(--tier-2), var(--tier-3), var(--tier-4));
+            background-size: 400% 400%;
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+            animation: gradient-flow 8s ease infinite;
+        }
+        
+        .nav-icon:hover::before {
+            opacity: 1;
+        }
+        
+        .nav-icon:hover {
+            color: var(--black);
+            transform: translateY(-8px) scale(1.15);
+            border-color: transparent;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.4), 0 0 30px rgba(0, 168, 255, 0.3);
+        }
+        
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .nav-label {
+            position: absolute;
+            bottom: -35px;
+            font-size: 0.85rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+            white-space: nowrap;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            pointer-events: none;
+            z-index: 1002;
+        }
+        
+        .nav-icon-container:hover .nav-label {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         /* ===== HEADER ===== */
@@ -110,12 +292,14 @@
             align-items: center;
             background: transparent;
             transition: var(--transition);
+            backdrop-filter: blur(0px);
         }
         
         .header.scrolled {
             background-color: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px) saturate(180%);
             padding: var(--space-md) var(--space-xl);
+            border-bottom: none;
             box-shadow: var(--shadow-lg);
         }
         
@@ -126,12 +310,23 @@
             height: 70px;
             width: auto;
             z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .logo-center img {
             height: 100%;
             width: auto;
             filter: drop-shadow(var(--shadow-accent));
+        }
+        
+        .logo-small {
+            height: 45px;
+            width: auto;
+            border-radius: 50%;
+            filter: drop-shadow(var(--shadow-accent));
+            border: 1px solid rgba(0, 255, 0, 0.2);
         }
         
         /* ===== HERO SECTION ===== */
@@ -171,18 +366,48 @@
             position: relative;
             z-index: 1;
             max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: var(--space-xl);
         }
         
+        /* Logo Rotation */
         .hero-logo-large {
             height: 200px;
             width: auto;
             margin: 0 auto var(--space-xxl);
             display: block;
-            filter: drop-shadow(var(--shadow-accent));
+            filter: drop-shadow(var(--shadow-accent-md));
+            perspective: 1000px;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             border-radius: 50%;
             border: 3px solid rgba(0, 255, 0, 0.3);
             padding: var(--space-md);
             background: rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+        }
+        
+        .hero-logo-large:hover {
+            animation: smooth-fast-rotate 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-color: var(--accent);
+            background: rgba(0, 255, 0, 0.1);
+            transform: scale(1.05);
+        }
+        
+        @keyframes smooth-fast-rotate {
+            0% { 
+                transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.05);
+                border-color: rgba(0, 255, 0, 0.3);
+            }
+            50% { 
+                transform: perspective(1000px) rotateY(180deg) rotateX(5deg) scale(1.1);
+                border-color: rgba(0, 255, 0, 0.8);
+            }
+            100% { 
+                transform: perspective(1000px) rotateY(360deg) rotateX(0deg) scale(1.05);
+                border-color: rgba(0, 255, 0, 0.3);
+            }
         }
         
         .hero-title {
@@ -207,6 +432,66 @@
             margin-right: auto;
         }
         
+        /* ===== SOCIAL PROOF ===== */
+        .social-proof {
+            margin-top: var(--space-xl);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+        
+        .live-counter {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-bottom: var(--space-md);
+        }
+        
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badges .badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .trust-badges .badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+            }
+            50% { 
+                opacity: 0.7; 
+                transform: scale(1.1); 
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+            }
+        }
+        
         /* ===== BUTTONS ===== */
         .btn-primary {
             display: inline-block;
@@ -222,15 +507,21 @@
             letter-spacing: 1.5px;
             border: 3px solid var(--accent);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
             min-width: 220px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
+            opacity: 1 !important;
+            visibility: visible !important;
         }
         
         .btn-primary:hover {
             background-color: var(--accent-light);
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5), 0 0 60px rgba(0, 255, 0, 0.3);
+            color: var(--black);
         }
         
         .btn-tier-1 { background: var(--tier-1); border-color: var(--tier-1); }
@@ -273,9 +564,9 @@
             margin: 0 auto;
         }
         
-        /* ===== SERVICES SECTION - COMPLETELY REDESIGNED ===== */
+        /* ===== SERVICES SECTION ===== */
         .services {
-            background-color: var(--bg-medium);
+            background-color: rgba(45, 27, 78, 0.7);
         }
         
         /* Service Selection Guide */
@@ -287,7 +578,7 @@
         }
         
         .guide-step {
-            background: var(--bg-light);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
@@ -320,6 +611,100 @@
             font-size: 1.5rem;
         }
         
+        /* Smart Session Calculator */
+        .session-calculator {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xxl);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        
+        .session-calculator:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .calculator-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .calculator-header h3 {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .calculator-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .control-group {
+            margin-bottom: var(--space-md);
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .control-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .control-group select:focus {
+            outline: none;
+            border-color: var(--blue-accent);
+            background: rgba(77, 138, 240, 0.12);
+            box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
+        }
+        
+        #calculatorResult {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            text-align: center;
+            margin-top: var(--space-lg);
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .result-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .result-price {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: var(--space-sm) 0;
+            color: var(--text-primary);
+        }
+        
+        .result-description {
+            color: var(--text-body);
+            margin-bottom: var(--space-md);
+        }
+        
         /* Pricing Tiers */
         .pricing-tiers {
             display: grid;
@@ -329,12 +714,13 @@
         }
         
         .pricing-tier {
-            background: var(--bg-light);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             position: relative;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .pricing-tier:hover {
@@ -417,92 +803,6 @@
             text-align: center;
         }
         
-        /* Session Calculator */
-        .session-calculator {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-xxl);
-            border: 1px solid var(--border-color);
-        }
-        
-        .calculator-header {
-            text-align: center;
-            margin-bottom: var(--space-xl);
-        }
-        
-        .calculator-header h3 {
-            color: var(--accent);
-            font-size: 2rem;
-            margin-bottom: var(--space-sm);
-        }
-        
-        .calculator-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .control-group {
-            margin-bottom: var(--space-md);
-        }
-        
-        .control-group label {
-            display: block;
-            margin-bottom: var(--space-xs);
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-        
-        .control-group select {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            font-family: var(--font-primary);
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-        
-        .control-group select:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.2);
-        }
-        
-        #calculatorResult {
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid var(--accent);
-            border-radius: var(--radius-md);
-            padding: var(--space-xl);
-            text-align: center;
-            margin-top: var(--space-lg);
-            animation: fadeInUp 0.5s ease-out;
-        }
-        
-        .result-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--accent);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .result-price {
-            font-size: 3rem;
-            font-weight: 900;
-            margin: var(--space-sm) 0;
-            color: var(--text-primary);
-        }
-        
-        .result-description {
-            color: var(--text-body);
-            margin-bottom: var(--space-md);
-        }
-        
         /* Add-On Services */
         .addons-section {
             margin-top: var(--space-xxl);
@@ -515,12 +815,13 @@
         }
         
         .addon-card {
-            background: var(--bg-light);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             padding: var(--space-lg);
             text-align: center;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .addon-card:hover {
@@ -574,9 +875,62 @@
             margin-bottom: var(--space-xs);
         }
         
-        /* ===== OTHER SECTIONS (Minimal) ===== */
+        /* Mix & Master Notice */
+        .mix-master-notice {
+            background: rgba(0, 255, 0, 0.15);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            margin-bottom: var(--space-xxl);
+            border-left: 6px solid var(--accent);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        
+        .mix-master-notice:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+        }
+        
+        .mix-master-notice h3 {
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            font-size: 1.8rem;
+        }
+        
+        .coming-soon-badge {
+            background: var(--accent);
+            color: var(--black);
+            font-weight: 900;
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            display: inline-block;
+            margin-top: var(--space-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        /* Deposit Notice */
+        .deposit-notice {
+            background: rgba(255, 107, 53, 0.2);
+            border: 1px solid var(--orange-accent);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            margin-top: var(--space-xxl);
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            backdrop-filter: blur(10px);
+            border-left: 6px solid var(--orange-accent);
+        }
+        
+        /* ===== ABOUT SECTION ===== */
         .about {
-            background-color: var(--bg-dark);
+            background-color: rgba(26, 11, 46, 0.7);
         }
         
         .about-content {
@@ -586,16 +940,357 @@
             align-items: center;
         }
         
+        /* ===== AUDIO DEMO ===== */
+        .audio-demo {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-top: var(--space-xxl);
+            border: 1px solid var(--border-color);
+        }
+        
+        .audio-demo h3 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .audio-toggle {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .btn-audio {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+        }
+        
+        .btn-audio.active {
+            background: var(--accent);
+            color: var(--black);
+            font-weight: bold;
+            border-color: var(--accent);
+        }
+        
+        .btn-audio:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+        }
+        
+        .audio-player {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .audio-note {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .audio-fallback {
+            display: none;
+            text-align: center;
+            padding: var(--space-xl);
+            background: rgba(0, 255, 0, 0.05);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-lg);
+        }
+        
+        /* ===== PORTFOLIO SECTION ===== */
         .portfolio {
-            background-color: var(--bg-medium);
+            background-color: rgba(26, 11, 46, 0.7);
         }
         
+        /* ===== GALLERY SECTION ===== */
         .gallery {
-            background-color: var(--bg-dark);
+            background-color: rgba(45, 27, 78, 0.7);
         }
         
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--dark-gray);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* ===== CONTACT SECTION ===== */
         .contact {
-            background-color: var(--bg-medium);
+            background-color: rgba(26, 11, 46, 0.7);
+        }
+        
+        /* Contact Role Specific Styling */
+        .fabian-contact .method-icon {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff9500 100%) !important;
+            border-color: #ff6b35 !important;
+            color: white !important;
+        }
+        
+        .fabian-contact:hover {
+            background: rgba(255, 107, 53, 0.15) !important;
+            border-color: #ff6b35 !important;
+        }
+        
+        .jaidee-contact .method-icon {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%) !important;
+            border-color: #6a11cb !important;
+            color: white !important;
+        }
+        
+        .jaidee-contact:hover {
+            background: rgba(106, 17, 203, 0.15) !important;
+            border-color: #6a11cb !important;
+        }
+        
+        .dsoul-contact .method-icon {
+            background: linear-gradient(135deg, #00ff00 0%, #00cc66 100%) !important;
+            border-color: #00ff00 !important;
+            color: var(--black) !important;
+        }
+        
+        .dsoul-contact:hover {
+            background: rgba(0, 255, 0, 0.15) !important;
+            border-color: #00ff00 !important;
+        }
+        
+        .studio-contact .method-icon {
+            background: linear-gradient(135deg, #4d8af0 0%, #6ba3ff 100%) !important;
+            border-color: #4d8af0 !important;
+            color: white !important;
+        }
+        
+        .studio-contact:hover {
+            background: rgba(77, 138, 240, 0.15) !important;
+            border-color: #4d8af0 !important;
+        }
+        
+        .whatsapp-contact .method-icon {
+            background: rgba(37, 211, 102, 0.2) !important;
+            border-color: #25D366 !important;
+            color: #25D366 !important;
+        }
+        
+        .whatsapp-contact:hover {
+            background: rgba(37, 211, 102, 0.05) !important;
+            border-color: #25D366 !important;
+        }
+        
+        /* Contact Table */
+        .contact-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xxl);
+            margin-top: var(--space-xl);
+        }
+        
+        .contact-column {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xxl);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        
+        .contact-column:hover {
+            transform: translateY(-10px);
+            border-color: var(--blue-accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .contact-column h3 {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-xxl);
+            color: var(--text-primary);
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+        
+        .contact-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-lg);
+            align-items: center;
+            padding: var(--space-lg);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .contact-row:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateX(10px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .contact-row a {
+            text-decoration: none;
+            color: inherit;
+            display: contents;
+        }
+        
+        .method-icon {
+            font-size: 1.6rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(77, 138, 240, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue-light);
+            flex-shrink: 0;
+            border: 1px solid rgba(77, 138, 240, 0.3);
+            transition: var(--transition);
+        }
+        
+        .contact-row:hover .method-icon {
+            transform: scale(1.1);
+        }
+        
+        .method-text {
+            flex-grow: 1;
+        }
+        
+        .method-text strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+        
+        .method-text p {
+            color: var(--text-body);
+            font-size: 1rem;
+            margin-bottom: 4px;
+            opacity: 0.9;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: var(--space-xxl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        
+        .contact-form:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .contact-form h3 {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-xxl);
+            color: var(--text-primary);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--blue-accent);
+            background: rgba(77, 138, 240, 0.12);
+            box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
+        }
+        
+        textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+        
+        /* Form Submission Note */
+        .form-note {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            font-size: 0.95rem;
+            text-align: center;
         }
         
         /* ===== FOOTER ===== */
@@ -631,6 +1326,61 @@
             color: var(--text-muted);
         }
         
+        /* ===== QUICK QUESTION WIDGET ===== */
+        .quick-question-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .widget-toggle {
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .widget-toggle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.4);
+        }
+        
+        .widget-form {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            display: none;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from {
@@ -652,6 +1402,10 @@
             .about-content { grid-template-columns: 1fr; }
             .pricing-tier.popular { transform: scale(1); }
             .pricing-tier.popular:hover { transform: translateY(-15px); }
+            .contact-table { grid-template-columns: 1fr; gap: var(--space-xl); }
+            .nav-icons { gap: var(--space-md); }
+            .nav-icon { width: 50px; height: 50px; font-size: 1.2rem; }
+            .nav-label { font-size: 0.75rem; padding: 0.2rem 0.6rem; }
         }
         
         @media (max-width: 768px) {
@@ -665,6 +1419,14 @@
             .section-title { font-size: 2.2rem; }
             .tier-price { font-size: 3rem; }
             .btn-primary { padding: 1.1rem 2.5rem; font-size: 1.1rem; min-width: 180px; }
+            .calculator-controls { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .nav-label { display: none; }
+            .contact-form { padding: var(--space-xl); }
+            .session-calculator h3 { font-size: 1.5rem; }
+            #calculatorResult .result-title { font-size: 1.5rem; }
+            #calculatorResult .result-price { font-size: 2rem; }
         }
         
         @media (max-width: 480px) {
@@ -673,14 +1435,76 @@
             .btn-primary { padding: 1rem 2rem; font-size: 1rem; min-width: 160px; }
             .tier-price { font-size: 2.5rem; }
             .section { padding: var(--space-xl) var(--space-md); }
+            .header { padding: var(--space-sm); }
+            h3 { font-size: 1.8rem; }
+            .hero-subtitle { font-size: 1.3rem; }
+            .contact-form { padding: var(--space-lg); }
+            .session-calculator { padding: var(--space-md); }
+            #calculatorResult .result-title { font-size: 1.2rem; }
+            #calculatorResult .result-price { font-size: 1.8rem; }
+            .nav-icons { gap: var(--space-sm); }
+            .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header" id="header">
+        <div class="nav-icons">
+            <div class="nav-icon-container">
+                <a href="#home" class="nav-icon" aria-label="Home">
+                    <i class="fas fa-home"></i>
+                </a>
+                <span class="nav-label">Home</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="#services" class="nav-icon" aria-label="Services">
+                    <i class="fas fa-headphones"></i>
+                </a>
+                <span class="nav-label">Services</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="#contact" class="nav-icon" aria-label="Contact">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <span class="nav-label">Contact</span>
+            </div>
+        </div>
+        
         <div class="logo-center">
-            <img src="images/logo.png" alt="Billups Studio" class="header-logo">
+            <img src="images/logo.png" alt="Billups Studio" class="header-logo" id="headerLogo">
+        </div>
+        
+        <div class="nav-icons">
+            <div class="nav-icon-container">
+                <a href="tel:07710593113" class="nav-icon" aria-label="Call us">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <span class="nav-label">Call</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="https://wa.me/447710593113" class="nav-icon" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <span class="nav-label">WhatsApp</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="nav-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <span class="nav-label">Instagram</span>
+            </div>
+        </div>
+        
+        <!-- Header Equalizer -->
+        <div class="header-equalizer" id="headerEqualizer">
+            <div class="header-equalizer-bars">
+                <!-- Bars will be added by JavaScript -->
+            </div>
         </div>
     </header>
 
@@ -690,7 +1514,7 @@
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
-                <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large">
+                <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large" id="mainLogo">
                 
                 <h1 class="hero-title">BILLUPS STUDIO</h1>
                 
@@ -700,11 +1524,25 @@
                 </p>
                 
                 <a href="#services" class="btn-primary">VIEW SERVICES</a>
+                
+                <!-- SOCIAL PROOF -->
+                <div class="social-proof">
+                    <div class="live-counter">
+                        <div class="pulse-dot"></div>
+                        <span><span id="sessionCount">12</span> sessions booked this month</span>
+                    </div>
+                    
+                    <div class="trust-badges">
+                        <div class="badge">⭐ 4.9/5 Rating</div>
+                        <div class="badge">🎧 Free Consult</div>
+                        <div class="badge">⚡ 24h Response</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section - COMPLETELY REDESIGNED -->
+    <!-- Services Section -->
     <section class="services section" id="services">
         <div class="container">
             <div class="section-header">
@@ -769,6 +1607,13 @@
                     <p><i class="fas fa-clock"></i> Duration: 5 hours studio time</p>
                     <a href="#contact" class="btn-primary btn-tier-2" style="margin-top: var(--space-md);">Book This Package</a>
                 </div>
+            </div>
+            
+            <!-- Mix & Master Coming Soon Notice -->
+            <div class="mix-master-notice">
+                <h3>🎛️ Mix & Master Section Coming Soon</h3>
+                <p>We're currently building out our dedicated mixing & mastering service. All final mixes and masters are handled by Dsoul.</p>
+                <div class="coming-soon-badge">Launching Soon</div>
             </div>
             
             <!-- Pricing Tiers -->
@@ -897,6 +1742,11 @@
                     <p>Available 7 days a week</p>
                 </div>
             </div>
+            
+            <!-- Deposit Notice -->
+            <div class="deposit-notice" role="note">
+                ⚠️ £30 deposit required to confirm all sessions. All sessions include professional engineering support.
+            </div>
         </div>
     </section>
 
@@ -925,6 +1775,31 @@
                             No gimmicks. Just professional setup, local roots, 
                             and that unmatched studio vibe.
                         </p>
+                    </div>
+                    
+                    <!-- AUDIO DEMO -->
+                    <div class="audio-demo">
+                        <h3>🎧 Hear The Billups Difference</h3>
+                        
+                        <div class="audio-toggle">
+                            <button class="btn-audio" data-track="raw">Raw Recording</button>
+                            <button class="btn-audio active" data-track="mixed">Mixed & Mastered</button>
+                        </div>
+                        
+                        <div class="audio-player">
+                            <audio id="demoAudio" controls>
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
+                                Your browser does not support audio element.
+                            </audio>
+                            <div class="audio-note">
+                                <i class="fas fa-info-circle"></i> Same vocal take, different processing
+                            </div>
+                        </div>
+                        
+                        <div id="audioFallback" class="audio-fallback">
+                            <p>🎚️ Audio demo coming soon</p>
+                            <p>Add your audio files to <code>/audio/</code> folder</p>
+                        </div>
                     </div>
                 </div>
                 
@@ -955,6 +1830,28 @@
                             Direct access to producers
                         </li>
                     </ul>
+                    
+                    <!-- Our Team Highlights -->
+                    <div style="margin-top: var(--space-xxl); background: rgba(255, 255, 255, 0.05); padding: var(--space-xl); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--accent); margin-bottom: var(--space-lg);">Our Team</h4>
+                        <div style="display: grid; gap: var(--space-md);">
+                            <div>
+                                <strong style="color: var(--text-primary);">Dsoul</strong>
+                                <span class="contact-role-badge">Head Engineer</span>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">Mixing • Mastering • Production</p>
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-primary);">Jaidee</strong>
+                                <span class="contact-role-badge">Studio Manager</span>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">Bookings • Scheduling • Artist Development</p>
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-primary);">Fabian</strong>
+                                <span class="contact-role-badge">Studio Owner</span>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">Business & Partnerships</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -968,50 +1865,170 @@
                 <p class="section-subtitle">Ready to create? Get in touch today</p>
             </div>
             
-            <div style="max-width: 600px; margin: 0 auto; background: var(--bg-light); padding: var(--space-xl); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-                <h3 style="text-align: center; color: var(--accent); margin-bottom: var(--space-xl); font-size: 2rem;">
-                    Contact the Team
-                </h3>
-                
-                <div style="display: grid; gap: var(--space-lg); margin-bottom: var(--space-xl);">
-                    <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-md);">
-                        <div style="width: 50px; height: 50px; background: var(--accent); color: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-                            <i class="fas fa-phone"></i>
+            <div class="contact-table">
+                <div class="contact-column">
+                    <h3>Our Team</h3>
+                    <div class="contact-methods">
+                        <!-- Studio Owner - Fabian -->
+                        <div class="contact-row fabian-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Fabian</strong>
+                                <div class="contact-role-badge">Studio Owner</div>
+                                <p>For business inquiries & partnerships</p>
+                                <p><small>Contact via studio email</small></p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 style="color: var(--text-primary); margin-bottom: 5px;">Studio Phone</h4>
-                            <p style="font-size: 1.2rem; color: var(--accent);">07710 593113</p>
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-md);">
-                        <div style="width: 50px; height: 50px; background: #25D366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--text-primary); margin-bottom: 5px;">WhatsApp</h4>
-                            <p style="font-size: 1.2rem; color: #25D366;">07710 593113</p>
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-md);">
-                        <div style="width: 50px; height: 50px; background: var(--tier-1); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--text-primary); margin-bottom: 5px;">Email</h4>
-                            <p style="font-size: 1.2rem; color: var(--tier-1);">billupsltd@gmail.com</p>
+                        
+                        <!-- Studio Manager - Jaidee -->
+                        <a href="tel:07878709110" class="contact-row jaidee-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Jaidee</strong>
+                                <div class="contact-role-badge">Studio Manager</div>
+                                <p>📞 07878 709110</p>
+                                <p>Bookings • Scheduling • Studio queries</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Head Engineer - Dsoul -->
+                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row dsoul-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Dsoul</strong>
+                                <div class="contact-role-badge">Head Engineer</div>
+                                <p>✉️ dsoulfiles@gmail.com</p>
+                                <p>Mixing • Mastering • Production</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Main Studio Contact -->
+                        <a href="tel:07710593113" class="contact-row studio-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Main Studio Line</strong>
+                                <p>📞 07710 593113</p>
+                                <p>General inquiries & quick questions</p>
+                            </div>
+                        </a>
+                        
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/447710593113" class="contact-row whatsapp-contact">
+                            <div class="method-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>WhatsApp</strong>
+                                <p>📱 07710 593113</p>
+                                <p>Fastest response • Send voice notes</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Studio Email -->
+                        <a href="mailto:billupsltd@gmail.com" class="contact-row studio-contact">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Studio Email</strong>
+                                <p>✉️ billupsltd@gmail.com</p>
+                                <p>General studio inquiries</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="contact-row">
+                            <div class="method-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Instagram</strong>
+                                <p>@billups_studio</p>
+                                <p>Latest work & updates</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Address -->
+                        <div class="contact-row">
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Studio Location</strong>
+                                <p>Cutenhoe Road, Luton LU1 3NB</p>
+                                <p><small>Full address sent after booking</small></p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div style="text-align: center;">
-                    <a href="tel:07710593113" class="btn-primary" style="display: inline-block; margin: var(--space-sm);">
-                        <i class="fas fa-phone"></i> Call Now
-                    </a>
-                    <a href="https://wa.me/447710593113" class="btn-primary" style="display: inline-block; margin: var(--space-sm); background: #25D366; border-color: #25D366;">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
+                <div class="contact-column">
+                    <div class="contact-form">
+                        <h3>Book Your Session</h3>
+                        <!-- WEB3FORMS INTEGRATION -->
+                        <form action="https://api.web3forms.com/submit" method="POST" id="bookingForm">
+                            <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6">
+                            <input type="hidden" name="subject" value="New Session Booking - Billups Studio">
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="session-type">Session Type *</label>
+                                <select id="session-type" name="session-type" required>
+                                    <option value="">Select session</option>
+                                    <option value="hourly">Hourly (£30/hr)</option>
+                                    <option value="half-day">Half Day (£140)</option>
+                                    <option value="full-day">Full Day (£240)</option>
+                                    <option value="custom">Custom Session</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="preferred-contact">Preferred Contact</label>
+                                <select id="preferred-contact" name="preferred-contact">
+                                    <option value="">Any method</option>
+                                    <option value="phone">Phone Call</option>
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="jaidee">Contact Jaidee (Studio Manager)</option>
+                                    <option value="dsoul">Contact Dsoul (Head Engineer)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Project Details *</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary" style="width: 100%;">Send Booking Request</button>
+                            
+                            <div class="form-note">
+                                <strong>✉️ Your message will be sent directly to our team</strong><br>
+                                <span>We'll respond within 24 hours</span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1069,16 +2086,53 @@
         </div>
     </footer>
 
+    <!-- QUICK QUESTION WIDGET -->
+    <div class="quick-question-widget">
+        <button id="questionToggle" class="widget-toggle">
+            💬
+        </button>
+        
+        <div id="questionForm" class="widget-form">
+            <h4>Quick Question?</h4>
+            
+            <!-- Web3Forms Quick Question Form -->
+            <form action="https://api.web3forms.com/submit" method="POST" id="quickQuestionForm">
+                <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6">
+                <input type="hidden" name="subject" value="Quick Question - Billups Studio">
+                
+                <div class="form-group">
+                    <input type="text" placeholder="Your name *" id="quickName" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" placeholder="Email or phone *" id="quickContact" name="contact" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea placeholder="What's your question? *" rows="3" id="quickMessage" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    Send Quick Question
+                </button>
+            </form>
+            
+            <div class="response-time">We reply in <24h</div>
+        </div>
+    </div>
+
     <script>
         // ===== WEBSITE INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('🚀 Billups Studio Initialized');
+            console.log('🚀 Billups Studio Website Initialized');
             
             // Initialize components
             initializeHeader();
+            initializeHeaderEqualizer();
             initializeCalculator();
             initializeCurrentYear();
             initializeScrollAnimations();
+            initializeQuickWins();
             
             console.log('✅ All systems ready');
         });
@@ -1096,16 +2150,48 @@
             });
         }
 
+        // ===== HEADER EQUALIZER =====
+        function initializeHeaderEqualizer() {
+            const headerEqualizer = document.getElementById('headerEqualizer');
+            if (!headerEqualizer) return;
+            
+            const barsContainer = headerEqualizer.querySelector('.header-equalizer-bars');
+            if (!barsContainer) return;
+            
+            barsContainer.innerHTML = '';
+            
+            for (let i = 0; i < 10; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'header-equalizer-bar';
+                const randomInitialHeight = 30 + Math.random() * 40;
+                bar.style.height = `${randomInitialHeight}%`;
+                barsContainer.appendChild(bar);
+            }
+        }
+
+        // ===== QUICK WINS INITIALIZATION =====
+        function initializeQuickWins() {
+            // Session Calculator
+            initializeSessionCalculator();
+            
+            // Live Counter
+            initializeLiveCounter();
+            
+            // Audio Demo
+            initializeAudioDemo();
+            
+            // Quick Question Widget
+            initializeQuickQuestionWidget();
+        }
+
         // ===== SMART SESSION CALCULATOR =====
         function initializeCalculator() {
             const projectGoal = document.getElementById('projectGoal');
             const artistCount = document.getElementById('artistCount');
             
             if (projectGoal && artistCount) {
-                // Set initial calculation
                 updateCalculator();
                 
-                // Add event listeners
                 projectGoal.addEventListener('change', updateCalculator);
                 artistCount.addEventListener('change', updateCalculator);
             }
@@ -1120,7 +2206,6 @@
             let description = '';
             let buttonClass = 'btn-tier-2';
             
-            // Calculate based on project goal
             switch(projectGoal) {
                 case 'single':
                     recommendation = 'Quick Session';
@@ -1151,7 +2236,6 @@
                     break;
             }
             
-            // Adjust for multiple artists
             let artistNote = '';
             if (artistCount === 'duo' && projectGoal !== 'mixing') {
                 const basePrice = parseInt(price.replace('£', '').replace('/song', ''));
@@ -1165,7 +2249,6 @@
                 artistNote = '<p><i class="fas fa-users"></i> Contact for group rates</p>';
             }
             
-            // Update the result display
             const resultEl = document.getElementById('calculatorResult');
             if (resultEl) {
                 const isCustom = price.includes('Custom');
@@ -1181,11 +2264,199 @@
                     </a>
                 `;
                 
-                // Add animation
                 resultEl.style.animation = 'none';
                 setTimeout(() => {
                     resultEl.style.animation = 'fadeInUp 0.5s ease-out';
                 }, 10);
+            }
+        }
+
+        // ===== SESSION CALCULATOR (Alternative) =====
+        function initializeSessionCalculator() {
+            const recordingHours = document.getElementById('recordingHours');
+            const sessionType = document.getElementById('sessionType');
+            
+            if (recordingHours && sessionType) {
+                recordingHours.addEventListener('change', updateSessionCalculator);
+                sessionType.addEventListener('change', updateSessionCalculator);
+            }
+        }
+        
+        function updateSessionCalculator() {
+            const recordingHours = parseInt(document.getElementById('recordingHours')?.value || '3');
+            const sessionType = document.getElementById('sessionType')?.value || 'half-day';
+            
+            let recommendation = '';
+            let price = '';
+            let description = '';
+            let buttonClass = 'btn-tier-2';
+            
+            if (sessionType === 'hourly') {
+                recommendation = 'Hourly Session';
+                const total = recordingHours * 30;
+                price = `£${total}`;
+                description = `${recordingHours} hours of studio time`;
+                buttonClass = 'btn-tier-1';
+            } else if (sessionType === 'half-day') {
+                recommendation = 'Half Day Session';
+                price = '£140';
+                description = '5 hours of studio recording time';
+                buttonClass = 'btn-tier-2';
+            } else if (sessionType === 'full-day') {
+                recommendation = 'Full Day Session';
+                price = '£240';
+                description = '10 hours of studio recording time';
+                buttonClass = 'btn-tier-3';
+            }
+            
+            const resultEl = document.getElementById('calculatorResult');
+            if (resultEl) {
+                resultEl.innerHTML = `
+                    <div class="recommendation">RECOMMENDED: ${recommendation}</div>
+                    <div class="price">${price}</div>
+                    <div class="description">${description}</div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-sm);">
+                        <i class="fas fa-info-circle"></i> Studio mix as standard
+                    </p>
+                    <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">Book This Session</a>
+                `;
+                
+                resultEl.style.animation = 'none';
+                setTimeout(() => {
+                    resultEl.style.animation = 'fadeInUp 0.5s ease-out';
+                }, 10);
+            }
+        }
+
+        // ===== LIVE COUNTER =====
+        function initializeLiveCounter() {
+            function updateLiveCounter() {
+                const baseSessions = 8;
+                const today = new Date();
+                const dayOfMonth = today.getDate();
+                const estimatedSessions = baseSessions + Math.floor(dayOfMonth * 0.8);
+                
+                const counterEl = document.getElementById('sessionCount');
+                if (counterEl) {
+                    counterEl.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        counterEl.textContent = estimatedSessions;
+                        counterEl.style.transform = 'scale(1)';
+                    }, 300);
+                }
+            }
+            
+            updateLiveCounter();
+            setInterval(updateLiveCounter, 3600000);
+        }
+
+        // ===== AUDIO DEMO =====
+        function initializeAudioDemo() {
+            const audioButtons = document.querySelectorAll('.btn-audio');
+            const audio = document.getElementById('demoAudio');
+            const fallback = document.getElementById('audioFallback');
+            
+            if (audioButtons.length > 0) {
+                audioButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.btn-audio').forEach(b => {
+                            b.classList.remove('active');
+                        });
+                        
+                        this.classList.add('active');
+                        
+                        const track = this.dataset.track;
+                        
+                        if (track === 'raw') {
+                            audio.src = 'audio/raw-demo.mp3';
+                        } else {
+                            audio.src = 'audio/mixed-demo.mp3';
+                        }
+                        
+                        audio.load();
+                        audio.play().catch(e => {
+                            if (audio.error && fallback) {
+                                fallback.style.display = 'block';
+                            }
+                        });
+                    });
+                });
+                
+                if (audio && fallback) {
+                    audio.addEventListener('error', () => {
+                        fallback.style.display = 'block';
+                    });
+                }
+            }
+        }
+
+        // ===== QUICK QUESTION WIDGET =====
+        function initializeQuickQuestionWidget() {
+            const questionToggle = document.getElementById('questionToggle');
+            const questionForm = document.getElementById('questionForm');
+            
+            if (questionToggle && questionForm) {
+                questionToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isVisible = questionForm.style.display === 'block';
+                    questionForm.style.display = isVisible ? 'none' : 'block';
+                    questionToggle.innerHTML = isVisible ? '💬' : '✕';
+                });
+
+                const quickQuestionForm = document.getElementById('quickQuestionForm');
+                if (quickQuestionForm) {
+                    quickQuestionForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.innerHTML;
+                        
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                        submitBtn.disabled = true;
+                        
+                        fetch(this.action, {
+                            method: 'POST',
+                            body: new FormData(this)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                submitBtn.innerHTML = '✅ Sent!';
+                                submitBtn.style.background = '#25D366';
+                                
+                                this.reset();
+                                
+                                setTimeout(() => {
+                                    questionForm.style.display = 'none';
+                                    questionToggle.innerHTML = '💬';
+                                    submitBtn.innerHTML = originalText;
+                                    submitBtn.disabled = false;
+                                    submitBtn.style.background = '';
+                                }, 2000);
+                            } else {
+                                throw new Error('Failed to send');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            submitBtn.innerHTML = '❌ Failed';
+                            submitBtn.style.background = '#ff0000';
+                            
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                                submitBtn.style.background = '';
+                            }, 2000);
+                        });
+                    });
+                }
+
+                document.addEventListener('click', (e) => {
+                    if (!questionToggle.contains(e.target) && !questionForm.contains(e.target)) {
+                        questionForm.style.display = 'none';
+                        questionToggle.innerHTML = '💬';
+                    }
+                });
             }
         }
 
@@ -1199,7 +2470,6 @@
 
         // ===== SCROLL ANIMATIONS =====
         function initializeScrollAnimations() {
-            // Simple fade-in animation for sections
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -1214,7 +2484,6 @@
                 });
             }, observerOptions);
             
-            // Observe sections
             document.querySelectorAll('.section').forEach(section => {
                 section.style.opacity = '0';
                 section.style.transform = 'translateY(20px)';
@@ -1244,13 +2513,32 @@
             });
         });
 
-        // ===== SIMPLE IMAGE LOADING =====
-        function loadImage(src) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = resolve;
-                img.onerror = reject;
-                img.src = src;
+        // ===== LOGO HOVER ANIMATION =====
+        const mainLogo = document.getElementById('mainLogo');
+        if (mainLogo) {
+            let isAnimating = false;
+            
+            mainLogo.addEventListener('mouseenter', () => {
+                if (!isAnimating) {
+                    isAnimating = true;
+                    mainLogo.style.animation = 'smooth-fast-rotate 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                }
+            });
+            
+            mainLogo.addEventListener('mouseleave', () => {
+                isAnimating = false;
+                mainLogo.style.animation = '';
+            });
+        }
+
+        // ===== FORM HANDLING =====
+        const bookingForm = document.getElementById('bookingForm');
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
             });
         }
 

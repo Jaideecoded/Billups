@@ -34,19 +34,11 @@
             --accent: #00ff00;
             --accent-light: #90ff90;
             
-            /* SERVICE TIER COLORS - STRATEGIC HIERARCHY */
+            /* SERVICE TIER COLORS */
             --tier-1: #00a8ff;
             --tier-2: #00ff00;
             --tier-3: #ff9500;
             --tier-4: #bc00ff;
-            
-            /* SECTION COLORS */
-            --purple-dark: #1a0b2e;
-            --purple-medium: #2d1b4e;
-            --purple-light: #3d2968;
-            --orange-accent: #ff6b35;
-            --blue-accent: #4d8af0;
-            --blue-light: #6ba3ff;
             
             /* TEXT COLORS */
             --text-primary: #ffffff;
@@ -59,7 +51,7 @@
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             
-            /* SPACING SYSTEM */
+            /* SPACING */
             --space-xs: 0.5rem;
             --space-sm: 1rem;
             --space-md: 1.5rem;
@@ -78,7 +70,6 @@
             --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
             --shadow-accent: 0 0 30px rgba(0, 255, 0, 0.3);
-            --shadow-accent-md: 0 0 60px rgba(0, 255, 0, 0.2);
         }
         
         /* ===== RESET & BASE ===== */
@@ -101,8 +92,6 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            position: relative;
-            min-height: 100vh;
         }
         
         /* ===== HEADER EQUALIZER ===== */
@@ -114,8 +103,6 @@
             height: 14px;
             display: none;
             z-index: 1001;
-            overflow: hidden;
-            background: transparent;
         }
         
         .header.scrolled .header-equalizer {
@@ -142,12 +129,7 @@
             background: linear-gradient(to top, var(--accent), var(--tier-2));
             border-radius: 3px 3px 0 0;
             opacity: 0.8;
-            filter: brightness(1.2);
             transform-origin: bottom center;
-            box-shadow: 
-                0 0 15px rgba(0, 255, 0, 0.6),
-                inset 0 2px 3px rgba(255, 255, 255, 0.3);
-            transition: height 0.15s ease-out;
         }
         
         /* Equalizer animations */
@@ -155,18 +137,15 @@
         @keyframes headerEqPulse2 { 0%, 100% { height: 65%; } 30% { height: 35%; } 50% { height: 90%; } 70% { height: 55%; } 90% { height: 75%; } }
         @keyframes headerEqPulse3 { 0% { height: 50%; } 25% { height: 80%; } 50% { height: 30%; } 75% { height: 100%; } 100% { height: 45%; } }
         @keyframes headerEqPulse4 { 0%, 100% { height: 75%; } 15% { height: 40%; } 35% { height: 95%; } 55% { height: 60%; } 75% { height: 85%; } }
-        @keyframes headerEqPulse5 { 0% { height: 85%; } 20% { height: 45%; } 40% { height: 100%; } 60% { height: 65%; } 80% { height: 90%; } 100% { height: 70%; } }
         
         .header-equalizer-bar:nth-child(1) { animation: headerEqPulse1 2.1s infinite ease-in-out; }
         .header-equalizer-bar:nth-child(2) { animation: headerEqPulse2 1.8s infinite ease-in-out; animation-delay: 0.2s; }
         .header-equalizer-bar:nth-child(3) { animation: headerEqPulse3 2.3s infinite ease-in-out; animation-delay: 0.1s; }
         .header-equalizer-bar:nth-child(4) { animation: headerEqPulse4 2.0s infinite ease-in-out; animation-delay: 0.3s; }
-        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse5 1.9s infinite ease-in-out; animation-delay: 0.15s; }
-        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
-        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
-        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
-        .header-equalizer-bar:nth-child(9) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
-        .header-equalizer-bar:nth-child(10) { animation: headerEqPulse5 1.6s infinite ease-in-out; animation-delay: 0.1s; }
+        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
+        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
+        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
+        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
         
         @keyframes equalizerFadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -185,7 +164,6 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(0, 255, 0, 0.2);
         }
         
         /* ===== NAVIGATION ICONS ===== */
@@ -217,41 +195,14 @@
             border: 2px solid rgba(255, 255, 255, 0.15);
             transition: var(--transition);
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .nav-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--tier-1), var(--tier-2), var(--tier-3), var(--tier-4));
-            background-size: 400% 400%;
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
-            animation: gradient-flow 8s ease infinite;
-        }
-        
-        .nav-icon:hover::before {
-            opacity: 1;
         }
         
         .nav-icon:hover {
             color: var(--black);
-            transform: translateY(-8px) scale(1.15);
-            border-color: transparent;
-            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.4), 0 0 30px rgba(0, 168, 255, 0.3);
-        }
-        
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
         }
         
         .nav-label {
@@ -269,7 +220,6 @@
             background: rgba(0, 0, 0, 0.9);
             padding: var(--space-xs) var(--space-sm);
             border-radius: var(--radius-sm);
-            border: 1px solid rgba(0, 255, 0, 0.3);
             pointer-events: none;
             z-index: 1002;
         }
@@ -292,14 +242,12 @@
             align-items: center;
             background: transparent;
             transition: var(--transition);
-            backdrop-filter: blur(0px);
         }
         
         .header.scrolled {
             background-color: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px) saturate(180%);
+            backdrop-filter: blur(15px);
             padding: var(--space-md) var(--space-xl);
-            border-bottom: none;
             box-shadow: var(--shadow-lg);
         }
         
@@ -321,14 +269,6 @@
             filter: drop-shadow(var(--shadow-accent));
         }
         
-        .logo-small {
-            height: 45px;
-            width: auto;
-            border-radius: 50%;
-            filter: drop-shadow(var(--shadow-accent));
-            border: 1px solid rgba(0, 255, 0, 0.2);
-        }
-        
         /* ===== HERO SECTION ===== */
         .hero {
             min-height: 100vh;
@@ -337,7 +277,6 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            text-align: center;
             padding: 120px var(--space-xl) var(--space-xxl);
         }
         
@@ -371,58 +310,37 @@
             padding: var(--space-xl);
         }
         
-        /* Logo Rotation */
         .hero-logo-large {
-            height: 200px;
+            height: 180px;
             width: auto;
             margin: 0 auto var(--space-xxl);
             display: block;
-            filter: drop-shadow(var(--shadow-accent-md));
-            perspective: 1000px;
+            filter: drop-shadow(var(--shadow-accent));
             cursor: pointer;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.6s ease;
             border-radius: 50%;
             border: 3px solid rgba(0, 255, 0, 0.3);
             padding: var(--space-md);
             background: rgba(0, 0, 0, 0.3);
-            transform-style: preserve-3d;
         }
         
         .hero-logo-large:hover {
-            animation: smooth-fast-rotate 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform: rotateY(180deg) scale(1.05);
             border-color: var(--accent);
-            background: rgba(0, 255, 0, 0.1);
-            transform: scale(1.05);
-        }
-        
-        @keyframes smooth-fast-rotate {
-            0% { 
-                transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.05);
-                border-color: rgba(0, 255, 0, 0.3);
-            }
-            50% { 
-                transform: perspective(1000px) rotateY(180deg) rotateX(5deg) scale(1.1);
-                border-color: rgba(0, 255, 0, 0.8);
-            }
-            100% { 
-                transform: perspective(1000px) rotateY(360deg) rotateX(0deg) scale(1.05);
-                border-color: rgba(0, 255, 0, 0.3);
-            }
         }
         
         .hero-title {
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 900;
             margin-bottom: var(--space-md);
             text-transform: uppercase;
-            letter-spacing: -0.02em;
             line-height: 1;
             color: var(--text-primary);
             text-shadow: var(--shadow-accent);
         }
         
         .hero-subtitle {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 400;
             margin-bottom: var(--space-xxl);
             color: var(--text-secondary);
@@ -435,7 +353,6 @@
         /* ===== SOCIAL PROOF ===== */
         .social-proof {
             margin-top: var(--space-xl);
-            animation: fadeInUp 0.8s ease-out 0.3s both;
         }
         
         .live-counter {
@@ -478,50 +395,37 @@
             0%, 100% { 
                 opacity: 1; 
                 transform: scale(1); 
-                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
             }
             50% { 
                 opacity: 0.7; 
                 transform: scale(1.1); 
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
             }
         }
         
         /* ===== BUTTONS ===== */
         .btn-primary {
             display: inline-block;
-            padding: 1.3rem 3.5rem;
+            padding: 1.2rem 3rem;
             background-color: var(--accent);
             color: var(--black);
             text-decoration: none;
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-radius: var(--radius-full);
             transition: var(--transition);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             border: 3px solid var(--accent);
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            min-width: 220px;
+            min-width: 200px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
-            opacity: 1 !important;
-            visibility: visible !important;
         }
         
         .btn-primary:hover {
             background-color: var(--accent-light);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5), 0 0 60px rgba(0, 255, 0, 0.3);
-            color: var(--black);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5);
         }
         
         .btn-tier-1 { background: var(--tier-1); border-color: var(--tier-1); }
@@ -538,8 +442,6 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
             width: 100%;
         }
         
@@ -549,24 +451,93 @@
         }
         
         .section-title {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 900;
             margin-bottom: var(--space-md);
             text-transform: uppercase;
             color: var(--text-primary);
-            text-shadow: var(--shadow-accent);
         }
         
         .section-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
         
+        /* ===== ABOUT SECTION (MOVED UP) ===== */
+        .about {
+            background: rgba(26, 11, 46, 0.8);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        
+        /* AUDIO DEMO */
+        .audio-demo {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-top: var(--space-xl);
+            border: 1px solid var(--border-color);
+        }
+        
+        .audio-demo h3 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        
+        .audio-toggle {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .btn-audio {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+        }
+        
+        .btn-audio.active {
+            background: var(--accent);
+            color: var(--black);
+            font-weight: bold;
+            border-color: var(--accent);
+        }
+        
+        .btn-audio:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+        }
+        
+        .audio-player {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-sm);
+        }
+        
         /* ===== SERVICES SECTION ===== */
         .services {
-            background-color: rgba(45, 27, 78, 0.7);
+            background: rgba(45, 27, 78, 0.7);
         }
         
         /* Service Selection Guide */
@@ -587,9 +558,8 @@
         }
         
         .guide-step:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--accent);
-            box-shadow: var(--shadow-lg);
         }
         
         .step-number {
@@ -608,7 +578,7 @@
         .guide-step h3 {
             color: var(--text-primary);
             margin-bottom: var(--space-sm);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
         
         /* Smart Session Calculator */
@@ -618,13 +588,6 @@
             padding: var(--space-xl);
             margin-bottom: var(--space-xxl);
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-        
-        .session-calculator:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-lg);
         }
         
         .calculator-header {
@@ -634,7 +597,7 @@
         
         .calculator-header h3 {
             color: var(--accent);
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: var(--space-sm);
         }
         
@@ -654,26 +617,24 @@
             margin-bottom: var(--space-xs);
             font-weight: 600;
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         
         .control-group select {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem;
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             color: var(--text-primary);
             font-family: var(--font-primary);
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: var(--transition);
         }
         
         .control-group select:focus {
             outline: none;
-            border-color: var(--blue-accent);
-            background: rgba(77, 138, 240, 0.12);
-            box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
+            border-color: var(--accent);
         }
         
         #calculatorResult {
@@ -683,18 +644,17 @@
             padding: var(--space-xl);
             text-align: center;
             margin-top: var(--space-lg);
-            animation: fadeInUp 0.5s ease-out;
         }
         
         .result-title {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: var(--accent);
             margin-bottom: var(--space-sm);
         }
         
         .result-price {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             margin: var(--space-sm) 0;
             color: var(--text-primary);
@@ -720,21 +680,19 @@
             padding: var(--space-xl);
             position: relative;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
         }
         
         .pricing-tier:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px);
         }
         
         .pricing-tier.popular {
             border: 2px solid var(--accent);
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
         
         .pricing-tier.popular:hover {
-            transform: translateY(-15px) scale(1.05);
+            transform: translateY(-10px) scale(1.02);
         }
         
         .tier-badge {
@@ -757,19 +715,19 @@
         }
         
         .tier-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: var(--space-md);
         }
         
         .tier-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: var(--text-primary);
             margin-bottom: var(--space-xs);
         }
         
         .tier-price {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
             color: var(--accent);
             line-height: 1;
@@ -821,17 +779,15 @@
             padding: var(--space-lg);
             text-align: center;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
         }
         
         .addon-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
-            box-shadow: var(--shadow-md);
         }
         
         .addon-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent);
             margin-bottom: var(--space-sm);
         }
@@ -839,13 +795,13 @@
         .addon-card h4 {
             color: var(--text-primary);
             margin-bottom: var(--space-xs);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
         
         .addon-price {
             color: var(--accent);
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-top: var(--space-sm);
         }
         
@@ -865,7 +821,7 @@
         }
         
         .info-card i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--accent);
             margin-bottom: var(--space-md);
         }
@@ -884,268 +840,69 @@
             text-align: center;
             margin-bottom: var(--space-xxl);
             border-left: 6px solid var(--accent);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-        
-        .mix-master-notice:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
         }
         
         .mix-master-notice h3 {
             color: var(--accent);
             margin-bottom: var(--space-sm);
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
         
         .coming-soon-badge {
             background: var(--accent);
             color: var(--black);
             font-weight: 900;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: var(--radius-full);
             display: inline-block;
             margin-top: var(--space-sm);
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            animation: pulse 2s infinite;
         }
         
         /* Deposit Notice */
         .deposit-notice {
             background: rgba(255, 107, 53, 0.2);
-            border: 1px solid var(--orange-accent);
+            border: 1px solid #ff6b35;
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             text-align: center;
             margin-top: var(--space-xxl);
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--text-primary);
-            backdrop-filter: blur(10px);
-            border-left: 6px solid var(--orange-accent);
-        }
-        
-        /* ===== ABOUT SECTION ===== */
-        .about {
-            background-color: rgba(26, 11, 46, 0.7);
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xxl);
-            align-items: center;
-        }
-        
-        /* ===== AUDIO DEMO ===== */
-        .audio-demo {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-top: var(--space-xxl);
-            border: 1px solid var(--border-color);
-        }
-        
-        .audio-demo h3 {
-            text-align: center;
-            margin-bottom: var(--space-lg);
-            color: var(--accent);
-            font-size: 1.8rem;
-        }
-        
-        .audio-toggle {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-sm);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .btn-audio {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border-color);
-            color: var(--text-body);
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-primary);
-            font-size: 1rem;
-        }
-        
-        .btn-audio.active {
-            background: var(--accent);
-            color: var(--black);
-            font-weight: bold;
-            border-color: var(--accent);
-        }
-        
-        .btn-audio:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--accent);
-        }
-        
-        .audio-player {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .audio-player audio {
-            width: 100%;
-            border-radius: var(--radius-md);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .audio-note {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        .audio-fallback {
-            display: none;
-            text-align: center;
-            padding: var(--space-xl);
-            background: rgba(0, 255, 0, 0.05);
-            border-radius: var(--radius-md);
-            margin-top: var(--space-lg);
-        }
-        
-        /* ===== PORTFOLIO SECTION ===== */
-        .portfolio {
-            background-color: rgba(26, 11, 46, 0.7);
-        }
-        
-        /* ===== GALLERY SECTION ===== */
-        .gallery {
-            background-color: rgba(45, 27, 78, 0.7);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: var(--space-lg);
-            margin-top: var(--space-xl);
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            background: var(--dark-gray);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.7s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
+            border-left: 6px solid #ff6b35;
         }
         
         /* ===== CONTACT SECTION ===== */
         .contact {
-            background-color: rgba(26, 11, 46, 0.7);
-        }
-        
-        /* Contact Role Specific Styling */
-        .fabian-contact .method-icon {
-            background: linear-gradient(135deg, #ff6b35 0%, #ff9500 100%) !important;
-            border-color: #ff6b35 !important;
-            color: white !important;
-        }
-        
-        .fabian-contact:hover {
-            background: rgba(255, 107, 53, 0.15) !important;
-            border-color: #ff6b35 !important;
-        }
-        
-        .jaidee-contact .method-icon {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%) !important;
-            border-color: #6a11cb !important;
-            color: white !important;
-        }
-        
-        .jaidee-contact:hover {
-            background: rgba(106, 17, 203, 0.15) !important;
-            border-color: #6a11cb !important;
-        }
-        
-        .dsoul-contact .method-icon {
-            background: linear-gradient(135deg, #00ff00 0%, #00cc66 100%) !important;
-            border-color: #00ff00 !important;
-            color: var(--black) !important;
-        }
-        
-        .dsoul-contact:hover {
-            background: rgba(0, 255, 0, 0.15) !important;
-            border-color: #00ff00 !important;
-        }
-        
-        .studio-contact .method-icon {
-            background: linear-gradient(135deg, #4d8af0 0%, #6ba3ff 100%) !important;
-            border-color: #4d8af0 !important;
-            color: white !important;
-        }
-        
-        .studio-contact:hover {
-            background: rgba(77, 138, 240, 0.15) !important;
-            border-color: #4d8af0 !important;
-        }
-        
-        .whatsapp-contact .method-icon {
-            background: rgba(37, 211, 102, 0.2) !important;
-            border-color: #25D366 !important;
-            color: #25D366 !important;
-        }
-        
-        .whatsapp-contact:hover {
-            background: rgba(37, 211, 102, 0.05) !important;
-            border-color: #25D366 !important;
+            background: rgba(26, 11, 46, 0.8);
         }
         
         /* Contact Table */
         .contact-table {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-xxl);
+            gap: var(--space-xl);
             margin-top: var(--space-xl);
         }
         
         .contact-column {
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-lg);
-            padding: var(--space-xxl);
+            padding: var(--space-xl);
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
             transition: var(--transition);
         }
         
         .contact-column:hover {
-            transform: translateY(-10px);
-            border-color: var(--blue-accent);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+            border-color: var(--accent);
         }
         
         .contact-column h3 {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-xxl);
+            font-size: 2rem;
+            margin-bottom: var(--space-xl);
             color: var(--text-primary);
         }
         
@@ -1158,9 +915,9 @@
         .contact-row {
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: var(--space-lg);
+            gap: var(--space-md);
             align-items: center;
-            padding: var(--space-lg);
+            padding: var(--space-md);
             background: rgba(255, 255, 255, 0.03);
             border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
@@ -1171,9 +928,8 @@
         
         .contact-row:hover {
             background: rgba(255, 255, 255, 0.07);
-            transform: translateX(10px);
+            transform: translateX(5px);
             border-color: var(--accent);
-            box-shadow: var(--shadow-md);
         }
         
         .contact-row a {
@@ -1183,22 +939,17 @@
         }
         
         .method-icon {
-            font-size: 1.6rem;
-            width: 60px;
-            height: 60px;
+            font-size: 1.4rem;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: rgba(77, 138, 240, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--blue-light);
+            color: #6ba3ff;
             flex-shrink: 0;
             border: 1px solid rgba(77, 138, 240, 0.3);
-            transition: var(--transition);
-        }
-        
-        .contact-row:hover .method-icon {
-            transform: scale(1.1);
         }
         
         .method-text {
@@ -1207,36 +958,33 @@
         
         .method-text strong {
             display: block;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 4px;
             color: var(--text-primary);
         }
         
         .method-text p {
             color: var(--text-body);
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 4px;
-            opacity: 0.9;
         }
         
         /* Contact Form */
         .contact-form {
             background: rgba(255, 255, 255, 0.05);
-            padding: var(--space-xxl);
+            padding: var(--space-xl);
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
             transition: var(--transition);
         }
         
         .contact-form:hover {
             border-color: var(--accent);
-            box-shadow: var(--shadow-lg);
         }
         
         .contact-form h3 {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-xxl);
+            font-size: 2rem;
+            margin-bottom: var(--space-xl);
             color: var(--text-primary);
         }
         
@@ -1255,30 +1003,28 @@
             margin-bottom: var(--space-xs);
             font-weight: 600;
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         
         input, textarea, select {
             width: 100%;
-            padding: 1.2rem 1.5rem;
+            padding: 1rem;
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             color: var(--text-primary);
             font-family: var(--font-primary);
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: var(--transition);
         }
         
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: var(--blue-accent);
-            background: rgba(77, 138, 240, 0.12);
-            box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.2);
+            border-color: var(--accent);
         }
         
         textarea {
-            min-height: 200px;
+            min-height: 150px;
             resize: vertical;
         }
         
@@ -1289,14 +1035,14 @@
             background: rgba(0, 255, 0, 0.1);
             border-radius: var(--radius-md);
             border: 1px solid rgba(0, 255, 0, 0.3);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-align: center;
         }
         
         /* ===== FOOTER ===== */
         .footer {
             background-color: rgba(0, 0, 0, 0.95);
-            padding: var(--space-xxl) var(--space-xl) var(--space-xl);
+            padding: var(--space-xl) var(--space-xl) var(--space-lg);
             border-top: 1px solid var(--border-color);
         }
         
@@ -1314,9 +1060,8 @@
         
         .footer-logo {
             height: auto;
-            width: 140px;
+            width: 120px;
             margin-bottom: var(--space-lg);
-            filter: drop-shadow(var(--shadow-accent));
         }
         
         .footer-bottom {
@@ -1326,124 +1071,45 @@
             color: var(--text-muted);
         }
         
-        /* ===== QUICK QUESTION WIDGET ===== */
-        .quick-question-widget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-        
-        .widget-toggle {
-            background: var(--accent);
-            color: var(--black);
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .widget-toggle:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.4);
-        }
-        
-        .widget-form {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            width: 300px;
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            display: none;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-lg);
-            animation: slideUp 0.3s ease-out;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 992px) {
-            .hero-title { font-size: 3.5rem; }
-            .section-title { font-size: 2.5rem; }
-            .hero-logo-large { height: 160px; }
+            .hero-title { font-size: 3rem; }
+            .section-title { font-size: 2.2rem; }
+            .hero-logo-large { height: 140px; }
             .pricing-tiers { grid-template-columns: 1fr; }
             .about-content { grid-template-columns: 1fr; }
             .pricing-tier.popular { transform: scale(1); }
-            .pricing-tier.popular:hover { transform: translateY(-15px); }
-            .contact-table { grid-template-columns: 1fr; gap: var(--space-xl); }
+            .pricing-tier.popular:hover { transform: translateY(-10px); }
+            .contact-table { grid-template-columns: 1fr; }
             .nav-icons { gap: var(--space-md); }
-            .nav-icon { width: 50px; height: 50px; font-size: 1.2rem; }
-            .nav-label { font-size: 0.75rem; padding: 0.2rem 0.6rem; }
+            .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
+            .nav-label { font-size: 0.75rem; }
         }
         
         @media (max-width: 768px) {
             .header { padding: var(--space-md) var(--space-lg); }
-            .logo-center { height: 60px; }
+            .logo-center { height: 50px; }
             .hero { padding: 100px var(--space-lg) var(--space-xl); }
-            .hero-title { font-size: 3rem; }
-            .hero-subtitle { font-size: 1.5rem; }
-            .hero-logo-large { height: 140px; margin-bottom: var(--space-xl); }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .hero-logo-large { height: 120px; margin-bottom: var(--space-xl); }
             .section { padding: var(--space-xl) var(--space-lg); }
-            .section-title { font-size: 2.2rem; }
-            .tier-price { font-size: 3rem; }
-            .btn-primary { padding: 1.1rem 2.5rem; font-size: 1.1rem; min-width: 180px; }
+            .section-title { font-size: 2rem; }
+            .tier-price { font-size: 2.5rem; }
+            .btn-primary { padding: 1rem 2rem; font-size: 1rem; min-width: 180px; }
             .calculator-controls { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
             .nav-label { display: none; }
-            .contact-form { padding: var(--space-xl); }
-            .session-calculator h3 { font-size: 1.5rem; }
-            #calculatorResult .result-title { font-size: 1.5rem; }
-            #calculatorResult .result-price { font-size: 2rem; }
         }
         
         @media (max-width: 480px) {
-            .hero-title { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .btn-primary { padding: 1rem 2rem; font-size: 1rem; min-width: 160px; }
-            .tier-price { font-size: 2.5rem; }
+            .hero-title { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .btn-primary { padding: 0.9rem 1.5rem; min-width: 160px; }
+            .tier-price { font-size: 2rem; }
             .section { padding: var(--space-xl) var(--space-md); }
             .header { padding: var(--space-sm); }
-            h3 { font-size: 1.8rem; }
-            .hero-subtitle { font-size: 1.3rem; }
             .contact-form { padding: var(--space-lg); }
-            .session-calculator { padding: var(--space-md); }
-            #calculatorResult .result-title { font-size: 1.2rem; }
-            #calculatorResult .result-price { font-size: 1.8rem; }
-            .nav-icons { gap: var(--space-sm); }
-            .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -1459,6 +1125,19 @@
             </div>
             
             <div class="nav-icon-container">
+                <a href="#about" class="nav-icon" aria-label="About">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <span class="nav-label">About</span>
+            </div>
+        </div>
+        
+        <div class="logo-center">
+            <img src="images/logo.png" alt="Billups Studio" class="header-logo">
+        </div>
+        
+        <div class="nav-icons">
+            <div class="nav-icon-container">
                 <a href="#services" class="nav-icon" aria-label="Services">
                     <i class="fas fa-headphones"></i>
                 </a>
@@ -1470,33 +1149,6 @@
                     <i class="fas fa-envelope"></i>
                 </a>
                 <span class="nav-label">Contact</span>
-            </div>
-        </div>
-        
-        <div class="logo-center">
-            <img src="images/logo.png" alt="Billups Studio" class="header-logo" id="headerLogo">
-        </div>
-        
-        <div class="nav-icons">
-            <div class="nav-icon-container">
-                <a href="tel:07710593113" class="nav-icon" aria-label="Call us">
-                    <i class="fas fa-phone"></i>
-                </a>
-                <span class="nav-label">Call</span>
-            </div>
-            
-            <div class="nav-icon-container">
-                <a href="https://wa.me/447710593113" class="nav-icon" aria-label="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <span class="nav-label">WhatsApp</span>
-            </div>
-            
-            <div class="nav-icon-container">
-                <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="nav-icon" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <span class="nav-label">Instagram</span>
             </div>
         </div>
         
@@ -1523,7 +1175,7 @@
                     Where Culture Meets Clean Sound
                 </p>
                 
-                <a href="#services" class="btn-primary">VIEW SERVICES</a>
+                <a href="#about" class="btn-primary">DISCOVER MORE</a>
                 
                 <!-- SOCIAL PROOF -->
                 <div class="social-proof">
@@ -1542,11 +1194,113 @@
         </div>
     </section>
 
+    <!-- About Section (MOVED UP) -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Studio</h2>
+                <p class="section-subtitle">Professional setup, unmatched vibe</p>
+            </div>
+            
+            <div class="about-content">
+                <div>
+                    <h3 style="font-size: 2.2rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                        Luton's Premier Recording Space
+                    </h3>
+                    
+                    <p style="font-size: 1.1rem; margin-bottom: var(--space-lg); line-height: 1.7;">
+                        Based in the heart of Luton, Billups Studio brings together professional 
+                        engineering with creative energy. We're more than just a recording 
+                        studio - we're a creative hub where artists can focus on their craft.
+                    </p>
+                    
+                    <div style="background: rgba(0, 255, 0, 0.1); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: var(--space-xl);">
+                        <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent);">
+                            No gimmicks. Just professional setup, local roots, 
+                            and that unmatched studio vibe.
+                        </p>
+                    </div>
+                    
+                    <!-- AUDIO DEMO -->
+                    <div class="audio-demo">
+                        <h3>🎧 Hear The Billups Difference</h3>
+                        
+                        <div class="audio-toggle">
+                            <button class="btn-audio" data-track="raw">Raw Recording</button>
+                            <button class="btn-audio active" data-track="mixed">Mixed & Mastered</button>
+                        </div>
+                        
+                        <div class="audio-player">
+                            <audio id="demoAudio" controls>
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
+                                Your browser does not support audio element.
+                            </audio>
+                            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: var(--space-sm);">
+                                <i class="fas fa-info-circle"></i> Same vocal take, different processing
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                        What Makes Us Different
+                    </h4>
+                    
+                    <ul style="list-style: none; font-size: 1rem; margin-bottom: var(--space-xl);">
+                        <li style="padding: var(--space-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
+                            Industry-standard equipment
+                        </li>
+                        <li style="padding: var(--space-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
+                            Professional acoustic treatment
+                        </li>
+                        <li style="padding: var(--space-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
+                            Experienced engineers who get it
+                        </li>
+                        <li style="padding: var(--space-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
+                            Clean, inspiring environment
+                        </li>
+                        <li style="padding: var(--space-sm) 0;">
+                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
+                            Direct access to producers
+                        </li>
+                    </ul>
+                    
+                    <!-- Our Team Highlights -->
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: var(--space-lg); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--accent); margin-bottom: var(--space-lg); font-size: 1.2rem;">Our Team</h4>
+                        <div style="display: grid; gap: var(--space-md);">
+                            <div>
+                                <strong style="color: var(--text-primary);">Dsoul</strong>
+                                <span class="contact-role-badge">Head Engineer</span>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">Mixing • Mastering • Production</p>
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-primary);">Jaidee</strong>
+                                <span class="contact-role-badge">Studio Manager</span>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">Bookings • Scheduling • Artist Development</p>
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-primary);">Fabian</strong>
+                                <span class="contact-role-badge">Studio Owner</span>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">Business & Partnerships</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section class="services section" id="services">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Professional Services</h2>
+                <h2 class="section-title">Our Services</h2>
                 <p class="section-subtitle">Choose the perfect package for your project</p>
             </div>
             
@@ -1618,20 +1372,21 @@
             
             <!-- Pricing Tiers -->
             <div class="pricing-tiers">
-                <!-- Tier 1: Quick Session -->
+                <!-- Tier 1: Quick Session - UPDATED TO 3 HOURS -->
                 <div class="pricing-tier">
                     <div class="tier-header">
                         <div class="tier-icon">⚡</div>
                         <h3 class="tier-title">Quick Session</h3>
                         <div class="tier-price">£80<span>/song</span></div>
-                        <p>Perfect for singles</p>
+                        <p>3 hours studio time</p>
                     </div>
                     
                     <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 2-3 hours studio time</li>
+                        <li><i class="fas fa-check"></i> 3 hours studio time</li>
                         <li><i class="fas fa-check"></i> Professional engineer</li>
                         <li><i class="fas fa-check"></i> Basic mixing included</li>
                         <li><i class="fas fa-check"></i> Industry equipment</li>
+                        <li><i class="fas fa-check"></i> Perfect for singles</li>
                     </ul>
                     
                     <div class="tier-action">
@@ -1687,7 +1442,7 @@
             
             <!-- Add-On Services -->
             <div class="addons-section">
-                <h3 style="text-align: center; color: var(--accent); margin-bottom: var(--space-xl); font-size: 2rem;">
+                <h3 style="text-align: center; color: var(--accent); margin-bottom: var(--space-xl); font-size: 1.8rem;">
                     <i class="fas fa-plus-circle"></i> Add-On Services
                 </h3>
                 
@@ -1750,113 +1505,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about section" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">The Studio</h2>
-                <p class="section-subtitle">Professional setup, unmatched vibe</p>
-            </div>
-            
-            <div class="about-content">
-                <div>
-                    <h3 style="font-size: 2.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
-                        Luton's Premier<br>Recording Space
-                    </h3>
-                    
-                    <p style="font-size: 1.2rem; margin-bottom: var(--space-lg); line-height: 1.7;">
-                        Based in the heart of Luton, Billups Studio brings together professional 
-                        engineering with creative energy. We're more than just a recording 
-                        studio - we're a creative hub where artists can focus on their craft.
-                    </p>
-                    
-                    <div style="background: rgba(0, 255, 0, 0.1); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid var(--accent);">
-                        <p style="font-size: 1.3rem; font-weight: 600; color: var(--accent);">
-                            No gimmicks. Just professional setup, local roots, 
-                            and that unmatched studio vibe.
-                        </p>
-                    </div>
-                    
-                    <!-- AUDIO DEMO -->
-                    <div class="audio-demo">
-                        <h3>🎧 Hear The Billups Difference</h3>
-                        
-                        <div class="audio-toggle">
-                            <button class="btn-audio" data-track="raw">Raw Recording</button>
-                            <button class="btn-audio active" data-track="mixed">Mixed & Mastered</button>
-                        </div>
-                        
-                        <div class="audio-player">
-                            <audio id="demoAudio" controls>
-                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
-                                Your browser does not support audio element.
-                            </audio>
-                            <div class="audio-note">
-                                <i class="fas fa-info-circle"></i> Same vocal take, different processing
-                            </div>
-                        </div>
-                        
-                        <div id="audioFallback" class="audio-fallback">
-                            <p>🎚️ Audio demo coming soon</p>
-                            <p>Add your audio files to <code>/audio/</code> folder</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
-                        What Makes Us Different
-                    </h4>
-                    
-                    <ul style="list-style: none; font-size: 1.1rem;">
-                        <li style="padding: var(--space-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
-                            Industry-standard equipment
-                        </li>
-                        <li style="padding: var(--space-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
-                            Professional acoustic treatment
-                        </li>
-                        <li style="padding: var(--space-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
-                            Experienced engineers who get it
-                        </li>
-                        <li style="padding: var(--space-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
-                            Clean, inspiring environment
-                        </li>
-                        <li style="padding: var(--space-sm) 0;">
-                            <i class="fas fa-check" style="color: var(--accent); margin-right: var(--space-sm);"></i>
-                            Direct access to producers
-                        </li>
-                    </ul>
-                    
-                    <!-- Our Team Highlights -->
-                    <div style="margin-top: var(--space-xxl); background: rgba(255, 255, 255, 0.05); padding: var(--space-xl); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-                        <h4 style="color: var(--accent); margin-bottom: var(--space-lg);">Our Team</h4>
-                        <div style="display: grid; gap: var(--space-md);">
-                            <div>
-                                <strong style="color: var(--text-primary);">Dsoul</strong>
-                                <span class="contact-role-badge">Head Engineer</span>
-                                <p style="font-size: 0.9rem; margin-top: 4px;">Mixing • Mastering • Production</p>
-                            </div>
-                            <div>
-                                <strong style="color: var(--text-primary);">Jaidee</strong>
-                                <span class="contact-role-badge">Studio Manager</span>
-                                <p style="font-size: 0.9rem; margin-top: 4px;">Bookings • Scheduling • Artist Development</p>
-                            </div>
-                            <div>
-                                <strong style="color: var(--text-primary);">Fabian</strong>
-                                <span class="contact-role-badge">Studio Owner</span>
-                                <p style="font-size: 0.9rem; margin-top: 4px;">Business & Partnerships</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section class="contact section" id="contact">
         <div class="container">
@@ -1867,10 +1515,10 @@
             
             <div class="contact-table">
                 <div class="contact-column">
-                    <h3>Our Team</h3>
+                    <h3>Contact Our Team</h3>
                     <div class="contact-methods">
                         <!-- Studio Owner - Fabian -->
-                        <div class="contact-row fabian-contact">
+                        <div class="contact-row">
                             <div class="method-icon">
                                 <i class="fas fa-crown"></i>
                             </div>
@@ -1883,7 +1531,7 @@
                         </div>
                         
                         <!-- Studio Manager - Jaidee -->
-                        <a href="tel:07878709110" class="contact-row jaidee-contact">
+                        <a href="tel:07878709110" class="contact-row">
                             <div class="method-icon">
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
@@ -1896,7 +1544,7 @@
                         </a>
                         
                         <!-- Head Engineer - Dsoul -->
-                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row dsoul-contact">
+                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row">
                             <div class="method-icon">
                                 <i class="fas fa-sliders-h"></i>
                             </div>
@@ -1909,7 +1557,7 @@
                         </a>
                         
                         <!-- Main Studio Contact -->
-                        <a href="tel:07710593113" class="contact-row studio-contact">
+                        <a href="tel:07710593113" class="contact-row">
                             <div class="method-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
@@ -1921,7 +1569,7 @@
                         </a>
                         
                         <!-- WhatsApp -->
-                        <a href="https://wa.me/447710593113" class="contact-row whatsapp-contact">
+                        <a href="https://wa.me/447710593113" class="contact-row">
                             <div class="method-icon">
                                 <i class="fab fa-whatsapp"></i>
                             </div>
@@ -1933,7 +1581,7 @@
                         </a>
                         
                         <!-- Studio Email -->
-                        <a href="mailto:billupsltd@gmail.com" class="contact-row studio-contact">
+                        <a href="mailto:billupsltd@gmail.com" class="contact-row">
                             <div class="method-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
@@ -1955,18 +1603,6 @@
                                 <p>Latest work & updates</p>
                             </div>
                         </a>
-                        
-                        <!-- Address -->
-                        <div class="contact-row">
-                            <div class="method-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="method-text">
-                                <strong>Studio Location</strong>
-                                <p>Cutenhoe Road, Luton LU1 3NB</p>
-                                <p><small>Full address sent after booking</small></p>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -1998,21 +1634,10 @@
                                 <label for="session-type">Session Type *</label>
                                 <select id="session-type" name="session-type" required>
                                     <option value="">Select session</option>
-                                    <option value="hourly">Hourly (£30/hr)</option>
+                                    <option value="quick-session">Quick Session (£80)</option>
                                     <option value="half-day">Half Day (£140)</option>
                                     <option value="full-day">Full Day (£240)</option>
                                     <option value="custom">Custom Session</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="preferred-contact">Preferred Contact</label>
-                                <select id="preferred-contact" name="preferred-contact">
-                                    <option value="">Any method</option>
-                                    <option value="phone">Phone Call</option>
-                                    <option value="whatsapp">WhatsApp</option>
-                                    <option value="jaidee">Contact Jaidee (Studio Manager)</option>
-                                    <option value="dsoul">Contact Dsoul (Head Engineer)</option>
                                 </select>
                             </div>
                             
@@ -2040,37 +1665,37 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <img src="images/logo.png" alt="Billups Studio" class="footer-logo">
-                    <p style="color: var(--text-body); line-height: 1.7;">
+                    <p style="color: var(--text-body); line-height: 1.7; font-size: 0.95rem;">
                         Professional recording studio in Luton. Expert engineering, mixing & mastering. 
                         Book your session today and elevate your sound.
                     </p>
                 </div>
                 
                 <div class="footer-column">
-                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.3rem;">Quick Links</h4>
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.1rem;">Quick Links</h4>
                     <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
-                        <a href="#home" style="color: var(--text-body); text-decoration: none; transition: var(--transition);">
+                        <a href="#home" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
                             <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Home
                         </a>
-                        <a href="#services" style="color: var(--text-body); text-decoration: none; transition: var(--transition);">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Services
-                        </a>
-                        <a href="#about" style="color: var(--text-body); text-decoration: none; transition: var(--transition);">
+                        <a href="#about" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
                             <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> About
                         </a>
-                        <a href="#contact" style="color: var(--text-body); text-decoration: none; transition: var(--transition);">
+                        <a href="#services" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
+                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Services
+                        </a>
+                        <a href="#contact" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
                             <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Contact
                         </a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
-                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.3rem;">Studio Hours</h4>
-                    <p style="color: var(--text-body); margin-bottom: var(--space-xs);">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.1rem;">Studio Hours</h4>
+                    <p style="color: var(--text-body); margin-bottom: var(--space-xs); font-size: 0.95rem;">
                         <i class="fas fa-clock" style="color: var(--accent); margin-right: var(--space-xs);"></i>
                         Mon-Sun: 10AM - 10PM
                     </p>
-                    <p style="color: var(--text-body);">
+                    <p style="color: var(--text-body); font-size: 0.95rem;">
                         <i class="fas fa-calendar-check" style="color: var(--accent); margin-right: var(--space-xs);"></i>
                         By appointment only
                     </p>
@@ -2079,62 +1704,23 @@
             
             <div class="footer-bottom">
                 <p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved.</p>
-                <p style="margin-top: var(--space-sm); font-size: 0.9rem;">
+                <p style="margin-top: var(--space-sm); font-size: 0.85rem;">
                     Luton, Bedfordshire | 07710 593113
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- QUICK QUESTION WIDGET -->
-    <div class="quick-question-widget">
-        <button id="questionToggle" class="widget-toggle">
-            💬
-        </button>
-        
-        <div id="questionForm" class="widget-form">
-            <h4>Quick Question?</h4>
-            
-            <!-- Web3Forms Quick Question Form -->
-            <form action="https://api.web3forms.com/submit" method="POST" id="quickQuestionForm">
-                <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6">
-                <input type="hidden" name="subject" value="Quick Question - Billups Studio">
-                
-                <div class="form-group">
-                    <input type="text" placeholder="Your name *" id="quickName" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="text" placeholder="Email or phone *" id="quickContact" name="contact" required>
-                </div>
-                
-                <div class="form-group">
-                    <textarea placeholder="What's your question? *" rows="3" id="quickMessage" name="message" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn-primary">
-                    Send Quick Question
-                </button>
-            </form>
-            
-            <div class="response-time">We reply in <24h</div>
-        </div>
-    </div>
-
     <script>
         // ===== WEBSITE INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('🚀 Billups Studio Website Initialized');
-            
             // Initialize components
             initializeHeader();
             initializeHeaderEqualizer();
             initializeCalculator();
             initializeCurrentYear();
-            initializeScrollAnimations();
-            initializeQuickWins();
-            
-            console.log('✅ All systems ready');
+            initializeAudioDemo();
+            initializeLiveCounter();
         });
 
         // ===== HEADER SCROLL EFFECT =====
@@ -2160,28 +1746,11 @@
             
             barsContainer.innerHTML = '';
             
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 8; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'header-equalizer-bar';
-                const randomInitialHeight = 30 + Math.random() * 40;
-                bar.style.height = `${randomInitialHeight}%`;
                 barsContainer.appendChild(bar);
             }
-        }
-
-        // ===== QUICK WINS INITIALIZATION =====
-        function initializeQuickWins() {
-            // Session Calculator
-            initializeSessionCalculator();
-            
-            // Live Counter
-            initializeLiveCounter();
-            
-            // Audio Demo
-            initializeAudioDemo();
-            
-            // Quick Question Widget
-            initializeQuickQuestionWidget();
         }
 
         // ===== SMART SESSION CALCULATOR =====
@@ -2210,7 +1779,7 @@
                 case 'single':
                     recommendation = 'Quick Session';
                     price = '£80';
-                    description = 'Perfect for recording 1-2 singles';
+                    description = '3 hours studio time - perfect for singles';
                     buttonClass = 'btn-tier-1';
                     break;
                     
@@ -2263,68 +1832,6 @@
                         ${isCustom ? 'Get Custom Quote' : 'Book This Package'}
                     </a>
                 `;
-                
-                resultEl.style.animation = 'none';
-                setTimeout(() => {
-                    resultEl.style.animation = 'fadeInUp 0.5s ease-out';
-                }, 10);
-            }
-        }
-
-        // ===== SESSION CALCULATOR (Alternative) =====
-        function initializeSessionCalculator() {
-            const recordingHours = document.getElementById('recordingHours');
-            const sessionType = document.getElementById('sessionType');
-            
-            if (recordingHours && sessionType) {
-                recordingHours.addEventListener('change', updateSessionCalculator);
-                sessionType.addEventListener('change', updateSessionCalculator);
-            }
-        }
-        
-        function updateSessionCalculator() {
-            const recordingHours = parseInt(document.getElementById('recordingHours')?.value || '3');
-            const sessionType = document.getElementById('sessionType')?.value || 'half-day';
-            
-            let recommendation = '';
-            let price = '';
-            let description = '';
-            let buttonClass = 'btn-tier-2';
-            
-            if (sessionType === 'hourly') {
-                recommendation = 'Hourly Session';
-                const total = recordingHours * 30;
-                price = `£${total}`;
-                description = `${recordingHours} hours of studio time`;
-                buttonClass = 'btn-tier-1';
-            } else if (sessionType === 'half-day') {
-                recommendation = 'Half Day Session';
-                price = '£140';
-                description = '5 hours of studio recording time';
-                buttonClass = 'btn-tier-2';
-            } else if (sessionType === 'full-day') {
-                recommendation = 'Full Day Session';
-                price = '£240';
-                description = '10 hours of studio recording time';
-                buttonClass = 'btn-tier-3';
-            }
-            
-            const resultEl = document.getElementById('calculatorResult');
-            if (resultEl) {
-                resultEl.innerHTML = `
-                    <div class="recommendation">RECOMMENDED: ${recommendation}</div>
-                    <div class="price">${price}</div>
-                    <div class="description">${description}</div>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-sm);">
-                        <i class="fas fa-info-circle"></i> Studio mix as standard
-                    </p>
-                    <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">Book This Session</a>
-                `;
-                
-                resultEl.style.animation = 'none';
-                setTimeout(() => {
-                    resultEl.style.animation = 'fadeInUp 0.5s ease-out';
-                }, 10);
             }
         }
 
@@ -2338,15 +1845,12 @@
                 
                 const counterEl = document.getElementById('sessionCount');
                 if (counterEl) {
-                    counterEl.style.transform = 'scale(1.2)';
-                    setTimeout(() => {
-                        counterEl.textContent = estimatedSessions;
-                        counterEl.style.transform = 'scale(1)';
-                    }, 300);
+                    counterEl.textContent = estimatedSessions;
                 }
             }
             
             updateLiveCounter();
+            // Update every hour
             setInterval(updateLiveCounter, 3600000);
         }
 
@@ -2354,9 +1858,8 @@
         function initializeAudioDemo() {
             const audioButtons = document.querySelectorAll('.btn-audio');
             const audio = document.getElementById('demoAudio');
-            const fallback = document.getElementById('audioFallback');
             
-            if (audioButtons.length > 0) {
+            if (audioButtons.length > 0 && audio) {
                 audioButtons.forEach(btn => {
                     btn.addEventListener('click', function() {
                         document.querySelectorAll('.btn-audio').forEach(b => {
@@ -2374,88 +1877,8 @@
                         }
                         
                         audio.load();
-                        audio.play().catch(e => {
-                            if (audio.error && fallback) {
-                                fallback.style.display = 'block';
-                            }
-                        });
+                        audio.play().catch(e => console.log('Audio play failed:', e));
                     });
-                });
-                
-                if (audio && fallback) {
-                    audio.addEventListener('error', () => {
-                        fallback.style.display = 'block';
-                    });
-                }
-            }
-        }
-
-        // ===== QUICK QUESTION WIDGET =====
-        function initializeQuickQuestionWidget() {
-            const questionToggle = document.getElementById('questionToggle');
-            const questionForm = document.getElementById('questionForm');
-            
-            if (questionToggle && questionForm) {
-                questionToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const isVisible = questionForm.style.display === 'block';
-                    questionForm.style.display = isVisible ? 'none' : 'block';
-                    questionToggle.innerHTML = isVisible ? '💬' : '✕';
-                });
-
-                const quickQuestionForm = document.getElementById('quickQuestionForm');
-                if (quickQuestionForm) {
-                    quickQuestionForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        
-                        const submitBtn = this.querySelector('button[type="submit"]');
-                        const originalText = submitBtn.innerHTML;
-                        
-                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                        submitBtn.disabled = true;
-                        
-                        fetch(this.action, {
-                            method: 'POST',
-                            body: new FormData(this)
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                submitBtn.innerHTML = '✅ Sent!';
-                                submitBtn.style.background = '#25D366';
-                                
-                                this.reset();
-                                
-                                setTimeout(() => {
-                                    questionForm.style.display = 'none';
-                                    questionToggle.innerHTML = '💬';
-                                    submitBtn.innerHTML = originalText;
-                                    submitBtn.disabled = false;
-                                    submitBtn.style.background = '';
-                                }, 2000);
-                            } else {
-                                throw new Error('Failed to send');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            submitBtn.innerHTML = '❌ Failed';
-                            submitBtn.style.background = '#ff0000';
-                            
-                            setTimeout(() => {
-                                submitBtn.innerHTML = originalText;
-                                submitBtn.disabled = false;
-                                submitBtn.style.background = '';
-                            }, 2000);
-                        });
-                    });
-                }
-
-                document.addEventListener('click', (e) => {
-                    if (!questionToggle.contains(e.target) && !questionForm.contains(e.target)) {
-                        questionForm.style.display = 'none';
-                        questionToggle.innerHTML = '💬';
-                    }
                 });
             }
         }
@@ -2466,30 +1889,6 @@
             if (yearElement) {
                 yearElement.textContent = new Date().getFullYear();
             }
-        }
-
-        // ===== SCROLL ANIMATIONS =====
-        function initializeScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(section);
-            });
         }
 
         // ===== SMOOTH SCROLLING =====
@@ -2516,18 +1915,12 @@
         // ===== LOGO HOVER ANIMATION =====
         const mainLogo = document.getElementById('mainLogo');
         if (mainLogo) {
-            let isAnimating = false;
-            
             mainLogo.addEventListener('mouseenter', () => {
-                if (!isAnimating) {
-                    isAnimating = true;
-                    mainLogo.style.animation = 'smooth-fast-rotate 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                }
+                mainLogo.style.transform = 'rotateY(180deg) scale(1.05)';
             });
             
             mainLogo.addEventListener('mouseleave', () => {
-                isAnimating = false;
-                mainLogo.style.animation = '';
+                mainLogo.style.transform = 'rotateY(0) scale(1)';
             });
         }
 
@@ -2539,13 +1932,23 @@
                 const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                 submitBtn.disabled = true;
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    submitBtn.innerHTML = '✅ Sent!';
+                    submitBtn.style.background = '#25D366';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                        this.reset();
+                    }, 2000);
+                }, 1500);
+                
+                e.preventDefault();
             });
         }
-
-        // ===== ERROR HANDLING =====
-        window.addEventListener('error', (e) => {
-            console.warn('Page error:', e.message);
-        });
     </script>
 </body>
 </html>

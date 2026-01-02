@@ -417,7 +417,7 @@
             }
         }
         
-        /* ===== ORIGINAL GREEN BUTTONS WITH SHIMMER EFFECT ===== */
+        /* ===== FIXED BUTTON SHIMMER EFFECT ===== */
         .btn-primary {
             display: inline-block;
             padding: 1.2rem 3rem;
@@ -440,7 +440,7 @@
             z-index: 1;
         }
         
-        .btn-primary::after {
+        .btn-primary::before {
             content: '';
             position: absolute;
             top: 0;
@@ -450,14 +450,14 @@
             background: linear-gradient(
                 90deg,
                 transparent,
-                rgba(255, 255, 255, 0.4),
+                rgba(255, 255, 255, 0.3),
                 transparent
             );
             transition: left 0.7s ease-in-out;
-            z-index: 2;
+            z-index: 1;
         }
         
-        .btn-primary:hover::after {
+        .btn-primary:hover::before {
             left: 100%;
         }
         
@@ -467,7 +467,7 @@
             box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5);
         }
         
-        /* Solid colored tier buttons with shimmer effect */
+        /* Solid colored tier buttons with fixed shimmer effect */
         .btn-tier-1 { 
             background-color: var(--tier-1);
             border-color: var(--tier-1);
@@ -2119,14 +2119,17 @@
                             <div class="work-example">
                                 <h4>Beyond Boundaries Podcast</h4>
                                 <p>Co-hosting deep music industry discussions, demonstrating industry knowledge and interview skills.</p>
-                                <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
-                                    <a href="https://youtu.be/7QXhxzCn2O0?si=2wknh3e65QiPUGg9" target="_blank" class="work-link">
-                                        <i class="fab fa-youtube"></i> Podcast Episode 1
-                                    </a>
-                                    <a href="https://youtu.be/-2461Nzf2l0?si=tGFQdhdNeJfXcKIj" target="_blank" class="work-link">
-                                        <i class="fab fa-youtube"></i> Podcast Episode 2
-                                    </a>
-                                </div>
+                                <a href="https://youtu.be/7QXhxzCn2O0?si=2wknh3e65QiPUGg9" target="_blank" class="work-link">
+                                    <i class="fab fa-youtube"></i> Podcast Episode 1
+                                </a>
+                            </div>
+                            
+                            <div class="work-example">
+                                <h4>Worse - Passive X Jaidee</h4>
+                                <p>Latest release featuring Jaidee, showcasing his lyrical ability and flow on this collaborative track.</p>
+                                <a href="https://youtu.be/-2461Nzf2l0?si=tGFQdhdNeJfXcKIj" target="_blank" class="work-link">
+                                    <i class="fab fa-youtube"></i> Listen Now
+                                </a>
                             </div>
                             
                             <div class="work-example">

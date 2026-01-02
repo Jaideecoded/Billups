@@ -162,7 +162,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* ===== NAVIGATION ICONS ===== */
+        /* ===== NAVIGATION ICONS WITH GRADIENT HOVER ===== */
         .nav-icons {
             display: flex;
             gap: var(--space-lg);
@@ -191,14 +191,33 @@
             border: 2px solid rgba(255, 255, 255, 0.15);
             transition: var(--transition);
             cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .nav-icon::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff9500 100%);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-icon:hover::before {
+            opacity: 1;
         }
         
         .nav-icon:hover {
             color: var(--black);
             transform: translateY(-5px);
-            border-color: var(--accent);
-            background: var(--accent);
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
+            border-color: transparent;
+            box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4);
         }
         
         .nav-label {
@@ -1975,10 +1994,10 @@
                         
                         <div class="work-examples-grid">
                             <div class="work-example">
-                                <h4>Mixing Tutorial</h4>
-                                <p>"Mix drums like a pro using ONLY stock plugins in FL Studio" - A tutorial showing professional mixing techniques using standard tools.</p>
+                                <h4>Latest Release from Dsoul</h4>
+                                <p>Check out Dsoul's latest production and mixing work on his newest release.</p>
                                 <a href="https://youtu.be/jt1RtKUhJgA?si=o3VmWGrxohQRfM4J" target="_blank" class="work-link">
-                                    <i class="fab fa-youtube"></i> Watch Mixing Tutorial
+                                    <i class="fab fa-youtube"></i> Listen Now
                                 </a>
                             </div>
                             
@@ -2082,18 +2101,18 @@
                             </div>
                             
                             <div class="work-example">
-                                <h4>Music Video Direction</h4>
-                                <p>"Underwater" - Official music video demonstrating creative direction and visual storytelling skills.</p>
+                                <h4>Jaidee Cypher at the Emirates</h4>
+                                <p>Watch Jaidee's explosive performance at the Emirates, showcasing lyrical prowess and stage presence.</p>
                                 <a href="https://youtu.be/2WaVOTgPwOM?si=fCVEZmOpRHoAHbTv" target="_blank" class="work-link">
-                                    <i class="fab fa-youtube"></i> Watch "Underwater"
+                                    <i class="fab fa-youtube"></i> Watch Cypher
                                 </a>
                             </div>
                             
                             <div class="work-example">
-                                <h4>Live Performances</h4>
-                                <p>"Jadeyah Live" - Showcasing stage presence and live performance capabilities at various events and shows.</p>
+                                <h4>Jaidee on Mode Radio</h4>
+                                <p>Listen to Jaidee's exclusive interview and live performance on Mode Radio, discussing music and upcoming projects.</p>
                                 <a href="https://youtu.be/kLxPi5h33Ls?si=VD__FFTK04tBiD5e" target="_blank" class="work-link">
-                                    <i class="fab fa-youtube"></i> Watch Live Performance
+                                    <i class="fab fa-youtube"></i> Listen on Mode Radio
                                 </a>
                             </div>
                             
@@ -2194,7 +2213,6 @@
             
             <div class="gallery-grid" id="galleryGrid">
                 <!-- Gallery items will be loaded dynamically by JavaScript -->
-                <!-- For now, show a loading message -->
                 <div style="grid-column: 1 / -1; text-align: center; padding: var(--space-xxl); background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 2px dashed var(--border-color); backdrop-filter: blur(10px);">
                     <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: var(--space-lg);"></i>
                     <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Studio Gallery Loading...</h3>

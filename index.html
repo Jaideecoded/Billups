@@ -877,7 +877,7 @@
             backdrop-filter: blur(10px);
         }
         
-        /* ===== PORTFOLIO SECTION WITH BACKGROUND ===== */
+        /* ===== ENHANCED PORTFOLIO SECTION ===== */
         .portfolio .section-bg {
             opacity: 0.5;
         }
@@ -1039,58 +1039,135 @@
             margin-top: var(--space-xs);
         }
         
-        .portfolio-grid {
+        /* NEW: Strengths Grid */
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xxl);
+        }
+        
+        .strength-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            height: 100%;
+        }
+        
+        .strength-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-accent);
+        }
+        
+        .strength-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+            color: var(--accent);
+            text-align: center;
+        }
+        
+        .strength-card h4 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .strength-card p {
+            color: var(--text-body);
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+        
+        .strength-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            justify-content: center;
+            margin-top: var(--space-md);
+        }
+        
+        .strength-tag {
+            background: rgba(0, 255, 0, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* NEW: Work Links Grid */
+        .work-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: var(--space-xl);
-            margin-bottom: var(--space-xl);
         }
         
-        .portfolio-item {
+        .work-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-lg);
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: var(--transition);
             backdrop-filter: blur(10px);
+            height: 100%;
         }
         
-        .portfolio-item:hover {
+        .work-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
+            box-shadow: var(--shadow-accent);
         }
         
-        .portfolio-audio {
+        .work-media {
             background: rgba(0, 0, 0, 0.5);
             padding: var(--space-xl);
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 150px;
+            position: relative;
         }
         
-        .audio-placeholder {
+        .media-placeholder {
             text-align: center;
             color: var(--accent);
-            font-size: 4rem;
+            font-size: 3rem;
         }
         
-        .portfolio-info {
+        .media-badge {
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .work-info {
             padding: var(--space-xl);
         }
         
-        .portfolio-info h4 {
+        .work-info h4 {
             font-size: 1.3rem;
             color: var(--text-primary);
             margin-bottom: var(--space-xs);
         }
         
-        .portfolio-info p {
+        .work-info p {
             color: var(--text-body);
             margin-bottom: var(--space-md);
         }
         
-        .portfolio-tags {
+        .work-tags {
             display: flex;
             gap: var(--space-xs);
             flex-wrap: wrap;
@@ -1106,11 +1183,13 @@
             font-weight: 600;
         }
         
-        .portfolio-action {
+        .work-action {
             margin-top: var(--space-md);
+            display: flex;
+            gap: var(--space-sm);
         }
         
-        .btn-portfolio {
+        .btn-work {
             display: block;
             padding: 0.8rem 1.5rem;
             background: rgba(0, 255, 0, 0.1);
@@ -1121,11 +1200,39 @@
             transition: var(--transition);
             text-align: center;
             border: 1px solid rgba(0, 255, 0, 0.3);
+            flex: 1;
         }
         
-        .btn-portfolio:hover {
+        .btn-work:hover {
             background: rgba(0, 255, 0, 0.2);
             transform: translateY(-2px);
+        }
+        
+        .btn-work.primary {
+            background: rgba(0, 255, 0, 0.2);
+            font-weight: 700;
+        }
+        
+        /* NEW: Category Headers */
+        .category-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            padding: var(--space-lg);
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .category-header h3 {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .category-header p {
+            color: var(--text-body);
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         /* ===== GALLERY SECTION WITH BACKGROUND ===== */
@@ -1382,7 +1489,8 @@
             .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
             .nav-label { font-size: 0.75rem; }
             .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
-            .portfolio-grid { grid-template-columns: 1fr; }
+            .work-grid { grid-template-columns: 1fr; }
+            .strengths-grid { grid-template-columns: 1fr; }
             .portfolio-header { flex-direction: column; gap: var(--space-lg); }
             .producer-stats { width: 100%; justify-content: space-around; }
         }
@@ -1403,6 +1511,7 @@
             .gallery-grid { grid-template-columns: 1fr; }
             .nav-label { display: none; }
             .portfolio-tab { min-width: 200px; }
+            .work-action { flex-direction: column; }
         }
         
         @media (max-width: 480px) {
@@ -1822,16 +1931,17 @@
         </div>
     </section>
 
-    <!-- Portfolio Section WITH BACKGROUND -->
+    <!-- ENHANCED Portfolio Section WITH BACKGROUND -->
     <section class="portfolio section" id="portfolio">
         <img src="images/portfolio-bg.jpg" alt="Portfolio Background" class="section-bg">
         <div class="section-overlay"></div>
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Our Producers' Work</h2>
-                <p class="section-subtitle">Hear what our team creates</p>
+                <h2 class="section-title">Our Team's Expertise</h2>
+                <p class="section-subtitle">Discover what makes us unique & explore our work</p>
             </div>
             
+            <!-- Producer Tabs -->
             <div class="portfolio-tabs">
                 <button class="portfolio-tab active" data-tab="dsoul">
                     <div class="producer-header">
@@ -1877,63 +1987,147 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <div class="portfolio-audio">
-                            <div class="audio-placeholder">
+                <!-- Dsoul's Strengths -->
+                <div class="category-header">
+                    <h3>🎯 What Dsoul Brings to Your Session</h3>
+                    <p>Expertise, technical skills, and creative vision</p>
+                </div>
+                
+                <div class="strengths-grid">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h4>Professional Mixing</h4>
+                        <p>8 years experience mixing for diverse genres. Precision balancing, spatial enhancement, and dynamic control.</p>
+                        <div class="strength-tags">
+                            <span class="strength-tag">Balancing</span>
+                            <span class="strength-tag">EQ</span>
+                            <span class="strength-tag">Compression</span>
+                        </div>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                        <h4>Mastering Excellence</h4>
+                        <p>Final polish for radio-ready loudness and clarity. Industry-standard LUFS compliance and spectral balance.</p>
+                        <div class="strength-tags">
+                            <span class="strength-tag">Loudness</span>
+                            <span class="strength-tag">Clarity</span>
+                            <span class="strength-tag">Final Polish</span>
+                        </div>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <h4>Vocal Production</h4>
+                        <p>Specialized vocal processing including pitch correction, doubling, harmonies, and creative effects.</p>
+                        <div class="strength-tags">
+                            <span class="strength-tag">Melodyne</span>
+                            <span class="strength-tag">Harmonies</span>
+                            <span class="strength-tag">Effects</span>
+                        </div>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="fas fa-drum"></i>
+                        </div>
+                        <h4>Beat Making</h4>
+                        <p>Custom beat production with unique sound design. From hip-hop to R&B and drill.</p>
+                        <div class="strength-tags">
+                            <span class="strength-tag">Sound Design</span>
+                            <span class="strength-tag">Drums</span>
+                            <span class="strength-tag">Melodies</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dsoul's Work Links -->
+                <div class="category-header">
+                    <h3>🎧 Dsoul's Recent Work & Links</h3>
+                    <p>Listen to recent projects and connect</p>
+                </div>
+                
+                <div class="work-grid">
+                    <div class="work-card">
+                        <div class="work-media">
+                            <span class="media-badge">SoundCloud</span>
+                            <div class="media-placeholder">
+                                <i class="fab fa-soundcloud"></i>
+                            </div>
+                        </div>
+                        <div class="work-info">
+                            <h4>Latest Mix Showcase</h4>
+                            <p>Recent mixing work demonstrating vocal clarity and spatial effects.</p>
+                            <div class="work-tags">
+                                <span class="tag">Mixing</span>
+                                <span class="tag">Vocals</span>
+                                <span class="tag">2024</span>
+                            </div>
+                            <div class="work-action">
+                                <a href="https://soundcloud.com/dsoulfiles" target="_blank" class="btn-work primary">
+                                    <i class="fab fa-soundcloud"></i> SoundCloud
+                                </a>
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Mixing Inquiry&body=Hi Dsoul, I checked your SoundCloud and I'm interested in mixing services." class="btn-work">
+                                    Email Inquiry
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="work-card">
+                        <div class="work-media">
+                            <span class="media-badge">Audio Demo</span>
+                            <div class="media-placeholder">
                                 <i class="fas fa-music"></i>
                             </div>
                         </div>
-                        <div class="portfolio-info">
-                            <h4>Vocal Mix Example</h4>
-                            <p>Professional vocal mixing with harmonies and effects</p>
-                            <div class="portfolio-tags">
+                        <div class="work-info">
+                            <h4>Before & After Mix</h4>
+                            <p>Raw recording vs professionally mixed comparison. Hear the transformation.</p>
+                            <div class="work-tags">
+                                <span class="tag">Demo</span>
+                                <span class="tag">Comparison</span>
                                 <span class="tag">Vocals</span>
-                                <span class="tag">Mixing</span>
-                                <span class="tag">Effects</span>
                             </div>
-                            <div class="portfolio-action">
-                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Vocal Mixing&body=Hi Dsoul, I'm interested in your vocal mixing work." class="btn-portfolio">Inquire about this style</a>
+                            <div class="work-action">
+                                <a href="#about" class="btn-work primary">
+                                    <i class="fas fa-play-circle"></i> Play Demo
+                                </a>
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Demo Inquiry&body=Hi Dsoul, I heard your demo and want to discuss my project." class="btn-work">
+                                    Book Session
+                                </a>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="portfolio-item">
-                        <div class="portfolio-audio">
-                            <div class="audio-placeholder">
-                                <i class="fas fa-sliders-h"></i>
+                    <div class="work-card">
+                        <div class="work-media">
+                            <span class="media-badge">Cypher</span>
+                            <div class="media-placeholder">
+                                <i class="fas fa-headphones"></i>
                             </div>
                         </div>
-                        <div class="portfolio-info">
-                            <h4>Full Production</h4>
-                            <p>Complete track from raw recording to final master</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Production</span>
+                        <div class="work-info">
+                            <h4>Local Cypher Series</h4>
+                            <p>Mixed and mastered local artist cyphers showcasing Luton talent.</p>
+                            <div class="work-tags">
+                                <span class="tag">Cypher</span>
+                                <span class="tag">Local</span>
                                 <span class="tag">Mastering</span>
-                                <span class="tag">Complete</span>
                             </div>
-                            <div class="portfolio-action">
-                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Full Production&body=Hi Dsoul, I'd like to discuss a full production project." class="btn-portfolio">Book Production Session</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item">
-                        <div class="portfolio-audio">
-                            <div class="audio-placeholder">
-                                <i class="fas fa-drum"></i>
-                            </div>
-                        </div>
-                        <div class="portfolio-info">
-                            <h4>Beat Making</h4>
-                            <p>Original production with custom sound design</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Production</span>
-                                <span class="tag">Beat Making</span>
-                                <span class="tag">Sound Design</span>
-                            </div>
-                            <div class="portfolio-action">
-                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Beat Making&body=Hi Dsoul, I'm interested in your beat making services." class="btn-portfolio">Get Custom Beat</a>
+                            <div class="work-action">
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Cypher Production&body=Hi Dsoul, I'm interested in your cypher work for a collaboration." class="btn-work primary">
+                                    <i class="fas fa-envelope"></i> Collaborate
+                                </a>
+                                <a href="https://www.instagram.com/dsoulfiles" target="_blank" class="btn-work">
+                                    <i class="fab fa-instagram"></i> Instagram
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -1968,63 +2162,147 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <div class="portfolio-audio">
-                            <div class="audio-placeholder">
-                                <i class="fas fa-microphone-alt"></i>
-                            </div>
+                <!-- Jaidee's Strengths -->
+                <div class="category-header">
+                    <h3>🎯 What Jaidee Brings to Your Session</h3>
+                    <p>Organization, creative direction, and artist development</p>
+                </div>
+                
+                <div class="strengths-grid">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <div class="portfolio-info">
-                            <h4>Session Management</h4>
-                            <p>Managed over 100+ recording sessions for diverse artists, ensuring smooth workflow and technical quality.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Management</span>
-                                <span class="tag">Efficiency</span>
-                                <span class="tag">Workflow</span>
-                            </div>
-                            <div class="portfolio-action">
-                                <a href="https://wa.me/447878709110?text=Hi%20Jaidee,%20I'm%20interested%20in%20session%20management%20for%20my%20project" target="_blank" class="btn-portfolio">WhatsApp Jaidee</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item">
-                        <div class="portfolio-audio">
-                            <div class="audio-placeholder">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                        </div>
-                        <div class="portfolio-info">
-                            <h4>Artist Development</h4>
-                            <p>Guiding emerging artists through the complete creative process - from initial concept to final release.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Strategy</span>
-                                <span class="tag">Development</span>
-                                <span class="tag">Growth</span>
-                            </div>
-                            <div class="portfolio-action">
-                                <a href="mailto:billupsltd@gmail.com?subject=Inquiry about Artist Development&body=Hi Jaidee, I'd like to discuss artist development for my project." class="btn-portfolio">Email Jaidee</a>
-                            </div>
+                        <h4>Session Management</h4>
+                        <p>Efficient scheduling, time management, and workflow optimization for maximum productivity.</p>
+                        <div class="strength-tags">
+                            <span class="strength-tag">Scheduling</span>
+                            <span class="strength-tag">Workflow</span>
+                            <span class="strength-tag">Efficiency</span>
                         </div>
                     </div>
                     
-                    <div class="portfolio-item">
-                        <div class="portfolio-audio">
-                            <div class="audio-placeholder">
-                                <i class="fas fa-video"></i>
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Artist Development</h4>
+                        <p>Strategic planning for emerging artists, including branding, release strategy, and audience building.</p>
+                        <div class="strength-tags">
+                            <span class="strength-tag">Strategy</span>
+                            <span class="strength-tag">Branding</span>
+                            <span class="strength-tag">Growth</span>
+                        </div>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h4>Creative Direction</h4>
+                        <p>Guiding artists through the creative process, from concept to final product with clear vision.</p>
+                        <div class="strength-tags">
+                            <span class="strength-tag">Vision</span>
+                            <span class="strength-tag">Concept</span>
+                            <span class="strength-tag">Direction</span>
+                        </div>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h4>Industry Connections</h4>
+                        <p>Extensive network of artists, producers, and industry professionals for collaborations.</p>
+                        <div class="strength-tags">
+                            <span class="strength-tag">Network</span>
+                            <span class="strength-tag">Collaborations</span>
+                            <span class="strength-tag">Connections</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jaidee's Work Links -->
+                <div class="category-header">
+                    <h3>🎧 Jaidee's Recent Work & Links</h3>
+                    <p>Projects, podcasts, and collaborations</p>
+                </div>
+                
+                <div class="work-grid">
+                    <div class="work-card">
+                        <div class="work-media">
+                            <span class="media-badge">YouTube</span>
+                            <div class="media-placeholder">
+                                <i class="fab fa-youtube"></i>
                             </div>
                         </div>
-                        <div class="portfolio-info">
+                        <div class="work-info">
                             <h4>Beyond Boundaries Podcast</h4>
-                            <p>Co-hosting the "Beyond Boundaries" podcast with Passive, diving deep into music industry discussions.</p>
-                            <div class="portfolio-tags">
+                            <p>Co-hosting industry discussions with Passive. Music business insights and artist interviews.</p>
+                            <div class="work-tags">
                                 <span class="tag">Podcast</span>
                                 <span class="tag">Interview</span>
-                                <span class="tag">Industry Insights</span>
+                                <span class="tag">Industry</span>
                             </div>
-                            <div class="portfolio-action">
-                                <a href="https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_" target="_blank" class="btn-portfolio">Watch Podcast Episode</a>
+                            <div class="work-action">
+                                <a href="https://youtu.be/7QXhxzCn2O0?si=F9chrmlAlq4CJPC_" target="_blank" class="btn-work primary">
+                                    <i class="fab fa-youtube"></i> Watch Episode
+                                </a>
+                                <a href="https://www.youtube.com/@BeyondBoundariesPod" target="_blank" class="btn-work">
+                                    Channel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="work-card">
+                        <div class="work-media">
+                            <span class="media-badge">Spotify</span>
+                            <div class="media-placeholder">
+                                <i class="fab fa-spotify"></i>
+                            </div>
+                        </div>
+                        <div class="work-info">
+                            <h4>Managed Artist Releases</h4>
+                            <p>Recent projects from artists I've worked with, available on streaming platforms.</p>
+                            <div class="work-tags">
+                                <span class="tag">Releases</span>
+                                <span class="tag">Management</span>
+                                <span class="tag">2024</span>
+                            </div>
+                            <div class="work-action">
+                                <a href="https://open.spotify.com/search" target="_blank" class="btn-work primary">
+                                    <i class="fab fa-spotify"></i> Search Releases
+                                </a>
+                                <a href="https://wa.me/447878709110?text=Hi%20Jaidee,%20I'm%20interested%20in%20artist%20development%20services" target="_blank" class="btn-work">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="work-card">
+                        <div class="work-media">
+                            <span class="media-badge">Instagram</span>
+                            <div class="media-placeholder">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                        </div>
+                        <div class="work-info">
+                            <h4>Studio Sessions & Behind Scenes</h4>
+                            <p>Behind-the-scenes content, session highlights, and studio updates.</p>
+                            <div class="work-tags">
+                                <span class="tag">BTS</span>
+                                <span class="tag">Sessions</span>
+                                <span class="tag">Updates</span>
+                            </div>
+                            <div class="work-action">
+                                <a href="https://instagram.com/billups_studio" target="_blank" class="btn-work primary">
+                                    <i class="fab fa-instagram"></i> Instagram
+                                </a>
+                                <a href="mailto:billupsltd@gmail.com?subject=Session Inquiry&body=Hi Jaidee, I saw your Instagram and want to book a session." class="btn-work">
+                                    Email Booking
+                                </a>
                             </div>
                         </div>
                     </div>

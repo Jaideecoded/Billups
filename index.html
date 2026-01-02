@@ -162,13 +162,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* ===== NAVIGATION ICONS WITH GRADIENT HOVER ===== */
+        /* ===== NAVIGATION ICONS WITH GRADIENT FADE EFFECT ===== */
         .nav-icons {
             display: flex;
             gap: var(--space-lg);
             align-items: center;
         }
-        
+
         .nav-icon-container {
             position: relative;
             display: flex;
@@ -176,7 +176,7 @@
             align-items: center;
             gap: var(--space-xs);
         }
-        
+
         .nav-icon {
             color: rgba(255, 255, 255, 0.9);
             font-size: 1.3rem;
@@ -193,33 +193,34 @@
             cursor: pointer;
             position: relative;
             z-index: 1;
+            overflow: hidden;
         }
-        
+
         .nav-icon::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, var(--accent) 0%, #ff9500 100%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b35 50%, #ff4500 100%);
             border-radius: 50%;
             z-index: -1;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .nav-icon:hover::before {
             opacity: 1;
         }
-        
+
         .nav-icon:hover {
             color: var(--black);
             transform: translateY(-5px);
             border-color: transparent;
             box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4);
         }
-        
+
         .nav-label {
             position: absolute;
             bottom: -35px;
@@ -229,7 +230,7 @@
             transition: var(--transition);
             white-space: nowrap;
             font-weight: 700;
-            color: var(--accent);
+            color: #ff9500;
             text-transform: uppercase;
             letter-spacing: 1px;
             background: rgba(0, 0, 0, 0.9);
@@ -237,11 +238,22 @@
             border-radius: var(--radius-sm);
             pointer-events: none;
             z-index: 1002;
+            border: 1px solid rgba(255, 149, 0, 0.3);
         }
-        
+
         .nav-icon-container:hover .nav-label {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Optional: Add a subtle pulse animation to the gradient on hover */
+        @keyframes gradientPulse {
+            0%, 100% { opacity: 0.95; }
+            50% { opacity: 1; }
+        }
+
+        .nav-icon:hover::before {
+            animation: gradientPulse 2s infinite;
         }
         
         /* ===== HEADER ===== */

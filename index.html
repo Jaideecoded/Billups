@@ -397,11 +397,11 @@
             }
         }
         
-        /* ===== BUTTONS WITH GRADIENT ANIMATION RESTORED ===== */
+        /* ===== RESTORED ORANGE AND GREEN GRADIENT BUTTONS ===== */
         .btn-primary {
             display: inline-block;
             padding: 1.2rem 3rem;
-            background: linear-gradient(45deg, var(--accent), #00cc66, var(--accent));
+            background: linear-gradient(45deg, #FF9500, #00ff00, #FF9500);
             background-size: 300% 100%;
             color: var(--black);
             text-decoration: none;
@@ -415,15 +415,15 @@
             cursor: pointer;
             min-width: 200px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4);
             animation: gradientShift 3s ease infinite;
         }
         
         .btn-primary:hover {
-            background: linear-gradient(45deg, #00cc66, var(--accent), #00cc66);
+            background: linear-gradient(45deg, #00ff00, #FF9500, #00ff00);
             background-size: 300% 100%;
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(255, 149, 0, 0.5);
             animation: gradientShift 2s ease infinite;
         }
         
@@ -433,44 +433,45 @@
             100% { background-position: 0% 50%; }
         }
         
+        /* Tier buttons with restored gradients */
         .btn-tier-1 { 
-            background: linear-gradient(45deg, var(--tier-1), #0066cc, var(--tier-1));
+            background: linear-gradient(45deg, #00a8ff, #0066cc, #00a8ff);
             background-size: 300% 100%;
             animation: gradientShift 3s ease infinite;
         }
         .btn-tier-1:hover {
-            background: linear-gradient(45deg, #0066cc, var(--tier-1), #0066cc);
+            background: linear-gradient(45deg, #0066cc, #00a8ff, #0066cc);
             background-size: 300% 100%;
         }
         
         .btn-tier-2 { 
-            background: linear-gradient(45deg, var(--tier-2), #00cc66, var(--tier-2));
+            background: linear-gradient(45deg, #00ff00, #FF9500, #00ff00);
             background-size: 300% 100%;
             animation: gradientShift 3s ease infinite;
         }
         .btn-tier-2:hover {
-            background: linear-gradient(45deg, #00cc66, var(--tier-2), #00cc66);
+            background: linear-gradient(45deg, #FF9500, #00ff00, #FF9500);
             background-size: 300% 100%;
         }
         
         .btn-tier-3 { 
-            background: linear-gradient(45deg, var(--tier-3), #cc6600, var(--tier-3));
+            background: linear-gradient(45deg, #ff9500, #cc6600, #ff9500);
             background-size: 300% 100%;
             animation: gradientShift 3s ease infinite;
         }
         .btn-tier-3:hover {
-            background: linear-gradient(45deg, #cc6600, var(--tier-3), #cc6600);
+            background: linear-gradient(45deg, #cc6600, #ff9500, #cc6600);
             background-size: 300% 100%;
         }
         
         .btn-tier-4 { 
-            background: linear-gradient(45deg, var(--tier-4), #9900cc, var(--tier-4));
+            background: linear-gradient(45deg, #bc00ff, #9900cc, #bc00ff);
             background-size: 300% 100%;
             animation: gradientShift 3s ease infinite;
             color: white;
         }
         .btn-tier-4:hover {
-            background: linear-gradient(45deg, #9900cc, var(--tier-4), #9900cc);
+            background: linear-gradient(45deg, #9900cc, #bc00ff, #9900cc);
             background-size: 300% 100%;
         }
         
@@ -1962,7 +1963,7 @@
                         <div class="work-examples-grid">
                             <div class="work-example">
                                 <h4>Beat Making & Production</h4>
-                                <p>High-energy drill beat with complex hi-hat patterns and deep 808s. Shows Dsoul's versatility in modern production styles.</p>
+                                <p>"Mix drums like a pro using ONLY stock plugins in FL Studio" - A tutorial showing professional mixing techniques using standard tools.</p>
                                 <a href="https://youtu.be/jt1RtKUhJgA?si=o3VmWGrxohQRfM4J" target="_blank" class="work-link">
                                     <i class="fab fa-youtube"></i> Watch Beat Tutorial
                                 </a>
@@ -2069,7 +2070,7 @@
                             
                             <div class="work-example">
                                 <h4>Music Video Direction</h4>
-                                <p>"Underwater" music video demonstrating creative direction and visual storytelling skills.</p>
+                                <p>"Underwater" - Official music video demonstrating creative direction and visual storytelling skills.</p>
                                 <a href="https://youtu.be/2WaVOTgPwOM?si=fCVEZmOpRHoAHbTv" target="_blank" class="work-link">
                                     <i class="fab fa-youtube"></i> Watch "Underwater"
                                 </a>
@@ -2077,7 +2078,7 @@
                             
                             <div class="work-example">
                                 <h4>Live Performances</h4>
-                                <p>Showcasing stage presence and live performance capabilities at various events and shows.</p>
+                                <p>"Jadeyah Live" - Showcasing stage presence and live performance capabilities at various events and shows.</p>
                                 <a href="https://youtu.be/kLxPi5h33Ls?si=VD__FFTK04tBiD5e" target="_blank" class="work-link">
                                     <i class="fab fa-youtube"></i> Watch Live Performance
                                 </a>
@@ -2088,10 +2089,10 @@
                                 <p>Co-hosting deep music industry discussions, demonstrating industry knowledge and interview skills.</p>
                                 <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
                                     <a href="https://youtu.be/7QXhxzCn2O0?si=2wknh3e65QiPUGg9" target="_blank" class="work-link">
-                                        <i class="fab fa-youtube"></i> Podcast Episode
+                                        <i class="fab fa-youtube"></i> Podcast Episode 1
                                     </a>
                                     <a href="https://youtu.be/-2461Nzf2l0?si=tGFQdhdNeJfXcKIj" target="_blank" class="work-link">
-                                        <i class="fab fa-youtube"></i> Another Episode
+                                        <i class="fab fa-youtube"></i> Podcast Episode 2
                                     </a>
                                 </div>
                             </div>

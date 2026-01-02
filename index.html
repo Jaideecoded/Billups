@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billups Studio | Professional Recording Studio in Luton</title>
-    <meta name="description" content="Luton's premier recording studio. Expert vocal recording, mixing & mastering. Book sessions with professional engineers. Elevate your sound today.">
-    <meta name="keywords" content="recording studio Luton, music production, mixing mastering, audio engineering, vocal recording, professional studio">
+    <title>Billups Studio | Luton Recording Studio</title>
+    <meta name="description" content="Professional recording studio in Luton. Expert engineering, mixing & mastering. Book your session today.">
+    <meta name="keywords" content="recording studio, Luton, music production, mixing, mastering, audio engineering">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Billups Studio | Luton Recording Studio">
@@ -13,15 +13,6 @@
     <meta property="og:image" content="images/hero-bg.jpg">
     <meta property="og:url" content="https://billupsstudio.co.uk">
     <meta property="og:type" content="website">
-    
-    <!-- Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
     
     <link rel="icon" type="image/png" href="images/logo.png">
     
@@ -111,41 +102,6 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
-        /* Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        :focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-        
-        /* ===== STICKY NAVIGATION ===== */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: var(--space-lg) var(--space-xl);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-        }
         
         /* ===== HEADER EQUALIZER ===== */
         .header-equalizer {
@@ -154,8 +110,13 @@
             left: 0;
             width: 100%;
             height: 14px;
-            display: block;
+            display: none;
             z-index: 1001;
+        }
+        
+        .header.scrolled .header-equalizer {
+            display: block;
+            animation: equalizerFadeIn 0.5s ease-out;
         }
         
         .header-equalizer-bars {
@@ -194,6 +155,11 @@
         .header-equalizer-bar:nth-child(6) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
         .header-equalizer-bar:nth-child(7) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
         .header-equalizer-bar:nth-child(8) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
+        
+        @keyframes equalizerFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         
         /* ===== NAVIGATION ICONS ===== */
         .nav-icons {
@@ -258,6 +224,28 @@
             transform: translateY(0);
         }
         
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--space-lg) var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            transition: var(--transition);
+        }
+        
+        .header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            padding: var(--space-md) var(--space-xl);
+            box-shadow: var(--shadow-lg);
+        }
+        
         .logo-center {
             position: absolute;
             left: 50%;
@@ -296,7 +284,6 @@
             object-fit: cover;
             z-index: -1;
             opacity: 0.6;
-            filter: brightness(0.7);
         }
         
         .hero-overlay {
@@ -350,29 +337,12 @@
         .hero-subtitle {
             font-size: 1.8rem;
             font-weight: 400;
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-xxl);
             color: var(--text-secondary);
             line-height: 1.4;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        .hero-value-props {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-lg);
-            margin-bottom: var(--space-xl);
-            flex-wrap: wrap;
-        }
-
-        .value-prop {
-            background: rgba(0, 255, 0, 0.1);
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--radius-full);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            font-weight: 600;
-            font-size: 1rem;
         }
         
         /* ===== SOCIAL PROOF ===== */
@@ -401,7 +371,6 @@
             gap: var(--space-sm);
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: var(--space-lg);
         }
         
         .trust-badges .badge {
@@ -416,89 +385,6 @@
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
         }
-
-        /* Testimonials */
-        .testimonials-slider {
-            max-width: 800px;
-            margin: var(--space-xl) auto;
-            overflow: hidden;
-            border-radius: var(--radius-lg);
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
-            padding: var(--space-xl);
-        }
-
-        .testimonial {
-            display: none;
-            text-align: center;
-        }
-
-        .testimonial.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .testimonial-text {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: var(--space-lg);
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--black);
-        }
-
-        .author-info {
-            text-align: left;
-        }
-
-        .author-name {
-            font-weight: bold;
-            color: var(--text-primary);
-        }
-
-        .author-role {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .client-logos {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-xl);
-            margin-top: var(--space-lg);
-            flex-wrap: wrap;
-            opacity: 0.7;
-        }
-
-        .client-logo {
-            height: 40px;
-            filter: grayscale(1) brightness(2);
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-
-        .client-logo:hover {
-            filter: grayscale(0) brightness(1);
-            opacity: 1;
-        }
         
         @keyframes pulse {
             0%, 100% { 
@@ -509,11 +395,6 @@
                 opacity: 0.7; 
                 transform: scale(1.1); 
             }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         /* ===== BUTTONS ===== */
@@ -546,45 +427,6 @@
         .btn-tier-2 { background: var(--tier-2); border-color: var(--tier-2); }
         .btn-tier-3 { background: var(--tier-3); border-color: var(--tier-3); }
         .btn-tier-4 { background: var(--tier-4); border-color: var(--tier-4); color: white; }
-
-        /* Sticky CTA */
-        .sticky-cta {
-            position: fixed;
-            bottom: var(--space-lg);
-            right: var(--space-lg);
-            z-index: 999;
-            display: flex;
-            gap: var(--space-sm);
-        }
-
-        .sticky-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .sticky-btn.whatsapp {
-            background: #25D366;
-            color: white;
-        }
-
-        .sticky-btn.book {
-            background: var(--accent);
-            color: var(--black);
-        }
-
-        .sticky-btn:hover {
-            transform: translateY(-5px) scale(1.1);
-        }
         
         /* ===== SECTION SYSTEM WITH BACKGROUNDS ===== */
         .section {
@@ -642,12 +484,7 @@
             font-size: 1.5rem;
             color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto var(--space-lg);
-        }
-
-        .section-cta {
-            text-align: center;
-            margin-top: var(--space-xl);
+            margin: 0 auto;
         }
         
         /* ===== ABOUT SECTION WITH BACKGROUND ===== */
@@ -950,51 +787,6 @@
             text-align: center;
         }
         
-        /* Mix & Master Details */
-        .mix-master-details {
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-xxl);
-            backdrop-filter: blur(10px);
-        }
-
-        .mix-master-details h3 {
-            color: var(--accent);
-            text-align: center;
-            margin-bottom: var(--space-lg);
-            font-size: 1.8rem;
-        }
-
-        .mix-master-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-            margin-top: var(--space-lg);
-        }
-
-        .mix-master-feature {
-            background: rgba(0, 0, 0, 0.3);
-            padding: var(--space-lg);
-            border-radius: var(--radius-md);
-            text-align: center;
-        }
-
-        .mix-master-feature i {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: var(--space-sm);
-        }
-
-        .launch-date {
-            text-align: center;
-            margin-top: var(--space-lg);
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        
         /* Add-On Services */
         .addons-section {
             margin-top: var(--space-xxl);
@@ -1038,6 +830,36 @@
             font-weight: 700;
             font-size: 1.3rem;
             margin-top: var(--space-sm);
+        }
+        
+        /* Mix & Master Notice */
+        .mix-master-notice {
+            background: rgba(0, 255, 0, 0.15);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            margin-bottom: var(--space-xxl);
+            border-left: 6px solid var(--accent);
+            backdrop-filter: blur(10px);
+        }
+        
+        .mix-master-notice h3 {
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            font-size: 1.5rem;
+        }
+        
+        .coming-soon-badge {
+            background: var(--accent);
+            color: var(--black);
+            font-weight: 900;
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            display: inline-block;
+            margin-top: var(--space-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         /* Deposit Notice */
@@ -1231,7 +1053,6 @@
             border: 1px solid var(--border-color);
             transition: var(--transition);
             backdrop-filter: blur(10px);
-            cursor: pointer;
         }
         
         .portfolio-item:hover {
@@ -1305,64 +1126,6 @@
         .btn-portfolio:hover {
             background: rgba(0, 255, 0, 0.2);
             transform: translateY(-2px);
-        }
-
-        /* Portfolio Modal */
-        .portfolio-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .portfolio-modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            max-width: 800px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-lg);
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 2rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--accent);
         }
         
         /* ===== GALLERY SECTION WITH BACKGROUND ===== */
@@ -1539,11 +1302,6 @@
             color: var(--text-secondary);
             font-size: 1rem;
         }
-
-        .required::after {
-            content: " *";
-            color: #ff6b35;
-        }
         
         input, textarea, select {
             width: 100%;
@@ -1561,88 +1319,21 @@
             outline: none;
             border-color: var(--accent);
         }
-
-        input:invalid, textarea:invalid {
-            border-color: #ff6b35;
-        }
-
-        input:valid, textarea:valid {
-            border-color: var(--accent);
-        }
         
         textarea {
             min-height: 150px;
             resize: vertical;
         }
-
-        .error-message {
-            color: #ff6b35;
-            font-size: 0.85rem;
-            margin-top: var(--space-xs);
-            display: none;
-        }
-
-        .success-message {
-            display: none;
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            text-align: center;
-            margin-top: var(--space-lg);
-            animation: fadeIn 0.5s ease;
-        }
-
-        .success-message.show {
-            display: block;
-        }
         
-        /* Email Signup */
-        .email-signup {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-top: var(--space-xxl);
+        /* Form Submission Note */
+        .form-note {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            font-size: 0.9rem;
             text-align: center;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-
-        .email-signup h3 {
-            color: var(--accent);
-            margin-bottom: var(--space-md);
-        }
-
-        .email-form {
-            display: flex;
-            gap: var(--space-sm);
-            max-width: 500px;
-            margin: var(--space-lg) auto;
-        }
-
-        .email-form input {
-            flex: 1;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-full);
-            color: var(--text-primary);
-        }
-
-        .email-form button {
-            padding: 1rem 2rem;
-            background: var(--accent);
-            color: var(--black);
-            border: none;
-            border-radius: var(--radius-full);
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .email-form button:hover {
-            background: var(--accent-light);
-            transform: translateY(-2px);
         }
         
         /* ===== FOOTER ===== */
@@ -1676,10 +1367,6 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
         }
-
-        .footer-cta {
-            margin-top: var(--space-lg);
-        }
         
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 992px) {
@@ -1698,8 +1385,6 @@
             .portfolio-grid { grid-template-columns: 1fr; }
             .portfolio-header { flex-direction: column; gap: var(--space-lg); }
             .producer-stats { width: 100%; justify-content: space-around; }
-            .form-row { grid-template-columns: 1fr; }
-            .email-form { flex-direction: column; }
         }
         
         @media (max-width: 768px) {
@@ -1714,11 +1399,10 @@
             .tier-price { font-size: 2.5rem; }
             .btn-primary { padding: 1rem 2rem; font-size: 1rem; min-width: 180px; }
             .calculator-controls { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
             .nav-label { display: none; }
             .portfolio-tab { min-width: 200px; }
-            .sticky-cta { bottom: var(--space-sm); right: var(--space-sm); }
-            .sticky-btn { width: 50px; height: 50px; font-size: 1.3rem; }
         }
         
         @media (max-width: 480px) {
@@ -1730,8 +1414,6 @@
             .header { padding: var(--space-sm); }
             .contact-form { padding: var(--space-lg); }
             .hero-logo-large { height: 120px; }
-            .hero-value-props { flex-direction: column; align-items: center; }
-            .value-prop { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -1796,40 +1478,22 @@
         </div>
     </header>
 
-    <!-- Sticky CTA Buttons -->
-    <div class="sticky-cta">
-        <a href="https://wa.me/447710593113" class="sticky-btn whatsapp" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="#contact" class="sticky-btn book" aria-label="Book Now">
-            <i class="fas fa-calendar-check"></i>
-        </a>
-    </div>
-
     <!-- Hero Section WITH BACKGROUND -->
     <section class="hero section" id="home">
-        <img src="images/hero-bg.jpg" alt="Professional recording studio with mixing console and microphone" class="hero-bg">
+        <img src="images/hero-bg.jpg" alt="Studio Background" class="hero-bg">
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
-                <img src="images/logo.png" alt="Billups Studio - Luton's Premier Recording Studio" class="hero-logo-large" id="mainLogo">
+                <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large" id="mainLogo">
                 
                 <h1 class="hero-title">BILLUPS STUDIO</h1>
                 
                 <p class="hero-subtitle">
-                    Luton's Premier Recording Studio
+                    Pick up the mic,<br>
+                    elevate — create.
                 </p>
-
-                <div class="hero-value-props">
-                    <div class="value-prop">🎙️ Professional Vocal Recording</div>
-                    <div class="value-prop">🎛️ Expert Mixing & Mastering</div>
-                    <div class="value-prop">⚡ Radio-Ready Results</div>
-                </div>
                 
-                <div class="hero-cta">
-                    <a href="#contact" class="btn-primary">BOOK YOUR SESSION NOW</a>
-                    <a href="#portfolio" class="btn-primary" style="background: transparent; border-color: var(--accent); color: var(--accent); margin-left: var(--space-md);">HEAR SAMPLES</a>
-                </div>
+                <a href="#contact" class="btn-primary">BOOK YOUR SESSION</a>
                 
                 <!-- SOCIAL PROOF -->
                 <div class="social-proof">
@@ -1843,54 +1507,6 @@
                         <div class="badge">🎧 Free Consult</div>
                         <div class="badge">⚡ 24h Response</div>
                     </div>
-
-                    <!-- Testimonials Slider -->
-                    <div class="testimonials-slider">
-                        <div class="testimonial active">
-                            <div class="testimonial-text">
-                                "Billups Studio took my vocals to the next level. The mixing was professional and the vibe was perfect for creativity."
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">RJ</div>
-                                <div class="author-info">
-                                    <div class="author-name">Rapper J</div>
-                                    <div class="author-role">Recording Artist</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial">
-                            <div class="testimonial-text">
-                                "Dsoul's mixing skills are exceptional. My tracks sound radio-ready every time. Highly recommend!"
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">KB</div>
-                                <div class="author-info">
-                                    <div class="author-name">Kai B</div>
-                                    <div class="author-role">Music Producer</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial">
-                            <div class="testimonial-text">
-                                "The studio environment is professional yet comfortable. Jaidee makes the booking process smooth and easy."
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">SM</div>
-                                <div class="author-info">
-                                    <div class="author-name">Sarah M</div>
-                                    <div class="author-role">Singer-Songwriter</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Client Logos -->
-                    <div class="client-logos">
-                        <!-- Add client logos here -->
-                        <div style="color: var(--text-muted); font-size: 0.9rem; text-align: center;">
-                            <i class="fas fa-music"></i> Worked with 50+ artists across UK
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1898,13 +1514,12 @@
 
     <!-- About Section WITH BACKGROUND -->
     <section class="about section" id="about">
-        <img src="images/about-studio.jpg" alt="Studio interior with professional equipment" class="section-bg">
+        <img src="images/about-studio.jpg" alt="About Studio Background" class="section-bg">
         <div class="section-overlay"></div>
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Real Studio. Real Energy.</h2>
                 <p class="section-subtitle">Where culture meets clean sound</p>
-                <a href="#contact" class="btn-primary">Schedule Studio Tour</a>
             </div>
             
             <div class="about-content">
@@ -2025,7 +1640,6 @@
             <div class="section-header">
                 <h2 class="section-title">Our Services</h2>
                 <p class="section-subtitle">Professional recording, mixing & mastering</p>
-                <a href="#contact" class="btn-primary">Get Custom Quote</a>
             </div>
             
             <!-- Service Selection Guide -->
@@ -2034,21 +1648,18 @@
                     <div class="step-number">1</div>
                     <h3>Choose Your Goal</h3>
                     <p>Single, EP, or full project? We'll help you pick the right session.</p>
-                    <a href="#contact" style="color: var(--accent); font-size: 0.9rem; margin-top: var(--space-sm); display: inline-block;">Need advice?</a>
                 </div>
                 
                 <div class="guide-step">
                     <div class="step-number">2</div>
                     <h3>Select Package</h3>
                     <p>From quick sessions to full production packages.</p>
-                    <a href="#calculatorResult" style="color: var(--accent); font-size: 0.9rem; margin-top: var(--space-sm); display: inline-block;">Calculate price →</a>
                 </div>
                 
                 <div class="guide-step">
                     <div class="step-number">3</div>
                     <h3>Book & Create</h3>
                     <p>Secure your session and start creating professional music.</p>
-                    <a href="#contact" style="color: var(--accent); font-size: 0.9rem; margin-top: var(--space-sm); display: inline-block;">Book now →</a>
                 </div>
             </div>
             
@@ -2090,39 +1701,11 @@
                 </div>
             </div>
             
-            <!-- Mix & Master Details -->
-            <div class="mix-master-details">
-                <h3>🎛️ Mix & Master Services</h3>
-                <p>Professional mixing and mastering services delivered by Dsoul. Get your tracks radio-ready with industry-standard processing.</p>
-                
-                <div class="mix-master-grid">
-                    <div class="mix-master-feature">
-                        <i class="fas fa-sliders-h"></i>
-                        <h4>Mixing</h4>
-                        <p>Balance, EQ, compression, effects</p>
-                        <div class="addon-price">£40/song</div>
-                    </div>
-                    <div class="mix-master-feature">
-                        <i class="fas fa-volume-up"></i>
-                        <h4>Mastering</h4>
-                        <p>Final polish & loudness optimization</p>
-                        <div class="addon-price">£25/song</div>
-                    </div>
-                    <div class="mix-master-feature">
-                        <i class="fas fa-redo"></i>
-                        <h4>Revisions</h4>
-                        <p>2 revision rounds included</p>
-                    </div>
-                    <div class="mix-master-feature">
-                        <i class="fas fa-clock"></i>
-                        <h4>Turnaround</h4>
-                        <p>48-72 hours delivery</p>
-                    </div>
-                </div>
-                
-                <div class="launch-date">
-                    <i class="fas fa-rocket"></i> Available Now
-                </div>
+            <!-- Mix & Master Coming Soon Notice -->
+            <div class="mix-master-notice">
+                <h3>🎛️ Mix & Master Section Coming Soon</h3>
+                <p>We're currently building out our dedicated mixing & mastering service. All final mixes and masters are handled by Dsoul.</p>
+                <div class="coming-soon-badge">Launching Soon</div>
             </div>
             
             <!-- Pricing Tiers -->
@@ -2231,10 +1814,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="section-cta">
-                <a href="#contact" class="btn-primary">Get Started Today</a>
-            </div>
             
             <!-- Deposit Notice -->
             <div class="deposit-notice" role="note">
@@ -2251,7 +1830,6 @@
             <div class="section-header">
                 <h2 class="section-title">Our Producers' Work</h2>
                 <p class="section-subtitle">Hear what our team creates</p>
-                <a href="#contact" class="btn-primary">Request Work Samples</a>
             </div>
             
             <div class="portfolio-tabs">
@@ -2283,7 +1861,7 @@
                         <h3>Dsoul - Head Engineer</h3>
                         <p>Specializing in clean mixes, vocal production, and mastering. Known for bringing out the best in every artist with technical precision and creative flair.</p>
                         <div class="producer-contact">
-                            <p><i class="fas fa-envelope"></i> <a href="mailto:dsoulfiles@gmail.com">dsoulfiles@gmail.com</a></p>
+                            <p><i class="fas fa-envelope"></i> dsoulfiles@gmail.com</p>
                             <p><i class="fas fa-sliders-h"></i> Specializes in: Mixing, Mastering, Vocal Production</p>
                         </div>
                     </div>
@@ -2300,10 +1878,10 @@
                 </div>
                 
                 <div class="portfolio-grid">
-                    <div class="portfolio-item" data-audio="audio/sample1.mp3" data-title="Vocal Mix Example" data-description="Professional vocal mixing with harmonies and effects">
+                    <div class="portfolio-item">
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
-                                <i class="fas fa-play-circle"></i>
+                                <i class="fas fa-music"></i>
                             </div>
                         </div>
                         <div class="portfolio-info">
@@ -2315,15 +1893,15 @@
                                 <span class="tag">Effects</span>
                             </div>
                             <div class="portfolio-action">
-                                <button class="btn-portfolio play-sample">Play Sample</button>
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Vocal Mixing&body=Hi Dsoul, I'm interested in your vocal mixing work." class="btn-portfolio">Inquire about this style</a>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="portfolio-item" data-audio="audio/sample2.mp3" data-title="Full Production" data-description="Complete track from raw recording to final master">
+                    <div class="portfolio-item">
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
-                                <i class="fas fa-play-circle"></i>
+                                <i class="fas fa-sliders-h"></i>
                             </div>
                         </div>
                         <div class="portfolio-info">
@@ -2335,15 +1913,15 @@
                                 <span class="tag">Complete</span>
                             </div>
                             <div class="portfolio-action">
-                                <button class="btn-portfolio play-sample">Play Sample</button>
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Full Production&body=Hi Dsoul, I'd like to discuss a full production project." class="btn-portfolio">Book Production Session</a>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="portfolio-item" data-audio="audio/sample3.mp3" data-title="Beat Making" data-description="Original production with custom sound design">
+                    <div class="portfolio-item">
                         <div class="portfolio-audio">
                             <div class="audio-placeholder">
-                                <i class="fas fa-play-circle"></i>
+                                <i class="fas fa-drum"></i>
                             </div>
                         </div>
                         <div class="portfolio-info">
@@ -2355,14 +1933,10 @@
                                 <span class="tag">Sound Design</span>
                             </div>
                             <div class="portfolio-action">
-                                <button class="btn-portfolio play-sample">Play Sample</button>
+                                <a href="mailto:dsoulfiles@gmail.com?subject=Inquiry about Beat Making&body=Hi Dsoul, I'm interested in your beat making services." class="btn-portfolio">Get Custom Beat</a>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="section-cta">
-                    <a href="mailto:dsoulfiles@gmail.com" class="btn-primary">Work With Dsoul</a>
                 </div>
             </div>
             
@@ -2373,8 +1947,8 @@
                         <h3>Jaidee - Studio Manager & Producer</h3>
                         <p>With 5 years of industry experience, I bring a comprehensive skill set in studio management, artist development, and creative direction.</p>
                         <div class="producer-contact">
-                            <p><i class="fas fa-phone"></i> <a href="tel:07878709110">07878 709110</a></p>
-                            <p><i class="fas fa-envelope"></i> <a href="mailto:billupsltd@gmail.com">billupsltd@gmail.com</a></p>
+                            <p><i class="fas fa-phone"></i> 07878 709110</p>
+                            <p><i class="fas fa-envelope"></i> billupsltd@gmail.com</p>
                             <p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development</p>
                         </div>
                     </div>
@@ -2455,32 +2029,9 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="section-cta">
-                    <a href="https://wa.me/447878709110" class="btn-primary">Contact Jaidee</a>
-                </div>
             </div>
         </div>
     </section>
-
-    <!-- Portfolio Modal -->
-    <div class="portfolio-modal" id="portfolioModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Sample Title</h3>
-                <button class="close-modal" id="closeModal">&times;</button>
-            </div>
-            <div class="audio-player">
-                <audio id="modalAudio" controls>
-                    Your browser does not support audio element.
-                </audio>
-            </div>
-            <p id="modalDescription">Sample description</p>
-            <div class="portfolio-action" style="margin-top: var(--space-lg);">
-                <a href="#contact" class="btn-primary">Book Similar Project</a>
-            </div>
-        </div>
-    </div>
 
     <!-- Gallery Section WITH BACKGROUND -->
     <section class="gallery section" id="gallery">
@@ -2494,6 +2045,12 @@
             
             <div class="gallery-grid" id="galleryGrid">
                 <!-- Gallery items will be loaded dynamically by JavaScript -->
+                <!-- For now, show a loading message -->
+                <div style="grid-column: 1 / -1; text-align: center; padding: var(--space-xxl); background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 2px dashed var(--border-color); backdrop-filter: blur(10px);">
+                    <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: var(--space-lg);"></i>
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Studio Gallery Loading...</h3>
+                    <p style="color: var(--text-body); max-width: 500px; margin: 0 auto;">Loading images from the images folder...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -2533,7 +2090,7 @@
                             <div class="method-text">
                                 <strong>Jaidee</strong>
                                 <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Studio Manager</span>
-                                <p>📞 <a href="tel:07878709110">07878 709110</a></p>
+                                <p>📞 07878 709110</p>
                                 <p>Bookings • Scheduling • Studio queries</p>
                             </div>
                         </a>
@@ -2546,7 +2103,7 @@
                             <div class="method-text">
                                 <strong>Dsoul</strong>
                                 <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Head Engineer</span>
-                                <p>✉️ <a href="mailto:dsoulfiles@gmail.com">dsoulfiles@gmail.com</a></p>
+                                <p>✉️ dsoulfiles@gmail.com</p>
                                 <p>Mixing • Mastering • Production</p>
                             </div>
                         </a>
@@ -2558,19 +2115,19 @@
                             </div>
                             <div class="method-text">
                                 <strong>Main Studio Line</strong>
-                                <p>📞 <a href="tel:07710593113">07710 593113</a></p>
+                                <p>📞 07710 593113</p>
                                 <p>General inquiries & quick questions</p>
                             </div>
                         </a>
                         
                         <!-- WhatsApp -->
-                        <a href="https://wa.me/447710593113" target="_blank" class="contact-row">
+                        <a href="https://wa.me/447710593113" class="contact-row">
                             <div class="method-icon">
                                 <i class="fab fa-whatsapp"></i>
                             </div>
                             <div class="method-text">
                                 <strong>WhatsApp</strong>
-                                <p>📱 <a href="https://wa.me/447710593113">07710 593113</a></p>
+                                <p>📱 07710 593113</p>
                                 <p>Fastest response • Send voice notes</p>
                             </div>
                         </a>
@@ -2582,7 +2139,7 @@
                             </div>
                             <div class="method-text">
                                 <strong>Studio Email</strong>
-                                <p>✉️ <a href="mailto:billupsltd@gmail.com">billupsltd@gmail.com</a></p>
+                                <p>✉️ billupsltd@gmail.com</p>
                                 <p>General studio inquiries</p>
                             </div>
                         </a>
@@ -2611,62 +2168,45 @@
                             
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="name" class="required">Full Name</label>
+                                    <label for="name">Full Name *</label>
                                     <input type="text" id="name" name="name" required>
-                                    <div class="error-message" id="nameError">Please enter your full name</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email" class="required">Email</label>
+                                    <label for="email">Email *</label>
                                     <input type="email" id="email" name="email" required>
-                                    <div class="error-message" id="emailError">Please enter a valid email</div>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="phone" class="required">Phone Number</label>
+                                <label for="phone">Phone Number *</label>
                                 <input type="tel" id="phone" name="phone" required>
-                                <div class="error-message" id="phoneError">Please enter a valid phone number</div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="session-type" class="required">Session Type</label>
+                                <label for="session-type">Session Type *</label>
                                 <select id="session-type" name="session-type" required>
                                     <option value="">Select session</option>
                                     <option value="quick-session">Quick Session (£80)</option>
                                     <option value="half-day">Half Day (£140)</option>
                                     <option value="full-day">Full Day (£240)</option>
-                                    <option value="mixing-only">Mixing Only (£40/song)</option>
                                     <option value="custom">Custom Session</option>
                                 </select>
-                                <div class="error-message" id="sessionError">Please select a session type</div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="message" class="required">Project Details</label>
+                                <label for="message">Project Details *</label>
                                 <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
-                                <div class="error-message" id="messageError">Please tell us about your project</div>
                             </div>
                             
                             <button type="submit" class="btn-primary" style="width: 100%;">Send Booking Request</button>
                             
-                            <div class="success-message" id="successMessage">
-                                <strong>✅ Thank you for your booking request!</strong><br>
+                            <div class="form-note">
+                                <strong>✉️ Your message will be sent directly to our team</strong><br>
                                 <span>We'll respond within 24 hours</span>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-
-            <!-- Email Signup -->
-            <div class="email-signup">
-                <h3>Get Studio Updates & Promo Codes</h3>
-                <p>Subscribe to hear about special offers, new services, and studio news.</p>
-                <form class="email-form" id="emailForm">
-                    <input type="email" placeholder="Your email address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">No spam. Unsubscribe anytime.</p>
             </div>
         </div>
     </section>
@@ -2681,9 +2221,6 @@
                         Professional recording studio in Luton. Expert engineering, mixing & mastering. 
                         Book your session today and elevate your sound.
                     </p>
-                    <div class="footer-cta">
-                        <a href="#contact" class="btn-primary" style="font-size: 0.9rem; padding: 0.8rem 1.5rem;">Book Now</a>
-                    </div>
                 </div>
                 
                 <div class="footer-column">
@@ -2720,22 +2257,13 @@
                         <i class="fas fa-calendar-check" style="color: var(--accent); margin-right: var(--space-xs);"></i>
                         By appointment only
                     </p>
-                    <div style="margin-top: var(--space-lg);">
-                        <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm); font-size: 1.1rem;">Contact</h4>
-                        <p style="color: var(--text-body); font-size: 0.95rem;">
-                            <a href="tel:07710593113" style="color: var(--accent); text-decoration: none;">📞 07710 593113</a>
-                        </p>
-                        <p style="color: var(--text-body); font-size: 0.95rem;">
-                            <a href="mailto:billupsltd@gmail.com" style="color: var(--accent); text-decoration: none;">✉️ billupsltd@gmail.com</a>
-                        </p>
-                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved.</p>
                 <p style="margin-top: var(--space-sm); font-size: 0.85rem;">
-                    Luton, Bedfordshire | <a href="tel:07710593113" style="color: var(--accent); text-decoration: none;">07710 593113</a>
+                    Luton, Bedfordshire | 07710 593113
                 </p>
             </div>
         </div>
@@ -2744,7 +2272,8 @@
     <script>
         // ===== WEBSITE INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize all components
+            // Initialize components
+            initializeHeader();
             initializeHeaderEqualizer();
             initializeCalculator();
             initializeCurrentYear();
@@ -2755,25 +2284,17 @@
             initializeLogoAnimation();
             initializeAudioDemo();
             loadBackgroundImages();
-            initializeTestimonials();
-            initializeFormValidation();
-            initializePortfolioModal();
-            initializeEmailSignup();
-            initializeStickyHeader();
         });
 
-        // ===== STICKY HEADER =====
-        function initializeStickyHeader() {
-            // Header is already sticky by default with CSS
-            // Add scroll effect for equalizer
+        // ===== HEADER SCROLL EFFECT =====
+        function initializeHeader() {
+            const header = document.getElementById('header');
+            
             window.addEventListener('scroll', () => {
-                const header = document.getElementById('header');
-                if (window.scrollY > 50) {
-                    header.style.background = 'rgba(0, 0, 0, 0.95)';
-                    header.style.backdropFilter = 'blur(15px)';
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
                 } else {
-                    header.style.background = 'rgba(0, 0, 0, 0.95)';
-                    header.style.backdropFilter = 'blur(15px)';
+                    header.classList.remove('scrolled');
                 }
             });
         }
@@ -2797,24 +2318,20 @@
 
         // ===== LOAD BACKGROUND IMAGES =====
         function loadBackgroundImages() {
-            // Compress and lazy load images
-            const images = document.querySelectorAll('img[data-src], .section-bg, .hero-bg, .gallery-item img');
+            // Preload background images
+            const images = [
+                'images/hero-bg.jpg',
+                'images/about-studio.jpg',
+                'images/studio-bg.jpg',
+                'images/portfolio-bg.jpg',
+                'images/studio1.jpg',
+                'images/studio2.jpg'
+            ];
             
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            delete img.dataset.src;
-                        }
-                        img.classList.add('loaded');
-                        observer.unobserve(img);
-                    }
-                });
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
             });
-            
-            images.forEach(img => imageObserver.observe(img));
         }
 
         // ===== PORTFOLIO TAB SWITCHING =====
@@ -2844,79 +2361,6 @@
             }
         }
 
-        // ===== PORTFOLIO MODAL =====
-        function initializePortfolioModal() {
-            const modal = document.getElementById('portfolioModal');
-            const closeBtn = document.getElementById('closeModal');
-            const playButtons = document.querySelectorAll('.play-sample');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDescription = document.getElementById('modalDescription');
-            const modalAudio = document.getElementById('modalAudio');
-            
-            if (!modal) return;
-            
-            // Close modal
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-                modalAudio.pause();
-            });
-            
-            // Close on outside click
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    modalAudio.pause();
-                }
-            });
-            
-            // Close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                    modalAudio.pause();
-                }
-            });
-            
-            // Play sample buttons
-            playButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const portfolioItem = this.closest('.portfolio-item');
-                    const audioSrc = portfolioItem.dataset.audio;
-                    const title = portfolioItem.dataset.title;
-                    const description = portfolioItem.dataset.description;
-                    
-                    modalTitle.textContent = title;
-                    modalDescription.textContent = description;
-                    modalAudio.src = audioSrc;
-                    modalAudio.load();
-                    
-                    modal.classList.add('active');
-                    modalAudio.play().catch(e => console.log('Audio play failed:', e));
-                });
-            });
-            
-            // Portfolio item click
-            document.querySelectorAll('.portfolio-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    if (!e.target.closest('.btn-portfolio') && !e.target.closest('.portfolio-action')) {
-                        const audioSrc = this.dataset.audio;
-                        if (audioSrc) {
-                            const title = this.dataset.title;
-                            const description = this.dataset.description;
-                            
-                            modalTitle.textContent = title;
-                            modalDescription.textContent = description;
-                            modalAudio.src = audioSrc;
-                            modalAudio.load();
-                            
-                            modal.classList.add('active');
-                            modalAudio.play().catch(e => console.log('Audio play failed:', e));
-                        }
-                    }
-                });
-            });
-        }
-
         // ===== GALLERY INITIALIZATION =====
         function initializeGallery() {
             const galleryGrid = document.getElementById('galleryGrid');
@@ -2943,8 +2387,7 @@
                     img.onload = function() {
                         loadedImages.push({
                             src: `images/${pattern}`,
-                            alt: `Studio image ${pattern.replace('.jpg', '')}`,
-                            loading: 'lazy'
+                            alt: `Studio image ${pattern.replace('.jpg', '')}`
                         });
                         
                         // If this is the first image loaded, update the gallery
@@ -2962,8 +2405,6 @@
                 setTimeout(() => {
                     if (loadedImages.length === 0) {
                         showGalleryPlaceholder();
-                    } else {
-                        updateGallery(loadedImages);
                     }
                 }, 2000);
             }
@@ -3120,7 +2561,6 @@
             let price = '';
             let description = '';
             let buttonClass = 'btn-tier-2';
-            let buttonText = 'Book This Package';
             
             switch(projectGoal) {
                 case 'single':
@@ -3149,7 +2589,6 @@
                     price = '£40/song';
                     description = 'Studio quality mixing & mastering';
                     buttonClass = 'btn-tier-4';
-                    buttonText = 'Book Mixing Service';
                     break;
             }
             
@@ -3164,7 +2603,6 @@
             } else if (artistCount === 'group' && projectGoal !== 'mixing') {
                 price = 'Custom Quote';
                 artistNote = '<p><i class="fas fa-users"></i> Contact for group rates</p>';
-                buttonText = 'Get Custom Quote';
             }
             
             const resultEl = document.getElementById('calculatorResult');
@@ -3178,23 +2616,9 @@
                     ${artistNote}
                     <p><i class="fas fa-check"></i> Includes professional engineer & equipment</p>
                     <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">
-                        ${buttonText}
+                        ${isCustom ? 'Get Custom Quote' : 'Book This Package'}
                     </a>
                 `;
-            }
-        }
-
-        // ===== TESTIMONIALS SLIDER =====
-        function initializeTestimonials() {
-            const testimonials = document.querySelectorAll('.testimonial');
-            let currentIndex = 0;
-            
-            if (testimonials.length > 1) {
-                setInterval(() => {
-                    testimonials[currentIndex].classList.remove('active');
-                    currentIndex = (currentIndex + 1) % testimonials.length;
-                    testimonials[currentIndex].classList.add('active');
-                }, 5000);
             }
         }
 
@@ -3246,141 +2670,6 @@
             }
         }
 
-        // ===== FORM VALIDATION =====
-        function initializeFormValidation() {
-            const bookingForm = document.getElementById('bookingForm');
-            const successMessage = document.getElementById('successMessage');
-            
-            if (!bookingForm) return;
-            
-            bookingForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Reset errors
-                document.querySelectorAll('.error-message').forEach(el => {
-                    el.style.display = 'none';
-                });
-                
-                let isValid = true;
-                
-                // Validate name
-                const name = document.getElementById('name');
-                if (!name.value.trim()) {
-                    document.getElementById('nameError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                // Validate email
-                const email = document.getElementById('email');
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email.value)) {
-                    document.getElementById('emailError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                // Validate phone
-                const phone = document.getElementById('phone');
-                const phoneRegex = /^[\+]?[1-9][\d\s\-\(\)\.]{8,}$/;
-                if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
-                    document.getElementById('phoneError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                // Validate session type
-                const sessionType = document.getElementById('session-type');
-                if (!sessionType.value) {
-                    document.getElementById('sessionError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                // Validate message
-                const message = document.getElementById('message');
-                if (!message.value.trim()) {
-                    document.getElementById('messageError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                if (isValid) {
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                    submitBtn.disabled = true;
-                    
-                    // Submit to Web3Forms
-                    const formData = new FormData(this);
-                    
-                    fetch(this.action, {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            successMessage.classList.add('show');
-                            bookingForm.reset();
-                            
-                            // Scroll to success message
-                            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            
-                            // Hide success message after 5 seconds
-                            setTimeout(() => {
-                                successMessage.classList.remove('show');
-                            }, 5000);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    })
-                    .finally(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    });
-                }
-            });
-            
-            // Make phone numbers clickable on mobile
-            if ('ontouchstart' in window) {
-                document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        // Ensure the link works properly on mobile
-                        const phoneNumber = this.getAttribute('href').replace('tel:', '');
-                        window.location.href = `tel:${phoneNumber}`;
-                    });
-                });
-            }
-        }
-
-        // ===== EMAIL SIGNUP =====
-        function initializeEmailSignup() {
-            const emailForm = document.getElementById('emailForm');
-            
-            if (emailForm) {
-                emailForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const emailInput = this.querySelector('input[type="email"]');
-                    const button = this.querySelector('button');
-                    
-                    if (emailInput.value) {
-                        const originalText = button.innerHTML;
-                        button.innerHTML = '<i class="fas fa-check"></i>';
-                        button.disabled = true;
-                        
-                        // Here you would normally send to your email service
-                        // For now, just show success
-                        setTimeout(() => {
-                            button.innerHTML = 'Subscribed!';
-                            emailInput.value = '';
-                            
-                            setTimeout(() => {
-                                button.innerHTML = originalText;
-                                button.disabled = false;
-                            }, 2000);
-                        }, 1000);
-                    }
-                });
-            }
-        }
-
         // ===== CURRENT YEAR =====
         function initializeCurrentYear() {
             const yearElement = document.getElementById('currentYear');
@@ -3426,17 +2715,30 @@
             }
         }
 
-        // ===== ACCESSIBILITY =====
-        // Make all interactive elements keyboard accessible
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
-        });
-        
-        document.addEventListener('mousedown', function() {
-            document.body.classList.remove('keyboard-navigation');
-        });
+        // ===== FORM HANDLING =====
+        const bookingForm = document.getElementById('bookingForm');
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                // Form will submit to Web3Forms
+                // Show success message after submission
+                setTimeout(() => {
+                    submitBtn.innerHTML = '✅ Sent!';
+                    submitBtn.style.background = '#25D366';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                        this.reset();
+                    }, 3000);
+                }, 1500);
+            });
+        }
     </script>
 </body>
 </html>

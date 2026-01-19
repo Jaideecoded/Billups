@@ -104,7 +104,332 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
-        /* ===== UPDATED BUTTON SYSTEM: BLACK TO GREEN-ORANGE GRADIENT ===== */
+        /* ===== HEADER EQUALIZER ===== */
+        .header-equalizer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 14px;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .header.scrolled .header-equalizer {
+            display: block;
+            animation: equalizerFadeIn 0.5s ease-out;
+        }
+        
+        .header-equalizer-bars {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 3px;
+            padding: 0 15px;
+        }
+        
+        .header-equalizer-bar {
+            width: 5px;
+            height: 60%;
+            background: linear-gradient(to top, var(--accent), var(--tier-2));
+            border-radius: 3px 3px 0 0;
+            opacity: 0.8;
+            transform-origin: bottom center;
+        }
+        
+        /* Equalizer animations */
+        @keyframes headerEqPulse1 { 0%, 100% { height: 40%; } 20% { height: 85%; } 40% { height: 60%; } 60% { height: 95%; } 80% { height: 45%; } }
+        @keyframes headerEqPulse2 { 0%, 100% { height: 65%; } 30% { height: 35%; } 50% { height: 90%; } 70% { height: 55%; } 90% { height: 75%; } }
+        @keyframes headerEqPulse3 { 0% { height: 50%; } 25% { height: 80%; } 50% { height: 30%; } 75% { height: 100%; } 100% { height: 45%; } }
+        @keyframes headerEqPulse4 { 0%, 100% { height: 75%; } 15% { height: 40%; } 35% { height: 95%; } 55% { height: 60%; } 75% { height: 85%; } }
+        
+        .header-equalizer-bar:nth-child(1) { animation: headerEqPulse1 2.1s infinite ease-in-out; }
+        .header-equalizer-bar:nth-child(2) { animation: headerEqPulse2 1.8s infinite ease-in-out; animation-delay: 0.2s; }
+        .header-equalizer-bar:nth-child(3) { animation: headerEqPulse3 2.3s infinite ease-in-out; animation-delay: 0.1s; }
+        .header-equalizer-bar:nth-child(4) { animation: headerEqPulse4 2.0s infinite ease-in-out; animation-delay: 0.3s; }
+        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
+        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
+        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
+        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
+        
+        @keyframes equalizerFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ===== NAVIGATION ICONS WITH GRADIENT FADE EFFECT ===== */
+        .nav-icons {
+            display: flex;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .nav-icon-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .nav-icon {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            text-decoration: none;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .nav-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b35 50%, #ff4500 100%);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-icon:hover::before {
+            opacity: 1;
+        }
+
+        .nav-icon:hover {
+            color: var(--black);
+            transform: translateY(-5px);
+            border-color: transparent;
+            box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4);
+        }
+
+        .nav-label {
+            position: absolute;
+            bottom: -35px;
+            font-size: 0.85rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+            white-space: nowrap;
+            font-weight: 700;
+            color: #ff9500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            pointer-events: none;
+            z-index: 1002;
+            border: 1px solid rgba(255, 149, 0, 0.3);
+        }
+
+        .nav-icon-container:hover .nav-label {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Optional: Add a subtle pulse animation to the gradient on hover */
+        @keyframes gradientPulse {
+            0%, 100% { opacity: 0.95; }
+            50% { opacity: 1; }
+        }
+
+        .nav-icon:hover::before {
+            animation: gradientPulse 2s infinite;
+        }
+        
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--space-lg) var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            transition: var(--transition);
+        }
+        
+        .header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            padding: var(--space-md) var(--space-xl);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .logo-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 70px;
+            width: auto;
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo-center img {
+            height: 100%;
+            width: auto;
+            filter: drop-shadow(var(--shadow-accent));
+        }
+        
+        /* ===== HERO SECTION WITH BACKGROUND ===== */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 120px var(--space-xl) var(--space-xxl);
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(42, 15, 84, 0.8), rgba(26, 11, 46, 0.9));
+            z-index: -1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: var(--space-xl);
+        }
+        
+        .hero-logo-large {
+            height: 200px;
+            width: auto;
+            margin: 0 auto var(--space-xxl);
+            display: block;
+            filter: drop-shadow(var(--shadow-accent));
+            cursor: pointer;
+            transition: transform 0.6s ease;
+            border-radius: 50%;
+            border: 3px solid rgba(0, 255, 0, 0.3);
+            padding: var(--space-md);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-logo-large:hover {
+            transform: rotateY(180deg) scale(1.05);
+            border-color: var(--accent);
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            line-height: 1;
+            color: var(--text-primary);
+            text-shadow: var(--shadow-accent);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: var(--space-xxl);
+            color: var(--text-secondary);
+            line-height: 1.4;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* ===== SOCIAL PROOF ===== */
+        .social-proof {
+            margin-top: var(--space-xl);
+        }
+        
+        .live-counter {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-bottom: var(--space-md);
+        }
+        
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badges .badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .trust-badges .badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 0.7; 
+                transform: scale(1.1); 
+            }
+        }
+        
+        /* ===== BUTTON SYSTEM FROM CODE 2 ===== */
         /* Base button styles - All buttons start black */
         .btn-primary,
         .btn-tier-1,
@@ -221,318 +546,7 @@
             border: 1px solid rgba(0, 255, 0, 0.3);
         }
         
-        /* ===== HEADER EQUALIZER ===== */
-        .header-equalizer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 14px;
-            display: none;
-            z-index: 1001;
-        }
-        
-        .header.scrolled .header-equalizer {
-            display: block;
-            animation: equalizerFadeIn 0.5s ease-out;
-        }
-        
-        .header-equalizer-bars {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 3px;
-            padding: 0 15px;
-        }
-        
-        .header-equalizer-bar {
-            width: 5px;
-            height: 60%;
-            background: linear-gradient(to top, var(--accent), var(--tier-2));
-            border-radius: 3px 3px 0 0;
-            opacity: 0.8;
-            transform-origin: bottom center;
-        }
-        
-        /* Equalizer animations */
-        @keyframes headerEqPulse1 { 0%, 100% { height: 40%; } 20% { height: 85%; } 40% { height: 60%; } 60% { height: 95%; } 80% { height: 45%; } }
-        @keyframes headerEqPulse2 { 0%, 100% { height: 65%; } 30% { height: 35%; } 50% { height: 90%; } 70% { height: 55%; } 90% { height: 75%; } }
-        @keyframes headerEqPulse3 { 0% { height: 50%; } 25% { height: 80%; } 50% { height: 30%; } 75% { height: 100%; } 100% { height: 45%; } }
-        @keyframes headerEqPulse4 { 0%, 100% { height: 75%; } 15% { height: 40%; } 35% { height: 95%; } 55% { height: 60%; } 75% { height: 85%; } }
-        
-        .header-equalizer-bar:nth-child(1) { animation: headerEqPulse1 2.1s infinite ease-in-out; }
-        .header-equalizer-bar:nth-child(2) { animation: headerEqPulse2 1.8s infinite ease-in-out; animation-delay: 0.2s; }
-        .header-equalizer-bar:nth-child(3) { animation: headerEqPulse3 2.3s infinite ease-in-out; animation-delay: 0.1s; }
-        .header-equalizer-bar:nth-child(4) { animation: headerEqPulse4 2.0s infinite ease-in-out; animation-delay: 0.3s; }
-        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
-        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
-        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
-        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
-        
-        @keyframes equalizerFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* ===== NAVIGATION ICONS ===== */
-        .nav-icons {
-            display: flex;
-            gap: var(--space-lg);
-            align-items: center;
-        }
-
-        .nav-icon-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-xs);
-        }
-
-        .nav-icon {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.3rem;
-            text-decoration: none;
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: var(--black);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .nav-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 50%, #ff6b35 100%);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-icon:hover::before {
-            opacity: 1;
-        }
-
-        .nav-icon:hover {
-            color: var(--black);
-            transform: translateY(-5px);
-            border-color: transparent;
-            box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4);
-        }
-
-        .nav-label {
-            position: absolute;
-            bottom: -35px;
-            font-size: 0.85rem;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: var(--transition);
-            white-space: nowrap;
-            font-weight: 700;
-            color: #ff9500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(0, 0, 0, 0.9);
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-sm);
-            pointer-events: none;
-            z-index: 1002;
-            border: 1px solid rgba(255, 149, 0, 0.3);
-        }
-
-        .nav-icon-container:hover .nav-label {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: var(--space-lg) var(--space-xl);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: transparent;
-            transition: var(--transition);
-        }
-        
-        .header.scrolled {
-            background-color: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
-            padding: var(--space-md) var(--space-xl);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .logo-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 70px;
-            width: auto;
-            z-index: 1001;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .logo-center img {
-            height: 100%;
-            width: auto;
-            filter: drop-shadow(var(--shadow-accent));
-        }
-        
-        /* ===== HERO SECTION ===== */
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 120px var(--space-xl) var(--space-xxl);
-        }
-        
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.6;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(42, 15, 84, 0.8), rgba(26, 11, 46, 0.9));
-            z-index: -1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            padding: var(--space-xl);
-        }
-        
-        .hero-logo-large {
-            height: 200px;
-            width: auto;
-            margin: 0 auto var(--space-xxl);
-            display: block;
-            filter: drop-shadow(var(--shadow-accent));
-            cursor: pointer;
-            transition: transform 0.6s ease;
-            border-radius: 50%;
-            border: 3px solid rgba(0, 255, 0, 0.3);
-            padding: var(--space-md);
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-logo-large:hover {
-            transform: rotateY(180deg) scale(1.05);
-            border-color: var(--accent);
-        }
-        
-        .hero-title {
-            font-size: 4.5rem;
-            font-weight: 900;
-            margin-bottom: var(--space-md);
-            text-transform: uppercase;
-            line-height: 1;
-            color: var(--text-primary);
-            text-shadow: var(--shadow-accent);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: var(--space-xxl);
-            color: var(--text-secondary);
-            line-height: 1.4;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* ===== SOCIAL PROOF ===== */
-        .social-proof {
-            margin-top: var(--space-xl);
-        }
-        
-        .live-counter {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            justify-content: center;
-            margin-bottom: var(--space-md);
-        }
-        
-        .pulse-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        .trust-badges {
-            display: flex;
-            gap: var(--space-sm);
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .trust-badges .badge {
-            background: var(--black);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            transition: var(--transition);
-            border: 1px solid var(--border-color);
-        }
-        
-        @keyframes pulse {
-            0%, 100% { 
-                opacity: 1; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 0.7; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* ===== SECTION SYSTEM ===== */
+        /* ===== SECTION SYSTEM WITH BACKGROUNDS ===== */
         .section {
             padding: var(--space-xxl) var(--space-xl);
             position: relative;
@@ -591,7 +605,11 @@
             margin: 0 auto;
         }
         
-        /* ===== ABOUT SECTION ===== */
+        /* ===== ABOUT SECTION WITH BACKGROUND ===== */
+        .about .section-bg {
+            opacity: 0.5;
+        }
+        
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -599,6 +617,7 @@
             align-items: center;
         }
         
+        /* AUDIO DEMO */
         .audio-demo {
             background: rgba(0, 0, 0, 0.5);
             border-radius: var(--radius-lg);
@@ -633,7 +652,54 @@
             margin-bottom: var(--space-sm);
         }
         
-        /* ===== SIMPLIFIED SMART CALCULATOR ===== */
+        /* ===== SERVICES SECTION WITH BACKGROUND ===== */
+        .services .section-bg {
+            opacity: 0.5;
+        }
+        
+        /* Service Selection Guide */
+        .service-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xxl);
+        }
+        
+        .guide-step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .guide-step:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--black);
+            border-radius: 50%;
+            font-weight: 900;
+            font-size: 1.5rem;
+            line-height: 50px;
+            margin-bottom: var(--space-md);
+        }
+        
+        .guide-step h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            font-size: 1.3rem;
+        }
+        
+        /* Smart Session Calculator */
         .session-calculator {
             background: rgba(0, 0, 0, 0.5);
             border-radius: var(--radius-lg);
@@ -656,7 +722,7 @@
         
         .calculator-controls {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: var(--space-lg);
             margin-bottom: var(--space-lg);
         }
@@ -673,66 +739,21 @@
             font-size: 1rem;
         }
         
-        .hours-input-container {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-            margin-top: var(--space-md);
-        }
-        
-        .hours-slider {
-            flex: 1;
-            -webkit-appearance: none;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-full);
-            outline: none;
-        }
-        
-        .hours-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 100%);
-            cursor: pointer;
-            border: 2px solid var(--black);
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-        }
-        
-        .hours-display {
-            min-width: 60px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--accent);
-            background: rgba(0, 255, 0, 0.1);
-            padding: var(--space-sm);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-        }
-        
-        .hour-package {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--space-md);
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-md);
-            margin-bottom: var(--space-sm);
+        .control-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.07);
             border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1rem;
             transition: var(--transition);
         }
         
-        .hour-package:hover {
+        .control-group select:focus {
+            outline: none;
             border-color: var(--accent);
-            transform: translateX(5px);
-        }
-        
-        .hour-package.recommended {
-            background: rgba(0, 255, 0, 0.1);
-            border-color: var(--accent);
-            transform: scale(1.02);
         }
         
         #calculatorResult {
@@ -763,42 +784,6 @@
             margin-bottom: var(--space-md);
         }
         
-        /* Service Selection Guide */
-        .service-guide {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-            margin-bottom: var(--space-xxl);
-        }
-        
-        .guide-step {
-            background: var(--black);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 100%);
-            color: var(--black);
-            border-radius: 50%;
-            font-weight: 900;
-            font-size: 1.5rem;
-            line-height: 50px;
-            margin-bottom: var(--space-md);
-        }
-        
-        .guide-step h3 {
-            color: var(--text-primary);
-            margin-bottom: var(--space-sm);
-            font-size: 1.3rem;
-        }
-        
         /* Pricing Tiers */
         .pricing-tiers {
             display: grid;
@@ -808,12 +793,17 @@
         }
         
         .pricing-tier {
-            background: var(--black);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             position: relative;
+            transition: var(--transition);
             backdrop-filter: blur(10px);
+        }
+        
+        .pricing-tier:hover {
+            transform: translateY(-10px);
         }
         
         .pricing-tier.popular {
@@ -821,11 +811,15 @@
             transform: scale(1.02);
         }
         
+        .pricing-tier.popular:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+        
         .tier-badge {
             position: absolute;
             top: -15px;
             right: 30px;
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 100%);
+            background: var(--accent);
             color: var(--black);
             padding: var(--space-xs) var(--space-lg);
             border-radius: var(--radius-full);
@@ -899,12 +893,18 @@
         }
         
         .addon-card {
-            background: var(--black);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             padding: var(--space-lg);
             text-align: center;
+            transition: var(--transition);
             backdrop-filter: blur(10px);
+        }
+        
+        .addon-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
         }
         
         .addon-icon {
@@ -945,7 +945,7 @@
         }
         
         .coming-soon-badge {
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 100%);
+            background: var(--accent);
             color: var(--black);
             font-weight: 900;
             padding: 6px 16px;
@@ -971,7 +971,11 @@
             backdrop-filter: blur(10px);
         }
         
-        /* ===== PORTFOLIO SECTION ===== */
+        /* ===== PORTFOLIO SECTION WITH BACKGROUND ===== */
+        .portfolio .section-bg {
+            opacity: 0.5;
+        }
+        
         .portfolio-tabs {
             display: flex;
             gap: var(--space-md);
@@ -1039,6 +1043,7 @@
             }
         }
         
+        /* CLEAR PORTFOLIO STRUCTURE */
         .portfolio-header {
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-lg);
@@ -1202,7 +1207,11 @@
             line-height: 1.6;
         }
         
-        /* ===== GALLERY SECTION ===== */
+        /* ===== GALLERY SECTION WITH BACKGROUND ===== */
+        .gallery .section-bg {
+            opacity: 0.5;
+        }
+        
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1239,7 +1248,12 @@
             transform: scale(1.1);
         }
         
-        /* ===== CONTACT SECTION ===== */
+        /* ===== CONTACT SECTION WITH BACKGROUND ===== */
+        .contact .section-bg {
+            opacity: 0.5;
+        }
+        
+        /* Contact Table */
         .contact-table {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1248,12 +1262,17 @@
         }
         
         .contact-column {
-            background: var(--black);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             border: 1px solid var(--border-color);
             transition: var(--transition);
             backdrop-filter: blur(10px);
+        }
+        
+        .contact-column:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
         }
         
         .contact-column h3 {
@@ -1279,6 +1298,13 @@
             border: 1px solid var(--border-color);
             text-decoration: none;
             color: inherit;
+            transition: var(--transition);
+        }
+        
+        .contact-row:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateX(5px);
+            border-color: var(--accent);
         }
         
         .contact-row a {
@@ -1320,12 +1346,16 @@
         
         /* Contact Form */
         .contact-form {
-            background: var(--black);
+            background: rgba(255, 255, 255, 0.05);
             padding: var(--space-xl);
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
             transition: var(--transition);
             backdrop-filter: blur(10px);
+        }
+        
+        .contact-form:hover {
+            border-color: var(--accent);
         }
         
         .contact-form h3 {
@@ -1425,6 +1455,7 @@
             .pricing-tiers { grid-template-columns: 1fr; }
             .about-content { grid-template-columns: 1fr; }
             .pricing-tier.popular { transform: scale(1); }
+            .pricing-tier.popular:hover { transform: translateY(-10px); }
             .contact-table { grid-template-columns: 1fr; }
             .nav-icons { gap: var(--space-md); }
             .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
@@ -1526,7 +1557,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section WITH BACKGROUND -->
     <section class="hero section" id="home">
         <img src="images/hero-bg.jpg" alt="Studio Background" class="hero-bg">
         <div class="hero-overlay"></div>
@@ -1560,7 +1591,7 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section WITH BACKGROUND -->
     <section class="about section" id="about">
         <img src="images/about-studio.jpg" alt="About Studio Background" class="section-bg">
         <div class="section-overlay"></div>
@@ -1680,7 +1711,7 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section WITH BACKGROUND -->
     <section class="services section" id="services">
         <img src="images/studio-bg.jpg" alt="Services Background" class="section-bg">
         <div class="section-overlay"></div>
@@ -1711,38 +1742,41 @@
                 </div>
             </div>
             
-            <!-- SIMPLIFIED Smart Session Calculator - Hours Only -->
+            <!-- Smart Session Calculator -->
             <div class="session-calculator">
                 <div class="calculator-header">
                     <h3><i class="fas fa-calculator"></i> Smart Session Calculator</h3>
-                    <p>Enter hours needed - we'll find you the best deal</p>
+                    <p>Find the perfect session for your needs</p>
                 </div>
                 
                 <div class="calculator-controls">
                     <div class="control-group">
-                        <label>How many hours do you need?</label>
-                        <div class="hours-input-container">
-                            <input type="range" id="hoursInput" class="hours-slider" min="1" max="24" value="5" step="1">
-                            <div class="hours-display" id="hoursDisplay">5 hours</div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-top: var(--space-xs); font-size: 0.85rem; color: var(--text-muted);">
-                            <span>1 hour</span>
-                            <span>24 hours</span>
-                        </div>
+                        <label>What's your main goal?</label>
+                        <select id="projectGoal">
+                            <option value="single">Record 1-2 singles</option>
+                            <option value="ep" selected>Record an EP (3-4 songs)</option>
+                            <option value="project">Full project (5+ songs)</option>
+                            <option value="mixing">Just mixing/mastering</option>
+                        </select>
                     </div>
                     
-                    <div id="packageOptions">
-                        <!-- Package options will be generated by JavaScript -->
+                    <div class="control-group">
+                        <label>Number of artists</label>
+                        <select id="artistCount">
+                            <option value="solo" selected>Solo artist</option>
+                            <option value="duo">Duo/Collaboration</option>
+                            <option value="group">Group session</option>
+                        </select>
                     </div>
                 </div>
                 
                 <div id="calculatorResult">
-                    <div class="result-title">RECOMMENDED: Best Value</div>
-                    <div class="result-price" id="bestPrice">£140</div>
-                    <div class="result-description" id="bestDescription">Half Day Session - 5 hours studio time</div>
+                    <div class="result-title">RECOMMENDED: EP Package</div>
+                    <div class="result-price">£140</div>
+                    <div class="result-description">Half Day Session - Perfect for recording 3-4 songs</div>
                     <p><i class="fas fa-check"></i> Includes: Recording, mixing, basic mastering</p>
-                    <p><i class="fas fa-pound-sign"></i> Price per hour: <span id="pricePerHour">£28</span></p>
-                    <a href="#contact" class="btn-primary" style="margin-top: var(--space-md);">Book This Package</a>
+                    <p><i class="fas fa-clock"></i> Duration: 5 hours studio time</p>
+                    <a href="#contact" class="btn-primary btn-tier-2" style="margin-top: var(--space-md);">Book This Package</a>
                 </div>
             </div>
             
@@ -1760,7 +1794,7 @@
                     <div class="tier-header">
                         <div class="tier-icon">⚡</div>
                         <h3 class="tier-title">Quick Session</h3>
-                        <div class="tier-price">£80</div>
+                        <div class="tier-price">£80<span>/song</span></div>
                         <p>3 hours studio time</p>
                     </div>
                     
@@ -1773,18 +1807,18 @@
                     </ul>
                     
                     <div class="tier-action">
-                        <a href="#contact" class="btn-primary">Book Now</a>
+                        <a href="#contact" class="btn-primary btn-tier-1">Book Now</a>
                     </div>
                 </div>
                 
                 <!-- Tier 2: Half Day (Most Popular) -->
                 <div class="pricing-tier popular">
-                    <div class="tier-badge">BEST VALUE</div>
+                    <div class="tier-badge">MOST POPULAR</div>
                     <div class="tier-header">
                         <div class="tier-icon">🎯</div>
                         <h3 class="tier-title">Half Day</h3>
                         <div class="tier-price">£140</div>
-                        <p>5 hours studio time</p>
+                        <p>Best for EPs</p>
                     </div>
                     
                     <ul class="tier-features">
@@ -1796,7 +1830,7 @@
                     </ul>
                     
                     <div class="tier-action">
-                        <a href="#contact" class="btn-primary">Book Now</a>
+                        <a href="#contact" class="btn-primary btn-tier-2">Book Now</a>
                     </div>
                 </div>
                 
@@ -1806,7 +1840,7 @@
                         <div class="tier-icon">🔥</div>
                         <h3 class="tier-title">Full Day</h3>
                         <div class="tier-price">£240</div>
-                        <p>10 hours studio time</p>
+                        <p>Complete projects</p>
                     </div>
                     
                     <ul class="tier-features">
@@ -1818,7 +1852,7 @@
                     </ul>
                     
                     <div class="tier-action">
-                        <a href="#contact" class="btn-primary">Book Now</a>
+                        <a href="#contact" class="btn-primary btn-tier-3">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -1867,7 +1901,7 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Portfolio Section WITH BACKGROUND -->
     <section class="portfolio section" id="portfolio">
         <img src="images/portfolio-bg.jpg" alt="Portfolio Background" class="section-bg">
         <div class="section-overlay"></div>
@@ -2142,7 +2176,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section WITH BACKGROUND -->
     <section class="gallery section" id="gallery">
         <img src="images/studio1.jpg" alt="Gallery Background" class="section-bg">
         <div class="section-overlay"></div>
@@ -2153,6 +2187,7 @@
             </div>
             
             <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be loaded dynamically by JavaScript -->
                 <div style="grid-column: 1 / -1; text-align: center; padding: var(--space-xxl); background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 2px dashed var(--border-color); backdrop-filter: blur(10px);">
                     <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: var(--space-lg);"></i>
                     <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Studio Gallery Loading...</h3>
@@ -2162,7 +2197,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section WITH BACKGROUND -->
     <section class="contact section" id="contact">
         <img src="images/studio2.jpg" alt="Contact Background" class="section-bg">
         <div class="section-overlay"></div>
@@ -2379,9 +2414,10 @@
     <script>
         // ===== WEBSITE INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize components
             initializeHeader();
             initializeHeaderEqualizer();
-            initializeSimplifiedCalculator();
+            initializeCalculator();
             initializeCurrentYear();
             initializePortfolioTabs();
             initializeLiveCounter();
@@ -2395,8 +2431,13 @@
         // ===== HEADER SCROLL EFFECT =====
         function initializeHeader() {
             const header = document.getElementById('header');
+            
             window.addEventListener('scroll', () => {
-                header.classList.toggle('scrolled', window.scrollY > 100);
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
             });
         }
 
@@ -2409,6 +2450,7 @@
             if (!barsContainer) return;
             
             barsContainer.innerHTML = '';
+            
             for (let i = 0; i < 8; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'header-equalizer-bar';
@@ -2418,6 +2460,7 @@
 
         // ===== LOAD BACKGROUND IMAGES =====
         function loadBackgroundImages() {
+            // Preload background images
             const images = [
                 'images/hero-bg.jpg',
                 'images/about-studio.jpg',
@@ -2438,18 +2481,26 @@
             const tabs = document.querySelectorAll('.portfolio-tab');
             const contents = document.querySelectorAll('.portfolio-content');
             
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.dataset.tab;
-                    
-                    tabs.forEach(t => t.classList.remove('active'));
-                    contents.forEach(c => c.classList.remove('active'));
-                    
-                    tab.classList.add('active');
-                    const content = document.getElementById(`${tabId}-portfolio`);
-                    if (content) content.classList.add('active');
+            if (tabs.length > 0 && contents.length > 0) {
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const tabId = tab.dataset.tab;
+                        
+                        // Remove active class from all tabs
+                        tabs.forEach(t => t.classList.remove('active'));
+                        contents.forEach(c => c.classList.remove('active'));
+                        
+                        // Add active class to clicked tab
+                        tab.classList.add('active');
+                        
+                        // Show corresponding content
+                        const content = document.getElementById(`${tabId}-portfolio`);
+                        if (content) {
+                            content.classList.add('active');
+                        }
+                    });
                 });
-            });
+            }
         }
 
         // ===== GALLERY INITIALIZATION =====
@@ -2457,17 +2508,22 @@
             const galleryGrid = document.getElementById('galleryGrid');
             if (!galleryGrid) return;
             
+            // List of possible image filenames to check
             const imagePatterns = [
                 'studio1.jpg', 'studio2.jpg', 'studio3.jpg',
                 'studio4.jpg', 'studio5.jpg', 'studio6.jpg',
-                'gallery1.jpg', 'gallery2.jpg', 'gallery3.jpg'
+                'gallery1.jpg', 'gallery2.jpg', 'gallery3.jpg',
+                'image1.jpg', 'image2.jpg', 'image3.jpg',
+                'photo1.jpg', 'photo2.jpg', 'photo3.jpg'
             ];
             
+            // Try to load gallery images
             loadGalleryImages(imagePatterns);
             
             function loadGalleryImages(patterns) {
                 const loadedImages = [];
                 
+                // Check which images exist
                 patterns.forEach(pattern => {
                     const img = new Image();
                     img.onload = function() {
@@ -2476,14 +2532,18 @@
                             alt: `Studio image ${pattern.replace('.jpg', '')}`
                         });
                         
+                        // If this is the first image loaded, update the gallery
                         if (loadedImages.length === 1) {
                             updateGallery(loadedImages);
                         }
                     };
-                    img.onerror = function() {};
+                    img.onerror = function() {
+                        // Image doesn't exist, continue checking
+                    };
                     img.src = `images/${pattern}`;
                 });
                 
+                // If no images found after checking all patterns
                 setTimeout(() => {
                     if (loadedImages.length === 0) {
                         showGalleryPlaceholder();
@@ -2493,18 +2553,43 @@
             
             function updateGallery(images) {
                 galleryGrid.innerHTML = '';
+                
+                // Display first 6 images
                 const displayImages = images.slice(0, 6);
                 
                 displayImages.forEach(image => {
                     const galleryItem = document.createElement('div');
                     galleryItem.className = 'gallery-item';
-                    galleryItem.innerHTML = `<img src="${image.src}" alt="${image.alt}" loading="lazy">`;
+                    galleryItem.innerHTML = `
+                        <img src="${image.src}" alt="${image.alt}" loading="lazy">
+                    `;
                     galleryGrid.appendChild(galleryItem);
                     
+                    // Add click handler for lightbox
                     galleryItem.addEventListener('click', () => {
                         openLightbox(image.src, image.alt);
                     });
                 });
+                
+                // Show "more" indicator if there are more images
+                if (images.length > 6) {
+                    const moreItem = document.createElement('div');
+                    moreItem.className = 'gallery-item';
+                    moreItem.style.display = 'flex';
+                    moreItem.style.flexDirection = 'column';
+                    moreItem.style.alignItems = 'center';
+                    moreItem.style.justifyContent = 'center';
+                    moreItem.style.background = 'linear-gradient(45deg, var(--purple-dark), var(--purple-medium))';
+                    moreItem.style.color = 'var(--accent)';
+                    moreItem.style.fontSize = '1.2rem';
+                    moreItem.style.fontWeight = 'bold';
+                    moreItem.innerHTML = `
+                        <i class="fas fa-images" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        +${images.length - 6} more<br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">View all studio photos</span>
+                    `;
+                    galleryGrid.appendChild(moreItem);
+                }
             }
             
             function showGalleryPlaceholder() {
@@ -2527,153 +2612,155 @@
                 `;
                 galleryGrid.appendChild(placeholder);
             }
+            
+            function openLightbox(src, alt) {
+                const lightbox = document.createElement('div');
+                lightbox.style.position = 'fixed';
+                lightbox.style.top = '0';
+                lightbox.style.left = '0';
+                lightbox.style.width = '100%';
+                lightbox.style.height = '100%';
+                lightbox.style.background = 'rgba(0, 0, 0, 0.95)';
+                lightbox.style.display = 'flex';
+                lightbox.style.alignItems = 'center';
+                lightbox.style.justifyContent = 'center';
+                lightbox.style.zIndex = '2000';
+                lightbox.style.animation = 'fadeIn 0.3s ease-out';
+                
+                const imgContainer = document.createElement('div');
+                imgContainer.style.maxWidth = '90%';
+                imgContainer.style.maxHeight = '90%';
+                imgContainer.style.position = 'relative';
+                
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = alt;
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '80vh';
+                img.style.objectFit = 'contain';
+                img.style.borderRadius = '8px';
+                img.style.boxShadow = '0 0 40px rgba(0, 255, 0, 0.3)';
+                
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '×';
+                closeBtn.style.position = 'absolute';
+                closeBtn.style.top = '-40px';
+                closeBtn.style.right = '-40px';
+                closeBtn.style.background = 'var(--accent)';
+                closeBtn.style.color = 'var(--black)';
+                closeBtn.style.border = 'none';
+                closeBtn.style.width = '40px';
+                closeBtn.style.height = '40px';
+                closeBtn.style.borderRadius = '50%';
+                closeBtn.style.fontSize = '2rem';
+                closeBtn.style.fontWeight = 'bold';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.style.display = 'flex';
+                closeBtn.style.alignItems = 'center';
+                closeBtn.style.justifyContent = 'center';
+                
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(lightbox);
+                });
+                
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        document.body.removeChild(lightbox);
+                    }
+                });
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        document.body.removeChild(lightbox);
+                    }
+                });
+                
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(closeBtn);
+                lightbox.appendChild(imgContainer);
+                document.body.appendChild(lightbox);
+            }
         }
 
-        // ===== SIMPLIFIED SMART CALCULATOR - HOURS ONLY =====
-        function initializeSimplifiedCalculator() {
-            const hoursInput = document.getElementById('hoursInput');
-            const hoursDisplay = document.getElementById('hoursDisplay');
-            const packageOptions = document.getElementById('packageOptions');
+        // ===== SMART SESSION CALCULATOR =====
+        function initializeCalculator() {
+            const projectGoal = document.getElementById('projectGoal');
+            const artistCount = document.getElementById('artistCount');
             
-            if (!hoursInput || !hoursDisplay || !packageOptions) return;
-            
-            // Package definitions
-            const packages = [
-                { name: "Quick Session", hours: 3, price: 80, color: "var(--tier-1)" },
-                { name: "Half Day", hours: 5, price: 140, color: "var(--tier-2)" },
-                { name: "Half Day x2", hours: 10, price: 280, color: "var(--tier-2)" },
-                { name: "Full Day", hours: 10, price: 240, color: "var(--tier-3)" },
-                { name: "Full Day x2", hours: 20, price: 480, color: "var(--tier-3)" },
-                { name: "Custom Combo", hours: 0, price: 0, color: "var(--tier-4)" }
-            ];
-            
-            // Update display when slider changes
-            hoursInput.addEventListener('input', updateCalculator);
-            
-            // Initial calculation
-            updateCalculator();
-            
-            function updateCalculator() {
-                const hours = parseInt(hoursInput.value);
-                hoursDisplay.textContent = `${hours} hour${hours !== 1 ? 's' : ''}`;
+            if (projectGoal && artistCount) {
+                updateCalculator();
                 
-                // Calculate best options
-                const options = calculateBestOptions(hours, packages);
-                displayPackageOptions(options);
-                updateBestDeal(options);
+                projectGoal.addEventListener('change', updateCalculator);
+                artistCount.addEventListener('change', updateCalculator);
+            }
+        }
+        
+        function updateCalculator() {
+            const projectGoal = document.getElementById('projectGoal').value;
+            const artistCount = document.getElementById('artistCount').value;
+            
+            let recommendation = '';
+            let price = '';
+            let description = '';
+            let buttonClass = 'btn-tier-2';
+            
+            switch(projectGoal) {
+                case 'single':
+                    recommendation = 'Quick Session';
+                    price = '£80';
+                    description = '3 hours studio time - perfect for singles';
+                    buttonClass = 'btn-tier-1';
+                    break;
+                    
+                case 'ep':
+                    recommendation = 'Half Day Package';
+                    price = '£140';
+                    description = '5 hours studio time - ideal for EPs (3-4 songs)';
+                    buttonClass = 'btn-tier-2';
+                    break;
+                    
+                case 'project':
+                    recommendation = 'Full Day Project';
+                    price = '£240';
+                    description = '10 hours studio time - complete project focus';
+                    buttonClass = 'btn-tier-3';
+                    break;
+                    
+                case 'mixing':
+                    recommendation = 'Professional Mixing';
+                    price = '£40/song';
+                    description = 'Studio quality mixing & mastering';
+                    buttonClass = 'btn-tier-4';
+                    break;
             }
             
-            function calculateBestOptions(hours, packages) {
-                const options = [];
-                
-                // Check standard packages
-                packages.forEach(pkg => {
-                    if (pkg.hours >= hours) {
-                        const pricePerHour = pkg.price / pkg.hours;
-                        const efficiency = (pkg.hours - hours) / pkg.hours; // Lower is better
-                        options.push({
-                            ...pkg,
-                            pricePerHour,
-                            efficiency,
-                            type: 'single'
-                        });
-                    }
-                });
-                
-                // Check combinations (Quick + Half Day, etc.)
-                if (hours > 10) {
-                    // Full Day + remaining hours as Quick or Half Day
-                    const fullDays = Math.floor(hours / 10);
-                    const remainingHours = hours % 10;
-                    
-                    let comboPrice = fullDays * 240;
-                    let comboHours = fullDays * 10;
-                    let comboName = `${fullDays} Full Day${fullDays > 1 ? 's' : ''}`;
-                    
-                    if (remainingHours > 0) {
-                        let bestRemaining = { price: Infinity };
-                        
-                        // Find best package for remaining hours
-                        packages.forEach(pkg => {
-                            if (pkg.hours >= remainingHours && pkg.price < bestRemaining.price) {
-                                bestRemaining = pkg;
-                            }
-                        });
-                        
-                        comboPrice += bestRemaining.price;
-                        comboHours += bestRemaining.hours;
-                        comboName += ` + ${bestRemaining.name}`;
-                    }
-                    
-                    const pricePerHour = comboPrice / comboHours;
-                    const efficiency = (comboHours - hours) / comboHours;
-                    
-                    options.push({
-                        name: comboName,
-                        hours: comboHours,
-                        price: comboPrice,
-                        pricePerHour,
-                        efficiency,
-                        type: 'combo',
-                        color: "var(--tier-4)"
-                    });
+            let artistNote = '';
+            if (artistCount === 'duo' && projectGoal !== 'mixing') {
+                const basePrice = parseInt(price.replace('£', '').replace('/song', ''));
+                if (!isNaN(basePrice)) {
+                    const adjustedPrice = basePrice + 40;
+                    price = `£${adjustedPrice}`;
+                    artistNote = '<p><i class="fas fa-users"></i> +£40 for duo collaboration</p>';
                 }
-                
-                // Sort by price per hour (lowest first), then by efficiency
-                return options.sort((a, b) => {
-                    if (a.pricePerHour === b.pricePerHour) {
-                        return a.efficiency - b.efficiency;
-                    }
-                    return a.pricePerHour - b.pricePerHour;
-                });
+            } else if (artistCount === 'group' && projectGoal !== 'mixing') {
+                price = 'Custom Quote';
+                artistNote = '<p><i class="fas fa-users"></i> Contact for group rates</p>';
             }
             
-            function displayPackageOptions(options) {
-                packageOptions.innerHTML = '';
+            const resultEl = document.getElementById('calculatorResult');
+            if (resultEl) {
+                const isCustom = price.includes('Custom');
                 
-                // Show top 3 options
-                const topOptions = options.slice(0, 3);
-                
-                topOptions.forEach((option, index) => {
-                    const optionEl = document.createElement('div');
-                    optionEl.className = `hour-package ${index === 0 ? 'recommended' : ''}`;
-                    
-                    optionEl.innerHTML = `
-                        <div>
-                            <strong>${option.name}</strong>
-                            <div style="font-size: 0.9rem; color: var(--text-muted);">
-                                ${option.hours} hours • £${option.price}
-                            </div>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-weight: bold; color: ${option.color};">£${option.pricePerHour.toFixed(2)}/hr</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">
-                                ${option.type === 'combo' ? 'Combo Deal' : 'Standard Package'}
-                            </div>
-                        </div>
-                    `;
-                    
-                    packageOptions.appendChild(optionEl);
-                });
-            }
-            
-            function updateBestDeal(options) {
-                if (options.length === 0) return;
-                
-                const bestOption = options[0];
-                const bestPrice = document.getElementById('bestPrice');
-                const bestDescription = document.getElementById('bestDescription');
-                const pricePerHour = document.getElementById('pricePerHour');
-                
-                if (bestPrice) bestPrice.textContent = `£${bestOption.price}`;
-                if (bestDescription) bestDescription.textContent = `${bestOption.name} - ${bestOption.hours} hours studio time`;
-                if (pricePerHour) pricePerHour.textContent = `£${bestOption.pricePerHour.toFixed(2)}`;
-                
-                // Update booking button
-                const bookButton = document.querySelector('#calculatorResult .btn-primary');
-                if (bookButton) {
-                    bookButton.textContent = `Book ${bestOption.name}`;
-                }
+                resultEl.innerHTML = `
+                    <div class="result-title">RECOMMENDED: ${recommendation}</div>
+                    <div class="result-price">${price}</div>
+                    <div class="result-description">${description}</div>
+                    ${artistNote}
+                    <p><i class="fas fa-check"></i> Includes professional engineer & equipment</p>
+                    <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">
+                        ${isCustom ? 'Get Custom Quote' : 'Book This Package'}
+                    </a>
+                `;
             }
         }
 
@@ -2686,10 +2773,13 @@
                 const estimatedSessions = baseSessions + Math.floor(dayOfMonth * 0.8);
                 
                 const counterEl = document.getElementById('sessionCount');
-                if (counterEl) counterEl.textContent = estimatedSessions;
+                if (counterEl) {
+                    counterEl.textContent = estimatedSessions;
+                }
             }
             
             updateLiveCounter();
+            // Update every hour
             setInterval(updateLiveCounter, 3600000);
         }
 
@@ -2701,11 +2791,20 @@
             if (audioButtons.length > 0 && audio) {
                 audioButtons.forEach(btn => {
                     btn.addEventListener('click', function() {
-                        document.querySelectorAll('.btn-audio').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.btn-audio').forEach(b => {
+                            b.classList.remove('active');
+                        });
+                        
                         this.classList.add('active');
                         
                         const track = this.dataset.track;
-                        audio.src = track === 'raw' ? 'audio/raw-demo.mp3' : 'audio/mixed-demo.mp3';
+                        
+                        if (track === 'raw') {
+                            audio.src = 'audio/raw-demo.mp3';
+                        } else {
+                            audio.src = 'audio/mixed-demo.mp3';
+                        }
+                        
                         audio.load();
                         audio.play().catch(e => console.log('Audio play failed:', e));
                     });
@@ -2716,7 +2815,9 @@
         // ===== CURRENT YEAR =====
         function initializeCurrentYear() {
             const yearElement = document.getElementById('currentYear');
-            if (yearElement) yearElement.textContent = new Date().getFullYear();
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
         }
 
         // ===== SMOOTH SCROLLING =====
@@ -2765,6 +2866,8 @@
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                 submitBtn.disabled = true;
                 
+                // Form will submit to Web3Forms
+                // Show success message after submission
                 setTimeout(() => {
                     submitBtn.innerHTML = '✅ Sent!';
                     submitBtn.style.background = '#25D366';

@@ -1058,3 +1058,1726 @@
             font-size: 1.8rem;
         }
         
+        .producer-bio p {
+            color: var(--text-body);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+        
+        .producer-contact p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: var(--space-xs);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .producer-contact i {
+            color: var(--accent);
+            width: 20px;
+        }
+        
+        .producer-stats {
+            display: flex;
+            gap: var(--space-xl);
+            flex-shrink: 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: var(--space-xs);
+        }
+        
+        /* Clear Two-Column Layout for Work Examples vs Qualities */
+        .portfolio-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xxl);
+        }
+        
+        @media (max-width: 992px) {
+            .portfolio-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .work-examples, .producer-qualities {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-subtitle-small {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: var(--space-lg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .work-examples-grid {
+            display: grid;
+            gap: var(--space-lg);
+        }
+        
+        .work-example {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .work-example:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .work-example h4 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            font-size: 1.2rem;
+        }
+        
+        .work-example p {
+            color: var(--text-body);
+            margin-bottom: var(--space-md);
+            line-height: 1.6;
+        }
+        
+        .qualities-grid {
+            display: grid;
+            gap: var(--space-lg);
+        }
+        
+        .quality-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .quality-card:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .quality-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .quality-card h4 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            font-size: 1.2rem;
+        }
+        
+        .quality-card p {
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+        
+        /* ===== GALLERY SECTION ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--dark-gray);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* ===== CONTACT SECTION ===== */
+        .contact-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+        
+        .contact-column {
+            background: var(--black);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-column h3 {
+            font-size: 2rem;
+            margin-bottom: var(--space-xl);
+            color: var(--text-primary);
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+        
+        .contact-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-md);
+            align-items: center;
+            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .contact-row a {
+            text-decoration: none;
+            color: inherit;
+            display: contents;
+        }
+        
+        .method-icon {
+            font-size: 1.4rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(77, 138, 240, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6ba3ff;
+            flex-shrink: 0;
+            border: 1px solid rgba(77, 138, 240, 0.3);
+        }
+        
+        .method-text {
+            flex-grow: 1;
+        }
+        
+        .method-text strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+        
+        .method-text p {
+            color: var(--text-body);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: var(--black);
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-form h3 {
+            font-size: 2rem;
+            margin-bottom: var(--space-xl);
+            color: var(--text-primary);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Form Submission Note */
+        .form-note {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: var(--space-xl) var(--space-xl) var(--space-lg);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-logo {
+            height: auto;
+            width: 120px;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3.5rem; }
+            .section-title { font-size: 2.5rem; }
+            .hero-logo-large { height: 160px; }
+            .pricing-tiers { grid-template-columns: 1fr; }
+            .about-content { grid-template-columns: 1fr; }
+            .pricing-tier.popular { transform: scale(1); }
+            .contact-table { grid-template-columns: 1fr; }
+            .nav-icons { gap: var(--space-md); }
+            .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
+            .nav-label { font-size: 0.75rem; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .portfolio-layout { grid-template-columns: 1fr; }
+            .portfolio-header { flex-direction: column; gap: var(--space-lg); }
+            .producer-stats { width: 100%; justify-content: space-around; }
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: var(--space-md) var(--space-lg); }
+            .logo-center { height: 50px; }
+            .hero { padding: 100px var(--space-lg) var(--space-xl); }
+            .hero-title { font-size: 2.8rem; }
+            .hero-subtitle { font-size: 1.4rem; }
+            .hero-logo-large { height: 140px; margin-bottom: var(--space-xl); }
+            .section { padding: var(--space-xl) var(--space-lg); min-height: auto; }
+            .section-title { font-size: 2.2rem; }
+            .tier-price { font-size: 2.5rem; }
+            .btn-primary { padding: 1rem 2rem; font-size: 1rem; min-width: 180px; }
+            .calculator-controls { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .nav-label { display: none; }
+            .portfolio-tab { min-width: 200px; }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .btn-primary { padding: 0.9rem 1.5rem; min-width: 160px; }
+            .tier-price { font-size: 2rem; }
+            .section { padding: var(--space-xl) var(--space-md); }
+            .header { padding: var(--space-sm); }
+            .contact-form { padding: var(--space-lg); }
+            .hero-logo-large { height: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-icons">
+            <div class="nav-icon-container">
+                <a href="#home" class="nav-icon" aria-label="Home">
+                    <i class="fas fa-home"></i>
+                </a>
+                <span class="nav-label">Home</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="#about" class="nav-icon" aria-label="About">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <span class="nav-label">About</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="#portfolio" class="nav-icon" aria-label="Portfolio">
+                    <i class="fas fa-star"></i>
+                </a>
+                <span class="nav-label">Portfolio</span>
+            </div>
+        </div>
+        
+        <div class="logo-center">
+            <img src="images/logo.png" alt="Billups Studio" class="header-logo">
+        </div>
+        
+        <div class="nav-icons">
+            <div class="nav-icon-container">
+                <a href="#services" class="nav-icon" aria-label="Services">
+                    <i class="fas fa-headphones"></i>
+                </a>
+                <span class="nav-label">Services</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="#gallery" class="nav-icon" aria-label="Gallery">
+                    <i class="fas fa-images"></i>
+                </a>
+                <span class="nav-label">Gallery</span>
+            </div>
+            
+            <div class="nav-icon-container">
+                <a href="#contact" class="nav-icon" aria-label="Contact">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <span class="nav-label">Contact</span>
+            </div>
+        </div>
+        
+        <!-- Header Equalizer -->
+        <div class="header-equalizer" id="headerEqualizer">
+            <div class="header-equalizer-bars">
+                <!-- Bars will be added by JavaScript -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero section" id="home">
+        <img src="images/hero-bg.jpg" alt="Studio Background" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large" id="mainLogo">
+                
+                <h1 class="hero-title">BILLUPS STUDIO</h1>
+                
+                <p class="hero-subtitle">
+                    Pick up the mic,<br>
+                    elevate — create.
+                </p>
+                
+                <a href="#contact" class="btn-primary">BOOK YOUR SESSION</a>
+                
+                <!-- SOCIAL PROOF -->
+                <div class="social-proof">
+                    <div class="live-counter">
+                        <div class="pulse-dot"></div>
+                        <span><span id="sessionCount">12</span> sessions booked this month</span>
+                    </div>
+                    
+                    <div class="trust-badges">
+                        <div class="badge">⭐ 4.9/5 Rating</div>
+                        <div class="badge">🎧 Free Consult</div>
+                        <div class="badge">⚡ 24h Response</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <img src="images/about-studio.jpg" alt="About Studio Background" class="section-bg">
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Real Studio. Real Energy.</h2>
+                <p class="section-subtitle">Where culture meets clean sound</p>
+            </div>
+            
+            <div class="about-content">
+                <div>
+                    <h3 style="font-size: 2.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                        Our Studio
+                    </h3>
+                    
+                    <p style="font-size: 1.1rem; margin-bottom: var(--space-lg); line-height: 1.7;">
+                        Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
+                        From quick bars to full tape lock-ins, this is the studio where your best work comes alive.
+                    </p>
+                    
+                    <p style="font-size: 1.1rem; margin-bottom: var(--space-lg); line-height: 1.7;">
+                        Our Luton-based recording studio delivers expert engineering, mixing, and mastering services 
+                        for emerging and established artists. With industry-standard equipment and a dedicated team 
+                        of producers, we help you achieve professional-grade sound every time.
+                    </p>
+                    
+                    <div style="background: rgba(0, 255, 0, 0.1); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: var(--space-xl); backdrop-filter: blur(10px);">
+                        <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent); line-height: 1.5;">
+                            No gimmicks. Just professional setup, local roots,
+                            and that unmatched vibe.
+                        </p>
+                    </div>
+                    
+                    <!-- AUDIO DEMO -->
+                    <div class="audio-demo">
+                        <h3>🎧 Hear The Billups Difference</h3>
+                        
+                        <div class="audio-toggle">
+                            <button class="btn-audio" data-track="raw">Raw Recording</button>
+                            <button class="btn-audio active" data-track="mixed">Mixed & Mastered</button>
+                        </div>
+                        
+                        <div class="audio-player">
+                            <audio id="demoAudio" controls>
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
+                                Your browser does not support audio element.
+                            </audio>
+                            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: var(--space-sm);">
+                                <i class="fas fa-info-circle"></i> Same vocal take, different processing
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
+                        Studio Features
+                    </h4>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: var(--space-xl); border-radius: var(--radius-lg); border: 1px solid var(--border-color); backdrop-filter: blur(10px);">
+                        <div style="display: grid; gap: var(--space-lg);">
+                            <div>
+                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
+                                    <div style="font-size: 2rem;">🎚️</div>
+                                    <strong style="font-size: 1.3rem;">Pro Sound</strong>
+                                </div>
+                                <p style="font-size: 1rem; color: var(--text-body); line-height: 1.6;">
+                                    Industry-standard equipment with pristine acoustic treatment for radio-ready recordings.
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
+                                    <div style="font-size: 2rem;">🧹</div>
+                                    <strong style="font-size: 1.3rem;">Clean Space</strong>
+                                </div>
+                                <p style="font-size: 1rem; color: var(--text-body); line-height: 1.6;">
+                                    Immaculate, inspiring environment designed for creativity and focus without distractions.
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
+                                    <div style="font-size: 2rem;">👥</div>
+                                    <strong style="font-size: 1.3rem;">Good People</strong>
+                                </div>
+                                <p style="font-size: 1rem; color: var(--text-body); line-height: 1.6;">
+                                    Experienced engineers who understand artists and know how to bring out your best performance.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Our Team -->
+                    <div style="margin-top: var(--space-xl);">
+                        <h4 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Our Team</h4>
+                        <div style="display: grid; gap: var(--space-md);">
+                            <div style="background: rgba(255, 255, 255, 0.03); padding: var(--space-md); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                                <strong style="color: var(--text-primary); font-size: 1.1rem;">Fabian</strong>
+                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; margin-left: var(--space-sm);">Studio Owner</span>
+                                <p style="font-size: 0.95rem; margin-top: 6px; color: var(--text-body);">Business inquiries & partnerships</p>
+                            </div>
+                            <div style="background: rgba(255, 255, 255, 0.03); padding: var(--space-md); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                                <strong style="color: var(--text-primary); font-size: 1.1rem;">Jaidee</strong>
+                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; margin-left: var(--space-sm);">Studio Manager</span>
+                                <p style="font-size: 0.95rem; margin-top: 6px; color: var(--text-body);">Bookings • Scheduling • Artist Development</p>
+                            </div>
+                            <div style="background: rgba(255, 255, 255, 0.03); padding: var(--space-md); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                                <strong style="color: var(--text-primary); font-size: 1.1rem;">Dsoul</strong>
+                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; margin-left: var(--space-sm);">Head Engineer</span>
+                                <p style="font-size: 0.95rem; margin-top: 6px; color: var(--text-body);">Mixing • Mastering • Production</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section" id="services">
+        <img src="images/studio-bg.jpg" alt="Services Background" class="section-bg">
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Professional recording, mixing & mastering</p>
+            </div>
+            
+            <!-- Service Selection Guide -->
+            <div class="service-guide">
+                <div class="guide-step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Goal</h3>
+                    <p>Single, EP, or full project? We'll help you pick the right session.</p>
+                </div>
+                
+                <div class="guide-step">
+                    <div class="step-number">2</div>
+                    <h3>Select Package</h3>
+                    <p>From quick sessions to full production packages.</p>
+                </div>
+                
+                <div class="guide-step">
+                    <div class="step-number">3</div>
+                    <h3>Book & Create</h3>
+                    <p>Secure your session and start creating professional music.</p>
+                </div>
+            </div>
+            
+            <!-- SIMPLIFIED Smart Session Calculator - Hours Only -->
+            <div class="session-calculator">
+                <div class="calculator-header">
+                    <h3><i class="fas fa-calculator"></i> Smart Session Calculator</h3>
+                    <p>Enter hours needed - we'll find you the best deal</p>
+                </div>
+                
+                <div class="calculator-controls">
+                    <div class="control-group">
+                        <label>How many hours do you need?</label>
+                        <div class="hours-input-container">
+                            <input type="range" id="hoursInput" class="hours-slider" min="1" max="24" value="5" step="1">
+                            <div class="hours-display" id="hoursDisplay">5 hours</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: var(--space-xs); font-size: 0.85rem; color: var(--text-muted);">
+                            <span>1 hour</span>
+                            <span>24 hours</span>
+                        </div>
+                    </div>
+                    
+                    <div id="packageOptions">
+                        <!-- Package options will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div id="calculatorResult">
+                    <div class="result-title">RECOMMENDED: Best Value</div>
+                    <div class="result-price" id="bestPrice">£140</div>
+                    <div class="result-description" id="bestDescription">Half Day Session - 5 hours studio time</div>
+                    <p><i class="fas fa-check"></i> Includes: Recording, mixing, basic mastering</p>
+                    <p><i class="fas fa-pound-sign"></i> Price per hour: <span id="pricePerHour">£28</span></p>
+                    <a href="#contact" class="btn-primary" style="margin-top: var(--space-md);">Book This Package</a>
+                </div>
+            </div>
+            
+            <!-- Mix & Master Coming Soon Notice -->
+            <div class="mix-master-notice">
+                <h3>🎛️ Mix & Master Section Coming Soon</h3>
+                <p>We're currently building out our dedicated mixing & mastering service. All final mixes and masters are handled by Dsoul.</p>
+                <div class="coming-soon-badge">Launching Soon</div>
+            </div>
+            
+            <!-- Pricing Tiers -->
+            <div class="pricing-tiers">
+                <!-- Tier 1: Quick Session -->
+                <div class="pricing-tier">
+                    <div class="tier-header">
+                        <div class="tier-icon">⚡</div>
+                        <h3 class="tier-title">Quick Session</h3>
+                        <div class="tier-price">£80</div>
+                        <p>3 hours studio time</p>
+                    </div>
+                    
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 3 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Professional engineer</li>
+                        <li><i class="fas fa-check"></i> Basic mixing included</li>
+                        <li><i class="fas fa-check"></i> Industry equipment</li>
+                        <li><i class="fas fa-check"></i> Perfect for singles</li>
+                    </ul>
+                    
+                    <div class="tier-action">
+                        <a href="#contact" class="btn-primary">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tier 2: Half Day (Most Popular) -->
+                <div class="pricing-tier popular">
+                    <div class="tier-badge">BEST VALUE</div>
+                    <div class="tier-header">
+                        <div class="tier-icon">🎯</div>
+                        <h3 class="tier-title">Half Day</h3>
+                        <div class="tier-price">£140</div>
+                        <p>5 hours studio time</p>
+                    </div>
+                    
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 5 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Recording + mixing</li>
+                        <li><i class="fas fa-check"></i> Basic mastering</li>
+                        <li><i class="fas fa-check"></i> Up to 4 songs</li>
+                        <li><i class="fas fa-check"></i> Professional engineer</li>
+                    </ul>
+                    
+                    <div class="tier-action">
+                        <a href="#contact" class="btn-primary">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tier 3: Full Day -->
+                <div class="pricing-tier">
+                    <div class="tier-header">
+                        <div class="tier-icon">🔥</div>
+                        <h3 class="tier-title">Full Day</h3>
+                        <div class="tier-price">£240</div>
+                        <p>10 hours studio time</p>
+                    </div>
+                    
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 10 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Complete production</li>
+                        <li><i class="fas fa-check"></i> Professional mastering</li>
+                        <li><i class="fas fa-check"></i> Up to 8 songs</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                    </ul>
+                    
+                    <div class="tier-action">
+                        <a href="#contact" class="btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add-On Services -->
+            <div class="addons-section">
+                <h3 style="text-align: center; color: var(--accent); margin-bottom: var(--space-xl); font-size: 1.8rem;">
+                    <i class="fas fa-plus-circle"></i> Add-On Services
+                </h3>
+                
+                <div class="addons-grid">
+                    <div class="addon-card">
+                        <div class="addon-icon"><i class="fas fa-sliders-h"></i></div>
+                        <h4>Premium Mixing</h4>
+                        <p>Professional studio mix</p>
+                        <div class="addon-price">£40/song</div>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-icon"><i class="fas fa-volume-up"></i></div>
+                        <h4>Mastering</h4>
+                        <p>Radio-ready loudness</p>
+                        <div class="addon-price">£25/song</div>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-icon"><i class="fas fa-microphone-alt"></i></div>
+                        <h4>Vocal Tuning</h4>
+                        <p>Professional pitch correction</p>
+                        <div class="addon-price">£15/song</div>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-icon"><i class="fas fa-drum"></i></div>
+                        <h4>Beat Production</h4>
+                        <p>Custom instrumentals</p>
+                        <div class="addon-price">From £50</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deposit Notice -->
+            <div class="deposit-notice" role="note">
+                ⚠️ £30 deposit required to confirm all sessions. All sessions include professional engineering support.
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio section" id="portfolio">
+        <img src="images/portfolio-bg.jpg" alt="Portfolio Background" class="section-bg">
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Producers' Work</h2>
+                <p class="section-subtitle">Clear distinction between our work examples and what we bring to your project</p>
+            </div>
+            
+            <div class="portfolio-tabs">
+                <button class="portfolio-tab active" data-tab="dsoul">
+                    <div class="producer-header">
+                        <div class="producer-avatar dsoul-avatar">DS</div>
+                        <div class="producer-info">
+                            <h3>Dsoul</h3>
+                            <p class="producer-role">Head Engineer</p>
+                        </div>
+                    </div>
+                </button>
+                
+                <button class="portfolio-tab" data-tab="jaidee">
+                    <div class="producer-header">
+                        <div class="producer-avatar jaidee-avatar">JJ</div>
+                        <div class="producer-info">
+                            <h3>Jaidee</h3>
+                            <p class="producer-role">Studio Manager & Producer</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Dsoul's Portfolio -->
+            <div class="portfolio-content active" id="dsoul-portfolio">
+                <div class="portfolio-header">
+                    <div class="producer-bio">
+                        <h3>Dsoul - Head Engineer</h3>
+                        <p>Specializing in clean mixes, vocal production, and mastering. Known for bringing out the best in every artist with technical precision and creative flair.</p>
+                        <div class="producer-contact">
+                            <p><i class="fas fa-envelope"></i> dsoulfiles@gmail.com</p>
+                            <p><i class="fas fa-sliders-h"></i> Specializes in: Mixing, Mastering, Vocal Production</p>
+                        </div>
+                    </div>
+                    <div class="producer-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Tracks Mixed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-layout">
+                    <!-- Left Column: Work Examples -->
+                    <div class="work-examples">
+                        <h3 class="section-subtitle-small">
+                            <i class="fas fa-music"></i> Work Examples
+                        </h3>
+                        <p style="color: var(--text-body); margin-bottom: var(--space-lg);">Check out examples of Dsoul's mixing and production work:</p>
+                        
+                        <div class="work-examples-grid">
+                            <div class="work-example">
+                                <h4>Latest Release from Dsoul</h4>
+                                <p>Check out Dsoul's latest production and mixing work on his newest release.</p>
+                                <a href="https://youtu.be/jt1RtKUhJgA?si=o3VmWGrxohQRfM4J" target="_blank" class="work-link">
+                                    <i class="fab fa-youtube"></i> Listen Now
+                                </a>
+                            </div>
+                            
+                            <div class="work-example">
+                                <h4>Instagram Portfolio</h4>
+                                <p>Regular updates showcasing mixing techniques, beat previews, and behind-the-scenes studio content.</p>
+                                <a href="https://www.instagram.com/dsoulbeats/?hl=en" target="_blank" class="work-link">
+                                    <i class="fab fa-instagram"></i> View Instagram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Qualities -->
+                    <div class="producer-qualities">
+                        <h3 class="section-subtitle-small">
+                            <i class="fas fa-star"></i> What Dsoul Brings to Your Project
+                        </h3>
+                        <p style="color: var(--text-body); margin-bottom: var(--space-lg);">The expertise and qualities Dsoul brings to every session:</p>
+                        
+                        <div class="qualities-grid">
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-sliders-h"></i>
+                                </div>
+                                <h4>Precision Mixing</h4>
+                                <p>Technical expertise in balancing frequencies, creating space, and achieving radio-ready clarity in every mix.</p>
+                            </div>
+                            
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-microphone-alt"></i>
+                                </div>
+                                <h4>Vocal Expertise</h4>
+                                <p>Specializes in vocal processing, compression, and effects to make vocals sit perfectly in the mix.</p>
+                            </div>
+                            
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-volume-up"></i>
+                                </div>
+                                <h4>Mastering Excellence</h4>
+                                <p>Final polish with proper loudness, stereo enhancement, and ensuring your tracks sound great on all systems.</p>
+                            </div>
+                            
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-headphones"></i>
+                                </div>
+                                <h4>Modern Production</h4>
+                                <p>Up-to-date with current music trends and production techniques across UK drill, hip-hop, and R&B.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Jaidee's Portfolio -->
+            <div class="portfolio-content" id="jaidee-portfolio">
+                <div class="portfolio-header">
+                    <div class="producer-bio">
+                        <h3>Jaidee - Studio Manager & Producer</h3>
+                        <p>With 5 years of industry experience, I bring a comprehensive skill set in studio management, artist development, and creative direction.</p>
+                        <div class="producer-contact">
+                            <p><i class="fas fa-phone"></i> 07878 709110</p>
+                            <p><i class="fas fa-envelope"></i> billupsltd@gmail.com</p>
+                            <p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development</p>
+                        </div>
+                    </div>
+                    <div class="producer-stats">
+                        <div class="stat">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Sessions Managed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Artists Worked With</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-layout">
+                    <!-- Left Column: Work Examples -->
+                    <div class="work-examples">
+                        <h3 class="section-subtitle-small">
+                            <i class="fas fa-music"></i> Work Examples
+                        </h3>
+                        <p style="color: var(--text-body); margin-bottom: var(--space-lg);">Explore Jaidee's diverse work across music and podcasting:</p>
+                        
+                        <div class="work-examples-grid">
+                            <div class="work-example">
+                                <h4>Music Releases</h4>
+                                <p>Official Spotify releases showcasing Jaidee's own music and production capabilities across multiple genres.</p>
+                                <a href="https://open.spotify.com/artist/2dhPI432jA3KOZVdSHZfiL?si=yYzfPtf9QwClKHS1Z8As5w" target="_blank" class="work-link">
+                                    <i class="fab fa-spotify"></i> Spotify Artist Profile
+                                </a>
+                            </div>
+                            
+                            <div class="work-example">
+                                <h4>Jaidee Cypher at the Emirates</h4>
+                                <p>Watch Jaidee's explosive performance at the Emirates, showcasing lyrical prowess and stage presence.</p>
+                                <a href="https://youtu.be/2WaVOTgPwOM?si=fCVEZmOpRHoAHbTv" target="_blank" class="work-link">
+                                    <i class="fab fa-youtube"></i> Watch Cypher
+                                </a>
+                            </div>
+                            
+                            <div class="work-example">
+                                <h4>Jaidee on Mode Radio</h4>
+                                <p>Listen to Jaidee's exclusive interview and live performance on Mode Radio, discussing music and upcoming projects.</p>
+                                <a href="https://youtu.be/kLxPi5h33Ls?si=VD__FFTK04tBiD5e" target="_blank" class="work-link">
+                                    <i class="fab fa-youtube"></i> Listen on Mode Radio
+                                </a>
+                            </div>
+                            
+                            <div class="work-example">
+                                <h4>Beyond Boundaries Podcast</h4>
+                                <p>Co-hosting deep music industry discussions, demonstrating industry knowledge and interview skills.</p>
+                                <a href="https://youtu.be/7QXhxzCn2O0?si=2wknh3e65QiPUGg9" target="_blank" class="work-link">
+                                    <i class="fab fa-youtube"></i> Podcast Episode 1
+                                </a>
+                            </div>
+                            
+                            <div class="work-example">
+                                <h4>Worse - Passive X Jaidee</h4>
+                                <p>Latest release featuring Jaidee, showcasing his lyrical ability and flow on this collaborative track.</p>
+                                <a href="https://youtu.be/-2461Nzf2l0?si=tGFQdhdNeJfXcKIj" target="_blank" class="work-link">
+                                    <i class="fab fa-youtube"></i> Listen Now
+                                </a>
+                            </div>
+                            
+                            <div class="work-example">
+                                <h4>Instagram Portfolio</h4>
+                                <p>Regular updates on music, studio life, and behind-the-scenes content.</p>
+                                <a href="https://www.instagram.com/jdhxl/?hl=en" target="_blank" class="work-link">
+                                    <i class="fab fa-instagram"></i> View Instagram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Qualities -->
+                    <div class="producer-qualities">
+                        <h3 class="section-subtitle-small">
+                            <i class="fas fa-star"></i> What Jaidee Brings to Your Project
+                        </h3>
+                        <p style="color: var(--text-body); margin-bottom: var(--space-lg);">The expertise and qualities Jaidee brings to every session:</p>
+                        
+                        <div class="qualities-grid">
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <h4>Session Management</h4>
+                                <p>Ensures smooth workflow, efficient scheduling, and optimal studio time utilization for maximum productivity.</p>
+                            </div>
+                            
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <h4>Artist Development</h4>
+                                <p>Guides emerging artists through the complete creative process - from concept to release strategy.</p>
+                            </div>
+                            
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h4>Creative Direction</h4>
+                                <p>Experience in music video production and visual storytelling to complement your audio projects.</p>
+                            </div>
+                            
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h4>Industry Insights</h4>
+                                <p>Deep understanding of the music industry through podcast discussions and personal experience.</p>
+                            </div>
+                            
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h4>Artist Relations</h4>
+                                <p>Creates comfortable studio environments that bring out the best performances from artists.</p>
+                            </div>
+                            
+                            <div class="quality-card">
+                                <div class="quality-icon">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                                <h4>Release Strategy</h4>
+                                <p>Knowledgeable about effective release planning and promotion strategies for maximum impact.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery section" id="gallery">
+        <img src="images/studio1.jpg" alt="Gallery Background" class="section-bg">
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Studio Gallery</h2>
+                <p class="section-subtitle">Take a look inside our professional recording space</p>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <div style="grid-column: 1 / -1; text-align: center; padding: var(--space-xxl); background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 2px dashed var(--border-color); backdrop-filter: blur(10px);">
+                    <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: var(--space-lg);"></i>
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Studio Gallery Loading...</h3>
+                    <p style="color: var(--text-body); max-width: 500px; margin: 0 auto;">Loading images from the images folder...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <img src="images/studio2.jpg" alt="Contact Background" class="section-bg">
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Direct Contact with Our Team</p>
+            </div>
+            
+            <div class="contact-table">
+                <div class="contact-column">
+                    <h3>Our Team</h3>
+                    <div class="contact-methods">
+                        <!-- Studio Owner - Fabian -->
+                        <div class="contact-row">
+                            <div class="method-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Fabian</strong>
+                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Studio Owner</span>
+                                <p>For business inquiries & partnerships</p>
+                                <p><small>Contact via studio email</small></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Studio Manager - Jaidee -->
+                        <a href="tel:07878709110" class="contact-row">
+                            <div class="method-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Jaidee</strong>
+                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Studio Manager</span>
+                                <p>📞 07878 709110</p>
+                                <p>Bookings • Scheduling • Studio queries</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Head Engineer - Dsoul -->
+                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row">
+                            <div class="method-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Dsoul</strong>
+                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Head Engineer</span>
+                                <p>✉️ dsoulfiles@gmail.com</p>
+                                <p>Mixing • Mastering • Production</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Main Studio Contact -->
+                        <a href="tel:07710593113" class="contact-row">
+                            <div class="method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Main Studio Line</strong>
+                                <p>📞 07710 593113</p>
+                                <p>General inquiries & quick questions</p>
+                            </div>
+                        </a>
+                        
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/447710593113" class="contact-row">
+                            <div class="method-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>WhatsApp</strong>
+                                <p>📱 07710 593113</p>
+                                <p>Fastest response • Send voice notes</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Studio Email -->
+                        <a href="mailto:billupsltd@gmail.com" class="contact-row">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Studio Email</strong>
+                                <p>✉️ billupsltd@gmail.com</p>
+                                <p>General studio inquiries</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="contact-row">
+                            <div class="method-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="method-text">
+                                <strong>Instagram</strong>
+                                <p>@billups_studio</p>
+                                <p>Latest work & updates</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-column">
+                    <div class="contact-form">
+                        <h3>Book Your Session</h3>
+                        <!-- WEB3FORMS INTEGRATION -->
+                        <form action="https://api.web3forms.com/submit" method="POST" id="bookingForm">
+                            <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6">
+                            <input type="hidden" name="subject" value="New Session Booking - Billups Studio">
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="session-type">Session Type *</label>
+                                <select id="session-type" name="session-type" required>
+                                    <option value="">Select session</option>
+                                    <option value="quick-session">Quick Session (£80)</option>
+                                    <option value="half-day">Half Day (£140)</option>
+                                    <option value="full-day">Full Day (£240)</option>
+                                    <option value="custom">Custom Session</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Project Details *</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary" style="width: 100%;">Send Booking Request</button>
+                            
+                            <div class="form-note">
+                                <strong>✉️ Your message will be sent directly to our team</strong><br>
+                                <span>We'll respond within 24 hours</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo">
+                    <p style="color: var(--text-body); line-height: 1.7; font-size: 0.95rem;">
+                        Professional recording studio in Luton. Expert engineering, mixing & mastering. 
+                        Book your session today and elevate your sound.
+                    </p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.1rem;">Quick Links</h4>
+                    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                        <a href="#home" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
+                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Home
+                        </a>
+                        <a href="#about" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
+                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> About
+                        </a>
+                        <a href="#services" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
+                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Services
+                        </a>
+                        <a href="#portfolio" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
+                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Portfolio
+                        </a>
+                        <a href="#gallery" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
+                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Gallery
+                        </a>
+                        <a href="#contact" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
+                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Contact
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.1rem;">Studio Hours</h4>
+                    <p style="color: var(--text-body); margin-bottom: var(--space-xs); font-size: 0.95rem;">
+                        <i class="fas fa-clock" style="color: var(--accent); margin-right: var(--space-xs);"></i>
+                        Mon-Sun: 10AM - 10PM
+                    </p>
+                    <p style="color: var(--text-body); font-size: 0.95rem;">
+                        <i class="fas fa-calendar-check" style="color: var(--accent); margin-right: var(--space-xs);"></i>
+                        By appointment only
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved.</p>
+                <p style="margin-top: var(--space-sm); font-size: 0.85rem;">
+                    Luton, Bedfordshire | 07710 593113
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== WEBSITE INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeHeader();
+            initializeHeaderEqualizer();
+            initializeSimplifiedCalculator();
+            initializeCurrentYear();
+            initializePortfolioTabs();
+            initializeLiveCounter();
+            initializeGallery();
+            initializeSmoothScrolling();
+            initializeLogoAnimation();
+            initializeAudioDemo();
+            loadBackgroundImages();
+        });
+
+        // ===== HEADER SCROLL EFFECT =====
+        function initializeHeader() {
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 100);
+            });
+        }
+
+        // ===== HEADER EQUALIZER =====
+        function initializeHeaderEqualizer() {
+            const headerEqualizer = document.getElementById('headerEqualizer');
+            if (!headerEqualizer) return;
+            
+            const barsContainer = headerEqualizer.querySelector('.header-equalizer-bars');
+            if (!barsContainer) return;
+            
+            barsContainer.innerHTML = '';
+            for (let i = 0; i < 8; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'header-equalizer-bar';
+                barsContainer.appendChild(bar);
+            }
+        }
+
+        // ===== LOAD BACKGROUND IMAGES =====
+        function loadBackgroundImages() {
+            const images = [
+                'images/hero-bg.jpg',
+                'images/about-studio.jpg',
+                'images/studio-bg.jpg',
+                'images/portfolio-bg.jpg',
+                'images/studio1.jpg',
+                'images/studio2.jpg'
+            ];
+            
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
+        // ===== PORTFOLIO TAB SWITCHING =====
+        function initializePortfolioTabs() {
+            const tabs = document.querySelectorAll('.portfolio-tab');
+            const contents = document.querySelectorAll('.portfolio-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.dataset.tab;
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    const content = document.getElementById(`${tabId}-portfolio`);
+                    if (content) content.classList.add('active');
+                });
+            });
+        }
+
+        // ===== GALLERY INITIALIZATION =====
+        function initializeGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            if (!galleryGrid) return;
+            
+            const imagePatterns = [
+                'studio1.jpg', 'studio2.jpg', 'studio3.jpg',
+                'studio4.jpg', 'studio5.jpg', 'studio6.jpg',
+                'gallery1.jpg', 'gallery2.jpg', 'gallery3.jpg'
+            ];
+            
+            loadGalleryImages(imagePatterns);
+            
+            function loadGalleryImages(patterns) {
+                const loadedImages = [];
+                
+                patterns.forEach(pattern => {
+                    const img = new Image();
+                    img.onload = function() {
+                        loadedImages.push({
+                            src: `images/${pattern}`,
+                            alt: `Studio image ${pattern.replace('.jpg', '')}`
+                        });
+                        
+                        if (loadedImages.length === 1) {
+                            updateGallery(loadedImages);
+                        }
+                    };
+                    img.onerror = function() {};
+                    img.src = `images/${pattern}`;
+                });
+                
+                setTimeout(() => {
+                    if (loadedImages.length === 0) {
+                        showGalleryPlaceholder();
+                    }
+                }, 2000);
+            }
+            
+            function updateGallery(images) {
+                galleryGrid.innerHTML = '';
+                const displayImages = images.slice(0, 6);
+                
+                displayImages.forEach(image => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.innerHTML = `<img src="${image.src}" alt="${image.alt}" loading="lazy">`;
+                    galleryGrid.appendChild(galleryItem);
+                    
+                    galleryItem.addEventListener('click', () => {
+                        openLightbox(image.src, image.alt);
+                    });
+                });
+            }
+            
+            function showGalleryPlaceholder() {
+                galleryGrid.innerHTML = '';
+                const placeholder = document.createElement('div');
+                placeholder.style.gridColumn = '1 / -1';
+                placeholder.style.textAlign = 'center';
+                placeholder.style.padding = 'var(--space-xxl)';
+                placeholder.style.background = 'rgba(255, 255, 255, 0.05)';
+                placeholder.style.borderRadius = 'var(--radius-lg)';
+                placeholder.style.border = '2px dashed var(--border-color)';
+                placeholder.style.backdropFilter = 'blur(10px)';
+                placeholder.innerHTML = `
+                    <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: var(--space-lg);"></i>
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Add Your Studio Photos</h3>
+                    <p style="color: var(--text-body); max-width: 500px; margin: 0 auto;">
+                        To display studio photos, add images to the <code>images/</code> folder with names like:<br>
+                        studio1.jpg, studio2.jpg, gallery1.jpg, etc.
+                    </p>
+                `;
+                galleryGrid.appendChild(placeholder);
+            }
+        }
+
+        // ===== SIMPLIFIED SMART CALCULATOR - HOURS ONLY =====
+        function initializeSimplifiedCalculator() {
+            const hoursInput = document.getElementById('hoursInput');
+            const hoursDisplay = document.getElementById('hoursDisplay');
+            const packageOptions = document.getElementById('packageOptions');
+            
+            if (!hoursInput || !hoursDisplay || !packageOptions) return;
+            
+            // Package definitions
+            const packages = [
+                { name: "Quick Session", hours: 3, price: 80, color: "var(--tier-1)" },
+                { name: "Half Day", hours: 5, price: 140, color: "var(--tier-2)" },
+                { name: "Half Day x2", hours: 10, price: 280, color: "var(--tier-2)" },
+                { name: "Full Day", hours: 10, price: 240, color: "var(--tier-3)" },
+                { name: "Full Day x2", hours: 20, price: 480, color: "var(--tier-3)" },
+                { name: "Custom Combo", hours: 0, price: 0, color: "var(--tier-4)" }
+            ];
+            
+            // Update display when slider changes
+            hoursInput.addEventListener('input', updateCalculator);
+            
+            // Initial calculation
+            updateCalculator();
+            
+            function updateCalculator() {
+                const hours = parseInt(hoursInput.value);
+                hoursDisplay.textContent = `${hours} hour${hours !== 1 ? 's' : ''}`;
+                
+                // Calculate best options
+                const options = calculateBestOptions(hours, packages);
+                displayPackageOptions(options);
+                updateBestDeal(options);
+            }
+            
+            function calculateBestOptions(hours, packages) {
+                const options = [];
+                
+                // Check standard packages
+                packages.forEach(pkg => {
+                    if (pkg.hours >= hours) {
+                        const pricePerHour = pkg.price / pkg.hours;
+                        const efficiency = (pkg.hours - hours) / pkg.hours; // Lower is better
+                        options.push({
+                            ...pkg,
+                            pricePerHour,
+                            efficiency,
+                            type: 'single'
+                        });
+                    }
+                });
+                
+                // Check combinations (Quick + Half Day, etc.)
+                if (hours > 10) {
+                    // Full Day + remaining hours as Quick or Half Day
+                    const fullDays = Math.floor(hours / 10);
+                    const remainingHours = hours % 10;
+                    
+                    let comboPrice = fullDays * 240;
+                    let comboHours = fullDays * 10;
+                    let comboName = `${fullDays} Full Day${fullDays > 1 ? 's' : ''}`;
+                    
+                    if (remainingHours > 0) {
+                        let bestRemaining = { price: Infinity };
+                        
+                        // Find best package for remaining hours
+                        packages.forEach(pkg => {
+                            if (pkg.hours >= remainingHours && pkg.price < bestRemaining.price) {
+                                bestRemaining = pkg;
+                            }
+                        });
+                        
+                        comboPrice += bestRemaining.price;
+                        comboHours += bestRemaining.hours;
+                        comboName += ` + ${bestRemaining.name}`;
+                    }
+                    
+                    const pricePerHour = comboPrice / comboHours;
+                    const efficiency = (comboHours - hours) / comboHours;
+                    
+                    options.push({
+                        name: comboName,
+                        hours: comboHours,
+                        price: comboPrice,
+                        pricePerHour,
+                        efficiency,
+                        type: 'combo',
+                        color: "var(--tier-4)"
+                    });
+                }
+                
+                // Sort by price per hour (lowest first), then by efficiency
+                return options.sort((a, b) => {
+                    if (a.pricePerHour === b.pricePerHour) {
+                        return a.efficiency - b.efficiency;
+                    }
+                    return a.pricePerHour - b.pricePerHour;
+                });
+            }
+            
+            function displayPackageOptions(options) {
+                packageOptions.innerHTML = '';
+                
+                // Show top 3 options
+                const topOptions = options.slice(0, 3);
+                
+                topOptions.forEach((option, index) => {
+                    const optionEl = document.createElement('div');
+                    optionEl.className = `hour-package ${index === 0 ? 'recommended' : ''}`;
+                    
+                    optionEl.innerHTML = `
+                        <div>
+                            <strong>${option.name}</strong>
+                            <div style="font-size: 0.9rem; color: var(--text-muted);">
+                                ${option.hours} hours • £${option.price}
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: bold; color: ${option.color};">£${option.pricePerHour.toFixed(2)}/hr</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">
+                                ${option.type === 'combo' ? 'Combo Deal' : 'Standard Package'}
+                            </div>
+                        </div>
+                    `;
+                    
+                    packageOptions.appendChild(optionEl);
+                });
+            }
+            
+            function updateBestDeal(options) {
+                if (options.length === 0) return;
+                
+                const bestOption = options[0];
+                const bestPrice = document.getElementById('bestPrice');
+                const bestDescription = document.getElementById('bestDescription');
+                const pricePerHour = document.getElementById('pricePerHour');
+                
+                if (bestPrice) bestPrice.textContent = `£${bestOption.price}`;
+                if (bestDescription) bestDescription.textContent = `${bestOption.name} - ${bestOption.hours} hours studio time`;
+                if (pricePerHour) pricePerHour.textContent = `£${bestOption.pricePerHour.toFixed(2)}`;
+                
+                // Update booking button
+                const bookButton = document.querySelector('#calculatorResult .btn-primary');
+                if (bookButton) {
+                    bookButton.textContent = `Book ${bestOption.name}`;
+                }
+            }
+        }
+
+        // ===== LIVE COUNTER =====
+        function initializeLiveCounter() {
+            function updateLiveCounter() {
+                const baseSessions = 8;
+                const today = new Date();
+                const dayOfMonth = today.getDate();
+                const estimatedSessions = baseSessions + Math.floor(dayOfMonth * 0.8);
+                
+                const counterEl = document.getElementById('sessionCount');
+                if (counterEl) counterEl.textContent = estimatedSessions;
+            }
+            
+            updateLiveCounter();
+            setInterval(updateLiveCounter, 3600000);
+        }
+
+        // ===== AUDIO DEMO =====
+        function initializeAudioDemo() {
+            const audioButtons = document.querySelectorAll('.btn-audio');
+            const audio = document.getElementById('demoAudio');
+            
+            if (audioButtons.length > 0 && audio) {
+                audioButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.btn-audio').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        const track = this.dataset.track;
+                        audio.src = track === 'raw' ? 'audio/raw-demo.mp3' : 'audio/mixed-demo.mp3';
+                        audio.load();
+                        audio.play().catch(e => console.log('Audio play failed:', e));
+                    });
+                });
+            }
+        }
+
+        // ===== CURRENT YEAR =====
+        function initializeCurrentYear() {
+            const yearElement = document.getElementById('currentYear');
+            if (yearElement) yearElement.textContent = new Date().getFullYear();
+        }
+
+        // ===== SMOOTH SCROLLING =====
+        function initializeSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // ===== LOGO HOVER ANIMATION =====
+        function initializeLogoAnimation() {
+            const mainLogo = document.getElementById('mainLogo');
+            if (mainLogo) {
+                mainLogo.addEventListener('mouseenter', () => {
+                    mainLogo.style.transform = 'rotateY(180deg) scale(1.05)';
+                });
+                
+                mainLogo.addEventListener('mouseleave', () => {
+                    mainLogo.style.transform = 'rotateY(0) scale(1)';
+                });
+            }
+        }
+
+        // ===== FORM HANDLING =====
+        const bookingForm = document.getElementById('bookingForm');
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = '✅ Sent!';
+                    submitBtn.style.background = '#25D366';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                        this.reset();
+                    }, 3000);
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>

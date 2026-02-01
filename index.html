@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billups Studio | Luton Recording Studio</title>
-    <meta name="description" content="Professional recording studio in Luton. Expert engineering, mixing & mastering. Book your session today.">
-    <meta name="keywords" content="recording studio, Luton, music production, mixing, mastering, audio engineering">
+    <title>Arcains Booking | Recording Studio</title>
+    <meta name="description" content="Professional recording studio. Expert engineering, mixing & mastering. Book your session today.">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Billups Studio | Luton Recording Studio">
-    <meta property="og:description" content="Professional recording studio in Luton. Elevate your sound with expert engineering.">
+    <meta property="og:title" content="Arcains Booking | Professional Recording Studio">
+    <meta property="og:description" content="Elevate your sound with expert engineering.">
     <meta property="og:image" content="images/hero-bg.jpg">
-    <meta property="og:url" content="https://billupsstudio.co.uk">
+    <meta property="og:url" content="https://arcainsbooking.com">
     <meta property="og:type" content="website">
     
     <link rel="icon" type="image/png" href="images/logo.png">
@@ -19,67 +18,42 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ===== MASTER DESIGN SYSTEM ===== */
+        /* ===== SIMPLIFIED DESIGN SYSTEM ===== */
         :root {
-            /* CORE COLOR PALETTE */
-            --black: #000000;
-            --dark-gray: #0a0a0a;
-            --white: #ffffff;
-            --accent: #00ff00;
-            --accent-light: #90ff90;
-            --accent-dark: #00cc00;
+            /* NEW COLOR SCHEME: Purple & Light Grey */
+            --primary-purple: #6a11cb;
+            --purple-medium: #8a2be2;
+            --purple-light: #9d4edd;
+            --light-grey: #f5f7fa;
+            --grey-medium: #e1e5eb;
+            --grey-dark: #333333;
+            --text-dark: #222222;
+            --text-light: #ffffff;
             
-            /* SERVICE TIER COLORS */
-            --tier-1: #00a8ff;
-            --tier-2: #00ff00;
-            --tier-3: #ff9500;
-            --tier-4: #bc00ff;
-            
-            /* SECTION COLORS */
-            --purple-dark: #1a0b2e;
-            --purple-medium: #2d1b4e;
-            --purple-light: #3d2968;
-            --orange-accent: #ff6b35;
-            --blue-accent: #4d8af0;
-            --blue-light: #6ba3ff;
-            
-            /* TEXT COLORS */
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.95);
-            --text-body: rgba(255, 255, 255, 0.85);
-            --text-muted: rgba(255, 255, 255, 0.65);
-            --border-color: rgba(255, 255, 255, 0.2);
+            /* ACCENTS */
+            --accent: #6a11cb;
+            --accent-light: #9d4edd;
             
             /* TYPOGRAPHY */
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-primary: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
             
             /* SPACING */
-            --space-xs: 0.5rem;
             --space-sm: 1rem;
-            --space-md: 1.5rem;
-            --space-lg: 2rem;
-            --space-xl: 3rem;
-            --space-xxl: 5rem;
+            --space-md: 2rem;
+            --space-lg: 3rem;
+            --space-xl: 4rem;
             
             /* BORDER RADIUS */
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
-            --radius-full: 50px;
-            
-            /* SHADOWS */
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
-            --shadow-accent: 0 0 30px rgba(0, 255, 0, 0.3);
-            --shadow-accent-md: 0 0 60px rgba(0, 255, 0, 0.2);
         }
         
         /* ===== RESET & BASE ===== */
@@ -91,2262 +65,632 @@
         
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 100px;
         }
         
         body {
             font-family: var(--font-primary);
-            background-color: var(--black);
-            color: var(--text-body);
+            background-color: var(--light-grey);
+            color: var(--text-dark);
             line-height: 1.6;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
         
-        /* ===== HEADER EQUALIZER ===== */
-        .header-equalizer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 14px;
-            display: none;
-            z-index: 1001;
-        }
-        
-        .header.scrolled .header-equalizer {
-            display: block;
-            animation: equalizerFadeIn 0.5s ease-out;
-        }
-        
-        .header-equalizer-bars {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 3px;
-            padding: 0 15px;
-        }
-        
-        .header-equalizer-bar {
-            width: 5px;
-            height: 60%;
-            background: linear-gradient(to top, var(--accent), var(--tier-2));
-            border-radius: 3px 3px 0 0;
-            opacity: 0.8;
-            transform-origin: bottom center;
-        }
-        
-        /* Equalizer animations */
-        @keyframes headerEqPulse1 { 0%, 100% { height: 40%; } 20% { height: 85%; } 40% { height: 60%; } 60% { height: 95%; } 80% { height: 45%; } }
-        @keyframes headerEqPulse2 { 0%, 100% { height: 65%; } 30% { height: 35%; } 50% { height: 90%; } 70% { height: 55%; } 90% { height: 75%; } }
-        @keyframes headerEqPulse3 { 0% { height: 50%; } 25% { height: 80%; } 50% { height: 30%; } 75% { height: 100%; } 100% { height: 45%; } }
-        @keyframes headerEqPulse4 { 0%, 100% { height: 75%; } 15% { height: 40%; } 35% { height: 95%; } 55% { height: 60%; } 75% { height: 85%; } }
-        
-        .header-equalizer-bar:nth-child(1) { animation: headerEqPulse1 2.1s infinite ease-in-out; }
-        .header-equalizer-bar:nth-child(2) { animation: headerEqPulse2 1.8s infinite ease-in-out; animation-delay: 0.2s; }
-        .header-equalizer-bar:nth-child(3) { animation: headerEqPulse3 2.3s infinite ease-in-out; animation-delay: 0.1s; }
-        .header-equalizer-bar:nth-child(4) { animation: headerEqPulse4 2.0s infinite ease-in-out; animation-delay: 0.3s; }
-        .header-equalizer-bar:nth-child(5) { animation: headerEqPulse1 2.2s infinite ease-in-out; animation-delay: 0.25s; }
-        .header-equalizer-bar:nth-child(6) { animation: headerEqPulse2 1.7s infinite ease-in-out; animation-delay: 0.35s; }
-        .header-equalizer-bar:nth-child(7) { animation: headerEqPulse3 2.4s infinite ease-in-out; animation-delay: 0.05s; }
-        .header-equalizer-bar:nth-child(8) { animation: headerEqPulse4 2.1s infinite ease-in-out; animation-delay: 0.4s; }
-        
-        @keyframes equalizerFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* ===== NAVIGATION ICONS WITH GRADIENT FADE EFFECT ===== */
-        .nav-icons {
-            display: flex;
-            gap: var(--space-lg);
-            align-items: center;
-        }
-
-        .nav-icon-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-xs);
-        }
-
-        .nav-icon {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.3rem;
-            text-decoration: none;
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .nav-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #ff9500 0%, #ff6b35 50%, #ff4500 100%);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-icon:hover::before {
-            opacity: 1;
-        }
-
-        .nav-icon:hover {
-            color: var(--black);
-            transform: translateY(-5px);
-            border-color: transparent;
-            box-shadow: 0 8px 25px rgba(255, 149, 0, 0.4);
-        }
-
-        .nav-label {
-            position: absolute;
-            bottom: -35px;
-            font-size: 0.85rem;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: var(--transition);
-            white-space: nowrap;
-            font-weight: 700;
-            color: #ff9500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(0, 0, 0, 0.9);
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-sm);
-            pointer-events: none;
-            z-index: 1002;
-            border: 1px solid rgba(255, 149, 0, 0.3);
-        }
-
-        .nav-icon-container:hover .nav-label {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Optional: Add a subtle pulse animation to the gradient on hover */
-        @keyframes gradientPulse {
-            0%, 100% { opacity: 0.95; }
-            50% { opacity: 1; }
-        }
-
-        .nav-icon:hover::before {
-            animation: gradientPulse 2s infinite;
-        }
-        
-        /* ===== HEADER ===== */
+        /* ===== SIMPLIFIED HEADER ===== */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: var(--space-lg) var(--space-xl);
+            padding: 1rem 2rem;
+            background: var(--light-grey);
+            box-shadow: 0 2px 20px rgba(106, 17, 203, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
-            transition: var(--transition);
         }
         
-        .header.scrolled {
-            background-color: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
-            padding: var(--space-md) var(--space-xl);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .logo-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 70px;
+        .logo {
+            height: 50px;
             width: auto;
-            z-index: 1001;
+        }
+        
+        .nav {
             display: flex;
-            justify-content: center;
+            gap: 2rem;
             align-items: center;
         }
         
-        .logo-center img {
-            height: 100%;
-            width: auto;
-            filter: drop-shadow(var(--shadow-accent));
+        .nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
         }
         
-        /* ===== HERO SECTION WITH BACKGROUND ===== */
+        .nav a:hover {
+            background: var(--purple-light);
+            color: var(--text-light);
+        }
+        
+        .nav-icon {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-purple);
+            cursor: pointer;
+        }
+        
+        /* ===== HERO SECTION ===== */
         .hero {
             min-height: 100vh;
-            position: relative;
+            background: linear-gradient(135deg, var(--primary-purple), var(--purple-medium));
+            color: var(--text-light);
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 120px var(--space-xl) var(--space-xxl);
-        }
-        
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.6;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(42, 15, 84, 0.8), rgba(26, 11, 46, 0.9));
-            z-index: -1;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
         }
         
         .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            text-align: center;
-            padding: var(--space-xl);
-        }
-        
-        .hero-logo-large {
-            height: 200px;
-            width: auto;
-            margin: 0 auto var(--space-xxl);
-            display: block;
-            filter: drop-shadow(var(--shadow-accent));
-            cursor: pointer;
-            transition: transform 0.6s ease;
-            border-radius: 50%;
-            border: 3px solid rgba(0, 255, 0, 0.3);
-            padding: var(--space-md);
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-logo-large:hover {
-            transform: rotateY(180deg) scale(1.05);
-            border-color: var(--accent);
         }
         
         .hero-title {
-            font-size: 4.5rem;
-            font-weight: 900;
-            margin-bottom: var(--space-md);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            line-height: 1;
-            color: var(--text-primary);
-            text-shadow: var(--shadow-accent);
+            letter-spacing: 1px;
         }
         
         .hero-subtitle {
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: var(--space-xxl);
-            color: var(--text-secondary);
-            line-height: 1.4;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
         
-        /* ===== SOCIAL PROOF ===== */
-        .social-proof {
-            margin-top: var(--space-xl);
-        }
-        
-        .live-counter {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            justify-content: center;
-            margin-bottom: var(--space-md);
-        }
-        
-        .pulse-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        .trust-badges {
-            display: flex;
-            gap: var(--space-sm);
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .trust-badges .badge {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            transition: var(--transition);
-        }
-        
-        .trust-badges .badge:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        @keyframes pulse {
-            0%, 100% { 
-                opacity: 1; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 0.7; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* ===== BUTTON SYSTEM FROM CODE 2 ===== */
-        /* Base button styles - All buttons start black */
-        .btn-primary,
-        .btn-tier-1,
-        .btn-tier-2,
-        .btn-tier-3,
-        .btn-tier-4,
-        .btn-audio,
-        .portfolio-tab,
-        .work-link,
-        .addon-card,
-        .guide-step,
-        .pricing-tier,
-        .contact-row,
-        .badge {
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--light-grey);
+            color: var(--primary-purple);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
         }
         
-        /* Default state - Black */
-        .btn-primary,
-        .btn-tier-1,
-        .btn-tier-2,
-        .btn-tier-3,
-        .btn-tier-4 {
-            background-color: var(--black);
-            color: var(--white);
-        }
-        
-        /* Hover state - Green to Orange Gradient */
-        .btn-primary:hover,
-        .btn-tier-1:hover,
-        .btn-tier-2:hover,
-        .btn-tier-3:hover,
-        .btn-tier-4:hover,
-        .btn-audio:hover,
-        .portfolio-tab:hover,
-        .work-link:hover,
-        .addon-card:hover,
-        .guide-step:hover,
-        .pricing-tier:hover,
-        .contact-row:hover,
-        .badge:hover {
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 50%, #ff6b35 100%);
-            color: var(--black);
+        .btn:hover {
+            background: transparent;
+            color: var(--text-light);
+            border-color: var(--text-light);
             transform: translateY(-3px);
-            border-color: transparent;
-            box-shadow: 0 10px 25px rgba(255, 149, 0, 0.4);
         }
         
-        /* Specific button styles */
-        .btn-primary {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1.1rem;
-            border-radius: var(--radius-full);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            min-width: 200px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        .btn-purple {
+            background: var(--primary-purple);
+            color: var(--text-light);
         }
         
-        .btn-audio {
-            background: var(--black);
-            color: var(--text-body);
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            border: 1px solid var(--border-color);
-            font-family: var(--font-primary);
-            font-size: 1rem;
+        .btn-purple:hover {
+            background: var(--purple-light);
+            color: var(--text-light);
         }
         
-        .btn-audio.active {
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 100%);
-            color: var(--black);
-            font-weight: bold;
-            border-color: transparent;
-        }
-        
-        .portfolio-tab {
-            background: var(--black);
-            border: 1px solid var(--border-color);
-            padding: var(--space-lg);
-            cursor: pointer;
-            border-radius: var(--radius-md);
-            flex: 1;
-            min-width: 250px;
-            text-align: left;
-            backdrop-filter: blur(10px);
-        }
-        
-        .portfolio-tab.active {
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 100%);
-            border: 1px solid transparent;
-            transform: translateY(-5px);
-            color: var(--black);
-        }
-        
-        .work-link {
-            display: inline-block;
-            background: var(--black);
-            color: var(--accent);
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 1px solid rgba(0, 255, 0, 0.3);
-        }
-        
-        /* ===== SECTION SYSTEM WITH BACKGROUNDS ===== */
+        /* ===== SECTIONS ===== */
         .section {
-            padding: var(--space-xxl) var(--space-xl);
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        
-        .section-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.4;
-        }
-        
-        .section-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 11, 46, 0.85);
-            z-index: -1;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            position: relative;
-            z-index: 1;
+            padding: var(--space-xl) 2rem;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: var(--space-xxl);
+            margin-bottom: var(--space-lg);
         }
         
         .section-title {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: var(--space-md);
-            text-transform: uppercase;
-            color: var(--text-primary);
-            text-shadow: var(--shadow-accent);
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
         }
         
         .section-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
+            color: var(--grey-dark);
+            font-size: 1.2rem;
         }
         
-        /* ===== ABOUT SECTION WITH BACKGROUND ===== */
-        .about .section-bg {
-            opacity: 0.5;
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
-            align-items: center;
-        }
-        
-        /* AUDIO DEMO */
-        .audio-demo {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-top: var(--space-xl);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-        
-        .audio-demo h3 {
-            text-align: center;
-            margin-bottom: var(--space-lg);
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
-        
-        .audio-toggle {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-sm);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .audio-player {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .audio-player audio {
-            width: 100%;
-            border-radius: var(--radius-md);
-            margin-bottom: var(--space-sm);
-        }
-        
-        /* ===== SERVICES SECTION WITH BACKGROUND ===== */
-        .services .section-bg {
-            opacity: 0.5;
-        }
-        
-        /* Service Selection Guide */
-        .service-guide {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-            margin-bottom: var(--space-xxl);
-        }
-        
-        .guide-step {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            text-align: center;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        
-        .guide-step:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            color: var(--black);
-            border-radius: 50%;
-            font-weight: 900;
-            font-size: 1.5rem;
-            line-height: 50px;
-            margin-bottom: var(--space-md);
-        }
-        
-        .guide-step h3 {
-            color: var(--text-primary);
-            margin-bottom: var(--space-sm);
-            font-size: 1.3rem;
-        }
-        
-        /* Smart Session Calculator */
-        .session-calculator {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-xxl);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-        
-        .calculator-header {
-            text-align: center;
-            margin-bottom: var(--space-xl);
-        }
-        
-        .calculator-header h3 {
-            color: var(--accent);
-            font-size: 1.8rem;
-            margin-bottom: var(--space-sm);
-        }
-        
-        .calculator-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .control-group {
-            margin-bottom: var(--space-md);
-        }
-        
-        .control-group label {
-            display: block;
-            margin-bottom: var(--space-xs);
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-        
-        .control-group select {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            font-family: var(--font-primary);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .control-group select:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        
-        #calculatorResult {
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid var(--accent);
-            border-radius: var(--radius-md);
-            padding: var(--space-xl);
-            text-align: center;
-            margin-top: var(--space-lg);
-        }
-        
-        .result-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--accent);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .result-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin: var(--space-sm) 0;
-            color: var(--text-primary);
-        }
-        
-        .result-description {
-            color: var(--text-body);
-            margin-bottom: var(--space-md);
-        }
-        
-        /* Pricing Tiers */
-        .pricing-tiers {
+        /* ===== ABOUT SECTION ===== */
+        .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-xl);
-            margin-bottom: var(--space-xxl);
+            gap: var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .pricing-tier {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
+        .about-card {
+            background: white;
+            padding: var(--space-md);
             border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            position: relative;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
-            backdrop-filter: blur(10px);
         }
         
-        .pricing-tier:hover {
-            transform: translateY(-10px);
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(106, 17, 203, 0.1);
         }
         
-        .pricing-tier.popular {
-            border: 2px solid var(--accent);
-            transform: scale(1.02);
+        .about-card h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
         
-        .pricing-tier.popular:hover {
-            transform: translateY(-10px) scale(1.02);
+        /* ===== SERVICES SECTION ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .tier-badge {
-            position: absolute;
-            top: -15px;
-            right: 30px;
-            background: var(--accent);
-            color: var(--black);
-            padding: var(--space-xs) var(--space-lg);
-            border-radius: var(--radius-full);
-            font-weight: 900;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .tier-header {
+        .service-card {
+            background: white;
+            padding: var(--space-md);
+            border-radius: var(--radius-lg);
             text-align: center;
-            margin-bottom: var(--space-xl);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
         
-        .tier-icon {
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(106, 17, 203, 0.15);
+        }
+        
+        .service-icon {
             font-size: 2.5rem;
-            margin-bottom: var(--space-md);
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
         }
         
-        .tier-title {
+        .service-price {
             font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--text-primary);
-            margin-bottom: var(--space-xs);
+            color: var(--primary-purple);
+            font-weight: 700;
+            margin: 1rem 0;
         }
         
-        .tier-price {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: var(--space-xs);
-        }
-        
-        .tier-price span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-        
-        .tier-features {
-            list-style: none;
-            margin-bottom: var(--space-xl);
-        }
-        
-        .tier-features li {
-            padding: var(--space-sm) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-        
-        .tier-features li i {
-            color: var(--accent);
-        }
-        
-        .tier-action {
-            text-align: center;
-        }
-        
-        /* Add-On Services */
-        .addons-section {
-            margin-top: var(--space-xxl);
-        }
-        
-        .addons-grid {
+        /* ===== TEAM SECTION ===== */
+        .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-        }
-        
-        .addon-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            text-align: center;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        
-        .addon-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-        
-        .addon-icon {
-            font-size: 1.8rem;
-            color: var(--accent);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .addon-card h4 {
-            color: var(--text-primary);
-            margin-bottom: var(--space-xs);
-            font-size: 1.2rem;
-        }
-        
-        .addon-price {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-top: var(--space-sm);
-        }
-        
-        /* Mix & Master Notice */
-        .mix-master-notice {
-            background: rgba(0, 255, 0, 0.15);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            text-align: center;
-            margin-bottom: var(--space-xxl);
-            border-left: 6px solid var(--accent);
-            backdrop-filter: blur(10px);
-        }
-        
-        .mix-master-notice h3 {
-            color: var(--accent);
-            margin-bottom: var(--space-sm);
-            font-size: 1.5rem;
-        }
-        
-        .coming-soon-badge {
-            background: var(--accent);
-            color: var(--black);
-            font-weight: 900;
-            padding: 6px 16px;
-            border-radius: var(--radius-full);
-            display: inline-block;
-            margin-top: var(--space-sm);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Deposit Notice */
-        .deposit-notice {
-            background: rgba(255, 107, 53, 0.2);
-            border: 1px solid #ff6b35;
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            text-align: center;
-            margin-top: var(--space-xxl);
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            border-left: 6px solid #ff6b35;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* ===== PORTFOLIO SECTION WITH BACKGROUND ===== */
-        .portfolio .section-bg {
-            opacity: 0.5;
-        }
-        
-        .portfolio-tabs {
-            display: flex;
             gap: var(--space-md);
-            margin-bottom: var(--space-xl);
-            flex-wrap: wrap;
-            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .producer-header {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-        }
-        
-        .producer-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: var(--black);
-            flex-shrink: 0;
-        }
-        
-        .dsoul-avatar {
-            background: linear-gradient(135deg, #00ff00 0%, #00cc66 100%);
-        }
-        
-        .jaidee-avatar {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-        }
-        
-        .producer-info h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-        }
-        
-        .producer-role {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        .portfolio-content {
-            display: none;
-        }
-        
-        .portfolio-content.active {
-            display: block;
-            animation: fadeInUp 0.5s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* CLEAR PORTFOLIO STRUCTURE */
-        .portfolio-header {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-xl);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border: 1px solid var(--border-color);
-            gap: var(--space-xl);
-            backdrop-filter: blur(10px);
-        }
-        
-        .producer-bio h3 {
-            color: var(--accent);
-            margin-bottom: var(--space-sm);
-            font-size: 1.8rem;
-        }
-        
-        .producer-bio p {
-            color: var(--text-body);
-            max-width: 600px;
-            line-height: 1.6;
-            margin-bottom: var(--space-md);
-        }
-        
-        .producer-contact p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: var(--space-xs);
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-        }
-        
-        .producer-contact i {
-            color: var(--accent);
-            width: 20px;
-        }
-        
-        .producer-stats {
-            display: flex;
-            gap: var(--space-xl);
-            flex-shrink: 0;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--accent);
-            line-height: 1;
-        }
-        
-        .stat-label {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: var(--space-xs);
-        }
-        
-        /* Clear Two-Column Layout for Work Examples vs Qualities */
-        .portfolio-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
-            margin-bottom: var(--space-xxl);
-        }
-        
-        @media (max-width: 992px) {
-            .portfolio-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .work-examples, .producer-qualities {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-        
-        .section-subtitle-small {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: var(--space-lg);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-        
-        .work-examples-grid {
-            display: grid;
-            gap: var(--space-lg);
-        }
-        
-        .work-example {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-        
-        .work-example:hover {
-            border-color: var(--accent);
-            transform: translateX(5px);
-        }
-        
-        .work-example h4 {
-            color: var(--text-primary);
-            margin-bottom: var(--space-sm);
-            font-size: 1.2rem;
-        }
-        
-        .work-example p {
-            color: var(--text-body);
-            margin-bottom: var(--space-md);
-            line-height: 1.6;
-        }
-        
-        .qualities-grid {
-            display: grid;
-            gap: var(--space-lg);
-        }
-        
-        .quality-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: var(--radius-md);
-            padding: var(--space-lg);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-        
-        .quality-card:hover {
-            border-color: var(--accent);
-            transform: translateX(5px);
-        }
-        
-        .quality-icon {
-            font-size: 1.8rem;
-            color: var(--accent);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .quality-card h4 {
-            color: var(--text-primary);
-            margin-bottom: var(--space-sm);
-            font-size: 1.2rem;
-        }
-        
-        .quality-card p {
-            color: var(--text-body);
-            line-height: 1.6;
-        }
-        
-        /* ===== GALLERY SECTION WITH BACKGROUND ===== */
-        .gallery .section-bg {
-            opacity: 0.5;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: var(--space-md);
-            margin-top: var(--space-xl);
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            background: var(--dark-gray);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.7s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        /* ===== CONTACT SECTION WITH BACKGROUND ===== */
-        .contact .section-bg {
-            opacity: 0.5;
-        }
-        
-        /* Contact Table */
-        .contact-table {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
-            margin-top: var(--space-xl);
-        }
-        
-        .contact-column {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        
-        .contact-column:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-        
-        .contact-column h3 {
-            font-size: 2rem;
-            margin-bottom: var(--space-xl);
-            color: var(--text-primary);
-        }
-        
-        .contact-methods {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-md);
-        }
-        
-        .contact-row {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: var(--space-md);
-            align-items: center;
+        .team-card {
+            background: white;
             padding: var(--space-md);
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
         
-        .contact-row:hover {
-            background: rgba(255, 255, 255, 0.07);
-            transform: translateX(5px);
-            border-color: var(--accent);
-        }
-        
-        .contact-row a {
-            text-decoration: none;
-            color: inherit;
-            display: contents;
-        }
-        
-        .method-icon {
-            font-size: 1.4rem;
-            width: 50px;
-            height: 50px;
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--purple-light);
             border-radius: 50%;
-            background: rgba(77, 138, 240, 0.2);
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6ba3ff;
-            flex-shrink: 0;
-            border: 1px solid rgba(77, 138, 240, 0.3);
-        }
-        
-        .method-text {
-            flex-grow: 1;
-        }
-        
-        .method-text strong {
-            display: block;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-        }
-        
-        .method-text p {
-            color: var(--text-body);
-            font-size: 0.9rem;
-            margin-bottom: 4px;
-        }
-        
-        /* Contact Form */
-        .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: var(--space-xl);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        
-        .contact-form:hover {
-            border-color: var(--accent);
-        }
-        
-        .contact-form h3 {
+            color: white;
             font-size: 2rem;
-            margin-bottom: var(--space-xl);
-            color: var(--text-primary);
+            font-weight: bold;
+        }
+        
+        /* ===== CONTACT SECTION ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: var(--space-md);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
         
         .form-group {
-            margin-bottom: var(--space-lg);
+            margin-bottom: 1.5rem;
         }
         
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-lg);
-        }
-        
-        label {
+        .form-group label {
             display: block;
-            margin-bottom: var(--space-xs);
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--grey-dark);
         }
         
-        input, textarea, select {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
+            padding: 0.8rem;
+            border: 1px solid var(--grey-medium);
+            border-radius: var(--radius-sm);
             font-family: var(--font-primary);
             font-size: 1rem;
             transition: var(--transition);
         }
         
-        input:focus, textarea:focus, select:focus {
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
         }
         
-        textarea {
-            min-height: 150px;
-            resize: vertical;
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
         
-        /* Form Submission Note */
-        .form-note {
-            margin-top: var(--space-lg);
-            padding: var(--space-lg);
-            background: rgba(0, 255, 0, 0.1);
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            font-size: 0.9rem;
-            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--purple-light);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
         
         /* ===== FOOTER ===== */
         .footer {
-            background-color: rgba(0, 0, 0, 0.95);
-            padding: var(--space-xl) var(--space-xl) var(--space-lg);
-            border-top: 1px solid var(--border-color);
+            background: var(--primary-purple);
+            color: var(--text-light);
+            padding: var(--space-lg) 2rem;
+            text-align: center;
         }
         
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-xl);
-            margin-bottom: var(--space-xl);
-        }
-        
-        .footer-column {
-            display: flex;
-            flex-direction: column;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
         }
         
         .footer-logo {
-            height: auto;
-            width: 120px;
-            margin-bottom: var(--space-lg);
+            height: 60px;
+            width: auto;
+            margin-bottom: 1rem;
         }
         
-        .footer-bottom {
-            text-align: center;
-            padding-top: var(--space-xl);
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 992px) {
-            .hero-title { font-size: 3.5rem; }
-            .section-title { font-size: 2.5rem; }
-            .hero-logo-large { height: 160px; }
-            .pricing-tiers { grid-template-columns: 1fr; }
-            .about-content { grid-template-columns: 1fr; }
-            .pricing-tier.popular { transform: scale(1); }
-            .pricing-tier.popular:hover { transform: translateY(-10px); }
-            .contact-table { grid-template-columns: 1fr; }
-            .nav-icons { gap: var(--space-md); }
-            .nav-icon { width: 45px; height: 45px; font-size: 1.1rem; }
-            .nav-label { font-size: 0.75rem; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
-            .portfolio-layout { grid-template-columns: 1fr; }
-            .portfolio-header { flex-direction: column; gap: var(--space-lg); }
-            .producer-stats { width: 100%; justify-content: space-around; }
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
         }
         
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .header { padding: var(--space-md) var(--space-lg); }
-            .logo-center { height: 50px; }
-            .hero { padding: 100px var(--space-lg) var(--space-xl); }
-            .hero-title { font-size: 2.8rem; }
-            .hero-subtitle { font-size: 1.4rem; }
-            .hero-logo-large { height: 140px; margin-bottom: var(--space-xl); }
-            .section { padding: var(--space-xl) var(--space-lg); min-height: auto; }
-            .section-title { font-size: 2.2rem; }
-            .tier-price { font-size: 2.5rem; }
-            .btn-primary { padding: 1rem 2rem; font-size: 1rem; min-width: 180px; }
-            .calculator-controls { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .nav-label { display: none; }
-            .portfolio-tab { min-width: 200px; }
+            .nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--light-grey);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav.active {
+                display: flex;
+            }
+            
+            .nav-icon {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: var(--space-lg) 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
         }
         
         @media (max-width: 480px) {
-            .hero-title { font-size: 2.2rem; }
-            .section-title { font-size: 1.8rem; }
-            .btn-primary { padding: 0.9rem 1.5rem; min-width: 160px; }
-            .tier-price { font-size: 2rem; }
-            .section { padding: var(--space-xl) var(--space-md); }
-            .header { padding: var(--space-sm); }
-            .contact-form { padding: var(--space-lg); }
-            .hero-logo-large { height: 120px; }
+            .header {
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header" id="header">
-        <div class="nav-icons">
-            <div class="nav-icon-container">
-                <a href="#home" class="nav-icon" aria-label="Home">
-                    <i class="fas fa-home"></i>
-                </a>
-                <span class="nav-label">Home</span>
-            </div>
-            
-            <div class="nav-icon-container">
-                <a href="#about" class="nav-icon" aria-label="About">
-                    <i class="fas fa-info-circle"></i>
-                </a>
-                <span class="nav-label">About</span>
-            </div>
-            
-            <div class="nav-icon-container">
-                <a href="#portfolio" class="nav-icon" aria-label="Portfolio">
-                    <i class="fas fa-star"></i>
-                </a>
-                <span class="nav-label">Portfolio</span>
-            </div>
-        </div>
-        
-        <div class="logo-center">
-            <img src="images/logo.png" alt="Billups Studio" class="header-logo">
-        </div>
-        
-        <div class="nav-icons">
-            <div class="nav-icon-container">
-                <a href="#services" class="nav-icon" aria-label="Services">
-                    <i class="fas fa-headphones"></i>
-                </a>
-                <span class="nav-label">Services</span>
-            </div>
-            
-            <div class="nav-icon-container">
-                <a href="#gallery" class="nav-icon" aria-label="Gallery">
-                    <i class="fas fa-images"></i>
-                </a>
-                <span class="nav-label">Gallery</span>
-            </div>
-            
-            <div class="nav-icon-container">
-                <a href="#contact" class="nav-icon" aria-label="Contact">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <span class="nav-label">Contact</span>
-            </div>
-        </div>
-        
-        <!-- Header Equalizer -->
-        <div class="header-equalizer" id="headerEqualizer">
-            <div class="header-equalizer-bars">
-                <!-- Bars will be added by JavaScript -->
-            </div>
-        </div>
+    <header class="header">
+        <img src="images/logo.png" alt="Arcains Booking" class="logo">
+        <button class="nav-icon" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="nav" id="mainNav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#team">Team</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="btn btn-purple">Book Now</a>
+        </nav>
     </header>
 
-    <!-- Hero Section WITH BACKGROUND -->
-    <section class="hero section" id="home">
-        <img src="images/hero-bg.jpg" alt="Studio Background" class="hero-bg">
-        <div class="hero-overlay"></div>
-        <div class="container">
-            <div class="hero-content">
-                <img src="images/logo.png" alt="Billups Studio" class="hero-logo-large" id="mainLogo">
-                
-                <h1 class="hero-title">BILLUPS STUDIO</h1>
-                
-                <p class="hero-subtitle">
-                    Pick up the mic,<br>
-                    elevate — create.
-                </p>
-                
-                <a href="#contact" class="btn-primary">BOOK YOUR SESSION</a>
-                
-                <!-- SOCIAL PROOF -->
-                <div class="social-proof">
-                    <div class="live-counter">
-                        <div class="pulse-dot"></div>
-                        <span><span id="sessionCount">12</span> sessions booked this month</span>
-                    </div>
-                    
-                    <div class="trust-badges">
-                        <div class="badge">⭐ 4.9/5 Rating</div>
-                        <div class="badge">🎧 Free Consult</div>
-                        <div class="badge">⚡ 24h Response</div>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">ARCAINS BOOKING</h1>
+            <p class="hero-subtitle">Professional Recording Studio Services</p>
+            <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Elevate your sound with expert engineering, mixing, and mastering in our professional studio environment.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#services" class="btn">View Services</a>
+                <a href="#contact" class="btn btn-purple">Book Session</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-header">
+            <h2 class="section-title">Our Studio</h2>
+            <p class="section-subtitle">Professional environment for creative excellence</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>State-of-the-Art Equipment</h3>
+                <p>Industry-standard recording gear, pristine acoustic treatment, and professional monitoring for radio-ready sound quality.</p>
+            </div>
+            <div class="about-card">
+                <h3>Creative Atmosphere</h3>
+                <p>Inspiring studio environment designed to bring out your best performance with comfort and focus.</p>
+            </div>
+            <div class="about-card">
+                <h3>Expert Engineering</h3>
+                <p>Experienced engineers who understand artists and know how to capture and enhance your unique sound.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services" style="background: var(--grey-medium);">
+        <div class="section-header">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Professional packages for every project</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎤</div>
+                <h3>Quick Session</h3>
+                <p>3 hours studio time</p>
+                <p>Perfect for singles and quick recordings</p>
+                <div class="service-price">£80</div>
+                <a href="#contact" class="btn btn-purple">Book Now</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Half Day</h3>
+                <p>5 hours studio time</p>
+                <p>Ideal for EPs (3-4 songs)</p>
+                <div class="service-price">£140</div>
+                <a href="#contact" class="btn btn-purple">Book Now</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔥</div>
+                <h3>Full Day</h3>
+                <p>10 hours studio time</p>
+                <p>Complete project focus</p>
+                <div class="service-price">£240</div>
+                <a href="#contact" class="btn btn-purple">Book Now</a>
+            </div>
+        </div>
+        
+        <!-- Add-Ons -->
+        <div style="max-width: 800px; margin: 3rem auto 0;">
+            <h3 style="text-align: center; color: var(--primary-purple); margin-bottom: 2rem;">Add-On Services</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div style="background: white; padding: 1rem; border-radius: var(--radius-md); text-align: center;">
+                    <h4 style="color: var(--primary-purple);">Mixing</h4>
+                    <p>£40/song</p>
+                </div>
+                <div style="background: white; padding: 1rem; border-radius: var(--radius-md); text-align: center;">
+                    <h4 style="color: var(--primary-purple);">Mastering</h4>
+                    <p>£25/song</p>
+                </div>
+                <div style="background: white; padding: 1rem; border-radius: var(--radius-md); text-align: center;">
+                    <h4 style="color: var(--primary-purple);">Vocal Tuning</h4>
+                    <p>£15/song</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section WITH BACKGROUND -->
-    <section class="about section" id="about">
-        <img src="images/about-studio.jpg" alt="About Studio Background" class="section-bg">
-        <div class="section-overlay"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Real Studio. Real Energy.</h2>
-                <p class="section-subtitle">Where culture meets clean sound</p>
+    <!-- Team Section -->
+    <section class="section" id="team">
+        <div class="section-header">
+            <h2 class="section-title">Our Team</h2>
+            <p class="section-subtitle">Meet the professionals behind your sound</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">F</div>
+                <h3>Fabian</h3>
+                <p style="color: var(--primary-purple); font-weight: 600;">Studio Owner</p>
+                <p>Business inquiries & partnerships</p>
             </div>
-            
-            <div class="about-content">
-                <div>
-                    <h3 style="font-size: 2.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
-                        Our Studio
-                    </h3>
-                    
-                    <p style="font-size: 1.1rem; margin-bottom: var(--space-lg); line-height: 1.7;">
-                        Based in the heart of Luton, Billups Studio is where culture meets clean sound. 
-                        From quick bars to full tape lock-ins, this is the studio where your best work comes alive.
-                    </p>
-                    
-                    <p style="font-size: 1.1rem; margin-bottom: var(--space-lg); line-height: 1.7;">
-                        Our Luton-based recording studio delivers expert engineering, mixing, and mastering services 
-                        for emerging and established artists. With industry-standard equipment and a dedicated team 
-                        of producers, we help you achieve professional-grade sound every time.
-                    </p>
-                    
-                    <div style="background: rgba(0, 255, 0, 0.1); padding: var(--space-lg); border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: var(--space-xl); backdrop-filter: blur(10px);">
-                        <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent); line-height: 1.5;">
-                            No gimmicks. Just professional setup, local roots,
-                            and that unmatched vibe.
-                        </p>
-                    </div>
-                    
-                    <!-- AUDIO DEMO -->
-                    <div class="audio-demo">
-                        <h3>🎧 Hear The Billups Difference</h3>
-                        
-                        <div class="audio-toggle">
-                            <button class="btn-audio" data-track="raw">Raw Recording</button>
-                            <button class="btn-audio active" data-track="mixed">Mixed & Mastered</button>
-                        </div>
-                        
-                        <div class="audio-player">
-                            <audio id="demoAudio" controls>
-                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
-                                Your browser does not support audio element.
-                            </audio>
-                            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: var(--space-sm);">
-                                <i class="fas fa-info-circle"></i> Same vocal take, different processing
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">
-                        Studio Features
-                    </h4>
-                    
-                    <div style="background: rgba(255, 255, 255, 0.05); padding: var(--space-xl); border-radius: var(--radius-lg); border: 1px solid var(--border-color); backdrop-filter: blur(10px);">
-                        <div style="display: grid; gap: var(--space-lg);">
-                            <div>
-                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
-                                    <div style="font-size: 2rem;">🎚️</div>
-                                    <strong style="font-size: 1.3rem;">Pro Sound</strong>
-                                </div>
-                                <p style="font-size: 1rem; color: var(--text-body); line-height: 1.6;">
-                                    Industry-standard equipment with pristine acoustic treatment for radio-ready recordings.
-                                </p>
-                            </div>
-                            
-                            <div>
-                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
-                                    <div style="font-size: 2rem;">🧹</div>
-                                    <strong style="font-size: 1.3rem;">Clean Space</strong>
-                                </div>
-                                <p style="font-size: 1rem; color: var(--text-body); line-height: 1.6;">
-                                    Immaculate, inspiring environment designed for creativity and focus without distractions.
-                                </p>
-                            </div>
-                            
-                            <div>
-                                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm);">
-                                    <div style="font-size: 2rem;">👥</div>
-                                    <strong style="font-size: 1.3rem;">Good People</strong>
-                                </div>
-                                <p style="font-size: 1rem; color: var(--text-body); line-height: 1.6;">
-                                    Experienced engineers who understand artists and know how to bring out your best performance.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Our Team -->
-                    <div style="margin-top: var(--space-xl);">
-                        <h4 style="font-size: 1.5rem; margin-bottom: var(--space-lg); color: var(--text-primary);">Our Team</h4>
-                        <div style="display: grid; gap: var(--space-md);">
-                            <div style="background: rgba(255, 255, 255, 0.03); padding: var(--space-md); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                                <strong style="color: var(--text-primary); font-size: 1.1rem;">Fabian</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; margin-left: var(--space-sm);">Studio Owner</span>
-                                <p style="font-size: 0.95rem; margin-top: 6px; color: var(--text-body);">Business inquiries & partnerships</p>
-                            </div>
-                            <div style="background: rgba(255, 255, 255, 0.03); padding: var(--space-md); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                                <strong style="color: var(--text-primary); font-size: 1.1rem;">Jaidee</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; margin-left: var(--space-sm);">Studio Manager</span>
-                                <p style="font-size: 0.95rem; margin-top: 6px; color: var(--text-body);">Bookings • Scheduling • Artist Development</p>
-                            </div>
-                            <div style="background: rgba(255, 255, 255, 0.03); padding: var(--space-md); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                                <strong style="color: var(--text-primary); font-size: 1.1rem;">Dsoul</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.8rem; padding: 3px 10px; border-radius: 10px; margin-left: var(--space-sm);">Head Engineer</span>
-                                <p style="font-size: 0.95rem; margin-top: 6px; color: var(--text-body);">Mixing • Mastering • Production</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="team-card">
+                <div class="team-avatar">J</div>
+                <h3>Jaidee</h3>
+                <p style="color: var(--primary-purple); font-weight: 600;">Studio Manager</p>
+                <p>Bookings • Scheduling • Artist Development</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">D</div>
+                <h3>Dsoul</h3>
+                <p style="color: var(--primary-purple); font-weight: 600;">Head Engineer</p>
+                <p>Mixing • Mastering • Production</p>
             </div>
         </div>
     </section>
 
-    <!-- Services Section WITH BACKGROUND -->
-    <section class="services section" id="services">
-        <img src="images/studio-bg.jpg" alt="Services Background" class="section-bg">
-        <div class="section-overlay"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Services</h2>
-                <p class="section-subtitle">Professional recording, mixing & mastering</p>
-            </div>
-            
-            <!-- Service Selection Guide -->
-            <div class="service-guide">
-                <div class="guide-step">
-                    <div class="step-number">1</div>
-                    <h3>Choose Your Goal</h3>
-                    <p>Single, EP, or full project? We'll help you pick the right session.</p>
-                </div>
-                
-                <div class="guide-step">
-                    <div class="step-number">2</div>
-                    <h3>Select Package</h3>
-                    <p>From quick sessions to full production packages.</p>
-                </div>
-                
-                <div class="guide-step">
-                    <div class="step-number">3</div>
-                    <h3>Book & Create</h3>
-                    <p>Secure your session and start creating professional music.</p>
-                </div>
-            </div>
-            
-            <!-- Smart Session Calculator -->
-            <div class="session-calculator">
-                <div class="calculator-header">
-                    <h3><i class="fas fa-calculator"></i> Smart Session Calculator</h3>
-                    <p>Find the perfect session for your needs</p>
-                </div>
-                
-                <div class="calculator-controls">
-                    <div class="control-group">
-                        <label>What's your main goal?</label>
-                        <select id="projectGoal">
-                            <option value="single">Record 1-2 singles</option>
-                            <option value="ep" selected>Record an EP (3-4 songs)</option>
-                            <option value="project">Full project (5+ songs)</option>
-                            <option value="mixing">Just mixing/mastering</option>
+    <!-- Contact Section -->
+    <section class="section" id="contact" style="background: var(--light-grey);">
+        <div class="section-header">
+            <h2 class="section-title">Book Your Session</h2>
+            <p class="section-subtitle">Get in touch with our team</p>
+        </div>
+        
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3 style="color: var(--primary-purple); margin-bottom: 2rem;">Send Booking Request</h3>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service">
+                            <option value="">Select service</option>
+                            <option value="quick">Quick Session (£80)</option>
+                            <option value="half">Half Day (£140)</option>
+                            <option value="full">Full Day (£240)</option>
+                            <option value="custom">Custom Package</option>
                         </select>
                     </div>
-                    
-                    <div class="control-group">
-                        <label>Number of artists</label>
-                        <select id="artistCount">
-                            <option value="solo" selected>Solo artist</option>
-                            <option value="duo">Duo/Collaboration</option>
-                            <option value="group">Group session</option>
-                        </select>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" rows="4" placeholder="Tell us about your project..."></textarea>
                     </div>
-                </div>
-                
-                <div id="calculatorResult">
-                    <div class="result-title">RECOMMENDED: EP Package</div>
-                    <div class="result-price">£140</div>
-                    <div class="result-description">Half Day Session - Perfect for recording 3-4 songs</div>
-                    <p><i class="fas fa-check"></i> Includes: Recording, mixing, basic mastering</p>
-                    <p><i class="fas fa-clock"></i> Duration: 5 hours studio time</p>
-                    <a href="#contact" class="btn-primary btn-tier-2" style="margin-top: var(--space-md);">Book This Package</a>
-                </div>
+                    <button type="submit" class="btn btn-purple" style="width: 100%;">Send Request</button>
+                </form>
             </div>
             
-            <!-- Mix & Master Coming Soon Notice -->
-            <div class="mix-master-notice">
-                <h3>🎛️ Mix & Master Section Coming Soon</h3>
-                <p>We're currently building out our dedicated mixing & mastering service. All final mixes and masters are handled by Dsoul.</p>
-                <div class="coming-soon-badge">Launching Soon</div>
-            </div>
-            
-            <!-- Pricing Tiers -->
-            <div class="pricing-tiers">
-                <!-- Tier 1: Quick Session -->
-                <div class="pricing-tier">
-                    <div class="tier-header">
-                        <div class="tier-icon">⚡</div>
-                        <h3 class="tier-title">Quick Session</h3>
-                        <div class="tier-price">£80<span>/song</span></div>
-                        <p>3 hours studio time</p>
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
                     </div>
-                    
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 3 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Professional engineer</li>
-                        <li><i class="fas fa-check"></i> Basic mixing included</li>
-                        <li><i class="fas fa-check"></i> Industry equipment</li>
-                        <li><i class="fas fa-check"></i> Perfect for singles</li>
-                    </ul>
-                    
-                    <div class="tier-action">
-                        <a href="#contact" class="btn-primary btn-tier-1">Book Now</a>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>07710 593113</p>
                     </div>
                 </div>
-                
-                <!-- Tier 2: Half Day (Most Popular) -->
-                <div class="pricing-tier popular">
-                    <div class="tier-badge">MOST POPULAR</div>
-                    <div class="tier-header">
-                        <div class="tier-icon">🎯</div>
-                        <h3 class="tier-title">Half Day</h3>
-                        <div class="tier-price">£140</div>
-                        <p>Best for EPs</p>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
                     </div>
-                    
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 5 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Recording + mixing</li>
-                        <li><i class="fas fa-check"></i> Basic mastering</li>
-                        <li><i class="fas fa-check"></i> Up to 4 songs</li>
-                        <li><i class="fas fa-check"></i> Professional engineer</li>
-                    </ul>
-                    
-                    <div class="tier-action">
-                        <a href="#contact" class="btn-primary btn-tier-2">Book Now</a>
+                    <div>
+                        <h4>Email</h4>
+                        <p>bookings@arcains.com</p>
                     </div>
                 </div>
-                
-                <!-- Tier 3: Full Day -->
-                <div class="pricing-tier">
-                    <div class="tier-header">
-                        <div class="tier-icon">🔥</div>
-                        <h3 class="tier-title">Full Day</h3>
-                        <div class="tier-price">£240</div>
-                        <p>Complete projects</p>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
                     </div>
-                    
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 10 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Complete production</li>
-                        <li><i class="fas fa-check"></i> Professional mastering</li>
-                        <li><i class="fas fa-check"></i> Up to 8 songs</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                    </ul>
-                    
-                    <div class="tier-action">
-                        <a href="#contact" class="btn-primary btn-tier-3">Book Now</a>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <p>07710 593113</p>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Add-On Services -->
-            <div class="addons-section">
-                <h3 style="text-align: center; color: var(--accent); margin-bottom: var(--space-xl); font-size: 1.8rem;">
-                    <i class="fas fa-plus-circle"></i> Add-On Services
-                </h3>
-                
-                <div class="addons-grid">
-                    <div class="addon-card">
-                        <div class="addon-icon"><i class="fas fa-sliders-h"></i></div>
-                        <h4>Premium Mixing</h4>
-                        <p>Professional studio mix</p>
-                        <div class="addon-price">£40/song</div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    
-                    <div class="addon-card">
-                        <div class="addon-icon"><i class="fas fa-volume-up"></i></div>
-                        <h4>Mastering</h4>
-                        <p>Radio-ready loudness</p>
-                        <div class="addon-price">£25/song</div>
-                    </div>
-                    
-                    <div class="addon-card">
-                        <div class="addon-icon"><i class="fas fa-microphone-alt"></i></div>
-                        <h4>Vocal Tuning</h4>
-                        <p>Professional pitch correction</p>
-                        <div class="addon-price">£15/song</div>
-                    </div>
-                    
-                    <div class="addon-card">
-                        <div class="addon-icon"><i class="fas fa-drum"></i></div>
-                        <h4>Beat Production</h4>
-                        <p>Custom instrumentals</p>
-                        <div class="addon-price">From £50</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Deposit Notice -->
-            <div class="deposit-notice" role="note">
-                ⚠️ £30 deposit required to confirm all sessions. All sessions include professional engineering support.
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section WITH BACKGROUND -->
-    <section class="portfolio section" id="portfolio">
-        <img src="images/portfolio-bg.jpg" alt="Portfolio Background" class="section-bg">
-        <div class="section-overlay"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Producers' Work</h2>
-                <p class="section-subtitle">Clear distinction between our work examples and what we bring to your project</p>
-            </div>
-            
-            <div class="portfolio-tabs">
-                <button class="portfolio-tab active" data-tab="dsoul">
-                    <div class="producer-header">
-                        <div class="producer-avatar dsoul-avatar">DS</div>
-                        <div class="producer-info">
-                            <h3>Dsoul</h3>
-                            <p class="producer-role">Head Engineer</p>
-                        </div>
-                    </div>
-                </button>
-                
-                <button class="portfolio-tab" data-tab="jaidee">
-                    <div class="producer-header">
-                        <div class="producer-avatar jaidee-avatar">JJ</div>
-                        <div class="producer-info">
-                            <h3>Jaidee</h3>
-                            <p class="producer-role">Studio Manager & Producer</p>
-                        </div>
-                    </div>
-                </button>
-            </div>
-            
-            <!-- Dsoul's Portfolio -->
-            <div class="portfolio-content active" id="dsoul-portfolio">
-                <div class="portfolio-header">
-                    <div class="producer-bio">
-                        <h3>Dsoul - Head Engineer</h3>
-                        <p>Specializing in clean mixes, vocal production, and mastering. Known for bringing out the best in every artist with technical precision and creative flair.</p>
-                        <div class="producer-contact">
-                            <p><i class="fas fa-envelope"></i> dsoulfiles@gmail.com</p>
-                            <p><i class="fas fa-sliders-h"></i> Specializes in: Mixing, Mastering, Vocal Production</p>
-                        </div>
-                    </div>
-                    <div class="producer-stats">
-                        <div class="stat">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Tracks Mixed</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">8</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-layout">
-                    <!-- Left Column: Work Examples -->
-                    <div class="work-examples">
-                        <h3 class="section-subtitle-small">
-                            <i class="fas fa-music"></i> Work Examples
-                        </h3>
-                        <p style="color: var(--text-body); margin-bottom: var(--space-lg);">Check out examples of Dsoul's mixing and production work:</p>
-                        
-                        <div class="work-examples-grid">
-                            <div class="work-example">
-                                <h4>Latest Release from Dsoul</h4>
-                                <p>Check out Dsoul's latest production and mixing work on his newest release.</p>
-                                <a href="https://youtu.be/jt1RtKUhJgA?si=o3VmWGrxohQRfM4J" target="_blank" class="work-link">
-                                    <i class="fab fa-youtube"></i> Listen Now
-                                </a>
-                            </div>
-                            
-                            <div class="work-example">
-                                <h4>Instagram Portfolio</h4>
-                                <p>Regular updates showcasing mixing techniques, beat previews, and behind-the-scenes studio content.</p>
-                                <a href="https://www.instagram.com/dsoulbeats/?hl=en" target="_blank" class="work-link">
-                                    <i class="fab fa-instagram"></i> View Instagram
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Column: Qualities -->
-                    <div class="producer-qualities">
-                        <h3 class="section-subtitle-small">
-                            <i class="fas fa-star"></i> What Dsoul Brings to Your Project
-                        </h3>
-                        <p style="color: var(--text-body); margin-bottom: var(--space-lg);">The expertise and qualities Dsoul brings to every session:</p>
-                        
-                        <div class="qualities-grid">
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-sliders-h"></i>
-                                </div>
-                                <h4>Precision Mixing</h4>
-                                <p>Technical expertise in balancing frequencies, creating space, and achieving radio-ready clarity in every mix.</p>
-                            </div>
-                            
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-microphone-alt"></i>
-                                </div>
-                                <h4>Vocal Expertise</h4>
-                                <p>Specializes in vocal processing, compression, and effects to make vocals sit perfectly in the mix.</p>
-                            </div>
-                            
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-volume-up"></i>
-                                </div>
-                                <h4>Mastering Excellence</h4>
-                                <p>Final polish with proper loudness, stereo enhancement, and ensuring your tracks sound great on all systems.</p>
-                            </div>
-                            
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-headphones"></i>
-                                </div>
-                                <h4>Modern Production</h4>
-                                <p>Up-to-date with current music trends and production techniques across UK drill, hip-hop, and R&B.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Jaidee's Portfolio -->
-            <div class="portfolio-content" id="jaidee-portfolio">
-                <div class="portfolio-header">
-                    <div class="producer-bio">
-                        <h3>Jaidee - Studio Manager & Producer</h3>
-                        <p>With 5 years of industry experience, I bring a comprehensive skill set in studio management, artist development, and creative direction.</p>
-                        <div class="producer-contact">
-                            <p><i class="fas fa-phone"></i> 07878 709110</p>
-                            <p><i class="fas fa-envelope"></i> billupsltd@gmail.com</p>
-                            <p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development</p>
-                        </div>
-                    </div>
-                    <div class="producer-stats">
-                        <div class="stat">
-                            <span class="stat-number">100+</span>
-                            <span class="stat-label">Sessions Managed</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">5</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Artists Worked With</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-layout">
-                    <!-- Left Column: Work Examples -->
-                    <div class="work-examples">
-                        <h3 class="section-subtitle-small">
-                            <i class="fas fa-music"></i> Work Examples
-                        </h3>
-                        <p style="color: var(--text-body); margin-bottom: var(--space-lg);">Explore Jaidee's diverse work across music and podcasting:</p>
-                        
-                        <div class="work-examples-grid">
-                            <div class="work-example">
-                                <h4>Music Releases</h4>
-                                <p>Official Spotify releases showcasing Jaidee's own music and production capabilities across multiple genres.</p>
-                                <a href="https://open.spotify.com/artist/2dhPI432jA3KOZVdSHZfiL?si=yYzfPtf9QwClKHS1Z8As5w" target="_blank" class="work-link">
-                                    <i class="fab fa-spotify"></i> Spotify Artist Profile
-                                </a>
-                            </div>
-                            
-                            <div class="work-example">
-                                <h4>Jaidee Cypher at the Emirates</h4>
-                                <p>Watch Jaidee's explosive performance at the Emirates, showcasing lyrical prowess and stage presence.</p>
-                                <a href="https://youtu.be/2WaVOTgPwOM?si=fCVEZmOpRHoAHbTv" target="_blank" class="work-link">
-                                    <i class="fab fa-youtube"></i> Watch Cypher
-                                </a>
-                            </div>
-                            
-                            <div class="work-example">
-                                <h4>Jaidee on Mode Radio</h4>
-                                <p>Listen to Jaidee's exclusive interview and live performance on Mode Radio, discussing music and upcoming projects.</p>
-                                <a href="https://youtu.be/kLxPi5h33Ls?si=VD__FFTK04tBiD5e" target="_blank" class="work-link">
-                                    <i class="fab fa-youtube"></i> Listen on Mode Radio
-                                </a>
-                            </div>
-                            
-                            <div class="work-example">
-                                <h4>Beyond Boundaries Podcast</h4>
-                                <p>Co-hosting deep music industry discussions, demonstrating industry knowledge and interview skills.</p>
-                                <a href="https://youtu.be/7QXhxzCn2O0?si=2wknh3e65QiPUGg9" target="_blank" class="work-link">
-                                    <i class="fab fa-youtube"></i> Podcast Episode 1
-                                </a>
-                            </div>
-                            
-                            <div class="work-example">
-                                <h4>Worse - Passive X Jaidee</h4>
-                                <p>Latest release featuring Jaidee, showcasing his lyrical ability and flow on this collaborative track.</p>
-                                <a href="https://youtu.be/-2461Nzf2l0?si=tGFQdhdNeJfXcKIj" target="_blank" class="work-link">
-                                    <i class="fab fa-youtube"></i> Listen Now
-                                </a>
-                            </div>
-                            
-                            <div class="work-example">
-                                <h4>Instagram Portfolio</h4>
-                                <p>Regular updates on music, studio life, and behind-the-scenes content.</p>
-                                <a href="https://www.instagram.com/jdhxl/?hl=en" target="_blank" class="work-link">
-                                    <i class="fab fa-instagram"></i> View Instagram
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Column: Qualities -->
-                    <div class="producer-qualities">
-                        <h3 class="section-subtitle-small">
-                            <i class="fas fa-star"></i> What Jaidee Brings to Your Project
-                        </h3>
-                        <p style="color: var(--text-body); margin-bottom: var(--space-lg);">The expertise and qualities Jaidee brings to every session:</p>
-                        
-                        <div class="qualities-grid">
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                                <h4>Session Management</h4>
-                                <p>Ensures smooth workflow, efficient scheduling, and optimal studio time utilization for maximum productivity.</p>
-                            </div>
-                            
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                                <h4>Artist Development</h4>
-                                <p>Guides emerging artists through the complete creative process - from concept to release strategy.</p>
-                            </div>
-                            
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-video"></i>
-                                </div>
-                                <h4>Creative Direction</h4>
-                                <p>Experience in music video production and visual storytelling to complement your audio projects.</p>
-                            </div>
-                            
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <h4>Industry Insights</h4>
-                                <p>Deep understanding of the music industry through podcast discussions and personal experience.</p>
-                            </div>
-                            
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-handshake"></i>
-                                </div>
-                                <h4>Artist Relations</h4>
-                                <p>Creates comfortable studio environments that bring out the best performances from artists.</p>
-                            </div>
-                            
-                            <div class="quality-card">
-                                <div class="quality-icon">
-                                    <i class="fas fa-bullhorn"></i>
-                                </div>
-                                <h4>Release Strategy</h4>
-                                <p>Knowledgeable about effective release planning and promotion strategies for maximum impact.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section WITH BACKGROUND -->
-    <section class="gallery section" id="gallery">
-        <img src="images/studio1.jpg" alt="Gallery Background" class="section-bg">
-        <div class="section-overlay"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Studio Gallery</h2>
-                <p class="section-subtitle">Take a look inside our professional recording space</p>
-            </div>
-            
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery items will be loaded dynamically by JavaScript -->
-                <div style="grid-column: 1 / -1; text-align: center; padding: var(--space-xxl); background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 2px dashed var(--border-color); backdrop-filter: blur(10px);">
-                    <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: var(--space-lg);"></i>
-                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Studio Gallery Loading...</h3>
-                    <p style="color: var(--text-body); max-width: 500px; margin: 0 auto;">Loading images from the images folder...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section WITH BACKGROUND -->
-    <section class="contact section" id="contact">
-        <img src="images/studio2.jpg" alt="Contact Background" class="section-bg">
-        <div class="section-overlay"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Direct Contact with Our Team</p>
-            </div>
-            
-            <div class="contact-table">
-                <div class="contact-column">
-                    <h3>Our Team</h3>
-                    <div class="contact-methods">
-                        <!-- Studio Owner - Fabian -->
-                        <div class="contact-row">
-                            <div class="method-icon">
-                                <i class="fas fa-crown"></i>
-                            </div>
-                            <div class="method-text">
-                                <strong>Fabian</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Studio Owner</span>
-                                <p>For business inquiries & partnerships</p>
-                                <p><small>Contact via studio email</small></p>
-                            </div>
-                        </div>
-                        
-                        <!-- Studio Manager - Jaidee -->
-                        <a href="tel:07878709110" class="contact-row">
-                            <div class="method-icon">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <div class="method-text">
-                                <strong>Jaidee</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Studio Manager</span>
-                                <p>📞 07878 709110</p>
-                                <p>Bookings • Scheduling • Studio queries</p>
-                            </div>
-                        </a>
-                        
-                        <!-- Head Engineer - Dsoul -->
-                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row">
-                            <div class="method-icon">
-                                <i class="fas fa-sliders-h"></i>
-                            </div>
-                            <div class="method-text">
-                                <strong>Dsoul</strong>
-                                <span style="background: rgba(255, 255, 255, 0.1); color: var(--accent); font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px;">Head Engineer</span>
-                                <p>✉️ dsoulfiles@gmail.com</p>
-                                <p>Mixing • Mastering • Production</p>
-                            </div>
-                        </a>
-                        
-                        <!-- Main Studio Contact -->
-                        <a href="tel:07710593113" class="contact-row">
-                            <div class="method-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="method-text">
-                                <strong>Main Studio Line</strong>
-                                <p>📞 07710 593113</p>
-                                <p>General inquiries & quick questions</p>
-                            </div>
-                        </a>
-                        
-                        <!-- WhatsApp -->
-                        <a href="https://wa.me/447710593113" class="contact-row">
-                            <div class="method-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div class="method-text">
-                                <strong>WhatsApp</strong>
-                                <p>📱 07710 593113</p>
-                                <p>Fastest response • Send voice notes</p>
-                            </div>
-                        </a>
-                        
-                        <!-- Studio Email -->
-                        <a href="mailto:billupsltd@gmail.com" class="contact-row">
-                            <div class="method-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="method-text">
-                                <strong>Studio Email</strong>
-                                <p>✉️ billupsltd@gmail.com</p>
-                                <p>General studio inquiries</p>
-                            </div>
-                        </a>
-                        
-                        <!-- Instagram -->
-                        <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="contact-row">
-                            <div class="method-icon">
-                                <i class="fab fa-instagram"></i>
-                            </div>
-                            <div class="method-text">
-                                <strong>Instagram</strong>
-                                <p>@billups_studio</p>
-                                <p>Latest work & updates</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="contact-column">
-                    <div class="contact-form">
-                        <h3>Book Your Session</h3>
-                        <!-- WEB3FORMS INTEGRATION -->
-                        <form action="https://api.web3forms.com/submit" method="POST" id="bookingForm">
-                            <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6">
-                            <input type="hidden" name="subject" value="New Session Booking - Billups Studio">
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="name">Full Name *</label>
-                                    <input type="text" id="name" name="name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email *</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone">Phone Number *</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="session-type">Session Type *</label>
-                                <select id="session-type" name="session-type" required>
-                                    <option value="">Select session</option>
-                                    <option value="quick-session">Quick Session (£80)</option>
-                                    <option value="half-day">Half Day (£140)</option>
-                                    <option value="full-day">Full Day (£240)</option>
-                                    <option value="custom">Custom Session</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Project Details *</label>
-                                <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn-primary" style="width: 100%;">Send Booking Request</button>
-                            
-                            <div class="form-note">
-                                <strong>✉️ Your message will be sent directly to our team</strong><br>
-                                <span>We'll respond within 24 hours</span>
-                            </div>
-                        </form>
+                    <div>
+                        <h4>Studio Hours</h4>
+                        <p>Mon-Sun: 10AM - 10PM</p>
+                        <p>By appointment only</p>
                     </div>
                 </div>
             </div>
@@ -2355,532 +699,69 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo">
-                    <p style="color: var(--text-body); line-height: 1.7; font-size: 0.95rem;">
-                        Professional recording studio in Luton. Expert engineering, mixing & mastering. 
-                        Book your session today and elevate your sound.
-                    </p>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.1rem;">Quick Links</h4>
-                    <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
-                        <a href="#home" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Home
-                        </a>
-                        <a href="#about" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> About
-                        </a>
-                        <a href="#services" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Services
-                        </a>
-                        <a href="#portfolio" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Portfolio
-                        </a>
-                        <a href="#gallery" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Gallery
-                        </a>
-                        <a href="#contact" style="color: var(--text-body); text-decoration: none; font-size: 0.95rem;">
-                            <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: var(--space-xs);"></i> Contact
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: 1.1rem;">Studio Hours</h4>
-                    <p style="color: var(--text-body); margin-bottom: var(--space-xs); font-size: 0.95rem;">
-                        <i class="fas fa-clock" style="color: var(--accent); margin-right: var(--space-xs);"></i>
-                        Mon-Sun: 10AM - 10PM
-                    </p>
-                    <p style="color: var(--text-body); font-size: 0.95rem;">
-                        <i class="fas fa-calendar-check" style="color: var(--accent); margin-right: var(--space-xs);"></i>
-                        By appointment only
-                    </p>
+        <div class="footer-content">
+            <div>
+                <img src="images/logo.png" alt="Arcains Booking" class="footer-logo">
+                <p>Professional recording studio services with expert engineering and production.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#team">Team</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved.</p>
-                <p style="margin-top: var(--space-sm); font-size: 0.85rem;">
-                    Luton, Bedfordshire | 07710 593113
-                </p>
+            <div>
+                <h3>Contact Info</h3>
+                <div style="margin-top: 1rem;">
+                    <p><i class="fas fa-phone" style="margin-right: 0.5rem;"></i> 07710 593113</p>
+                    <p><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> bookings@arcains.com</p>
+                </div>
             </div>
+        </div>
+        
+        <div class="footer-links">
+            <p>&copy; <span id="currentYear">2024</span> Arcains Booking. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // ===== WEBSITE INITIALIZATION =====
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize components
-            initializeHeader();
-            initializeHeaderEqualizer();
-            initializeCalculator();
-            initializeCurrentYear();
-            initializePortfolioTabs();
-            initializeLiveCounter();
-            initializeGallery();
-            initializeSmoothScrolling();
-            initializeLogoAnimation();
-            initializeAudioDemo();
-            loadBackgroundImages();
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
         });
-
-        // ===== HEADER SCROLL EFFECT =====
-        function initializeHeader() {
-            const header = document.getElementById('header');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-        }
-
-        // ===== HEADER EQUALIZER =====
-        function initializeHeaderEqualizer() {
-            const headerEqualizer = document.getElementById('headerEqualizer');
-            if (!headerEqualizer) return;
-            
-            const barsContainer = headerEqualizer.querySelector('.header-equalizer-bars');
-            if (!barsContainer) return;
-            
-            barsContainer.innerHTML = '';
-            
-            for (let i = 0; i < 8; i++) {
-                const bar = document.createElement('div');
-                bar.className = 'header-equalizer-bar';
-                barsContainer.appendChild(bar);
-            }
-        }
-
-        // ===== LOAD BACKGROUND IMAGES =====
-        function loadBackgroundImages() {
-            // Preload background images
-            const images = [
-                'images/hero-bg.jpg',
-                'images/about-studio.jpg',
-                'images/studio-bg.jpg',
-                'images/portfolio-bg.jpg',
-                'images/studio1.jpg',
-                'images/studio2.jpg'
-            ];
-            
-            images.forEach(src => {
-                const img = new Image();
-                img.src = src;
-            });
-        }
-
-        // ===== PORTFOLIO TAB SWITCHING =====
-        function initializePortfolioTabs() {
-            const tabs = document.querySelectorAll('.portfolio-tab');
-            const contents = document.querySelectorAll('.portfolio-content');
-            
-            if (tabs.length > 0 && contents.length > 0) {
-                tabs.forEach(tab => {
-                    tab.addEventListener('click', () => {
-                        const tabId = tab.dataset.tab;
-                        
-                        // Remove active class from all tabs
-                        tabs.forEach(t => t.classList.remove('active'));
-                        contents.forEach(c => c.classList.remove('active'));
-                        
-                        // Add active class to clicked tab
-                        tab.classList.add('active');
-                        
-                        // Show corresponding content
-                        const content = document.getElementById(`${tabId}-portfolio`);
-                        if (content) {
-                            content.classList.add('active');
-                        }
-                    });
-                });
-            }
-        }
-
-        // ===== GALLERY INITIALIZATION =====
-        function initializeGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            if (!galleryGrid) return;
-            
-            // List of possible image filenames to check
-            const imagePatterns = [
-                'studio1.jpg', 'studio2.jpg', 'studio3.jpg',
-                'studio4.jpg', 'studio5.jpg', 'studio6.jpg',
-                'gallery1.jpg', 'gallery2.jpg', 'gallery3.jpg',
-                'image1.jpg', 'image2.jpg', 'image3.jpg',
-                'photo1.jpg', 'photo2.jpg', 'photo3.jpg'
-            ];
-            
-            // Try to load gallery images
-            loadGalleryImages(imagePatterns);
-            
-            function loadGalleryImages(patterns) {
-                const loadedImages = [];
-                
-                // Check which images exist
-                patterns.forEach(pattern => {
-                    const img = new Image();
-                    img.onload = function() {
-                        loadedImages.push({
-                            src: `images/${pattern}`,
-                            alt: `Studio image ${pattern.replace('.jpg', '')}`
-                        });
-                        
-                        // If this is the first image loaded, update the gallery
-                        if (loadedImages.length === 1) {
-                            updateGallery(loadedImages);
-                        }
-                    };
-                    img.onerror = function() {
-                        // Image doesn't exist, continue checking
-                    };
-                    img.src = `images/${pattern}`;
-                });
-                
-                // If no images found after checking all patterns
-                setTimeout(() => {
-                    if (loadedImages.length === 0) {
-                        showGalleryPlaceholder();
-                    }
-                }, 2000);
-            }
-            
-            function updateGallery(images) {
-                galleryGrid.innerHTML = '';
-                
-                // Display first 6 images
-                const displayImages = images.slice(0, 6);
-                
-                displayImages.forEach(image => {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
-                    galleryItem.innerHTML = `
-                        <img src="${image.src}" alt="${image.alt}" loading="lazy">
-                    `;
-                    galleryGrid.appendChild(galleryItem);
-                    
-                    // Add click handler for lightbox
-                    galleryItem.addEventListener('click', () => {
-                        openLightbox(image.src, image.alt);
-                    });
-                });
-                
-                // Show "more" indicator if there are more images
-                if (images.length > 6) {
-                    const moreItem = document.createElement('div');
-                    moreItem.className = 'gallery-item';
-                    moreItem.style.display = 'flex';
-                    moreItem.style.flexDirection = 'column';
-                    moreItem.style.alignItems = 'center';
-                    moreItem.style.justifyContent = 'center';
-                    moreItem.style.background = 'linear-gradient(45deg, var(--purple-dark), var(--purple-medium))';
-                    moreItem.style.color = 'var(--accent)';
-                    moreItem.style.fontSize = '1.2rem';
-                    moreItem.style.fontWeight = 'bold';
-                    moreItem.innerHTML = `
-                        <i class="fas fa-images" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                        +${images.length - 6} more<br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">View all studio photos</span>
-                    `;
-                    galleryGrid.appendChild(moreItem);
-                }
-            }
-            
-            function showGalleryPlaceholder() {
-                galleryGrid.innerHTML = '';
-                const placeholder = document.createElement('div');
-                placeholder.style.gridColumn = '1 / -1';
-                placeholder.style.textAlign = 'center';
-                placeholder.style.padding = 'var(--space-xxl)';
-                placeholder.style.background = 'rgba(255, 255, 255, 0.05)';
-                placeholder.style.borderRadius = 'var(--radius-lg)';
-                placeholder.style.border = '2px dashed var(--border-color)';
-                placeholder.style.backdropFilter = 'blur(10px)';
-                placeholder.innerHTML = `
-                    <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: var(--space-lg);"></i>
-                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">Add Your Studio Photos</h3>
-                    <p style="color: var(--text-body); max-width: 500px; margin: 0 auto;">
-                        To display studio photos, add images to the <code>images/</code> folder with names like:<br>
-                        studio1.jpg, studio2.jpg, gallery1.jpg, etc.
-                    </p>
-                `;
-                galleryGrid.appendChild(placeholder);
-            }
-            
-            function openLightbox(src, alt) {
-                const lightbox = document.createElement('div');
-                lightbox.style.position = 'fixed';
-                lightbox.style.top = '0';
-                lightbox.style.left = '0';
-                lightbox.style.width = '100%';
-                lightbox.style.height = '100%';
-                lightbox.style.background = 'rgba(0, 0, 0, 0.95)';
-                lightbox.style.display = 'flex';
-                lightbox.style.alignItems = 'center';
-                lightbox.style.justifyContent = 'center';
-                lightbox.style.zIndex = '2000';
-                lightbox.style.animation = 'fadeIn 0.3s ease-out';
-                
-                const imgContainer = document.createElement('div');
-                imgContainer.style.maxWidth = '90%';
-                imgContainer.style.maxHeight = '90%';
-                imgContainer.style.position = 'relative';
-                
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = alt;
-                img.style.maxWidth = '100%';
-                img.style.maxHeight = '80vh';
-                img.style.objectFit = 'contain';
-                img.style.borderRadius = '8px';
-                img.style.boxShadow = '0 0 40px rgba(0, 255, 0, 0.3)';
-                
-                const closeBtn = document.createElement('button');
-                closeBtn.innerHTML = '×';
-                closeBtn.style.position = 'absolute';
-                closeBtn.style.top = '-40px';
-                closeBtn.style.right = '-40px';
-                closeBtn.style.background = 'var(--accent)';
-                closeBtn.style.color = 'var(--black)';
-                closeBtn.style.border = 'none';
-                closeBtn.style.width = '40px';
-                closeBtn.style.height = '40px';
-                closeBtn.style.borderRadius = '50%';
-                closeBtn.style.fontSize = '2rem';
-                closeBtn.style.fontWeight = 'bold';
-                closeBtn.style.cursor = 'pointer';
-                closeBtn.style.display = 'flex';
-                closeBtn.style.alignItems = 'center';
-                closeBtn.style.justifyContent = 'center';
-                
-                closeBtn.addEventListener('click', () => {
-                    document.body.removeChild(lightbox);
-                });
-                
-                lightbox.addEventListener('click', (e) => {
-                    if (e.target === lightbox) {
-                        document.body.removeChild(lightbox);
-                    }
-                });
-                
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        document.body.removeChild(lightbox);
-                    }
-                });
-                
-                imgContainer.appendChild(img);
-                imgContainer.appendChild(closeBtn);
-                lightbox.appendChild(imgContainer);
-                document.body.appendChild(lightbox);
-            }
-        }
-
-        // ===== SMART SESSION CALCULATOR =====
-        function initializeCalculator() {
-            const projectGoal = document.getElementById('projectGoal');
-            const artistCount = document.getElementById('artistCount');
-            
-            if (projectGoal && artistCount) {
-                updateCalculator();
-                
-                projectGoal.addEventListener('change', updateCalculator);
-                artistCount.addEventListener('change', updateCalculator);
-            }
-        }
         
-        function updateCalculator() {
-            const projectGoal = document.getElementById('projectGoal').value;
-            const artistCount = document.getElementById('artistCount').value;
+        // Update current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            let recommendation = '';
-            let price = '';
-            let description = '';
-            let buttonClass = 'btn-tier-2';
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
             
-            switch(projectGoal) {
-                case 'single':
-                    recommendation = 'Quick Session';
-                    price = '£80';
-                    description = '3 hours studio time - perfect for singles';
-                    buttonClass = 'btn-tier-1';
-                    break;
-                    
-                case 'ep':
-                    recommendation = 'Half Day Package';
-                    price = '£140';
-                    description = '5 hours studio time - ideal for EPs (3-4 songs)';
-                    buttonClass = 'btn-tier-2';
-                    break;
-                    
-                case 'project':
-                    recommendation = 'Full Day Project';
-                    price = '£240';
-                    description = '10 hours studio time - complete project focus';
-                    buttonClass = 'btn-tier-3';
-                    break;
-                    
-                case 'mixing':
-                    recommendation = 'Professional Mixing';
-                    price = '£40/song';
-                    description = 'Studio quality mixing & mastering';
-                    buttonClass = 'btn-tier-4';
-                    break;
-            }
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
             
-            let artistNote = '';
-            if (artistCount === 'duo' && projectGoal !== 'mixing') {
-                const basePrice = parseInt(price.replace('£', '').replace('/song', ''));
-                if (!isNaN(basePrice)) {
-                    const adjustedPrice = basePrice + 40;
-                    price = `£${adjustedPrice}`;
-                    artistNote = '<p><i class="fas fa-users"></i> +£40 for duo collaboration</p>';
-                }
-            } else if (artistCount === 'group' && projectGoal !== 'mixing') {
-                price = 'Custom Quote';
-                artistNote = '<p><i class="fas fa-users"></i> Contact for group rates</p>';
-            }
-            
-            const resultEl = document.getElementById('calculatorResult');
-            if (resultEl) {
-                const isCustom = price.includes('Custom');
-                
-                resultEl.innerHTML = `
-                    <div class="result-title">RECOMMENDED: ${recommendation}</div>
-                    <div class="result-price">${price}</div>
-                    <div class="result-description">${description}</div>
-                    ${artistNote}
-                    <p><i class="fas fa-check"></i> Includes professional engineer & equipment</p>
-                    <a href="#contact" class="btn-primary ${buttonClass}" style="margin-top: var(--space-md);">
-                        ${isCustom ? 'Get Custom Quote' : 'Book This Package'}
-                    </a>
-                `;
-            }
-        }
-
-        // ===== LIVE COUNTER =====
-        function initializeLiveCounter() {
-            function updateLiveCounter() {
-                const baseSessions = 8;
-                const today = new Date();
-                const dayOfMonth = today.getDate();
-                const estimatedSessions = baseSessions + Math.floor(dayOfMonth * 0.8);
-                
-                const counterEl = document.getElementById('sessionCount');
-                if (counterEl) {
-                    counterEl.textContent = estimatedSessions;
-                }
-            }
-            
-            updateLiveCounter();
-            // Update every hour
-            setInterval(updateLiveCounter, 3600000);
-        }
-
-        // ===== AUDIO DEMO =====
-        function initializeAudioDemo() {
-            const audioButtons = document.querySelectorAll('.btn-audio');
-            const audio = document.getElementById('demoAudio');
-            
-            if (audioButtons.length > 0 && audio) {
-                audioButtons.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        document.querySelectorAll('.btn-audio').forEach(b => {
-                            b.classList.remove('active');
-                        });
-                        
-                        this.classList.add('active');
-                        
-                        const track = this.dataset.track;
-                        
-                        if (track === 'raw') {
-                            audio.src = 'audio/raw-demo.mp3';
-                        } else {
-                            audio.src = 'audio/mixed-demo.mp3';
-                        }
-                        
-                        audio.load();
-                        audio.play().catch(e => console.log('Audio play failed:', e));
-                    });
-                });
-            }
-        }
-
-        // ===== CURRENT YEAR =====
-        function initializeCurrentYear() {
-            const yearElement = document.getElementById('currentYear');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
-        }
-
-        // ===== SMOOTH SCROLLING =====
-        function initializeSmoothScrolling() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const headerHeight = document.getElementById('header').offsetHeight;
-                        const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Thank you! Your booking request has been sent. We\'ll contact you within 24 hours.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mainNav').classList.remove('active');
             });
-        }
-
-        // ===== LOGO HOVER ANIMATION =====
-        function initializeLogoAnimation() {
-            const mainLogo = document.getElementById('mainLogo');
-            if (mainLogo) {
-                mainLogo.addEventListener('mouseenter', () => {
-                    mainLogo.style.transform = 'rotateY(180deg) scale(1.05)';
-                });
-                
-                mainLogo.addEventListener('mouseleave', () => {
-                    mainLogo.style.transform = 'rotateY(0) scale(1)';
-                });
-            }
-        }
-
-        // ===== FORM HANDLING =====
-        const bookingForm = document.getElementById('bookingForm');
-        if (bookingForm) {
-            bookingForm.addEventListener('submit', function(e) {
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
-                
-                // Form will submit to Web3Forms
-                // Show success message after submission
-                setTimeout(() => {
-                    submitBtn.innerHTML = '✅ Sent!';
-                    submitBtn.style.background = '#25D366';
-                    
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.style.background = '';
-                        this.reset();
-                    }, 3000);
-                }, 1500);
-            });
-        }
+        });
     </script>
 </body>
 </html>

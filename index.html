@@ -27,10 +27,6 @@
             --accent: #00ff00;
             --accent-light: #90ff90;
             --accent-dark: #00cc00;
-            --tier-1: #00a8ff;
-            --tier-2: #00ff00;
-            --tier-3: #ff9500;
-            --tier-4: #bc00ff;
             --purple-dark: #1a0b2e;
             --purple-medium: #2d1b4e;
             --purple-light: #3d2968;
@@ -75,14 +71,55 @@
         }
 
         /* ============================================================
-               GRADIENT BUTTON FIX – Everything uses ::before with border-radius
+               UNIFIED GRADIENT BUTTON – one class, one pseudo
                ============================================================ */
-        /* Shared button‑like elements */
-        .btn-primary,
-        .btn-tier-1,
-        .btn-tier-2,
-        .btn-tier-3,
-        .btn-tier-4,
+        .btn-primary {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            background-color: var(--black);
+            color: var(--white);
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #00ff00 0%, #ff9500 50%, #ff6b35 100%);
+            border-radius: inherit;   /* ← matches the pill shape */
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            color: var(--black);
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,149,0,0.4);
+        }
+
+        /* ===== OTHER INTERACTIVE ELEMENTS (keep their own gradient) ===== */
         .btn-audio,
         .portfolio-tab,
         .work-link,
@@ -97,14 +134,10 @@
             overflow: hidden;
             transition: var(--transition);
             border: 2px solid transparent;
+            background-color: var(--black);
+            color: var(--white);
         }
 
-        /* ----- Gradient overlay (the magic) ----- */
-        .btn-primary::before,
-        .btn-tier-1::before,
-        .btn-tier-2::before,
-        .btn-tier-3::before,
-        .btn-tier-4::before,
         .btn-audio::before,
         .portfolio-tab::before,
         .work-link::before,
@@ -121,18 +154,12 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, #00ff00 0%, #ff9500 50%, #ff6b35 100%);
-            border-radius: inherit;   /* ← crucial: matches the parent’s border-radius */
+            border-radius: inherit;
             z-index: -1;
             opacity: 0;
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Hover / active states – fade in the gradient */
-        .btn-primary:hover::before,
-        .btn-tier-1:hover::before,
-        .btn-tier-2:hover::before,
-        .btn-tier-3:hover::before,
-        .btn-tier-4:hover::before,
         .btn-audio:hover::before,
         .btn-audio.active::before,
         .portfolio-tab:hover::before,
@@ -147,30 +174,6 @@
             opacity: 1;
         }
 
-        /* Base styles – background is dark, text is light */
-        .btn-primary,
-        .btn-tier-1,
-        .btn-tier-2,
-        .btn-tier-3,
-        .btn-tier-4,
-        .btn-audio,
-        .portfolio-tab,
-        .work-link,
-        .addon-card,
-        .guide-step,
-        .pricing-tier,
-        .contact-row,
-        .badge {
-            background-color: var(--black);
-            color: var(--white);
-        }
-
-        /* Hover text color – dark for contrast */
-        .btn-primary:hover,
-        .btn-tier-1:hover,
-        .btn-tier-2:hover,
-        .btn-tier-3:hover,
-        .btn-tier-4:hover,
         .btn-audio:hover,
         .btn-audio.active,
         .portfolio-tab:hover,
@@ -188,14 +191,14 @@
             box-shadow: 0 10px 25px rgba(255,149,0,0.4);
         }
 
-        /* Specific overrides for .btn-audio.active – gradient already shown by ::before */
+        /* Specific overrides for .btn-audio.active */
         .btn-audio.active {
             background-color: transparent;
             color: var(--black);
             border-color: transparent;
         }
 
-        /* Nav‑icon gets its own border‑radius and size */
+        /* Nav‑icon specific */
         .nav-icon {
             width: 55px;
             height: 55px;
@@ -216,11 +219,11 @@
             box-shadow: 0 8px 25px rgba(255,149,0,0.4);
         }
 
-        /* ===== HEADER & EQUALIZER (unchanged) ===== */
+        /* ===== HEADER & EQUALIZER ===== */
         .header-equalizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 14px; display: none; z-index: 1001; }
         .header.scrolled .header-equalizer { display: block; animation: equalizerFadeIn 0.5s ease-out; }
         .header-equalizer-bars { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 0 15px; }
-        .header-equalizer-bar { width: 5px; height: 60%; background: linear-gradient(to top, var(--accent), var(--tier-2)); border-radius: 3px 3px 0 0; opacity: 0.8; transform-origin: bottom center; }
+        .header-equalizer-bar { width: 5px; height: 60%; background: linear-gradient(to top, var(--accent), #00ff00); border-radius: 3px 3px 0 0; opacity: 0.8; transform-origin: bottom center; }
         .header-equalizer-bar:nth-child(1) { animation: headerEqPulse1 2.1s infinite ease-in-out; }
         .header-equalizer-bar:nth-child(2) { animation: headerEqPulse2 1.8s infinite ease-in-out; animation-delay: 0.2s; }
         .header-equalizer-bar:nth-child(3) { animation: headerEqPulse3 2.3s infinite ease-in-out; animation-delay: 0.1s; }
@@ -273,13 +276,51 @@
         .trust-badges .badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.7;transform:scale(1.1);} }
 
-        /* ===== BUTTON STYLES (specifics) ===== */
-        .btn-primary { display: inline-block; padding: 1.2rem 3rem; text-decoration: none; font-weight: 900; font-size: 1.1rem; border-radius: var(--radius-full); text-transform: uppercase; letter-spacing: 1px; min-width: 200px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
-        .btn-audio { background: var(--black); color: var(--text-body); padding: var(--space-sm) var(--space-lg); border-radius: var(--radius-md); cursor: pointer; border: 1px solid var(--border-color); font-family: var(--font-primary); font-size: 1rem; }
-        .btn-audio.active { background-color: transparent; color: var(--black); font-weight: bold; border-color: transparent; }
-        .portfolio-tab { background: var(--black); border: 1px solid var(--border-color); padding: var(--space-lg); cursor: pointer; border-radius: var(--radius-md); flex: 1; min-width: 250px; text-align: left; backdrop-filter: blur(10px); }
-        .portfolio-tab.active { background-color: transparent; border: 1px solid transparent; transform: translateY(-5px); color: var(--black); }
-        .work-link { display: inline-block; background: var(--black); color: var(--accent); padding: 8px 16px; border-radius: var(--radius-md); text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(0,255,0,0.3); }
+        /* ===== OTHER BUTTON VARIANTS (keep separate) ===== */
+        .btn-audio {
+            background: var(--black);
+            color: var(--text-body);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+        }
+        .btn-audio.active {
+            background-color: transparent;
+            color: var(--black);
+            font-weight: bold;
+            border-color: transparent;
+        }
+        .portfolio-tab {
+            background: var(--black);
+            border: 1px solid var(--border-color);
+            padding: var(--space-lg);
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+        .portfolio-tab.active {
+            background-color: transparent;
+            border: 1px solid transparent;
+            transform: translateY(-5px);
+            color: var(--black);
+        }
+        .work-link {
+            display: inline-block;
+            background: var(--black);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0,255,0,0.3);
+        }
 
         /* ===== SECTIONS ===== */
         .section { padding: var(--space-xxl) var(--space-xl); position: relative; min-height: 100vh; display: flex; align-items: center; }
@@ -473,7 +514,7 @@
 </head>
 <body>
 
-    <!-- Header (unchanged) -->
+    <!-- Header -->
     <header class="header" id="header">
         <div class="nav-icons">
             <div class="nav-icon-container">
@@ -680,7 +721,7 @@
                     <div class="result-description">Half Day Session - Perfect for recording 3-4 songs</div>
                     <p><i class="fas fa-check"></i> Includes: Recording, mixing, basic mastering</p>
                     <p><i class="fas fa-clock"></i> Duration: 5 hours studio time</p>
-                    <a href="#contact" class="btn-primary btn-tier-2" style="margin-top:var(--space-md);">Book This Package</a>
+                    <a href="#contact" class="btn-primary" style="margin-top:var(--space-md);">Book This Package</a>
                 </div>
             </div>
 
@@ -705,7 +746,7 @@
                         <li><i class="fas fa-check"></i> Industry equipment</li>
                         <li><i class="fas fa-check"></i> Perfect for singles</li>
                     </ul>
-                    <div class="tier-action"><a href="#contact" class="btn-primary btn-tier-1">Book Now</a></div>
+                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div>
                 </div>
                 <div class="pricing-tier popular">
                     <div class="tier-badge">MOST POPULAR</div>
@@ -722,7 +763,7 @@
                         <li><i class="fas fa-check"></i> Up to 4 songs</li>
                         <li><i class="fas fa-check"></i> Professional engineer</li>
                     </ul>
-                    <div class="tier-action"><a href="#contact" class="btn-primary btn-tier-2">Book Now</a></div>
+                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div>
                 </div>
                 <div class="pricing-tier">
                     <div class="tier-header">
@@ -738,7 +779,7 @@
                         <li><i class="fas fa-check"></i> Up to 8 songs</li>
                         <li><i class="fas fa-check"></i> Priority support</li>
                     </ul>
-                    <div class="tier-action"><a href="#contact" class="btn-primary btn-tier-3">Book Now</a></div>
+                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div>
                 </div>
             </div>
 
@@ -1059,7 +1100,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript (unchanged logic, but including the same functions) -->
+    <!-- JavaScript (unchanged) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Header scroll
@@ -1102,12 +1143,12 @@
             function updateCalculator() {
                 const goal = projectGoal.value;
                 const artists = artistCount.value;
-                let rec, price, desc, btnClass = 'btn-tier-2';
+                let rec, price, desc;
                 switch(goal) {
-                    case 'single': rec = 'Quick Session'; price = '£80'; desc = '3 hours - perfect for singles'; btnClass = 'btn-tier-1'; break;
-                    case 'ep': rec = 'Half Day Package'; price = '£140'; desc = '5 hours - ideal for EPs'; btnClass = 'btn-tier-2'; break;
-                    case 'project': rec = 'Full Day Project'; price = '£240'; desc = '10 hours - complete project'; btnClass = 'btn-tier-3'; break;
-                    case 'mixing': rec = 'Professional Mixing'; price = '£40/song'; desc = 'Studio quality mixing & mastering'; btnClass = 'btn-tier-4'; break;
+                    case 'single': rec = 'Quick Session'; price = '£80'; desc = '3 hours - perfect for singles'; break;
+                    case 'ep': rec = 'Half Day Package'; price = '£140'; desc = '5 hours - ideal for EPs'; break;
+                    case 'project': rec = 'Full Day Project'; price = '£240'; desc = '10 hours - complete project'; break;
+                    case 'mixing': rec = 'Professional Mixing'; price = '£40/song'; desc = 'Studio quality mixing & mastering'; break;
                 }
                 let extra = '';
                 if (artists === 'duo' && goal !== 'mixing') {
@@ -1126,7 +1167,7 @@
                         <div class="result-description">${desc}</div>
                         ${extra}
                         <p><i class="fas fa-check"></i> Includes professional engineer & equipment</p>
-                        <a href="#contact" class="btn-primary ${btnClass}" style="margin-top:var(--space-md);">${isCustom ? 'Get Custom Quote' : 'Book This Package'}</a>
+                        <a href="#contact" class="btn-primary" style="margin-top:var(--space-md);">${isCustom ? 'Get Custom Quote' : 'Book This Package'}</a>
                     `;
                 }
             }

@@ -71,7 +71,7 @@
         }
 
         /* ============================================================
-               GRADIENT BUTTON – green with a touch of deep purple
+               GRADIENT BUTTON – purple‑dominant, reversed direction
                ============================================================ */
         .btn-primary {
             position: relative;
@@ -100,7 +100,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #00ff00 0%, #66ff99 50%, #5B2C8E 100%);
+            background: linear-gradient(135deg, #5B2C8E 0%, #8B4BD4 40%, #66ff99 80%, #00ff00 100%);
             border-radius: inherit;
             clip-path: inset(0 round var(--radius-full));
             z-index: -1;
@@ -113,10 +113,10 @@
         }
 
         .btn-primary:hover {
-            color: var(--black);
+            color: var(--white);   /* keep text white for contrast */
             border-color: transparent;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,255,0,0.4);
+            box-shadow: 0 10px 25px rgba(91, 44, 142, 0.5);
         }
 
         /* ===== OTHER INTERACTIVE ELEMENTS ===== */
@@ -137,7 +137,6 @@
             color: var(--white);
         }
 
-        /* For elements with border-radius, we clip the pseudo with clip-path */
         .btn-audio::before,
         .portfolio-tab::before,
         .work-link::before,
@@ -153,7 +152,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #00ff00 0%, #66ff99 50%, #5B2C8E 100%);
+            background: linear-gradient(135deg, #5B2C8E 0%, #8B4BD4 40%, #66ff99 80%, #00ff00 100%);
             border-radius: inherit;
             clip-path: inset(0 round var(--radius-md));
             z-index: -1;
@@ -161,7 +160,6 @@
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Override clip-path for elements with different radii */
         .portfolio-tab::before,
         .guide-step::before,
         .pricing-tier::before {
@@ -208,20 +206,18 @@
         .contact-row:hover,
         .badge:hover,
         .nav-icon:hover {
-            color: var(--black);
+            color: var(--white);
             border-color: transparent;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,255,0,0.4);
+            box-shadow: 0 10px 25px rgba(91, 44, 142, 0.5);
         }
 
-        /* Specific overrides for .btn-audio.active */
         .btn-audio.active {
             background-color: transparent;
-            color: var(--black);
+            color: var(--white);
             border-color: transparent;
         }
 
-        /* Nav‑icon specific */
         .nav-icon {
             width: 55px;
             height: 55px;
@@ -236,10 +232,10 @@
             font-size: 1.3rem;
         }
         .nav-icon:hover {
-            color: var(--black);
+            color: var(--white);
             transform: translateY(-5px);
             border-color: transparent;
-            box-shadow: 0 8px 25px rgba(0,255,0,0.4);
+            box-shadow: 0 8px 25px rgba(91, 44, 142, 0.5);
         }
 
         /* ===== HEADER & EQUALIZER ===== */
@@ -265,10 +261,10 @@
         .nav-icon-container { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); }
         .nav-label {
             position: absolute; bottom: -35px; font-size: 0.85rem; opacity: 0; transform: translateY(10px);
-            transition: var(--transition); white-space: nowrap; font-weight: 700; color: #00ff00;
+            transition: var(--transition); white-space: nowrap; font-weight: 700; color: #8B4BD4;
             text-transform: uppercase; letter-spacing: 1px; background: rgba(0,0,0,0.9);
             padding: var(--space-xs) var(--space-sm); border-radius: var(--radius-sm);
-            pointer-events: none; z-index: 1002; border: 1px solid rgba(0,255,0,0.3);
+            pointer-events: none; z-index: 1002; border: 1px solid rgba(139, 75, 212, 0.3);
         }
         .nav-icon-container:hover .nav-label { opacity: 1; transform: translateY(0); }
 
@@ -312,7 +308,7 @@
         }
         .btn-audio.active {
             background-color: transparent;
-            color: var(--black);
+            color: var(--white);
             font-weight: bold;
             border-color: transparent;
         }
@@ -331,7 +327,7 @@
             background-color: transparent;
             border: 1px solid transparent;
             transform: translateY(-5px);
-            color: var(--black);
+            color: var(--white);
         }
         .work-link {
             display: inline-block;

@@ -71,7 +71,7 @@
         }
 
         /* ============================================================
-               GRADIENT BUTTON – purple‑dominant, reversed direction
+               GRADIENT BUTTON – purple‑dominant
                ============================================================ */
         .btn-primary {
             position: relative;
@@ -113,7 +113,7 @@
         }
 
         .btn-primary:hover {
-            color: var(--white);   /* keep text white for contrast */
+            color: var(--white);
             border-color: transparent;
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(91, 44, 142, 0.5);
@@ -295,6 +295,124 @@
         .trust-badges .badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.7;transform:scale(1.1);} }
 
+        /* ===== AUDIO DEMO WITH CROSSFADER ===== */
+        .audio-demo {
+            background: rgba(0,0,0,0.5);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-top: var(--space-xl);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .audio-demo h3 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .crossfader-container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .crossfader-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .crossfader-labels .raw-label { color: #ff6b35; }
+        .crossfader-labels .mixed-label { color: var(--accent); }
+
+        .crossfader-track {
+            position: relative;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, #ff6b35 0%, #5B2C8E 50%, var(--accent) 100%);
+            border-radius: 4px;
+            margin: var(--space-md) 0;
+            cursor: pointer;
+        }
+
+        .crossfader-thumb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--accent);
+            cursor: grab;
+            transition: box-shadow 0.2s ease;
+            box-shadow: 0 0 20px rgba(0,255,0,0.3);
+        }
+
+        .crossfader-thumb:hover {
+            box-shadow: 0 0 30px rgba(0,255,0,0.5);
+        }
+
+        .crossfader-thumb:active {
+            cursor: grabbing;
+        }
+
+        .crossfader-value {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: var(--space-xs);
+        }
+
+        .crossfader-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .crossfader-controls .play-btn {
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .crossfader-controls .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0,255,0,0.4);
+        }
+
+        .crossfader-controls .play-btn.paused {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .crossfader-status {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: var(--space-sm);
+        }
+
+        .crossfader-status .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
         /* ===== OTHER BUTTON VARIANTS ===== */
         .btn-audio {
             background: var(--black);
@@ -352,11 +470,6 @@
 
         /* ===== ABOUT ===== */
         .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; }
-        .audio-demo { background: rgba(0,0,0,0.5); border-radius: var(--radius-lg); padding: var(--space-xl); margin-top: var(--space-xl); border: 1px solid var(--border-color); backdrop-filter: blur(10px); }
-        .audio-demo h3 { text-align: center; margin-bottom: var(--space-lg); color: var(--accent); font-size: 1.5rem; }
-        .audio-toggle { display: flex; justify-content: center; gap: var(--space-sm); margin-bottom: var(--space-lg); }
-        .audio-player { max-width: 500px; margin: 0 auto; }
-        .audio-player audio { width: 100%; border-radius: var(--radius-md); margin-bottom: var(--space-sm); }
 
         /* ===== SERVICES ===== */
         .service-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: var(--space-lg); margin-bottom: var(--space-xxl); }
@@ -613,23 +726,39 @@
                     <div style="background:rgba(0,255,0,0.1); padding:var(--space-lg); border-radius:var(--radius-md); border-left:4px solid var(--accent); margin-bottom:var(--space-xl); backdrop-filter:blur(10px);">
                         <p style="font-size:1.2rem; font-weight:600; color:var(--accent); line-height:1.5;">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</p>
                     </div>
+
+                    <!-- ===== AUDIO DEMO WITH CROSSFADER ===== -->
                     <div class="audio-demo">
                         <h3>🎧 Hear The Billups Difference</h3>
-                        <div class="audio-toggle">
-                            <button class="btn-audio" data-track="raw">Raw Recording</button>
-                            <button class="btn-audio active" data-track="mixed">Mixed &amp; Mastered</button>
-                        </div>
-                        <div class="audio-player">
-                            <audio id="demoAudio" controls>
-                                <source src="audio/mixed-demo.mp3" type="audio/mpeg" />
-                                Your browser does not support audio element.
-                            </audio>
-                            <div style="text-align:center; color:var(--text-muted); font-size:0.9rem; margin-top:var(--space-sm);">
-                                <i class="fas fa-info-circle"></i> Same vocal take, different processing
+                        <p style="text-align:center; color:var(--text-muted); margin-bottom:var(--space-md); font-size:0.95rem;">
+                            Drag the slider to blend between the <span style="color:#ff6b35; font-weight:600;">raw recording</span> and the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version
+                        </p>
+
+                        <div class="crossfader-container">
+                            <div class="crossfader-labels">
+                                <span class="raw-label">🎤 Raw</span>
+                                <span class="mixed-label">✨ Mixed</span>
+                            </div>
+
+                            <div class="crossfader-track" id="crossfaderTrack">
+                                <div class="crossfader-thumb" id="crossfaderThumb"></div>
+                            </div>
+
+                            <div class="crossfader-value" id="crossfaderValue">50% Mixed</div>
+
+                            <div class="crossfader-controls">
+                                <button class="play-btn" id="playBtn" aria-label="Play / Pause">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+
+                            <div class="crossfader-status" id="crossfaderStatus">
+                                <span class="highlight">●</span> Ready to play
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <h4 style="font-size:1.5rem; margin-bottom:var(--space-lg); color:var(--text-primary);">Studio Features</h4>
                     <div style="background:rgba(255,255,255,0.05); padding:var(--space-xl); border-radius:var(--radius-lg); border:1px solid var(--border-color); backdrop-filter:blur(10px);">
@@ -1119,16 +1248,16 @@
         </div>
     </footer>
 
-    <!-- JavaScript (unchanged) -->
+    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Header scroll
+            // ===== HEADER SCROLL =====
             const header = document.getElementById('header');
             window.addEventListener('scroll', function() {
                 header.classList.toggle('scrolled', window.scrollY > 100);
             });
 
-            // Equalizer bars
+            // ===== HEADER EQUALIZER =====
             const eqContainer = document.getElementById('headerEqualizer');
             if (eqContainer) {
                 const barsContainer = eqContainer.querySelector('.header-equalizer-bars');
@@ -1142,7 +1271,7 @@
                 }
             }
 
-            // Portfolio tabs
+            // ===== PORTFOLIO TABS =====
             const tabs = document.querySelectorAll('.portfolio-tab');
             const contents = document.querySelectorAll('.portfolio-content');
             tabs.forEach(tab => {
@@ -1156,7 +1285,7 @@
                 });
             });
 
-            // Calculator
+            // ===== CALCULATOR =====
             const projectGoal = document.getElementById('projectGoal');
             const artistCount = document.getElementById('artistCount');
             function updateCalculator() {
@@ -1196,7 +1325,7 @@
                 updateCalculator();
             }
 
-            // Live counter
+            // ===== LIVE COUNTER =====
             function updateLiveCounter() {
                 const base = 8;
                 const day = new Date().getDate();
@@ -1207,26 +1336,11 @@
             updateLiveCounter();
             setInterval(updateLiveCounter, 3600000);
 
-            // Audio demo
-            const audioBtns = document.querySelectorAll('.btn-audio');
-            const audio = document.getElementById('demoAudio');
-            if (audioBtns.length && audio) {
-                audioBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        audioBtns.forEach(b => b.classList.remove('active'));
-                        this.classList.add('active');
-                        audio.src = this.dataset.track === 'raw' ? 'audio/raw-demo.mp3' : 'audio/mixed-demo.mp3';
-                        audio.load();
-                        audio.play().catch(e => {});
-                    });
-                });
-            }
-
-            // Current year
+            // ===== CURRENT YEAR =====
             const yearEl = document.getElementById('currentYear');
             if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-            // Smooth scroll
+            // ===== SMOOTH SCROLL =====
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1238,14 +1352,14 @@
                 });
             });
 
-            // Logo hover
+            // ===== LOGO HOVER =====
             const logo = document.getElementById('mainLogo');
             if (logo) {
                 logo.addEventListener('mouseenter', () => logo.style.transform = 'rotateY(180deg) scale(1.05)');
                 logo.addEventListener('mouseleave', () => logo.style.transform = 'rotateY(0) scale(1)');
             }
 
-            // Gallery loader (simplified)
+            // ===== GALLERY LOADER =====
             const galleryGrid = document.getElementById('galleryGrid');
             if (galleryGrid) {
                 const patterns = ['studio1.jpg','studio2.jpg','studio3.jpg','studio4.jpg','studio5.jpg','studio6.jpg','gallery1.jpg','gallery2.jpg','gallery3.jpg'];
@@ -1306,7 +1420,7 @@
                 }
             }
 
-            // Form submission
+            // ===== FORM SUBMISSION =====
             const form = document.getElementById('bookingForm');
             if (form) {
                 form.addEventListener('submit', function(e) {
@@ -1326,6 +1440,243 @@
                     }, 1500);
                 });
             }
+
+            // ============================================================
+            //  🎛️ AUDIO CROSSFADER – Web Audio API
+            // ============================================================
+            (function initCrossfader() {
+                const track = document.getElementById('crossfaderTrack');
+                const thumb = document.getElementById('crossfaderThumb');
+                const valueDisplay = document.getElementById('crossfaderValue');
+                const playBtn = document.getElementById('playBtn');
+                const statusDisplay = document.getElementById('crossfaderStatus');
+
+                let isDragging = false;
+                let currentValue = 50; // 0 = raw, 100 = mixed
+                let isPlaying = false;
+                let audioContext = null;
+                let rawSource = null;
+                let mixedSource = null;
+                let rawGain = null;
+                let mixedGain = null;
+                let startTime = 0;
+                let pausedAt = 0;
+
+                // ---- Slider logic ----
+                function updateSlider(clientX) {
+                    const rect = track.getBoundingClientRect();
+                    let percent = (clientX - rect.left) / rect.width;
+                    percent = Math.max(0, Math.min(1, percent));
+                    currentValue = Math.round(percent * 100);
+                    updateUI();
+                }
+
+                function updateUI() {
+                    thumb.style.left = currentValue + '%';
+                    valueDisplay.textContent = currentValue + '% Mixed';
+                    if (rawGain && mixedGain) {
+                        const rawVol = 1 - (currentValue / 100);
+                        const mixedVol = currentValue / 100;
+                        rawGain.gain.value = rawVol;
+                        mixedGain.gain.value = mixedVol;
+                    }
+                }
+
+                // Mouse events
+                track.addEventListener('mousedown', function(e) {
+                    isDragging = true;
+                    updateSlider(e.clientX);
+                    track.style.cursor = 'grabbing';
+                });
+
+                document.addEventListener('mousemove', function(e) {
+                    if (isDragging) {
+                        updateSlider(e.clientX);
+                    }
+                });
+
+                document.addEventListener('mouseup', function() {
+                    if (isDragging) {
+                        isDragging = false;
+                        track.style.cursor = 'default';
+                    }
+                });
+
+                // Touch events
+                track.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    isDragging = true;
+                    updateSlider(touch.clientX);
+                });
+
+                document.addEventListener('touchmove', function(e) {
+                    if (isDragging) {
+                        e.preventDefault();
+                        const touch = e.touches[0];
+                        updateSlider(touch.clientX);
+                    }
+                });
+
+                document.addEventListener('touchend', function() {
+                    isDragging = false;
+                });
+
+                // ---- Play / Pause ----
+                playBtn.addEventListener('click', function() {
+                    if (!audioContext) {
+                        initAudio();
+                    } else if (isPlaying) {
+                        pauseAudio();
+                    } else {
+                        resumeAudio();
+                    }
+                });
+
+                // ---- Init Audio ----
+                async function initAudio() {
+                    try {
+                        statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading audio...';
+
+                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                        // Load both files
+                        const rawBuffer = await loadAudio('audio/raw-demo.mp3');
+                        const mixedBuffer = await loadAudio('audio/mixed-demo.mp3');
+
+                        // Create sources and gain nodes
+                        rawGain = audioContext.createGain();
+                        mixedGain = audioContext.createGain();
+
+                        const initialRawVol = 1 - (currentValue / 100);
+                        const initialMixedVol = currentValue / 100;
+                        rawGain.gain.value = initialRawVol;
+                        mixedGain.gain.value = initialMixedVol;
+
+                        // Connect to destination
+                        rawGain.connect(audioContext.destination);
+                        mixedGain.connect(audioContext.destination);
+
+                        // Create and start sources
+                        rawSource = audioContext.createBufferSource();
+                        mixedSource = audioContext.createBufferSource();
+                        rawSource.buffer = rawBuffer;
+                        mixedSource.buffer = mixedBuffer;
+
+                        rawSource.connect(rawGain);
+                        mixedSource.connect(mixedGain);
+
+                        // Start from beginning
+                        rawSource.start(0, 0);
+                        mixedSource.start(0, 0);
+                        startTime = audioContext.currentTime;
+                        pausedAt = 0;
+
+                        isPlaying = true;
+                        updatePlayButton();
+
+                        statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
+
+                        // When both tracks end
+                        rawSource.onended = function() {
+                            if (isPlaying) {
+                                stopAudio();
+                            }
+                        };
+
+                    } catch (err) {
+                        console.error('Audio error:', err);
+                        statusDisplay.innerHTML = '<span style="color:#ff6b35;">⚠️ Could not load audio. Check console.</span>';
+                    }
+                }
+
+                function loadAudio(url) {
+                    return new Promise((resolve, reject) => {
+                        fetch(url)
+                            .then(response => {
+                                if (!response.ok) throw new Error('HTTP ' + response.status);
+                                return response.arrayBuffer();
+                            })
+                            .then(buffer => audioContext.decodeAudioData(buffer))
+                            .then(resolve)
+                            .catch(reject);
+                    });
+                }
+
+                function pauseAudio() {
+                    if (!audioContext || !isPlaying) return;
+                    audioContext.suspend();
+                    isPlaying = false;
+                    pausedAt = audioContext.currentTime - startTime;
+                    updatePlayButton();
+                    statusDisplay.innerHTML = '<span class="highlight">⏸</span> Paused';
+                }
+
+                function resumeAudio() {
+                    if (!audioContext) return;
+                    audioContext.resume();
+                    // Recreate sources from paused position
+                    if (pausedAt > 0) {
+                        // We need to restart from the paused position
+                        // Recreate the source nodes
+                        const rawBuffer = rawSource.buffer;
+                        const mixedBuffer = mixedSource.buffer;
+
+                        rawSource.disconnect();
+                        mixedSource.disconnect();
+
+                        rawSource = audioContext.createBufferSource();
+                        mixedSource = audioContext.createBufferSource();
+                        rawSource.buffer = rawBuffer;
+                        mixedSource.buffer = mixedBuffer;
+
+                        rawSource.connect(rawGain);
+                        mixedSource.connect(mixedGain);
+
+                        rawSource.start(0, pausedAt);
+                        mixedSource.start(0, pausedAt);
+                        startTime = audioContext.currentTime - pausedAt;
+
+                        rawSource.onended = function() {
+                            if (isPlaying) stopAudio();
+                        };
+                    }
+                    isPlaying = true;
+                    updatePlayButton();
+                    statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
+                }
+
+                function stopAudio() {
+                    isPlaying = false;
+                    pausedAt = 0;
+                    updatePlayButton();
+                    statusDisplay.innerHTML = '<span class="highlight">■</span> Finished';
+                    if (audioContext) {
+                        audioContext.close();
+                        audioContext = null;
+                        rawSource = null;
+                        mixedSource = null;
+                        rawGain = null;
+                        mixedGain = null;
+                    }
+                }
+
+                function updatePlayButton() {
+                    const icon = playBtn.querySelector('i');
+                    if (isPlaying) {
+                        icon.className = 'fas fa-pause';
+                        playBtn.classList.remove('paused');
+                    } else {
+                        icon.className = 'fas fa-play';
+                        playBtn.classList.add('paused');
+                    }
+                }
+
+                // Set initial slider position
+                updateUI();
+
+            })();
+
         });
     </script>
 </body>

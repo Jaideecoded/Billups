@@ -71,12 +71,12 @@
         }
 
         /* ============================================================
-               UNIFIED GRADIENT BUTTON – one class, one pseudo
+               GRADIENT BUTTON – now green‑dominant
                ============================================================ */
         .btn-primary {
             position: relative;
             z-index: 1;
-            overflow: hidden;
+            /* no overflow: hidden – we use clip-path on pseudo */
             transition: var(--transition);
             border: 2px solid transparent;
             background-color: var(--black);
@@ -101,8 +101,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 50%, #ff6b35 100%);
-            border-radius: inherit;   /* ← matches the pill shape */
+            background: linear-gradient(135deg, #00ff00 0%, #66ff99 50%, #00cc66 100%);
+            border-radius: inherit;
+            clip-path: inset(0 round var(--radius-full));
             z-index: -1;
             opacity: 0;
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -116,10 +117,10 @@
             color: var(--black);
             border-color: transparent;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,149,0,0.4);
+            box-shadow: 0 10px 25px rgba(0,255,0,0.4);
         }
 
-        /* ===== OTHER INTERACTIVE ELEMENTS (keep their own gradient) ===== */
+        /* ===== OTHER INTERACTIVE ELEMENTS ===== */
         .btn-audio,
         .portfolio-tab,
         .work-link,
@@ -131,13 +132,13 @@
         .nav-icon {
             position: relative;
             z-index: 1;
-            overflow: hidden;
             transition: var(--transition);
             border: 2px solid transparent;
             background-color: var(--black);
             color: var(--white);
         }
 
+        /* For elements with border-radius, we clip the pseudo with clip-path */
         .btn-audio::before,
         .portfolio-tab::before,
         .work-link::before,
@@ -153,11 +154,35 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #00ff00 0%, #ff9500 50%, #ff6b35 100%);
+            background: linear-gradient(135deg, #00ff00 0%, #66ff99 50%, #00cc66 100%);
             border-radius: inherit;
+            /* clip to the same radius as the parent */
+            clip-path: inset(0 round var(--radius-md));
             z-index: -1;
             opacity: 0;
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Override clip-path for elements with different radii */
+        .portfolio-tab::before,
+        .guide-step::before,
+        .pricing-tier::before {
+            clip-path: inset(0 round var(--radius-lg));
+        }
+
+        .btn-audio::before {
+            clip-path: inset(0 round var(--radius-md));
+        }
+
+        .work-link::before,
+        .addon-card::before,
+        .contact-row::before,
+        .badge::before {
+            clip-path: inset(0 round var(--radius-md));
+        }
+
+        .nav-icon::before {
+            clip-path: inset(0 round 50%);
         }
 
         .btn-audio:hover::before,
@@ -188,7 +213,7 @@
             color: var(--black);
             border-color: transparent;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,149,0,0.4);
+            box-shadow: 0 10px 25px rgba(0,255,0,0.4);
         }
 
         /* Specific overrides for .btn-audio.active */
@@ -216,7 +241,7 @@
             color: var(--black);
             transform: translateY(-5px);
             border-color: transparent;
-            box-shadow: 0 8px 25px rgba(255,149,0,0.4);
+            box-shadow: 0 8px 25px rgba(0,255,0,0.4);
         }
 
         /* ===== HEADER & EQUALIZER ===== */
@@ -242,10 +267,10 @@
         .nav-icon-container { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); }
         .nav-label {
             position: absolute; bottom: -35px; font-size: 0.85rem; opacity: 0; transform: translateY(10px);
-            transition: var(--transition); white-space: nowrap; font-weight: 700; color: #ff9500;
+            transition: var(--transition); white-space: nowrap; font-weight: 700; color: #00ff00;
             text-transform: uppercase; letter-spacing: 1px; background: rgba(0,0,0,0.9);
             padding: var(--space-xs) var(--space-sm); border-radius: var(--radius-sm);
-            pointer-events: none; z-index: 1002; border: 1px solid rgba(255,149,0,0.3);
+            pointer-events: none; z-index: 1002; border: 1px solid rgba(0,255,0,0.3);
         }
         .nav-icon-container:hover .nav-label { opacity: 1; transform: translateY(0); }
 
@@ -276,7 +301,7 @@
         .trust-badges .badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.7;transform:scale(1.1);} }
 
-        /* ===== OTHER BUTTON VARIANTS (keep separate) ===== */
+        /* ===== OTHER BUTTON VARIANTS ===== */
         .btn-audio {
             background: var(--black);
             color: var(--text-body);
@@ -298,7 +323,7 @@
             border: 1px solid var(--border-color);
             padding: var(--space-lg);
             cursor: pointer;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-lg);
             flex: 1;
             min-width: 250px;
             text-align: left;

@@ -71,12 +71,11 @@
         }
 
         /* ============================================================
-               GRADIENT BUTTON – now green‑dominant
+               GRADIENT BUTTON – green with a touch of deep purple
                ============================================================ */
         .btn-primary {
             position: relative;
             z-index: 1;
-            /* no overflow: hidden – we use clip-path on pseudo */
             transition: var(--transition);
             border: 2px solid transparent;
             background-color: var(--black);
@@ -101,7 +100,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #00ff00 0%, #66ff99 50%, #00cc66 100%);
+            background: linear-gradient(135deg, #00ff00 0%, #66ff99 50%, #5B2C8E 100%);
             border-radius: inherit;
             clip-path: inset(0 round var(--radius-full));
             z-index: -1;
@@ -154,9 +153,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #00ff00 0%, #66ff99 50%, #00cc66 100%);
+            background: linear-gradient(135deg, #00ff00 0%, #66ff99 50%, #5B2C8E 100%);
             border-radius: inherit;
-            /* clip to the same radius as the parent */
             clip-path: inset(0 round var(--radius-md));
             z-index: -1;
             opacity: 0;

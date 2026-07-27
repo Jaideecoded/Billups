@@ -751,12 +751,8 @@
                         </p>
 
                         <!-- Hidden audio elements -->
-                        <audio id="rawAudio" class="hidden-audio" preload="auto">
-                            <source src="audio/raw-demo.mp3" type="audio/mpeg">
-                        </audio>
-                        <audio id="mixedAudio" class="hidden-audio" preload="auto">
-                            <source src="audio/mixed-demo.mp3" type="audio/mpeg">
-                        </audio>
+                        <audio id="rawAudio" class="hidden-audio" preload="auto"></audio>
+                        <audio id="mixedAudio" class="hidden-audio" preload="auto"></audio>
 
                         <div class="crossfader-container">
                             <div class="crossfader-labels">
@@ -777,7 +773,7 @@
                             </div>
 
                             <div class="crossfader-status" id="crossfaderStatus">
-                                <span class="highlight">●</span> Loading audio…
+                                <span class="highlight">⏳</span> Loading audio…
                             </div>
                         </div>
                     </div>
@@ -1466,7 +1462,7 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO CROSSFADER – bulletproof local loading
+            //  🎛️ AUDIO CROSSFADER – using fetch + blob URLs (works locally)
             // ============================================================
             (function initCrossfader() {
                 const track = document.getElementById('crossfaderTrack');
@@ -1478,11 +1474,8 @@
                 const rawAudio = document.getElementById('rawAudio');
                 const mixedAudio = document.getElementById('mixedAudio');
 
-                // Force preload
-                rawAudio.preload = 'auto';
-                mixedAudio.preload = 'auto';
-                rawAudio.load();
-                mixedAudio.load();
+                const rawPath = 'audio/raw-demo.mp3';
+                const mixedPath = 'audio/mixed-demo.mp3';
 
                 let isDragging = false;
                 let currentValue = 50;
@@ -1493,6 +1486,8 @@
                 let rawGain = null;
                 let mixedGain = null;
                 let isReady = false;
+                let rawBlobUrl = null;
+                let mixedBlobUrl = null;
 
                 // ---- Slider logic ----
                 function updateSlider(clientX) {
@@ -1546,30 +1541,61 @@
                     isDragging = false;
                 });
 
-                // ---- Check if audio is ready ----
-                function checkReady() {
-                    if (rawAudio.readyState >= 2 && mixedAudio.readyState >= 2) {
-                        isReady = true;
-                        statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
-                        return true;
+                // ---- Load audio using fetch + blob URLs ----
+                function loadAudio() {
+                    statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading audio…';
+
+                    let loadedCount = 0;
+
+                    function checkDone() {
+                        loadedCount++;
+                        if (loadedCount === 2) {
+                            isReady = true;
+                            statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
+                        }
                     }
-                    return false;
+
+                    // Load raw
+                    fetch(rawPath)
+                        .then(response => {
+                            if (!response.ok) throw new Error('HTTP ' + response.status + ' - file not found');
+                            return response.blob();
+                        })
+                        .then(blob => {
+                            rawBlobUrl = URL.createObjectURL(blob);
+                            rawAudio.src = rawBlobUrl;
+                            rawAudio.load();
+                            checkDone();
+                        })
+                        .catch(err => {
+                            console.error('Raw audio load error:', err);
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load: ' + rawPath + '</span>';
+                        });
+
+                    // Load mixed
+                    fetch(mixedPath)
+                        .then(response => {
+                            if (!response.ok) throw new Error('HTTP ' + response.status + ' - file not found');
+                            return response.blob();
+                        })
+                        .then(blob => {
+                            mixedBlobUrl = URL.createObjectURL(blob);
+                            mixedAudio.src = mixedBlobUrl;
+                            mixedAudio.load();
+                            checkDone();
+                        })
+                        .catch(err => {
+                            console.error('Mixed audio load error:', err);
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load: ' + mixedPath + '</span>';
+                        });
                 }
 
                 // ---- Play / Pause ----
                 playBtn.addEventListener('click', function() {
                     if (!isReady) {
+                        statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading… wait a moment';
                         // Try loading again
-                        rawAudio.load();
-                        mixedAudio.load();
-                        statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading…';
-                        setTimeout(function() {
-                            if (checkReady()) {
-                                initAudio();
-                            } else {
-                                statusDisplay.innerHTML = '<span class="error">⚠️ Files not found. Check: audio/raw-demo.mp3 & audio/mixed-demo.mp3</span>';
-                            }
-                        }, 500);
+                        loadAudio();
                         return;
                     }
 
@@ -1686,19 +1712,8 @@
                     }
                 }
 
-                // ---- Initial check ----
-                setTimeout(function() {
-                    if (checkReady()) {
-                        // Ready
-                    } else {
-                        // Check again after a moment
-                        setTimeout(function() {
-                            if (!checkReady()) {
-                                statusDisplay.innerHTML = '<span class="error">⚠️ Files not found. Check: audio/raw-demo.mp3 & audio/mixed-demo.mp3</span>';
-                            }
-                        }, 1000);
-                    }
-                }, 300);
+                // ---- Start loading ----
+                loadAudio();
 
                 // Set initial slider position
                 updateUI();

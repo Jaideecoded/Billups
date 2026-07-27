@@ -418,17 +418,6 @@
             font-weight: 600;
         }
 
-        /* Hide audio elements off-screen so they still load */
-        .hidden-audio {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-            width: 0;
-            height: 0;
-            opacity: 0;
-            pointer-events: none;
-        }
-
         /* ===== OTHER BUTTON VARIANTS ===== */
         .btn-audio {
             background: var(--black);
@@ -749,10 +738,6 @@
                         <p style="text-align:center; color:var(--text-muted); margin-bottom:var(--space-md); font-size:0.95rem;">
                             Drag the slider to blend between the <span style="color:#ff6b35; font-weight:600;">raw recording</span> and the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version
                         </p>
-
-                        <!-- Hidden audio elements -->
-                        <audio id="rawAudio" class="hidden-audio" preload="auto"></audio>
-                        <audio id="mixedAudio" class="hidden-audio" preload="auto"></audio>
 
                         <div class="crossfader-container">
                             <div class="crossfader-labels">
@@ -1462,7 +1447,7 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO CROSSFADER – fixed "already connected" error
+            //  🎛️ AUDIO CROSSFADER – using decodeAudioData (clean buffer sources)
             // ============================================================
             (function initCrossfader() {
                 const track = document.getElementById('crossfaderTrack');
@@ -1471,9 +1456,6 @@
                 const playBtn = document.getElementById('playBtn');
                 const statusDisplay = document.getElementById('crossfaderStatus');
 
-                const rawAudio = document.getElementById('rawAudio');
-                const mixedAudio = document.getElementById('mixedAudio');
-
                 const rawPath = 'audio/raw-demo.mp3';
                 const mixedPath = 'audio/mixed-demo.mp3';
 
@@ -1481,13 +1463,14 @@
                 let currentValue = 50;
                 let isPlaying = false;
                 let audioContext = null;
-                let rawSource = null;
-                let mixedSource = null;
+                let rawBuffer = null;
+                let mixedBuffer = null;
                 let rawGain = null;
                 let mixedGain = null;
-                let isReady = false;
-                let rawBlobUrl = null;
-                let mixedBlobUrl = null;
+                let rawSource = null;
+                let mixedSource = null;
+                let startTime = 0;
+                let pausedAt = 0;
 
                 // ---- Slider logic ----
                 function updateSlider(clientX) {
@@ -1541,7 +1524,7 @@
                     isDragging = false;
                 });
 
-                // ---- Load audio using fetch + blob URLs ----
+                // ---- Load audio using fetch + decodeAudioData ----
                 function loadAudio() {
                     statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading audio…';
 
@@ -1550,7 +1533,6 @@
                     function checkDone() {
                         loadedCount++;
                         if (loadedCount === 2) {
-                            isReady = true;
                             statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
                         }
                     }
@@ -1558,43 +1540,39 @@
                     // Load raw
                     fetch(rawPath)
                         .then(response => {
-                            if (!response.ok) throw new Error('HTTP ' + response.status + ' - file not found');
-                            return response.blob();
+                            if (!response.ok) throw new Error('HTTP ' + response.status);
+                            return response.arrayBuffer();
                         })
-                        .then(blob => {
-                            rawBlobUrl = URL.createObjectURL(blob);
-                            rawAudio.src = rawBlobUrl;
-                            rawAudio.load();
+                        .then(arrayBuffer => {
+                            // Decode in audio context later
+                            rawBuffer = arrayBuffer;
                             checkDone();
                         })
                         .catch(err => {
-                            console.error('Raw audio load error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load: ' + rawPath + '</span>';
+                            console.error('Raw load error:', err);
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load ' + rawPath + '</span>';
                         });
 
                     // Load mixed
                     fetch(mixedPath)
                         .then(response => {
-                            if (!response.ok) throw new Error('HTTP ' + response.status + ' - file not found');
-                            return response.blob();
+                            if (!response.ok) throw new Error('HTTP ' + response.status);
+                            return response.arrayBuffer();
                         })
-                        .then(blob => {
-                            mixedBlobUrl = URL.createObjectURL(blob);
-                            mixedAudio.src = mixedBlobUrl;
-                            mixedAudio.load();
+                        .then(arrayBuffer => {
+                            mixedBuffer = arrayBuffer;
                             checkDone();
                         })
                         .catch(err => {
-                            console.error('Mixed audio load error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load: ' + mixedPath + '</span>';
+                            console.error('Mixed load error:', err);
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load ' + mixedPath + '</span>';
                         });
                 }
 
                 // ---- Play / Pause ----
                 playBtn.addEventListener('click', function() {
-                    if (!isReady) {
+                    if (!rawBuffer || !mixedBuffer) {
                         statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading… wait a moment';
-                        // Try loading again
                         loadAudio();
                         return;
                     }
@@ -1608,108 +1586,126 @@
                     }
                 });
 
-                // ---- Init Web Audio (only once) ----
+                // ---- Init Audio (buffer sources) ----
                 function initAudio() {
                     try {
                         audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-                        // Only create sources if they don't already exist
-                        if (!rawSource) {
-                            rawSource = audioContext.createMediaElementSource(rawAudio);
-                            mixedSource = audioContext.createMediaElementSource(mixedAudio);
-                        } else {
-                            // If they exist, we just reconnect them to the new context
-                            // But we need to disconnect from old context if any
-                            if (rawGain) {
-                                rawSource.disconnect(rawGain);
-                                mixedSource.disconnect(mixedGain);
-                            }
-                            rawSource = audioContext.createMediaElementSource(rawAudio);
-                            mixedSource = audioContext.createMediaElementSource(mixedAudio);
-                        }
+                        // Decode both buffers
+                        Promise.all([
+                            audioContext.decodeAudioData(rawBuffer),
+                            audioContext.decodeAudioData(mixedBuffer)
+                        ]).then(function(decoded) {
+                            const rawDecoded = decoded[0];
+                            const mixedDecoded = decoded[1];
 
-                        rawGain = audioContext.createGain();
-                        mixedGain = audioContext.createGain();
+                            // Create gain nodes
+                            rawGain = audioContext.createGain();
+                            mixedGain = audioContext.createGain();
+                            const rawVol = 1 - (currentValue / 100);
+                            const mixedVol = currentValue / 100;
+                            rawGain.gain.value = rawVol;
+                            mixedGain.gain.value = mixedVol;
 
-                        const rawVol = 1 - (currentValue / 100);
-                        const mixedVol = currentValue / 100;
-                        rawGain.gain.value = rawVol;
-                        mixedGain.gain.value = mixedVol;
+                            rawGain.connect(audioContext.destination);
+                            mixedGain.connect(audioContext.destination);
 
-                        rawSource.connect(rawGain);
-                        rawGain.connect(audioContext.destination);
+                            // Create sources
+                            rawSource = audioContext.createBufferSource();
+                            mixedSource = audioContext.createBufferSource();
+                            rawSource.buffer = rawDecoded;
+                            mixedSource.buffer = mixedDecoded;
 
-                        mixedSource.connect(mixedGain);
-                        mixedGain.connect(audioContext.destination);
+                            rawSource.connect(rawGain);
+                            mixedSource.connect(mixedGain);
 
-                        if (audioContext.state === 'suspended') {
-                            audioContext.resume();
-                        }
-
-                        const playPromise = Promise.all([rawAudio.play(), mixedAudio.play()]);
-                        playPromise.then(() => {
+                            // Start from where we paused (0 if not paused)
+                            const offset = pausedAt || 0;
+                            rawSource.start(0, offset);
+                            mixedSource.start(0, offset);
+                            startTime = audioContext.currentTime - offset;
                             isPlaying = true;
                             updatePlayButton();
                             statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
-                        }).catch(function(err) {
-                            console.warn('Playback error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Click again to play.</span>';
-                            // Don't close context, just let the user retry
-                        });
 
-                        rawAudio.addEventListener('ended', function() {
-                            if (isPlaying) stopAudio();
+                            // When both finish, stop
+                            rawSource.onended = function() {
+                                if (isPlaying) stopAudio();
+                            };
+
+                        }).catch(function(err) {
+                            console.error('Decode error:', err);
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Decoding failed: ' + err.message + '</span>';
+                            audioContext = null;
                         });
 
                     } catch (err) {
-                        console.error('Audio init error:', err);
+                        console.error('Init error:', err);
                         statusDisplay.innerHTML = '<span class="error">⚠️ Error: ' + err.message + '</span>';
-                        // Reset so we can retry
                         audioContext = null;
-                        rawSource = null;
-                        mixedSource = null;
-                        rawGain = null;
-                        mixedGain = null;
                     }
                 }
 
                 function pauseAudio() {
                     if (!audioContext || !isPlaying) return;
-                    rawAudio.pause();
-                    mixedAudio.pause();
+                    // Suspend context (stops all audio)
+                    audioContext.suspend();
                     isPlaying = false;
+                    pausedAt = audioContext.currentTime - startTime;
                     updatePlayButton();
                     statusDisplay.innerHTML = '<span class="highlight">⏸</span> Paused';
                 }
 
                 function resumeAudio() {
                     if (!audioContext) return;
-                    if (audioContext.state === 'suspended') audioContext.resume();
-                    const playPromise = Promise.all([rawAudio.play(), mixedAudio.play()]);
-                    playPromise.then(() => {
+                    if (audioContext.state === 'suspended') {
+                        audioContext.resume();
+                        // We need to re-create sources because they can't be restarted after suspension?
+                        // Actually, with buffer sources, we need to recreate them if they ended or were stopped.
+                        // But we can just restart from the paused position.
+                        // We'll simply restart from pausedAt.
+                        // First, clean up old sources
+                        if (rawSource) {
+                            rawSource.disconnect();
+                            mixedSource.disconnect();
+                        }
+                        // Recreate from buffers
+                        const rawBuf = rawSource.buffer;
+                        const mixedBuf = mixedSource.buffer;
+                        rawSource = audioContext.createBufferSource();
+                        mixedSource = audioContext.createBufferSource();
+                        rawSource.buffer = rawBuf;
+                        mixedSource.buffer = mixedBuf;
+                        rawSource.connect(rawGain);
+                        mixedSource.connect(mixedGain);
+                        rawSource.start(0, pausedAt);
+                        mixedSource.start(0, pausedAt);
+                        startTime = audioContext.currentTime - pausedAt;
                         isPlaying = true;
                         updatePlayButton();
                         statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
-                    }).catch(function(err) {
-                        console.warn('Resume error:', err);
-                        statusDisplay.innerHTML = '<span class="error">⚠️ Could not resume.</span>';
-                    });
+                        rawSource.onended = function() {
+                            if (isPlaying) stopAudio();
+                        };
+                    } else {
+                        // If not suspended, just resume (should not happen)
+                        audioContext.resume();
+                        isPlaying = true;
+                        updatePlayButton();
+                        statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
+                    }
                 }
 
                 function stopAudio() {
                     isPlaying = false;
-                    rawAudio.currentTime = 0;
-                    mixedAudio.currentTime = 0;
+                    pausedAt = 0;
+                    rawSource = null;
+                    mixedSource = null;
                     updatePlayButton();
                     statusDisplay.innerHTML = '<span class="highlight">■</span> Finished';
-                    // Close context to free resources
                     if (audioContext) {
                         audioContext.close();
                         audioContext = null;
-                        rawSource = null;
-                        mixedSource = null;
-                        rawGain = null;
-                        mixedGain = null;
                     }
                 }
 

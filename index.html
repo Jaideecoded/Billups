@@ -1462,7 +1462,7 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO CROSSFADER – using fetch + blob URLs (works locally)
+            //  🎛️ AUDIO CROSSFADER – fixed "already connected" error
             // ============================================================
             (function initCrossfader() {
                 const track = document.getElementById('crossfaderTrack');
@@ -1608,13 +1608,25 @@
                     }
                 });
 
-                // ---- Init Web Audio ----
+                // ---- Init Web Audio (only once) ----
                 function initAudio() {
                     try {
                         audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-                        rawSource = audioContext.createMediaElementSource(rawAudio);
-                        mixedSource = audioContext.createMediaElementSource(mixedAudio);
+                        // Only create sources if they don't already exist
+                        if (!rawSource) {
+                            rawSource = audioContext.createMediaElementSource(rawAudio);
+                            mixedSource = audioContext.createMediaElementSource(mixedAudio);
+                        } else {
+                            // If they exist, we just reconnect them to the new context
+                            // But we need to disconnect from old context if any
+                            if (rawGain) {
+                                rawSource.disconnect(rawGain);
+                                mixedSource.disconnect(mixedGain);
+                            }
+                            rawSource = audioContext.createMediaElementSource(rawAudio);
+                            mixedSource = audioContext.createMediaElementSource(mixedAudio);
+                        }
 
                         rawGain = audioContext.createGain();
                         mixedGain = audioContext.createGain();
@@ -1642,14 +1654,7 @@
                         }).catch(function(err) {
                             console.warn('Playback error:', err);
                             statusDisplay.innerHTML = '<span class="error">⚠️ Click again to play.</span>';
-                            if (audioContext) {
-                                audioContext.close();
-                                audioContext = null;
-                                rawSource = null;
-                                mixedSource = null;
-                                rawGain = null;
-                                mixedGain = null;
-                            }
+                            // Don't close context, just let the user retry
                         });
 
                         rawAudio.addEventListener('ended', function() {
@@ -1659,6 +1664,12 @@
                     } catch (err) {
                         console.error('Audio init error:', err);
                         statusDisplay.innerHTML = '<span class="error">⚠️ Error: ' + err.message + '</span>';
+                        // Reset so we can retry
+                        audioContext = null;
+                        rawSource = null;
+                        mixedSource = null;
+                        rawGain = null;
+                        mixedGain = null;
                     }
                 }
 
@@ -1691,6 +1702,7 @@
                     mixedAudio.currentTime = 0;
                     updatePlayButton();
                     statusDisplay.innerHTML = '<span class="highlight">■</span> Finished';
+                    // Close context to free resources
                     if (audioContext) {
                         audioContext.close();
                         audioContext = null;

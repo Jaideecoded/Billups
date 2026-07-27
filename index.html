@@ -413,9 +413,14 @@
             font-weight: 700;
         }
 
-        /* Hide the native audio elements */
+        /* Hide audio elements in a way that still loads them */
         .hidden-audio {
-            display: none;
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+            width: 0;
+            height: 0;
         }
 
         /* ===== OTHER BUTTON VARIANTS ===== */
@@ -739,11 +744,11 @@
                             Drag the slider to blend between the <span style="color:#ff6b35; font-weight:600;">raw recording</span> and the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version
                         </p>
 
-                        <!-- Hidden audio elements – these load the files natively -->
-                        <audio id="rawAudio" class="hidden-audio" preload="auto">
+                        <!-- Hidden audio elements – now positioned off-screen so they load -->
+                        <audio id="rawAudio" class="hidden-audio" preload="auto" crossorigin="anonymous">
                             <source src="audio/raw-demo.mp3" type="audio/mpeg">
                         </audio>
-                        <audio id="mixedAudio" class="hidden-audio" preload="auto">
+                        <audio id="mixedAudio" class="hidden-audio" preload="auto" crossorigin="anonymous">
                             <source src="audio/mixed-demo.mp3" type="audio/mpeg">
                         </audio>
 
@@ -1455,7 +1460,7 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO CROSSFADER – robust loading with events
+            //  🎛️ AUDIO CROSSFADER – robust & simple
             // ============================================================
             (function initCrossfader() {
                 const track = document.getElementById('crossfaderTrack');
@@ -1467,6 +1472,10 @@
                 const rawAudio = document.getElementById('rawAudio');
                 const mixedAudio = document.getElementById('mixedAudio');
 
+                // Force loading
+                rawAudio.load();
+                mixedAudio.load();
+
                 let isDragging = false;
                 let currentValue = 50;
                 let isPlaying = false;
@@ -1475,10 +1484,8 @@
                 let mixedSource = null;
                 let rawGain = null;
                 let mixedGain = null;
-                let isLoaded = false;
-                let loadAttempts = 0;
 
-                // ---- Slider logic (unchanged) ----
+                // Slider logic
                 function updateSlider(clientX) {
                     const rect = track.getBoundingClientRect();
                     let percent = (clientX - rect.left) / rect.width;
@@ -1498,7 +1505,7 @@
                     }
                 }
 
-                // Mouse / touch events
+                // Mouse / touch
                 track.addEventListener('mousedown', function(e) {
                     isDragging = true;
                     updateSlider(e.clientX);
@@ -1530,13 +1537,8 @@
                     isDragging = false;
                 });
 
-                // ---- Play / Pause ----
+                // Play / Pause
                 playBtn.addEventListener('click', function() {
-                    if (!isLoaded) {
-                        // Try to load again
-                        loadAudio();
-                        return;
-                    }
                     if (!audioContext) {
                         initAudio();
                     } else if (isPlaying) {
@@ -1546,59 +1548,18 @@
                     }
                 });
 
-                // ---- Load audio files ----
-                function loadAudio() {
-                    statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading audio…';
-                    loadAttempts++;
-
-                    // Check if already loaded via canplaythrough
-                    if (rawAudio.readyState >= 3 && mixedAudio.readyState >= 3) {
-                        isLoaded = true;
-                        statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
-                        return;
-                    }
-
-                    // Wait for both to be ready
-                    let rawReady = false;
-                    let mixedReady = false;
-
-                    function checkReady() {
-                        if (rawReady && mixedReady) {
-                            isLoaded = true;
-                            statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
-                        }
-                    }
-
-                    rawAudio.addEventListener('canplaythrough', function() {
-                        rawReady = true;
-                        checkReady();
-                    }, { once: true });
-
-                    mixedAudio.addEventListener('canplaythrough', function() {
-                        mixedReady = true;
-                        checkReady();
-                    }, { once: true });
-
-                    // Fallback: if after 5 seconds still not ready, try anyway
-                    setTimeout(() => {
-                        if (!isLoaded) {
-                            // If at least one has some data, try to proceed
-                            if (rawAudio.readyState > 0 && mixedAudio.readyState > 0) {
-                                isLoaded = true;
-                                statusDisplay.innerHTML = '<span class="highlight">●</span> Ready (partial) — press play';
-                            } else {
-                                statusDisplay.innerHTML = '<span style="color:#ff6b35;">⚠️ Could not load audio files. Check paths.</span>';
-                            }
-                        }
-                    }, 5000);
-                }
-
-                // ---- Init Web Audio ----
                 function initAudio() {
                     try {
+                        // Check if files are ready
+                        if (rawAudio.readyState === 0 || mixedAudio.readyState === 0) {
+                            statusDisplay.innerHTML = '<span style="color:#ff6b35;">⏳ Still loading… try again in a moment.</span>';
+                            // Retry after 1 second
+                            setTimeout(initAudio, 1000);
+                            return;
+                        }
+
                         audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-                        // Create sources from the <audio> elements
                         rawSource = audioContext.createMediaElementSource(rawAudio);
                         mixedSource = audioContext.createMediaElementSource(mixedAudio);
 
@@ -1620,7 +1581,6 @@
                             audioContext.resume();
                         }
 
-                        // Play both
                         const playPromise = Promise.all([rawAudio.play(), mixedAudio.play()]);
                         playPromise.then(() => {
                             isPlaying = true;
@@ -1629,7 +1589,6 @@
                         }).catch(err => {
                             console.warn('Playback error:', err);
                             statusDisplay.innerHTML = '<span style="color:#ff6b35;">⚠️ Click again to play.</span>';
-                            // Reset context on failure
                             if (audioContext) {
                                 audioContext.close();
                                 audioContext = null;
@@ -1643,6 +1602,8 @@
                         rawAudio.addEventListener('ended', function() {
                             if (isPlaying) stopAudio();
                         });
+
+                        statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
 
                     } catch (err) {
                         console.error('Audio init error:', err);
@@ -1700,8 +1661,20 @@
                     }
                 }
 
-                // ---- Start loading ----
-                loadAudio();
+                // Check initial ready state
+                if (rawAudio.readyState >= 3 && mixedAudio.readyState >= 3) {
+                    statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
+                } else {
+                    statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading audio…';
+                    // Check again after a few seconds
+                    setTimeout(function() {
+                        if (rawAudio.readyState >= 3 && mixedAudio.readyState >= 3) {
+                            statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
+                        } else {
+                            statusDisplay.innerHTML = '<span style="color:#ff6b35;">⚠️ Files not found. Check audio folder.</span>';
+                        }
+                    }, 3000);
+                }
 
                 // Set initial slider position
                 updateUI();

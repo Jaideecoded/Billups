@@ -406,21 +406,27 @@
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-top: var(--space-sm);
+            min-height: 1.5rem;
         }
 
         .crossfader-status .highlight {
             color: var(--accent);
             font-weight: 700;
         }
+        .crossfader-status .error {
+            color: #ff6b35;
+            font-weight: 600;
+        }
 
-        /* Hide audio elements in a way that still loads them */
+        /* Hide audio elements off-screen so they still load */
         .hidden-audio {
             position: absolute;
             left: -9999px;
-            opacity: 0;
-            pointer-events: none;
+            top: -9999px;
             width: 0;
             height: 0;
+            opacity: 0;
+            pointer-events: none;
         }
 
         /* ===== OTHER BUTTON VARIANTS ===== */
@@ -744,11 +750,11 @@
                             Drag the slider to blend between the <span style="color:#ff6b35; font-weight:600;">raw recording</span> and the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version
                         </p>
 
-                        <!-- Hidden audio elements – now positioned off-screen so they load -->
-                        <audio id="rawAudio" class="hidden-audio" preload="auto" crossorigin="anonymous">
+                        <!-- Hidden audio elements -->
+                        <audio id="rawAudio" class="hidden-audio" preload="auto">
                             <source src="audio/raw-demo.mp3" type="audio/mpeg">
                         </audio>
-                        <audio id="mixedAudio" class="hidden-audio" preload="auto" crossorigin="anonymous">
+                        <audio id="mixedAudio" class="hidden-audio" preload="auto">
                             <source src="audio/mixed-demo.mp3" type="audio/mpeg">
                         </audio>
 
@@ -1460,7 +1466,7 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO CROSSFADER – robust & simple
+            //  🎛️ AUDIO CROSSFADER – bulletproof local loading
             // ============================================================
             (function initCrossfader() {
                 const track = document.getElementById('crossfaderTrack');
@@ -1472,7 +1478,9 @@
                 const rawAudio = document.getElementById('rawAudio');
                 const mixedAudio = document.getElementById('mixedAudio');
 
-                // Force loading
+                // Force preload
+                rawAudio.preload = 'auto';
+                mixedAudio.preload = 'auto';
                 rawAudio.load();
                 mixedAudio.load();
 
@@ -1484,8 +1492,9 @@
                 let mixedSource = null;
                 let rawGain = null;
                 let mixedGain = null;
+                let isReady = false;
 
-                // Slider logic
+                // ---- Slider logic ----
                 function updateSlider(clientX) {
                     const rect = track.getBoundingClientRect();
                     let percent = (clientX - rect.left) / rect.width;
@@ -1505,7 +1514,7 @@
                     }
                 }
 
-                // Mouse / touch
+                // Mouse / touch events
                 track.addEventListener('mousedown', function(e) {
                     isDragging = true;
                     updateSlider(e.clientX);
@@ -1537,8 +1546,33 @@
                     isDragging = false;
                 });
 
-                // Play / Pause
+                // ---- Check if audio is ready ----
+                function checkReady() {
+                    if (rawAudio.readyState >= 2 && mixedAudio.readyState >= 2) {
+                        isReady = true;
+                        statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
+                        return true;
+                    }
+                    return false;
+                }
+
+                // ---- Play / Pause ----
                 playBtn.addEventListener('click', function() {
+                    if (!isReady) {
+                        // Try loading again
+                        rawAudio.load();
+                        mixedAudio.load();
+                        statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading…';
+                        setTimeout(function() {
+                            if (checkReady()) {
+                                initAudio();
+                            } else {
+                                statusDisplay.innerHTML = '<span class="error">⚠️ Files not found. Check: audio/raw-demo.mp3 & audio/mixed-demo.mp3</span>';
+                            }
+                        }, 500);
+                        return;
+                    }
+
                     if (!audioContext) {
                         initAudio();
                     } else if (isPlaying) {
@@ -1548,16 +1582,9 @@
                     }
                 });
 
+                // ---- Init Web Audio ----
                 function initAudio() {
                     try {
-                        // Check if files are ready
-                        if (rawAudio.readyState === 0 || mixedAudio.readyState === 0) {
-                            statusDisplay.innerHTML = '<span style="color:#ff6b35;">⏳ Still loading… try again in a moment.</span>';
-                            // Retry after 1 second
-                            setTimeout(initAudio, 1000);
-                            return;
-                        }
-
                         audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
                         rawSource = audioContext.createMediaElementSource(rawAudio);
@@ -1586,9 +1613,9 @@
                             isPlaying = true;
                             updatePlayButton();
                             statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
-                        }).catch(err => {
+                        }).catch(function(err) {
                             console.warn('Playback error:', err);
-                            statusDisplay.innerHTML = '<span style="color:#ff6b35;">⚠️ Click again to play.</span>';
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Click again to play.</span>';
                             if (audioContext) {
                                 audioContext.close();
                                 audioContext = null;
@@ -1603,11 +1630,9 @@
                             if (isPlaying) stopAudio();
                         });
 
-                        statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
-
                     } catch (err) {
                         console.error('Audio init error:', err);
-                        statusDisplay.innerHTML = '<span style="color:#ff6b35;">⚠️ Error: ' + err.message + '</span>';
+                        statusDisplay.innerHTML = '<span class="error">⚠️ Error: ' + err.message + '</span>';
                     }
                 }
 
@@ -1628,9 +1653,9 @@
                         isPlaying = true;
                         updatePlayButton();
                         statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
-                    }).catch(err => {
+                    }).catch(function(err) {
                         console.warn('Resume error:', err);
-                        statusDisplay.innerHTML = '<span style="color:#ff6b35;">⚠️ Could not resume.</span>';
+                        statusDisplay.innerHTML = '<span class="error">⚠️ Could not resume.</span>';
                     });
                 }
 
@@ -1661,20 +1686,19 @@
                     }
                 }
 
-                // Check initial ready state
-                if (rawAudio.readyState >= 3 && mixedAudio.readyState >= 3) {
-                    statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
-                } else {
-                    statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading audio…';
-                    // Check again after a few seconds
-                    setTimeout(function() {
-                        if (rawAudio.readyState >= 3 && mixedAudio.readyState >= 3) {
-                            statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
-                        } else {
-                            statusDisplay.innerHTML = '<span style="color:#ff6b35;">⚠️ Files not found. Check audio folder.</span>';
-                        }
-                    }, 3000);
-                }
+                // ---- Initial check ----
+                setTimeout(function() {
+                    if (checkReady()) {
+                        // Ready
+                    } else {
+                        // Check again after a moment
+                        setTimeout(function() {
+                            if (!checkReady()) {
+                                statusDisplay.innerHTML = '<span class="error">⚠️ Files not found. Check: audio/raw-demo.mp3 & audio/mixed-demo.mp3</span>';
+                            }
+                        }, 1000);
+                    }
+                }, 300);
 
                 // Set initial slider position
                 updateUI();

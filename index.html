@@ -1447,7 +1447,7 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO CROSSFADER – using decodeAudioData (clean buffer sources)
+            //  🎛️ AUDIO CROSSFADER – using fetch + decodeAudioData (fix detached)
             // ============================================================
             (function initCrossfader() {
                 const track = document.getElementById('crossfaderTrack');
@@ -1463,7 +1463,7 @@
                 let currentValue = 50;
                 let isPlaying = false;
                 let audioContext = null;
-                let rawBuffer = null;
+                let rawBuffer = null;      // decoded AudioBuffer
                 let mixedBuffer = null;
                 let rawGain = null;
                 let mixedGain = null;
@@ -1471,6 +1471,7 @@
                 let mixedSource = null;
                 let startTime = 0;
                 let pausedAt = 0;
+                let isReady = false;
 
                 // ---- Slider logic ----
                 function updateSlider(clientX) {
@@ -1524,15 +1525,24 @@
                     isDragging = false;
                 });
 
-                // ---- Load audio using fetch + decodeAudioData ----
+                // ---- Load audio using fetch + decode immediately ----
                 function loadAudio() {
                     statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading audio…';
+
+                    // Create AudioContext early so we can decode
+                    try {
+                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    } catch (e) {
+                        statusDisplay.innerHTML = '<span class="error">⚠️ Web Audio not supported.</span>';
+                        return;
+                    }
 
                     let loadedCount = 0;
 
                     function checkDone() {
                         loadedCount++;
                         if (loadedCount === 2) {
+                            isReady = true;
                             statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
                         }
                     }
@@ -1544,13 +1554,16 @@
                             return response.arrayBuffer();
                         })
                         .then(arrayBuffer => {
-                            // Decode in audio context later
-                            rawBuffer = arrayBuffer;
+                            // Decode now to avoid detached buffer
+                            return audioContext.decodeAudioData(arrayBuffer);
+                        })
+                        .then(decodedBuffer => {
+                            rawBuffer = decodedBuffer;
                             checkDone();
                         })
                         .catch(err => {
-                            console.error('Raw load error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load ' + rawPath + '</span>';
+                            console.error('Raw load/decode error:', err);
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load raw audio</span>';
                         });
 
                     // Load mixed
@@ -1560,95 +1573,112 @@
                             return response.arrayBuffer();
                         })
                         .then(arrayBuffer => {
-                            mixedBuffer = arrayBuffer;
+                            return audioContext.decodeAudioData(arrayBuffer);
+                        })
+                        .then(decodedBuffer => {
+                            mixedBuffer = decodedBuffer;
                             checkDone();
                         })
                         .catch(err => {
-                            console.error('Mixed load error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load ' + mixedPath + '</span>';
+                            console.error('Mixed load/decode error:', err);
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load mixed audio</span>';
                         });
                 }
 
                 // ---- Play / Pause ----
                 playBtn.addEventListener('click', function() {
-                    if (!rawBuffer || !mixedBuffer) {
+                    if (!isReady) {
                         statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading… wait a moment';
-                        loadAudio();
+                        if (!rawBuffer && !mixedBuffer) {
+                            loadAudio();
+                        } else {
+                            // If buffers are present but not marked ready, check again
+                            if (rawBuffer && mixedBuffer) {
+                                isReady = true;
+                                statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
+                            }
+                        }
                         return;
                     }
 
                     if (!audioContext) {
-                        initAudio();
-                    } else if (isPlaying) {
+                        // Recreate context if closed
+                        try {
+                            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        } catch (e) {
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Web Audio not supported.</span>';
+                            return;
+                        }
+                    }
+
+                    if (isPlaying) {
                         pauseAudio();
                     } else {
-                        resumeAudio();
+                        // If context is suspended, resume
+                        if (audioContext.state === 'suspended') {
+                            audioContext.resume();
+                        }
+                        // If we have buffers but no sources, create them
+                        if (rawBuffer && mixedBuffer) {
+                            if (!rawSource) {
+                                createSources();
+                            } else {
+                                // If sources exist but not playing, resume
+                                if (audioContext.state === 'running') {
+                                    // We need to restart from paused position
+                                    resumeAudio();
+                                } else {
+                                    resumeAudio();
+                                }
+                            }
+                        } else {
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Audio not loaded yet.</span>';
+                        }
                     }
                 });
 
-                // ---- Init Audio (buffer sources) ----
-                function initAudio() {
+                function createSources() {
                     try {
-                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        rawSource = audioContext.createBufferSource();
+                        mixedSource = audioContext.createBufferSource();
+                        rawSource.buffer = rawBuffer;
+                        mixedSource.buffer = mixedBuffer;
 
-                        // Decode both buffers
-                        Promise.all([
-                            audioContext.decodeAudioData(rawBuffer),
-                            audioContext.decodeAudioData(mixedBuffer)
-                        ]).then(function(decoded) {
-                            const rawDecoded = decoded[0];
-                            const mixedDecoded = decoded[1];
+                        rawGain = audioContext.createGain();
+                        mixedGain = audioContext.createGain();
+                        const rawVol = 1 - (currentValue / 100);
+                        const mixedVol = currentValue / 100;
+                        rawGain.gain.value = rawVol;
+                        mixedGain.gain.value = mixedVol;
 
-                            // Create gain nodes
-                            rawGain = audioContext.createGain();
-                            mixedGain = audioContext.createGain();
-                            const rawVol = 1 - (currentValue / 100);
-                            const mixedVol = currentValue / 100;
-                            rawGain.gain.value = rawVol;
-                            mixedGain.gain.value = mixedVol;
+                        rawSource.connect(rawGain);
+                        rawGain.connect(audioContext.destination);
 
-                            rawGain.connect(audioContext.destination);
-                            mixedGain.connect(audioContext.destination);
+                        mixedSource.connect(mixedGain);
+                        mixedGain.connect(audioContext.destination);
 
-                            // Create sources
-                            rawSource = audioContext.createBufferSource();
-                            mixedSource = audioContext.createBufferSource();
-                            rawSource.buffer = rawDecoded;
-                            mixedSource.buffer = mixedDecoded;
+                        // Start from paused position (0 if not paused)
+                        const offset = pausedAt || 0;
+                        rawSource.start(0, offset);
+                        mixedSource.start(0, offset);
+                        startTime = audioContext.currentTime - offset;
 
-                            rawSource.connect(rawGain);
-                            mixedSource.connect(mixedGain);
+                        isPlaying = true;
+                        updatePlayButton();
+                        statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
 
-                            // Start from where we paused (0 if not paused)
-                            const offset = pausedAt || 0;
-                            rawSource.start(0, offset);
-                            mixedSource.start(0, offset);
-                            startTime = audioContext.currentTime - offset;
-                            isPlaying = true;
-                            updatePlayButton();
-                            statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
-
-                            // When both finish, stop
-                            rawSource.onended = function() {
-                                if (isPlaying) stopAudio();
-                            };
-
-                        }).catch(function(err) {
-                            console.error('Decode error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Decoding failed: ' + err.message + '</span>';
-                            audioContext = null;
-                        });
+                        rawSource.onended = function() {
+                            if (isPlaying) stopAudio();
+                        };
 
                     } catch (err) {
-                        console.error('Init error:', err);
-                        statusDisplay.innerHTML = '<span class="error">⚠️ Error: ' + err.message + '</span>';
-                        audioContext = null;
+                        console.error('Create sources error:', err);
+                        statusDisplay.innerHTML = '<span class="error">⚠️ Error creating sources</span>';
                     }
                 }
 
                 function pauseAudio() {
                     if (!audioContext || !isPlaying) return;
-                    // Suspend context (stops all audio)
                     audioContext.suspend();
                     isPlaying = false;
                     pausedAt = audioContext.currentTime - startTime;
@@ -1660,47 +1690,32 @@
                     if (!audioContext) return;
                     if (audioContext.state === 'suspended') {
                         audioContext.resume();
-                        // We need to re-create sources because they can't be restarted after suspension?
-                        // Actually, with buffer sources, we need to recreate them if they ended or were stopped.
-                        // But we can just restart from the paused position.
-                        // We'll simply restart from pausedAt.
-                        // First, clean up old sources
-                        if (rawSource) {
-                            rawSource.disconnect();
-                            mixedSource.disconnect();
-                        }
-                        // Recreate from buffers
-                        const rawBuf = rawSource.buffer;
-                        const mixedBuf = mixedSource.buffer;
-                        rawSource = audioContext.createBufferSource();
-                        mixedSource = audioContext.createBufferSource();
-                        rawSource.buffer = rawBuf;
-                        mixedSource.buffer = mixedBuf;
-                        rawSource.connect(rawGain);
-                        mixedSource.connect(mixedGain);
-                        rawSource.start(0, pausedAt);
-                        mixedSource.start(0, pausedAt);
-                        startTime = audioContext.currentTime - pausedAt;
-                        isPlaying = true;
-                        updatePlayButton();
-                        statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
-                        rawSource.onended = function() {
-                            if (isPlaying) stopAudio();
-                        };
+                    }
+                    // If sources are finished, we need to recreate them
+                    if (!rawSource || rawSource.buffer === null) {
+                        createSources();
                     } else {
-                        // If not suspended, just resume (should not happen)
-                        audioContext.resume();
-                        isPlaying = true;
-                        updatePlayButton();
-                        statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
+                        // Resume the context
+                        audioContext.resume().then(() => {
+                            isPlaying = true;
+                            updatePlayButton();
+                            statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
+                        }).catch(err => {
+                            console.warn('Resume error:', err);
+                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not resume.</span>';
+                        });
                     }
                 }
 
                 function stopAudio() {
                     isPlaying = false;
                     pausedAt = 0;
-                    rawSource = null;
-                    mixedSource = null;
+                    if (rawSource) {
+                        rawSource.disconnect();
+                        mixedSource.disconnect();
+                        rawSource = null;
+                        mixedSource = null;
+                    }
                     updatePlayButton();
                     statusDisplay.innerHTML = '<span class="highlight">■</span> Finished';
                     if (audioContext) {

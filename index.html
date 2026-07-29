@@ -71,7 +71,7 @@
         }
 
         /* ============================================================
-               GRADIENT BUTTON – purple‑dominant
+               GRADIENT BUTTON – purple‑dominant (no more clipping)
                ============================================================ */
         .btn-primary {
             position: relative;
@@ -215,6 +215,7 @@
         .btn-audio.active {
             background-color: transparent;
             color: var(--white);
+            font-weight: bold;
             border-color: transparent;
         }
 
@@ -295,7 +296,7 @@
         .trust-badges .badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.7;transform:scale(1.1);} }
 
-        /* ===== AUDIO DEMO WITH CROSSFADER ===== */
+        /* ===== AUDIO DEMO – SIMPLE BUTTON SWITCHER ===== */
         .audio-demo {
             background: rgba(0,0,0,0.5);
             border-radius: var(--radius-lg);
@@ -312,110 +313,66 @@
             font-size: 1.5rem;
         }
 
-        .crossfader-container {
+        .audio-demo p {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: var(--space-md);
+            font-size: 0.95rem;
+        }
+
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+        }
+
+        .audio-controls .btn-audio {
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            background-color: var(--black);
+            color: var(--white);
+            transition: var(--transition);
+            font-family: var(--font-primary);
+        }
+
+        .audio-controls .btn-audio.active {
+            background-color: transparent;
+            color: var(--white);
+            border-color: transparent;
+            font-weight: bold;
+        }
+
+        .audio-controls .btn-audio.active::before {
+            opacity: 1;
+        }
+
+        .audio-player-wrapper {
             max-width: 500px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        .crossfader-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: var(--space-sm);
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .crossfader-labels .raw-label { color: #ff6b35; }
-        .crossfader-labels .mixed-label { color: var(--accent); }
-
-        .crossfader-track {
-            position: relative;
+        .audio-player-wrapper audio {
             width: 100%;
-            height: 8px;
-            background: linear-gradient(to right, #ff6b35 0%, #5B2C8E 50%, var(--accent) 100%);
-            border-radius: 4px;
-            margin: var(--space-md) 0;
-            cursor: pointer;
+            border-radius: var(--radius-md);
+            display: block;
         }
 
-        .crossfader-thumb {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: var(--white);
-            border: 3px solid var(--accent);
-            cursor: grab;
-            transition: box-shadow 0.2s ease;
-            box-shadow: 0 0 20px rgba(0,255,0,0.3);
-        }
-
-        .crossfader-thumb:hover {
-            box-shadow: 0 0 30px rgba(0,255,0,0.5);
-        }
-
-        .crossfader-thumb:active {
-            cursor: grabbing;
-        }
-
-        .crossfader-value {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: var(--space-xs);
-        }
-
-        .crossfader-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-lg);
-            margin-top: var(--space-lg);
-        }
-
-        .crossfader-controls .play-btn {
-            background: var(--accent);
-            color: var(--black);
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .crossfader-controls .play-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(0,255,0,0.4);
-        }
-
-        .crossfader-controls .play-btn.paused {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .crossfader-status {
+        .audio-status {
+            text-align: center;
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-top: var(--space-sm);
-            min-height: 1.5rem;
         }
 
-        .crossfader-status .highlight {
+        .audio-status .highlight {
             color: var(--accent);
             font-weight: 700;
-        }
-        .crossfader-status .error {
-            color: #ff6b35;
-            font-weight: 600;
         }
 
         /* ===== OTHER BUTTON VARIANTS ===== */
@@ -732,34 +689,25 @@
                         <p style="font-size:1.2rem; font-weight:600; color:var(--accent); line-height:1.5;">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</p>
                     </div>
 
-                    <!-- ===== AUDIO DEMO WITH CROSSFADER ===== -->
+                    <!-- ===== SIMPLE AUDIO DEMO ===== -->
                     <div class="audio-demo">
                         <h3>🎧 Hear The Billups Difference</h3>
-                        <p style="text-align:center; color:var(--text-muted); margin-bottom:var(--space-md); font-size:0.95rem;">
-                            Drag the slider to blend between the <span style="color:#ff6b35; font-weight:600;">raw recording</span> and the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version
-                        </p>
+                        <p>Compare the <span style="color:#ff6b35; font-weight:600;">raw recording</span> with the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version</p>
 
-                        <div class="crossfader-container">
-                            <div class="crossfader-labels">
-                                <span class="raw-label">🎤 Raw</span>
-                                <span class="mixed-label">✨ Mixed</span>
-                            </div>
+                        <div class="audio-controls">
+                            <button class="btn-audio active" data-track="mixed">✨ Mixed &amp; Mastered</button>
+                            <button class="btn-audio" data-track="raw">🎤 Raw Recording</button>
+                        </div>
 
-                            <div class="crossfader-track" id="crossfaderTrack">
-                                <div class="crossfader-thumb" id="crossfaderThumb"></div>
-                            </div>
+                        <div class="audio-player-wrapper">
+                            <audio id="demoAudio" controls preload="auto">
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg" id="audioSource">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
 
-                            <div class="crossfader-value" id="crossfaderValue">50% Mixed</div>
-
-                            <div class="crossfader-controls">
-                                <button class="play-btn" id="playBtn" aria-label="Play / Pause">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                            </div>
-
-                            <div class="crossfader-status" id="crossfaderStatus">
-                                <span class="highlight">⏳</span> Loading audio…
-                            </div>
+                        <div class="audio-status" id="audioStatus">
+                            <span class="highlight">●</span> Playing: <span id="currentTrackLabel">Mixed &amp; Mastered</span>
                         </div>
                     </div>
                 </div>
@@ -1447,299 +1395,57 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO CROSSFADER – using fetch + decodeAudioData (fix detached)
+            //  🎛️ AUDIO SWITCHER – simple & reliable
             // ============================================================
-            (function initCrossfader() {
-                const track = document.getElementById('crossfaderTrack');
-                const thumb = document.getElementById('crossfaderThumb');
-                const valueDisplay = document.getElementById('crossfaderValue');
-                const playBtn = document.getElementById('playBtn');
-                const statusDisplay = document.getElementById('crossfaderStatus');
+            (function initAudioSwitcher() {
+                const audio = document.getElementById('demoAudio');
+                const source = document.getElementById('audioSource');
+                const rawBtn = document.querySelector('[data-track="raw"]');
+                const mixedBtn = document.querySelector('[data-track="mixed"]');
+                const trackLabel = document.getElementById('currentTrackLabel');
 
-                const rawPath = 'audio/raw-demo.mp3';
-                const mixedPath = 'audio/mixed-demo.mp3';
-
-                let isDragging = false;
-                let currentValue = 50;
-                let isPlaying = false;
-                let audioContext = null;
-                let rawBuffer = null;      // decoded AudioBuffer
-                let mixedBuffer = null;
-                let rawGain = null;
-                let mixedGain = null;
-                let rawSource = null;
-                let mixedSource = null;
-                let startTime = 0;
-                let pausedAt = 0;
-                let isReady = false;
-
-                // ---- Slider logic ----
-                function updateSlider(clientX) {
-                    const rect = track.getBoundingClientRect();
-                    let percent = (clientX - rect.left) / rect.width;
-                    percent = Math.max(0, Math.min(1, percent));
-                    currentValue = Math.round(percent * 100);
-                    updateUI();
-                }
-
-                function updateUI() {
-                    thumb.style.left = currentValue + '%';
-                    valueDisplay.textContent = currentValue + '% Mixed';
-                    if (rawGain && mixedGain) {
-                        const rawVol = 1 - (currentValue / 100);
-                        const mixedVol = currentValue / 100;
-                        rawGain.gain.value = rawVol;
-                        mixedGain.gain.value = mixedVol;
-                    }
-                }
-
-                // Mouse / touch events
-                track.addEventListener('mousedown', function(e) {
-                    isDragging = true;
-                    updateSlider(e.clientX);
-                    track.style.cursor = 'grabbing';
-                });
-                document.addEventListener('mousemove', function(e) {
-                    if (isDragging) updateSlider(e.clientX);
-                });
-                document.addEventListener('mouseup', function() {
-                    if (isDragging) {
-                        isDragging = false;
-                        track.style.cursor = 'default';
-                    }
-                });
-                track.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    const touch = e.touches[0];
-                    isDragging = true;
-                    updateSlider(touch.clientX);
-                });
-                document.addEventListener('touchmove', function(e) {
-                    if (isDragging) {
-                        e.preventDefault();
-                        const touch = e.touches[0];
-                        updateSlider(touch.clientX);
-                    }
-                });
-                document.addEventListener('touchend', function() {
-                    isDragging = false;
-                });
-
-                // ---- Load audio using fetch + decode immediately ----
-                function loadAudio() {
-                    statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading audio…';
-
-                    // Create AudioContext early so we can decode
-                    try {
-                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    } catch (e) {
-                        statusDisplay.innerHTML = '<span class="error">⚠️ Web Audio not supported.</span>';
-                        return;
-                    }
-
-                    let loadedCount = 0;
-
-                    function checkDone() {
-                        loadedCount++;
-                        if (loadedCount === 2) {
-                            isReady = true;
-                            statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
-                        }
-                    }
-
-                    // Load raw
-                    fetch(rawPath)
-                        .then(response => {
-                            if (!response.ok) throw new Error('HTTP ' + response.status);
-                            return response.arrayBuffer();
-                        })
-                        .then(arrayBuffer => {
-                            // Decode now to avoid detached buffer
-                            return audioContext.decodeAudioData(arrayBuffer);
-                        })
-                        .then(decodedBuffer => {
-                            rawBuffer = decodedBuffer;
-                            checkDone();
-                        })
-                        .catch(err => {
-                            console.error('Raw load/decode error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load raw audio</span>';
-                        });
-
-                    // Load mixed
-                    fetch(mixedPath)
-                        .then(response => {
-                            if (!response.ok) throw new Error('HTTP ' + response.status);
-                            return response.arrayBuffer();
-                        })
-                        .then(arrayBuffer => {
-                            return audioContext.decodeAudioData(arrayBuffer);
-                        })
-                        .then(decodedBuffer => {
-                            mixedBuffer = decodedBuffer;
-                            checkDone();
-                        })
-                        .catch(err => {
-                            console.error('Mixed load/decode error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not load mixed audio</span>';
-                        });
-                }
-
-                // ---- Play / Pause ----
-                playBtn.addEventListener('click', function() {
-                    if (!isReady) {
-                        statusDisplay.innerHTML = '<span class="highlight">⏳</span> Loading… wait a moment';
-                        if (!rawBuffer && !mixedBuffer) {
-                            loadAudio();
-                        } else {
-                            // If buffers are present but not marked ready, check again
-                            if (rawBuffer && mixedBuffer) {
-                                isReady = true;
-                                statusDisplay.innerHTML = '<span class="highlight">●</span> Ready — press play';
-                            }
-                        }
-                        return;
-                    }
-
-                    if (!audioContext) {
-                        // Recreate context if closed
-                        try {
-                            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                        } catch (e) {
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Web Audio not supported.</span>';
-                            return;
-                        }
-                    }
-
-                    if (isPlaying) {
-                        pauseAudio();
+                function switchTrack(track) {
+                    if (track === 'raw') {
+                        source.src = 'audio/raw-demo.mp3';
+                        trackLabel.textContent = 'Raw Recording';
+                        rawBtn.classList.add('active');
+                        mixedBtn.classList.remove('active');
                     } else {
-                        // If context is suspended, resume
-                        if (audioContext.state === 'suspended') {
-                            audioContext.resume();
-                        }
-                        // If we have buffers but no sources, create them
-                        if (rawBuffer && mixedBuffer) {
-                            if (!rawSource) {
-                                createSources();
-                            } else {
-                                // If sources exist but not playing, resume
-                                if (audioContext.state === 'running') {
-                                    // We need to restart from paused position
-                                    resumeAudio();
-                                } else {
-                                    resumeAudio();
-                                }
-                            }
-                        } else {
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Audio not loaded yet.</span>';
-                        }
+                        source.src = 'audio/mixed-demo.mp3';
+                        trackLabel.textContent = 'Mixed & Mastered';
+                        mixedBtn.classList.add('active');
+                        rawBtn.classList.remove('active');
                     }
+                    audio.load();
+                    // Auto-play if previously playing? Better not to force.
+                    // User can click play on the native controls.
+                }
+
+                rawBtn.addEventListener('click', function() {
+                    switchTrack('raw');
                 });
 
-                function createSources() {
-                    try {
-                        rawSource = audioContext.createBufferSource();
-                        mixedSource = audioContext.createBufferSource();
-                        rawSource.buffer = rawBuffer;
-                        mixedSource.buffer = mixedBuffer;
+                mixedBtn.addEventListener('click', function() {
+                    switchTrack('mixed');
+                });
 
-                        rawGain = audioContext.createGain();
-                        mixedGain = audioContext.createGain();
-                        const rawVol = 1 - (currentValue / 100);
-                        const mixedVol = currentValue / 100;
-                        rawGain.gain.value = rawVol;
-                        mixedGain.gain.value = mixedVol;
+                // Set initial state (mixed is default)
+                mixedBtn.classList.add('active');
+                rawBtn.classList.remove('active');
+                source.src = 'audio/mixed-demo.mp3';
+                trackLabel.textContent = 'Mixed & Mastered';
+                audio.load();
 
-                        rawSource.connect(rawGain);
-                        rawGain.connect(audioContext.destination);
-
-                        mixedSource.connect(mixedGain);
-                        mixedGain.connect(audioContext.destination);
-
-                        // Start from paused position (0 if not paused)
-                        const offset = pausedAt || 0;
-                        rawSource.start(0, offset);
-                        mixedSource.start(0, offset);
-                        startTime = audioContext.currentTime - offset;
-
-                        isPlaying = true;
-                        updatePlayButton();
-                        statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
-
-                        rawSource.onended = function() {
-                            if (isPlaying) stopAudio();
-                        };
-
-                    } catch (err) {
-                        console.error('Create sources error:', err);
-                        statusDisplay.innerHTML = '<span class="error">⚠️ Error creating sources</span>';
-                    }
-                }
-
-                function pauseAudio() {
-                    if (!audioContext || !isPlaying) return;
-                    audioContext.suspend();
-                    isPlaying = false;
-                    pausedAt = audioContext.currentTime - startTime;
-                    updatePlayButton();
-                    statusDisplay.innerHTML = '<span class="highlight">⏸</span> Paused';
-                }
-
-                function resumeAudio() {
-                    if (!audioContext) return;
-                    if (audioContext.state === 'suspended') {
-                        audioContext.resume();
-                    }
-                    // If sources are finished, we need to recreate them
-                    if (!rawSource || rawSource.buffer === null) {
-                        createSources();
-                    } else {
-                        // Resume the context
-                        audioContext.resume().then(() => {
-                            isPlaying = true;
-                            updatePlayButton();
-                            statusDisplay.innerHTML = '<span class="highlight">▶</span> Playing — drag the slider to blend';
-                        }).catch(err => {
-                            console.warn('Resume error:', err);
-                            statusDisplay.innerHTML = '<span class="error">⚠️ Could not resume.</span>';
-                        });
-                    }
-                }
-
-                function stopAudio() {
-                    isPlaying = false;
-                    pausedAt = 0;
-                    if (rawSource) {
-                        rawSource.disconnect();
-                        mixedSource.disconnect();
-                        rawSource = null;
-                        mixedSource = null;
-                    }
-                    updatePlayButton();
-                    statusDisplay.innerHTML = '<span class="highlight">■</span> Finished';
-                    if (audioContext) {
-                        audioContext.close();
-                        audioContext = null;
-                    }
-                }
-
-                function updatePlayButton() {
-                    const icon = playBtn.querySelector('i');
-                    if (isPlaying) {
-                        icon.className = 'fas fa-pause';
-                        playBtn.classList.remove('paused');
-                    } else {
-                        icon.className = 'fas fa-play';
-                        playBtn.classList.add('paused');
-                    }
-                }
-
-                // ---- Start loading ----
-                loadAudio();
-
-                // Set initial slider position
-                updateUI();
+                // Update status on play/pause etc.
+                audio.addEventListener('play', function() {
+                    document.querySelector('.audio-status .highlight').textContent = '▶';
+                });
+                audio.addEventListener('pause', function() {
+                    document.querySelector('.audio-status .highlight').textContent = '⏸';
+                });
+                audio.addEventListener('ended', function() {
+                    document.querySelector('.audio-status .highlight').textContent = '■';
+                });
 
             })();
 

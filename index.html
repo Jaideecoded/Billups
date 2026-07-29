@@ -71,7 +71,7 @@
         }
 
         /* ============================================================
-               GRADIENT BUTTON – purple‑dominant (no more clipping)
+               GRADIENT BUTTON – purple‑dominant
                ============================================================ */
         .btn-primary {
             position: relative;
@@ -296,7 +296,7 @@
         .trust-badges .badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.7;transform:scale(1.1);} }
 
-        /* ===== AUDIO DEMO – SIMPLE BUTTON SWITCHER ===== */
+        /* ===== AUDIO DEMO – DUAL PLAYER ===== */
         .audio-demo {
             background: rgba(0,0,0,0.5);
             border-radius: var(--radius-lg);
@@ -700,10 +700,16 @@
                         </div>
 
                         <div class="audio-player-wrapper">
-                            <audio id="demoAudio" controls preload="auto">
-                                <source src="audio/mixed-demo.mp3" type="audio/mpeg" id="audioSource">
-                                Your browser does not support the audio element.
+                            <!-- Hidden audio elements – one for each version -->
+                            <audio id="rawPlayer" style="display:none;">
+                                <source src="audio/raw-demo.mp3" type="audio/mpeg">
                             </audio>
+                            <audio id="mixedPlayer" style="display:none;">
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
+                            </audio>
+
+                            <!-- Visible player – shows the currently active one -->
+                            <audio id="mainPlayer" controls></audio>
                         </div>
 
                         <div class="audio-status" id="audioStatus">
@@ -1395,30 +1401,55 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO SWITCHER – simple & reliable
+            //  🎛️ AUDIO SWITCHER – dual hidden players, one visible
             // ============================================================
             (function initAudioSwitcher() {
-                const audio = document.getElementById('demoAudio');
-                const source = document.getElementById('audioSource');
+                const mainPlayer = document.getElementById('mainPlayer');
+                const rawPlayer = document.getElementById('rawPlayer');
+                const mixedPlayer = document.getElementById('mixedPlayer');
                 const rawBtn = document.querySelector('[data-track="raw"]');
                 const mixedBtn = document.querySelector('[data-track="mixed"]');
                 const trackLabel = document.getElementById('currentTrackLabel');
+                const statusDot = document.querySelector('.audio-status .highlight');
+
+                let currentTrack = 'mixed';
+                let isPlaying = false;
 
                 function switchTrack(track) {
+                    // Pause current if playing
+                    if (isPlaying) {
+                        if (currentTrack === 'raw') {
+                            rawPlayer.pause();
+                        } else {
+                            mixedPlayer.pause();
+                        }
+                        mainPlayer.pause();
+                        isPlaying = false;
+                    }
+
+                    // Update buttons
                     if (track === 'raw') {
-                        source.src = 'audio/raw-demo.mp3';
-                        trackLabel.textContent = 'Raw Recording';
                         rawBtn.classList.add('active');
                         mixedBtn.classList.remove('active');
+                        trackLabel.textContent = 'Raw Recording';
+                        mainPlayer.src = rawPlayer.querySelector('source').src;
+                        // Load and play
+                        mainPlayer.load();
+                        mainPlayer.play().catch(e => console.log('Playback prevented:', e));
+                        isPlaying = true;
+                        currentTrack = 'raw';
+                        statusDot.textContent = '▶';
                     } else {
-                        source.src = 'audio/mixed-demo.mp3';
-                        trackLabel.textContent = 'Mixed & Mastered';
                         mixedBtn.classList.add('active');
                         rawBtn.classList.remove('active');
+                        trackLabel.textContent = 'Mixed & Mastered';
+                        mainPlayer.src = mixedPlayer.querySelector('source').src;
+                        mainPlayer.load();
+                        mainPlayer.play().catch(e => console.log('Playback prevented:', e));
+                        isPlaying = true;
+                        currentTrack = 'mixed';
+                        statusDot.textContent = '▶';
                     }
-                    audio.load();
-                    // Auto-play if previously playing? Better not to force.
-                    // User can click play on the native controls.
                 }
 
                 rawBtn.addEventListener('click', function() {
@@ -1429,23 +1460,34 @@
                     switchTrack('mixed');
                 });
 
-                // Set initial state (mixed is default)
-                mixedBtn.classList.add('active');
-                rawBtn.classList.remove('active');
-                source.src = 'audio/mixed-demo.mp3';
-                trackLabel.textContent = 'Mixed & Mastered';
-                audio.load();
+                // Main player controls update status
+                mainPlayer.addEventListener('play', function() {
+                    statusDot.textContent = '▶';
+                    isPlaying = true;
+                });
+                mainPlayer.addEventListener('pause', function() {
+                    statusDot.textContent = '⏸';
+                    isPlaying = false;
+                });
+                mainPlayer.addEventListener('ended', function() {
+                    statusDot.textContent = '■';
+                    isPlaying = false;
+                });
 
-                // Update status on play/pause etc.
-                audio.addEventListener('play', function() {
-                    document.querySelector('.audio-status .highlight').textContent = '▶';
-                });
-                audio.addEventListener('pause', function() {
-                    document.querySelector('.audio-status .highlight').textContent = '⏸';
-                });
-                audio.addEventListener('ended', function() {
-                    document.querySelector('.audio-status .highlight').textContent = '■';
-                });
+                // Set initial state: mixed
+                mixedBtn.classList.add('active');
+                mainPlayer.src = mixedPlayer.querySelector('source').src;
+                mainPlayer.load();
+                trackLabel.textContent = 'Mixed & Mastered';
+                statusDot.textContent = '●';
+
+                // Auto-play? No, let user click play on the visible player.
+                // But we want the buttons to trigger play.
+                // Actually, we'll let the user click the play button on the main player.
+                // The buttons just switch the track and auto-play.
+
+                // If user clicks play on main player, it starts playing the current track.
+                // That's fine.
 
             })();
 

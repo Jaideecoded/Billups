@@ -404,7 +404,7 @@
 
                         <div class="audio-fallback-notice" id="fallbackNotice" style="display:none;">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <strong>Using public demo tracks.</strong> To show your own comparison, place <code>audio/raw-demo.mp3</code> and <code>audio/mixed-demo.mp3</code> on the server.
+                            <strong>Using public demo tracks.</strong> Your local files (<code>audio/raw-demo.mp3</code> &amp; <code>audio/mixed-demo.mp3</code>) could not be loaded.
                         </div>
                     </div>
                 </div>
@@ -745,34 +745,33 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO SWITCHER – FIXED & RELIABLE
-            //  - Tries local audio/raw-demo.mp3 + audio/mixed-demo.mp3 first
-            //  - Falls back to two different free public demo tracks
-            //  - Works even when local files are missing
+            //  🎛️ AUDIO SWITCHER – USES YOUR REAL TRACKS
+            //  - Strongly prefers local files: audio/mixed-demo.mp3 + audio/raw-demo.mp3
+            //  - Only falls back to public demos if the local file truly fails (404 / error)
+            //  - No short timeout that forces fallback (large files need time to start)
             // ============================================================
             (function initAudioSwitcher() {
-                const mainPlayer   = document.getElementById('mainPlayer');
-                const audioSource  = document.getElementById('audioSource');
-                const btnRaw       = document.getElementById('btnRaw');
-                const btnMixed     = document.getElementById('btnMixed');
-                const trackLabel   = document.getElementById('currentTrackLabel');
-                const statusDot    = document.getElementById('statusDot');
-                const errorMsg     = document.getElementById('errorMsg');
+                const mainPlayer     = document.getElementById('mainPlayer');
+                const audioSource    = document.getElementById('audioSource');
+                const btnRaw         = document.getElementById('btnRaw');
+                const btnMixed       = document.getElementById('btnMixed');
+                const trackLabel     = document.getElementById('currentTrackLabel');
+                const statusDot      = document.getElementById('statusDot');
+                const errorMsg       = document.getElementById('errorMsg');
                 const fallbackNotice = document.getElementById('fallbackNotice');
 
                 if (!mainPlayer || !audioSource || !btnRaw || !btnMixed) return;
 
-                // Free public demo tracks (SoundHelix – free for demos)
-                // These are real MP3s that always load
-                const PUBLIC = {
-                    mixed: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-                    raw:   'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
-                };
-
-                // Preferred local files
+                // Your real files (relative to index.html)
                 const LOCAL = {
                     mixed: 'audio/mixed-demo.mp3',
                     raw:   'audio/raw-demo.mp3'
+                };
+
+                // Public fallbacks only used if local files are missing
+                const PUBLIC = {
+                    mixed: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+                    raw:   'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
                 };
 
                 const LABELS = {
@@ -780,10 +779,9 @@
                     raw:   'Raw Recording'
                 };
 
-                let currentTrack   = 'mixed';
-                let usingFallback  = false;
-                let isSwitching    = false;
-                let loadTimer      = null;
+                let currentTrack  = 'mixed';
+                let usingFallback = false;
+                let isSwitching   = false;
 
                 function showError(msg) {
                     if (errorMsg) {
@@ -810,11 +808,7 @@
                     trackLabel.textContent = LABELS[trackKey];
                     currentTrack = trackKey;
 
-                    if (usingFallback) {
-                        fallbackNotice.style.display = 'block';
-                    } else {
-                        fallbackNotice.style.display = 'none';
-                    }
+                    fallbackNotice.style.display = usingFallback ? 'block' : 'none';
                 }
 
                 function getSrc(trackKey) {
@@ -829,17 +823,12 @@
                     const wasPlaying = !mainPlayer.paused;
                     const src = getSrc(trackKey);
 
-                    // Clear previous load timer
-                    if (loadTimer) {
-                        clearTimeout(loadTimer);
-                        loadTimer = null;
-                    }
+                    console.log('Loading track:', trackKey, '→', src);
 
                     audioSource.src = src;
                     mainPlayer.load();
                     updateUI(trackKey);
 
-                    // Try to play if requested or was already playing
                     if (autoPlay || wasPlaying) {
                         const playPromise = mainPlayer.play();
                         if (playPromise !== undefined) {
@@ -850,21 +839,7 @@
                         }
                     }
 
-                    // Safety: if local file doesn't become ready quickly → fall back
-                    if (!usingFallback) {
-                        loadTimer = setTimeout(function () {
-                            // readyState 2 = HAVE_CURRENT_DATA, 3 = HAVE_FUTURE_DATA, 4 = HAVE_ENOUGH_DATA
-                            if (mainPlayer.readyState < 2) {
-                                console.log('Local audio not ready – switching to public demos');
-                                usingFallback = true;
-                                fallbackNotice.style.display = 'block';
-                                setTrack(currentTrack, autoPlay); // retry with public URL
-                            }
-                            loadTimer = null;
-                        }, 2500);
-                    }
-
-                    setTimeout(function () { isSwitching = false; }, 250);
+                    setTimeout(function () { isSwitching = false; }, 300);
                 }
 
                 // ---- Button clicks ----
@@ -906,6 +881,7 @@
                     statusDot.textContent = '■';
                 });
 
+                // Only fall back on a real error (file not found, network fail, etc.)
                 mainPlayer.addEventListener('error', function () {
                     const err = mainPlayer.error;
                     let msg = 'Could not load audio';
@@ -916,10 +892,10 @@
                             case 4: msg = 'File not found or unsupported format'; break;
                         }
                     }
-                    console.warn('Audio error:', msg, err);
+                    console.warn('Audio error:', msg, 'src was:', audioSource.src);
 
                     if (!usingFallback) {
-                        // Switch to public demos and retry
+                        // Local file failed → switch to public demos
                         usingFallback = true;
                         fallbackNotice.style.display = 'block';
                         showError('Using demo audio – local files not found');
@@ -930,25 +906,15 @@
                     }
                 });
 
-                // ---- Initialise ----
-                // Prefer local mixed track. If it fails, the error / timer will switch to public demos.
+                // ---- Initialise – start with YOUR local mixed track ----
+                usingFallback = false;
+                fallbackNotice.style.display = 'none';
                 audioSource.src = LOCAL.mixed;
                 mainPlayer.load();
                 updateUI('mixed');
                 statusDot.textContent = '●';
-                usingFallback = false;
-                fallbackNotice.style.display = 'none';
 
-                // Quick check after a short delay
-                loadTimer = setTimeout(function () {
-                    if (mainPlayer.readyState < 2 && !usingFallback) {
-                        usingFallback = true;
-                        fallbackNotice.style.display = 'block';
-                        showError('Using demo audio – local files not found');
-                        setTrack('mixed', false);
-                    }
-                    loadTimer = null;
-                }, 2500);
+                console.log('Audio player ready – trying local files first');
 
             })();
 

@@ -810,13 +810,10 @@
                         currentTrackLabel.textContent = trackKey === 'mixed' ? 'Mixed & Mastered' : 'Raw Recording';
                     }
 
-                    setStatus('Checking track...', false);
-
                     const exists = await fileExists(url);
 
                     if (!exists) {
-                        if (fallbackNotice) fallbackNotice.style.display = 'block';
-                        setStatus('Track not found: ' + url, true);
+                        setStatus(trackKey === 'mixed' ? 'Mixed file not uploaded yet' : 'Raw file not uploaded yet', true);
                         return;
                     }
 
@@ -879,18 +876,20 @@
                     console.warn('Audio element error', mainPlayer.error);
                 });
 
-                // On load – check which files exist and pick the best one
+                // On load – prefer mixed, fall back to raw if mixed is missing
                 (async function init() {
                     const mixedExists = await fileExists(tracks.mixed);
                     const rawExists   = await fileExists(tracks.raw);
 
-                    if (!mixedExists && !rawExists) {
+                    if (mixedExists) {
+                        switchTrack('mixed', false);
+                    } else if (rawExists) {
+                        // Only raw is available right now – start with that
+                        switchTrack('raw', false);
+                        setStatus('Only Raw track uploaded so far', false);
+                    } else {
                         if (fallbackNotice) fallbackNotice.style.display = 'block';
                         setStatus('No demo files found on server', true);
-                    } else if (mixedExists) {
-                        switchTrack('mixed', false);
-                    } else {
-                        switchTrack('raw', false);
                     }
                 })();
 

@@ -391,7 +391,7 @@
 
                         <div class="audio-player-wrapper">
                             <audio id="mainPlayer" controls preload="metadata">
-                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
+                                <source src="mixed-demo.mp3" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
                         </div>
@@ -404,7 +404,7 @@
 
                         <div class="audio-fallback-notice" id="fallbackNotice" style="display:none;">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <strong>Demo files not found.</strong> Make sure <code>audio/mixed-demo.mp3</code> and <code>audio/raw-demo.mp3</code> are uploaded to the server.
+                            <strong>Demo files not found.</strong> Make sure <code>mixed-demo.mp3</code> and <code>raw-demo.mp3</code> are in the root of the repo.
                         </div>
                     </div>
                 </div>
@@ -746,12 +746,12 @@
 
             // ============================================================
             //  🎛️ AUDIO DEMO – Relative paths + existence check
-            //  Uses audio/mixed-demo.mp3 and audio/raw-demo.mp3
+            //  Uses mixed-demo.mp3 and raw-demo.mp3 (in the root)
             // ============================================================
             (function initAudioDemo() {
                 const tracks = {
-                    mixed: 'audio/mixed-demo.mp3',
-                    raw:   'audio/raw-demo.mp3'
+                    mixed: 'mixed-demo.mp3',
+                    raw:   'raw-demo.mp3'
                 };
 
                 const btnMixed         = document.getElementById('btnMixed');

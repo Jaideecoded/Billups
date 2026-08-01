@@ -174,6 +174,17 @@
         .audio-status { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-sm); }
         .audio-status .highlight { color: var(--accent); font-weight: 700; }
         .audio-status .error-text { color: #ff6b35; display: inline-block; margin-left: var(--space-sm); font-weight: 600; }
+        #crossfadeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 22px; height: 22px; border-radius: 50%;
+            background: #fff; border: 3px solid #00ff00;
+            box-shadow: 0 0 10px rgba(0,255,0,0.5); cursor: pointer;
+        }
+        #crossfadeSlider::-moz-range-thumb {
+            width: 22px; height: 22px; border-radius: 50%;
+            background: #fff; border: 3px solid #00ff00;
+            box-shadow: 0 0 10px rgba(0,255,0,0.5); cursor: pointer;
+        }
         .audio-fallback-notice {
             background: rgba(255,107,53,0.2); border: 1px solid #ff6b35;
             border-radius: var(--radius-md); padding: var(--space-md);
@@ -382,29 +393,35 @@
                     <!-- ===== AUDIO DEMO – FINAL FIXED VERSION ===== -->
                     <div class="audio-demo">
                         <h3>🎧 Hear The Billups Difference</h3>
-                        <p>Compare the <span style="color:#ff6b35; font-weight:600;">raw recording</span> with the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version</p>
+                        <p>Drag the slider to crossfade between the <span style="color:#ff6b35; font-weight:600;">raw recording</span> and the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version</p>
 
-                        <div class="audio-controls">
-                            <button class="btn-audio active" id="btnMixed" data-track="mixed">✨ Mixed &amp; Mastered</button>
-                            <button class="btn-audio" id="btnRaw" data-track="raw">🎤 Raw Recording</button>
+                        <!-- Hidden dual players for crossfade -->
+                        <audio id="audioRaw" preload="auto" crossorigin="anonymous"></audio>
+                        <audio id="audioMixed" preload="auto" crossorigin="anonymous"></audio>
+
+                        <div class="crossfade-controls" style="max-width:420px; margin:0 auto 1.5rem;">
+                            <div style="display:flex; justify-content:space-between; margin-bottom:0.6rem; font-size:0.9rem; font-weight:700;">
+                                <span style="color:#ff6b35;">🎤 Raw</span>
+                                <span id="crossfadeLabel" style="color:var(--text-muted);">50% / 50%</span>
+                                <span style="color:var(--accent);">✨ Mixed</span>
+                            </div>
+                            <input type="range" id="crossfadeSlider" min="0" max="100" value="50"
+                                style="width:100%; height:8px; -webkit-appearance:none; appearance:none; background:linear-gradient(to right, #ff6b35, #00ff00); border-radius:4px; outline:none; cursor:pointer;">
                         </div>
 
-                        <div class="audio-player-wrapper">
-                            <audio id="mainPlayer" controls preload="metadata">
-                                <source src="https://jaideecoded.github.io/Billups/raw-demo.mp3" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
+                        <div style="display:flex; justify-content:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
+                            <button id="playPauseBtn" class="btn-audio" style="min-width:140px; padding:0.8rem 1.8rem; border-radius:50px; font-weight:700;">
+                                ▶ Play
+                            </button>
+                            <button id="resetBtn" class="btn-audio" style="min-width:100px; padding:0.8rem 1.5rem; border-radius:50px; font-weight:600;">
+                                ↺ Reset
+                            </button>
                         </div>
 
-                        <div class="audio-status" id="audioStatus">
+                        <div class="audio-status" id="audioStatus" style="text-align:center;">
                             <span class="highlight" id="statusDot">●</span>
-                            Playing: <span id="currentTrackLabel">Mixed &amp; Mastered</span>
+                            <span id="currentTrackLabel">Ready – drag the slider to compare</span>
                             <span class="error-text" id="errorMsg" style="display:none;"></span>
-                        </div>
-
-                        <div class="audio-fallback-notice" id="fallbackNotice" style="display:none;">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <strong>Demo files not found.</strong> Make sure <code>mixed-demo.mp3</code> and <code>raw-demo.mp3</code> are in the root of the repo.
                         </div>
                     </div>
                 </div>
@@ -745,117 +762,135 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO DEMO – Simple & reliable (absolute URLs)
+            //  🎛️ AUDIO CROSSFADE COMPARISON
+            //  Two players kept in sync + volume crossfade via slider
             // ============================================================
-            (function initAudioDemo() {
-                const btnMixed   = document.getElementById('btnMixed');
-                const btnRaw     = document.getElementById('btnRaw');
-                const player     = document.getElementById('mainPlayer');
-                const label      = document.getElementById('currentTrackLabel');
-                const statusDot  = document.getElementById('statusDot');
-                const errorMsg   = document.getElementById('errorMsg');
-                const notice     = document.getElementById('fallbackNotice');
+            (function initAudioCrossfade() {
+                const audioRaw    = document.getElementById('audioRaw');
+                const audioMixed  = document.getElementById('audioMixed');
+                const slider      = document.getElementById('crossfadeSlider');
+                const label       = document.getElementById('crossfadeLabel');
+                const playBtn     = document.getElementById('playPauseBtn');
+                const resetBtn    = document.getElementById('resetBtn');
+                const statusDot   = document.getElementById('statusDot');
+                const statusText  = document.getElementById('currentTrackLabel');
+                const errorMsg    = document.getElementById('errorMsg');
 
-                if (!player || !btnMixed || !btnRaw) return;
+                if (!audioRaw || !audioMixed || !slider || !playBtn) return;
 
-                // Absolute URLs from your GitHub Pages site
-                const TRACKS = {
-                    mixed: {
-                        src: 'https://jaideecoded.github.io/Billups/mixed-demo.mp3',
-                        label: 'Mixed & Mastered'
-                    },
-                    raw: {
-                        src: 'https://jaideecoded.github.io/Billups/raw-demo.mp3',
-                        label: 'Raw Recording'
-                    }
-                };
+                const RAW_URL   = 'https://jaideecoded.github.io/Billups/raw-demo.mp3';
+                const MIXED_URL = 'https://jaideecoded.github.io/Billups/mixed-demo.mp3';
 
-                let current = 'raw';
+                let isPlaying = false;
+
+                // Load both tracks
+                audioRaw.src   = RAW_URL;
+                audioMixed.src = MIXED_URL;
+                audioRaw.load();
+                audioMixed.load();
+
+                // Initial volumes (50/50)
+                audioRaw.volume   = 0.5;
+                audioMixed.volume = 0.5;
 
                 function setStatus(text, isError) {
                     if (statusDot) {
-                        statusDot.textContent = isError ? '✖' : '●';
+                        statusDot.textContent = isError ? '✖' : (isPlaying ? '▶' : '●');
                         statusDot.style.color = isError ? '#ff6b35' : '';
                     }
+                    if (statusText) statusText.textContent = text || '';
                     if (errorMsg) {
-                        if (text) {
+                        if (isError) {
                             errorMsg.style.display = 'inline';
                             errorMsg.textContent = text;
                         } else {
                             errorMsg.style.display = 'none';
-                            errorMsg.textContent = '';
                         }
                     }
                 }
 
-                function setTrack(key, shouldPlay) {
-                    const track = TRACKS[key];
-                    if (!track) return;
+                function updateCrossfade() {
+                    const val = parseInt(slider.value, 10); // 0 = full raw, 100 = full mixed
+                    const mixedVol = val / 100;
+                    const rawVol   = 1 - mixedVol;
 
-                    current = key;
+                    audioRaw.volume   = rawVol;
+                    audioMixed.volume = mixedVol;
 
-                    if (key === 'raw') {
-                        btnRaw.classList.add('active');
-                        btnMixed.classList.remove('active');
-                    } else {
-                        btnMixed.classList.add('active');
-                        btnRaw.classList.remove('active');
-                    }
-
-                    if (label) label.textContent = track.label;
-                    if (notice) notice.style.display = 'none';
-                    setStatus('');
-
-                    player.src = track.src;
-                    player.load();
-
-                    if (shouldPlay) {
-                        player.play().catch(function () {
-                            setStatus('Tap the play button to listen', false);
-                        });
+                    if (label) {
+                        label.textContent = Math.round(rawVol * 100) + '% Raw  /  ' + Math.round(mixedVol * 100) + '% Mixed';
                     }
                 }
 
-                btnRaw.addEventListener('click', function () {
-                    if (current === 'raw') {
-                        if (player.paused) player.play().catch(function(){});
-                        else player.pause();
+                // Keep the two players in sync
+                function syncTime() {
+                    if (Math.abs(audioRaw.currentTime - audioMixed.currentTime) > 0.15) {
+                        audioMixed.currentTime = audioRaw.currentTime;
+                    }
+                }
+
+                slider.addEventListener('input', updateCrossfade);
+
+                playBtn.addEventListener('click', function () {
+                    if (isPlaying) {
+                        audioRaw.pause();
+                        audioMixed.pause();
+                        isPlaying = false;
+                        playBtn.innerHTML = '▶ Play';
+                        setStatus('Paused');
                     } else {
-                        setTrack('raw', true);
+                        // Start both from the same position
+                        audioMixed.currentTime = audioRaw.currentTime;
+                        const p1 = audioRaw.play();
+                        const p2 = audioMixed.play();
+                        Promise.all([p1, p2]).then(function () {
+                            isPlaying = true;
+                            playBtn.innerHTML = '⏸ Pause';
+                            setStatus('Playing – drag the slider to compare');
+                        }).catch(function () {
+                            setStatus('Tap Play again (browser blocked autoplay)', true);
+                        });
                     }
                 });
 
-                btnMixed.addEventListener('click', function () {
-                    if (current === 'mixed') {
-                        if (player.paused) player.play().catch(function(){});
-                        else player.pause();
-                    } else {
-                        setTrack('mixed', true);
-                    }
+                resetBtn.addEventListener('click', function () {
+                    audioRaw.pause();
+                    audioMixed.pause();
+                    audioRaw.currentTime = 0;
+                    audioMixed.currentTime = 0;
+                    isPlaying = false;
+                    playBtn.innerHTML = '▶ Play';
+                    slider.value = 50;
+                    updateCrossfade();
+                    setStatus('Ready – drag the slider to compare');
                 });
 
-                player.addEventListener('play', function () {
-                    if (statusDot) statusDot.textContent = '▶';
-                    setStatus('');
-                });
-                player.addEventListener('pause', function () {
-                    if (statusDot) statusDot.textContent = '⏸';
-                });
-                player.addEventListener('ended', function () {
-                    if (statusDot) statusDot.textContent = '■';
-                });
-                player.addEventListener('error', function () {
-                    console.warn('Audio error:', player.src, player.error);
-                    if (current === 'mixed') {
-                        setStatus('Mixed file not uploaded yet', true);
-                    } else {
-                        setStatus('Could not load audio', true);
-                    }
+                // When one ends, stop both
+                audioRaw.addEventListener('ended', function () {
+                    audioMixed.pause();
+                    isPlaying = false;
+                    playBtn.innerHTML = '▶ Play';
+                    setStatus('Finished');
                 });
 
-                // Start with Raw (the one that currently exists)
-                setTrack('raw', false);
-                if (statusDot) statusDot.textContent = '●';
+                // Periodic light sync while playing
+                setInterval(function () {
+                    if (isPlaying) syncTime();
+                }, 300);
+
+                // Error handling
+                audioRaw.addEventListener('error', function () {
+                    console.warn('Raw track failed to load');
+                    setStatus('Raw track could not be loaded', true);
+                });
+                audioMixed.addEventListener('error', function () {
+                    console.warn('Mixed track failed to load');
+                    setStatus('Mixed track not uploaded yet (or failed to load)', true);
+                });
+
+                // Init
+                updateCrossfade();
+                setStatus('Ready – drag the slider to compare');
 
             })();
 
@@ -863,3 +898,4 @@
     </script>
 </body>
 </html>
+

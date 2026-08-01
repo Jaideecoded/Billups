@@ -391,7 +391,7 @@
 
                         <div class="audio-player-wrapper">
                             <audio id="mainPlayer" controls preload="metadata">
-                                <source src="mixed-demo.mp3" type="audio/mpeg">
+                                <source src="https://jaideecoded.github.io/Billups/raw-demo.mp3" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
                         </div>
@@ -745,36 +745,32 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO DEMO – Relative paths + existence check
-            //  Uses mixed-demo.mp3 and raw-demo.mp3 (in the root)
+            //  🎛️ AUDIO DEMO – Simple & reliable (absolute URLs)
             // ============================================================
             (function initAudioDemo() {
-                const tracks = {
-                    mixed: 'mixed-demo.mp3',
-                    raw:   'raw-demo.mp3'
+                const btnMixed   = document.getElementById('btnMixed');
+                const btnRaw     = document.getElementById('btnRaw');
+                const player     = document.getElementById('mainPlayer');
+                const label      = document.getElementById('currentTrackLabel');
+                const statusDot  = document.getElementById('statusDot');
+                const errorMsg   = document.getElementById('errorMsg');
+                const notice     = document.getElementById('fallbackNotice');
+
+                if (!player || !btnMixed || !btnRaw) return;
+
+                // Absolute URLs from your GitHub Pages site
+                const TRACKS = {
+                    mixed: {
+                        src: 'https://jaideecoded.github.io/Billups/mixed-demo.mp3',
+                        label: 'Mixed & Mastered'
+                    },
+                    raw: {
+                        src: 'https://jaideecoded.github.io/Billups/raw-demo.mp3',
+                        label: 'Raw Recording'
+                    }
                 };
 
-                const btnMixed         = document.getElementById('btnMixed');
-                const btnRaw           = document.getElementById('btnRaw');
-                const mainPlayer       = document.getElementById('mainPlayer');
-                const currentTrackLabel = document.getElementById('currentTrackLabel');
-                const errorMsg         = document.getElementById('errorMsg');
-                const fallbackNotice   = document.getElementById('fallbackNotice');
-                const statusDot        = document.getElementById('statusDot');
-
-                if (!mainPlayer || !btnMixed || !btnRaw) return;
-
-                let currentTrack = 'mixed';
-
-                function setActiveButton(track) {
-                    if (track === 'mixed') {
-                        btnMixed.classList.add('active');
-                        btnRaw.classList.remove('active');
-                    } else {
-                        btnRaw.classList.add('active');
-                        btnMixed.classList.remove('active');
-                    }
-                }
+                let current = 'raw';
 
                 function setStatus(text, isError) {
                     if (statusDot) {
@@ -782,7 +778,7 @@
                         statusDot.style.color = isError ? '#ff6b35' : '';
                     }
                     if (errorMsg) {
-                        if (isError) {
+                        if (text) {
                             errorMsg.style.display = 'inline';
                             errorMsg.textContent = text;
                         } else {
@@ -792,106 +788,74 @@
                     }
                 }
 
-                async function fileExists(url) {
-                    try {
-                        const res = await fetch(url, { method: 'HEAD' });
-                        return res.ok;
-                    } catch (e) {
-                        return false;
-                    }
-                }
+                function setTrack(key, shouldPlay) {
+                    const track = TRACKS[key];
+                    if (!track) return;
 
-                async function switchTrack(trackKey, shouldPlay) {
-                    const url = tracks[trackKey];
-                    currentTrack = trackKey;
+                    current = key;
 
-                    setActiveButton(trackKey);
-                    if (currentTrackLabel) {
-                        currentTrackLabel.textContent = trackKey === 'mixed' ? 'Mixed & Mastered' : 'Raw Recording';
+                    if (key === 'raw') {
+                        btnRaw.classList.add('active');
+                        btnMixed.classList.remove('active');
+                    } else {
+                        btnMixed.classList.add('active');
+                        btnRaw.classList.remove('active');
                     }
 
-                    const exists = await fileExists(url);
+                    if (label) label.textContent = track.label;
+                    if (notice) notice.style.display = 'none';
+                    setStatus('');
 
-                    if (!exists) {
-                        setStatus(trackKey === 'mixed' ? 'Mixed file not uploaded yet' : 'Raw file not uploaded yet', true);
-                        return;
-                    }
-
-                    if (fallbackNotice) fallbackNotice.style.display = 'none';
-                    setStatus('', false);
-
-                    // Set source and load
-                    mainPlayer.src = url;
-                    mainPlayer.load();
+                    player.src = track.src;
+                    player.load();
 
                     if (shouldPlay) {
-                        try {
-                            const p = mainPlayer.play();
-                            if (p && p.catch) {
-                                p.catch(function () {
-                                    setStatus('Tap play to listen', false);
-                                });
-                            }
-                        } catch (err) {}
+                        player.play().catch(function () {
+                            setStatus('Tap the play button to listen', false);
+                        });
                     }
                 }
 
-                // Button clicks
-                btnMixed.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (currentTrack === 'mixed') {
-                        if (mainPlayer.paused) mainPlayer.play().catch(function(){});
-                        else mainPlayer.pause();
+                btnRaw.addEventListener('click', function () {
+                    if (current === 'raw') {
+                        if (player.paused) player.play().catch(function(){});
+                        else player.pause();
                     } else {
-                        switchTrack('mixed', true);
+                        setTrack('raw', true);
                     }
                 });
 
-                btnRaw.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (currentTrack === 'raw') {
-                        if (mainPlayer.paused) mainPlayer.play().catch(function(){});
-                        else mainPlayer.pause();
+                btnMixed.addEventListener('click', function () {
+                    if (current === 'mixed') {
+                        if (player.paused) player.play().catch(function(){});
+                        else player.pause();
                     } else {
-                        switchTrack('raw', true);
+                        setTrack('mixed', true);
                     }
                 });
 
-                // Player events
-                mainPlayer.addEventListener('play', function () {
+                player.addEventListener('play', function () {
                     if (statusDot) statusDot.textContent = '▶';
-                    setStatus('', false);
+                    setStatus('');
                 });
-
-                mainPlayer.addEventListener('pause', function () {
+                player.addEventListener('pause', function () {
                     if (statusDot) statusDot.textContent = '⏸';
                 });
-
-                mainPlayer.addEventListener('ended', function () {
+                player.addEventListener('ended', function () {
                     if (statusDot) statusDot.textContent = '■';
                 });
-
-                mainPlayer.addEventListener('error', function () {
-                    setStatus('Playback error (see console)', true);
-                    console.warn('Audio element error', mainPlayer.error);
+                player.addEventListener('error', function () {
+                    console.warn('Audio error:', player.src, player.error);
+                    if (current === 'mixed') {
+                        setStatus('Mixed file not uploaded yet', true);
+                    } else {
+                        setStatus('Could not load audio', true);
+                    }
                 });
 
-                // On load – prefer mixed, fall back to raw if mixed is missing
-                (async function init() {
-                    const mixedExists = await fileExists(tracks.mixed);
-                    const rawExists   = await fileExists(tracks.raw);
-
-                    if (mixedExists) {
-                        switchTrack('mixed', false);
-                    } else if (rawExists) {
-                        // Only raw is available right now – start with that
-                        switchTrack('raw', false);
-                        setStatus('Only Raw track uploaded so far', false);
-                    } else {
-                        if (fallbackNotice) fallbackNotice.style.display = 'block';
-                        setStatus('No demo files found on server', true);
-                    }
-                })();
+                // Start with Raw (the one that currently exists)
+                setTrack('raw', false);
+                if (statusDot) statusDot.textContent = '●';
 
             })();
 

@@ -361,6 +361,16 @@
             width: 100%;
             border-radius: var(--radius-md);
             display: block;
+            background: rgba(0,0,0,0.8);
+        }
+
+        /* Custom audio player styling */
+        .audio-player-wrapper audio::-webkit-media-controls-panel {
+            background: rgba(0,0,0,0.9);
+        }
+        .audio-player-wrapper audio::-webkit-media-controls-current-time-display,
+        .audio-player-wrapper audio::-webkit-media-controls-time-remaining-display {
+            color: var(--accent);
         }
 
         .audio-status {
@@ -689,31 +699,28 @@
                         <p style="font-size:1.2rem; font-weight:600; color:var(--accent); line-height:1.5;">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</p>
                     </div>
 
-                    <!-- ===== SIMPLE AUDIO DEMO ===== -->
+                    <!-- ===== AUDIO DEMO – FIXED ===== -->
                     <div class="audio-demo">
                         <h3>🎧 Hear The Billups Difference</h3>
                         <p>Compare the <span style="color:#ff6b35; font-weight:600;">raw recording</span> with the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version</p>
 
                         <div class="audio-controls">
-                            <button class="btn-audio active" data-track="mixed">✨ Mixed &amp; Mastered</button>
-                            <button class="btn-audio" data-track="raw">🎤 Raw Recording</button>
+                            <button class="btn-audio active" id="btnMixed" data-track="mixed">✨ Mixed &amp; Mastered</button>
+                            <button class="btn-audio" id="btnRaw" data-track="raw">🎤 Raw Recording</button>
                         </div>
 
                         <div class="audio-player-wrapper">
-                            <!-- Hidden audio elements – one for each version -->
-                            <audio id="rawPlayer" style="display:none;">
-                                <source src="audio/raw-demo.mp3" type="audio/mpeg">
+                            <!-- Single audio element – src swapped via JavaScript -->
+                            <audio id="mainPlayer" controls preload="metadata">
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg" id="audioSource">
+                                Your browser does not support the audio element.
                             </audio>
-                            <audio id="mixedPlayer" style="display:none;">
-                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
-                            </audio>
-
-                            <!-- Visible player – shows the currently active one -->
-                            <audio id="mainPlayer" controls></audio>
                         </div>
 
                         <div class="audio-status" id="audioStatus">
-                            <span class="highlight">●</span> Playing: <span id="currentTrackLabel">Mixed &amp; Mastered</span>
+                            <span class="highlight" id="statusDot">●</span>
+                            Playing: <span id="currentTrackLabel">Mixed &amp; Mastered</span>
+                            <span id="errorMsg" style="display:none; color:#ff6b35; margin-left:var(--space-sm);"></span>
                         </div>
                     </div>
                 </div>
@@ -1247,20 +1254,38 @@
             // ===== CALCULATOR =====
             const projectGoal = document.getElementById('projectGoal');
             const artistCount = document.getElementById('artistCount');
+
             function updateCalculator() {
                 const goal = projectGoal.value;
                 const artists = artistCount.value;
                 let rec, price, desc;
-                switch(goal) {
-                    case 'single': rec = 'Quick Session'; price = '£80'; desc = '3 hours - perfect for singles'; break;
-                    case 'ep': rec = 'Half Day Package'; price = '£140'; desc = '5 hours - ideal for EPs'; break;
-                    case 'project': rec = 'Full Day Project'; price = '£240'; desc = '10 hours - complete project'; break;
-                    case 'mixing': rec = 'Professional Mixing'; price = '£40/song'; desc = 'Studio quality mixing & mastering'; break;
+                switch (goal) {
+                    case 'single':
+                        rec = 'Quick Session';
+                        price = '£80';
+                        desc = '3 hours - perfect for singles';
+                        break;
+                    case 'ep':
+                        rec = 'Half Day Package';
+                        price = '£140';
+                        desc = '5 hours - ideal for EPs';
+                        break;
+                    case 'project':
+                        rec = 'Full Day Project';
+                        price = '£240';
+                        desc = '10 hours - complete project';
+                        break;
+                    case 'mixing':
+                        rec = 'Professional Mixing';
+                        price = '£40/song';
+                        desc = 'Studio quality mixing & mastering';
+                        break;
                 }
                 let extra = '';
                 if (artists === 'duo' && goal !== 'mixing') {
-                    const base = parseInt(price.replace('£','').replace('/song',''));
-                    if (!isNaN(base)) { price = '£' + (base + 40); extra = '<p><i class="fas fa-users"></i> +£40 for duo collaboration</p>'; }
+                    const base = parseInt(price.replace('£', '').replace('/song', ''));
+                    if (!isNaN(base)) { price = '£' + (base + 40);
+                        extra = '<p><i class="fas fa-users"></i> +£40 for duo collaboration</p>'; }
                 } else if (artists === 'group' && goal !== 'mixing') {
                     price = 'Custom Quote';
                     extra = '<p><i class="fas fa-users"></i> Contact for group rates</p>';
@@ -1269,13 +1294,13 @@
                 if (result) {
                     const isCustom = price.includes('Custom');
                     result.innerHTML = `
-                        <div class="result-title">RECOMMENDED: ${rec}</div>
-                        <div class="result-price">${price}</div>
-                        <div class="result-description">${desc}</div>
-                        ${extra}
-                        <p><i class="fas fa-check"></i> Includes professional engineer & equipment</p>
-                        <a href="#contact" class="btn-primary" style="margin-top:var(--space-md);">${isCustom ? 'Get Custom Quote' : 'Book This Package'}</a>
-                    `;
+                            <div class="result-title">RECOMMENDED: ${rec}</div>
+                            <div class="result-price">${price}</div>
+                            <div class="result-description">${desc}</div>
+                            ${extra}
+                            <p><i class="fas fa-check"></i> Includes professional engineer & equipment</p>
+                            <a href="#contact" class="btn-primary" style="margin-top:var(--space-md);">${isCustom ? 'Get Custom Quote' : 'Book This Package'}</a>
+                        `;
                 }
             }
             if (projectGoal && artistCount) {
@@ -1321,7 +1346,9 @@
             // ===== GALLERY LOADER =====
             const galleryGrid = document.getElementById('galleryGrid');
             if (galleryGrid) {
-                const patterns = ['studio1.jpg','studio2.jpg','studio3.jpg','studio4.jpg','studio5.jpg','studio6.jpg','gallery1.jpg','gallery2.jpg','gallery3.jpg'];
+                const patterns = ['studio1.jpg', 'studio2.jpg', 'studio3.jpg', 'studio4.jpg', 'studio5.jpg', 'studio6.jpg',
+                    'gallery1.jpg', 'gallery2.jpg', 'gallery3.jpg'
+                ];
                 let loaded = [];
                 patterns.forEach(p => {
                     const img = new Image();
@@ -1334,34 +1361,40 @@
                 setTimeout(() => {
                     if (loaded.length === 0) {
                         galleryGrid.innerHTML = `
-                            <div style="grid-column:1/-1; text-align:center; padding:var(--space-xxl); background:rgba(255,255,255,0.05); border-radius:var(--radius-lg); border:2px dashed var(--border-color);">
-                                <i class="fas fa-camera" style="font-size:3rem; color:var(--accent); margin-bottom:var(--space-lg);"></i>
-                                <h3 style="color:var(--text-primary);">Add Your Studio Photos</h3>
-                                <p style="color:var(--text-body);">Place images in the images/ folder named studio1.jpg, studio2.jpg, etc.</p>
-                            </div>
-                        `;
+                                <div style="grid-column:1/-1; text-align:center; padding:var(--space-xxl); background:rgba(255,255,255,0.05); border-radius:var(--radius-lg); border:2px dashed var(--border-color);">
+                                    <i class="fas fa-camera" style="font-size:3rem; color:var(--accent); margin-bottom:var(--space-lg);"></i>
+                                    <h3 style="color:var(--text-primary);">Add Your Studio Photos</h3>
+                                    <p style="color:var(--text-body);">Place images in the images/ folder named studio1.jpg, studio2.jpg, etc.</p>
+                                </div>
+                            `;
                     }
                 }, 2000);
+
                 function renderGallery(images) {
                     galleryGrid.innerHTML = '';
-                    images.slice(0,6).forEach(img => {
+                    images.slice(0, 6).forEach(img => {
                         const div = document.createElement('div');
                         div.className = 'gallery-item';
                         div.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy">`;
                         div.addEventListener('click', () => {
                             const lb = document.createElement('div');
-                            lb.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:2000;';
+                            lb.style.cssText =
+                                'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:2000;';
                             const inner = document.createElement('div');
                             inner.style.cssText = 'max-width:90%;max-height:90%;position:relative;';
                             const im = document.createElement('img');
                             im.src = img.src;
-                            im.style.cssText = 'max-width:100%;max-height:80vh;object-fit:contain;border-radius:8px;box-shadow:0 0 40px rgba(0,255,0,0.3);';
+                            im.style.cssText =
+                                'max-width:100%;max-height:80vh;object-fit:contain;border-radius:8px;box-shadow:0 0 40px rgba(0,255,0,0.3);';
                             const close = document.createElement('button');
                             close.innerHTML = '×';
-                            close.style.cssText = 'position:absolute;top:-40px;right:-40px;background:var(--accent);color:var(--black);border:none;width:40px;height:40px;border-radius:50%;font-size:2rem;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;';
+                            close.style.cssText =
+                                'position:absolute;top:-40px;right:-40px;background:var(--accent);color:var(--black);border:none;width:40px;height:40px;border-radius:50%;font-size:2rem;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;';
                             close.addEventListener('click', () => document.body.removeChild(lb));
-                            lb.addEventListener('click', (e) => { if (e.target === lb) document.body.removeChild(lb); });
-                            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.body.contains(lb)) document.body.removeChild(lb); });
+                            lb.addEventListener('click', (e) => { if (e.target === lb) document.body.removeChild(
+                                lb); });
+                            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.body
+                                    .contains(lb)) document.body.removeChild(lb); });
                             inner.appendChild(im);
                             inner.appendChild(close);
                             lb.appendChild(inner);
@@ -1372,8 +1405,10 @@
                     if (images.length > 6) {
                         const more = document.createElement('div');
                         more.className = 'gallery-item';
-                        more.style.cssText = 'display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(45deg,var(--purple-dark),var(--purple-medium));color:var(--accent);font-size:1.2rem;font-weight:bold;';
-                        more.innerHTML = `<i class="fas fa-images" style="font-size:3rem;margin-bottom:1rem;"></i> +${images.length - 6} more<br><span style="font-size:0.9rem;opacity:0.8;">View all studio photos</span>`;
+                        more.style.cssText =
+                            'display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(45deg,var(--purple-dark),var(--purple-medium));color:var(--accent);font-size:1.2rem;font-weight:bold;';
+                        more.innerHTML =
+                            `<i class="fas fa-images" style="font-size:3rem;margin-bottom:1rem;"></i> +${images.length - 6} more<br><span style="font-size:0.9rem;opacity:0.8;">View all studio photos</span>`;
                         galleryGrid.appendChild(more);
                     }
                 }
@@ -1401,93 +1436,172 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO SWITCHER – dual hidden players, one visible
+            //  🎛️ AUDIO SWITCHER – FIXED & SIMPLIFIED
+            //  Uses a single audio element and swaps the src.
             // ============================================================
             (function initAudioSwitcher() {
                 const mainPlayer = document.getElementById('mainPlayer');
-                const rawPlayer = document.getElementById('rawPlayer');
-                const mixedPlayer = document.getElementById('mixedPlayer');
-                const rawBtn = document.querySelector('[data-track="raw"]');
-                const mixedBtn = document.querySelector('[data-track="mixed"]');
+                const audioSource = document.getElementById('audioSource');
+                const btnRaw = document.getElementById('btnRaw');
+                const btnMixed = document.getElementById('btnMixed');
                 const trackLabel = document.getElementById('currentTrackLabel');
-                const statusDot = document.querySelector('.audio-status .highlight');
+                const statusDot = document.getElementById('statusDot');
+                const errorMsg = document.getElementById('errorMsg');
+
+                // Track definitions
+                const TRACKS = {
+                    raw: { src: 'audio/raw-demo.mp3', label: 'Raw Recording' },
+                    mixed: { src: 'audio/mixed-demo.mp3', label: 'Mixed & Mastered' }
+                };
 
                 let currentTrack = 'mixed';
-                let isPlaying = false;
+                let isSwitching = false;
+                let errorTimer = null;
 
-                function switchTrack(track) {
-                    // Pause current if playing
-                    if (isPlaying) {
-                        if (currentTrack === 'raw') {
-                            rawPlayer.pause();
-                        } else {
-                            mixedPlayer.pause();
-                        }
-                        mainPlayer.pause();
-                        isPlaying = false;
-                    }
+                // Helper: set the audio source and load it
+                function setTrack(trackKey, autoPlay = true) {
+                    if (isSwitching) return;
+                    if (!TRACKS[trackKey]) return;
 
-                    // Update buttons
-                    if (track === 'raw') {
-                        rawBtn.classList.add('active');
-                        mixedBtn.classList.remove('active');
-                        trackLabel.textContent = 'Raw Recording';
-                        mainPlayer.src = rawPlayer.querySelector('source').src;
-                        // Load and play
-                        mainPlayer.load();
-                        mainPlayer.play().catch(e => console.log('Playback prevented:', e));
-                        isPlaying = true;
-                        currentTrack = 'raw';
-                        statusDot.textContent = '▶';
+                    const track = TRACKS[trackKey];
+                    const wasPlaying = !mainPlayer.paused;
+
+                    isSwitching = true;
+
+                    // Update source
+                    audioSource.src = track.src;
+                    mainPlayer.load();
+
+                    // Update UI buttons
+                    if (trackKey === 'raw') {
+                        btnRaw.classList.add('active');
+                        btnMixed.classList.remove('active');
                     } else {
-                        mixedBtn.classList.add('active');
-                        rawBtn.classList.remove('active');
-                        trackLabel.textContent = 'Mixed & Mastered';
-                        mainPlayer.src = mixedPlayer.querySelector('source').src;
-                        mainPlayer.load();
-                        mainPlayer.play().catch(e => console.log('Playback prevented:', e));
-                        isPlaying = true;
-                        currentTrack = 'mixed';
-                        statusDot.textContent = '▶';
+                        btnMixed.classList.add('active');
+                        btnRaw.classList.remove('active');
                     }
+                    trackLabel.textContent = track.label;
+                    currentTrack = trackKey;
+
+                    // Clear any previous error
+                    if (errorMsg) {
+                        errorMsg.style.display = 'none';
+                        errorMsg.textContent = '';
+                    }
+                    if (errorTimer) {
+                        clearTimeout(errorTimer);
+                        errorTimer = null;
+                    }
+
+                    // Play if it was playing or if autoPlay is true
+                    if (autoPlay || wasPlaying) {
+                        mainPlayer.play().catch(function(err) {
+                            // User interaction may be required – show a subtle hint
+                            if (errorMsg) {
+                                errorMsg.style.display = 'inline';
+                                errorMsg.textContent = '⚠️ Tap play to listen';
+                                errorTimer = setTimeout(function() {
+                                    if (errorMsg) {
+                                        errorMsg.style.display = 'none';
+                                        errorMsg.textContent = '';
+                                    }
+                                    errorTimer = null;
+                                }, 4000);
+                            }
+                            statusDot.textContent = '⏸';
+                        });
+                    }
+
+                    // Reset switching flag after a short delay
+                    setTimeout(function() {
+                        isSwitching = false;
+                    }, 300);
                 }
 
-                rawBtn.addEventListener('click', function() {
-                    switchTrack('raw');
+                // --- Event Listeners ---
+
+                // Raw button
+                btnRaw.addEventListener('click', function() {
+                    if (currentTrack === 'raw') {
+                        // Toggle play/pause
+                        if (mainPlayer.paused) {
+                            mainPlayer.play().catch(function() {});
+                        } else {
+                            mainPlayer.pause();
+                        }
+                    } else {
+                        setTrack('raw', true);
+                    }
                 });
 
-                mixedBtn.addEventListener('click', function() {
-                    switchTrack('mixed');
+                // Mixed button
+                btnMixed.addEventListener('click', function() {
+                    if (currentTrack === 'mixed') {
+                        if (mainPlayer.paused) {
+                            mainPlayer.play().catch(function() {});
+                        } else {
+                            mainPlayer.pause();
+                        }
+                    } else {
+                        setTrack('mixed', true);
+                    }
                 });
 
-                // Main player controls update status
+                // Main player events – update status dot
                 mainPlayer.addEventListener('play', function() {
                     statusDot.textContent = '▶';
-                    isPlaying = true;
+                    if (errorMsg) {
+                        errorMsg.style.display = 'none';
+                        errorMsg.textContent = '';
+                    }
                 });
+
                 mainPlayer.addEventListener('pause', function() {
                     statusDot.textContent = '⏸';
-                    isPlaying = false;
                 });
+
                 mainPlayer.addEventListener('ended', function() {
                     statusDot.textContent = '■';
-                    isPlaying = false;
                 });
 
-                // Set initial state: mixed
-                mixedBtn.classList.add('active');
-                mainPlayer.src = mixedPlayer.querySelector('source').src;
+                // Error handling – show a message if the file can't be loaded
+                mainPlayer.addEventListener('error', function(e) {
+                    const err = mainPlayer.error;
+                    let msg = '⚠️ Audio file not found. ';
+                    if (err) {
+                        switch (err.code) {
+                            case 1: msg += 'The request was aborted.'; break;
+                            case 2: msg += 'Network error – file may be missing.'; break;
+                            case 3: msg += 'Decoding error – file may be corrupt.'; break;
+                            case 4: msg += 'File not supported or not found.'; break;
+                            default: msg += 'Unknown error.';
+                        }
+                    }
+                    if (errorMsg) {
+                        errorMsg.style.display = 'inline';
+                        errorMsg.textContent = msg;
+                        errorTimer = setTimeout(function() {
+                            if (errorMsg) {
+                                errorMsg.style.display = 'none';
+                                errorMsg.textContent = '';
+                            }
+                            errorTimer = null;
+                        }, 6000);
+                    }
+                    statusDot.textContent = '✖';
+                });
+
+                // --- Initialise ---
+                // Start with the mixed track loaded (but not auto-playing)
+                audioSource.src = TRACKS.mixed.src;
                 mainPlayer.load();
-                trackLabel.textContent = 'Mixed & Mastered';
+                btnMixed.classList.add('active');
+                trackLabel.textContent = TRACKS.mixed.label;
                 statusDot.textContent = '●';
+                currentTrack = 'mixed';
 
-                // Auto-play? No, let user click play on the visible player.
-                // But we want the buttons to trigger play.
-                // Actually, we'll let the user click the play button on the main player.
-                // The buttons just switch the track and auto-play.
-
-                // If user clicks play on main player, it starts playing the current track.
-                // That's fine.
+                // If the user clicks the main player's play button, it'll just work.
+                // Also handle the case where the user clicks the track buttons while paused.
 
             })();
 

@@ -465,18 +465,26 @@
                     <div class="control-group">
                         <label>What's your main goal?</label>
                         <select id="projectGoal">
-                            <option value="single">Record 1-2 singles</option>
-                            <option value="ep" selected>Record an EP (3-4 songs)</option>
+                            <option value="single">Record 1–2 singles</option>
+                            <option value="ep" selected>Record an EP (3–4 songs)</option>
                             <option value="project">Full project (5+ songs)</option>
-                            <option value="mixing">Just mixing/mastering</option>
+                            <option value="mixing">Just mix &amp; master</option>
+                            <option value="hourly">Hourly / flexible session</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label>Do you already have beats / instrumentals?</label>
+                        <label>Do you already have beats?</label>
                         <select id="beatStatus">
                             <option value="yes" selected>Yes – I have instrumentals</option>
-                            <option value="no">No – I need beats produced</option>
-                            <option value="some">Mix of both</option>
+                            <option value="no">No – I need custom beats</option>
+                            <option value="some">Some, may need more</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Need full mix &amp; master?</label>
+                        <select id="mixStatus">
+                            <option value="included" selected>Included in package / not needed yet</option>
+                            <option value="yes">Yes – add full mix &amp; master</option>
                         </select>
                     </div>
                 </div>
@@ -654,61 +662,88 @@
             // ---- CALCULATOR ----
             const projectGoal = document.getElementById('projectGoal');
             const beatStatus  = document.getElementById('beatStatus');
+            const mixStatus   = document.getElementById('mixStatus');
 
             function updateCalculator() {
-                const goal = projectGoal ? projectGoal.value : 'ep';
-                const beats = beatStatus ? beatStatus.value : 'yes';
+                const goal  = projectGoal ? projectGoal.value : 'ep';
+                const beats = beatStatus  ? beatStatus.value  : 'yes';
+                const mix   = mixStatus   ? mixStatus.value   : 'included';
 
-                let rec, price, desc, duration;
+                let rec = '';
+                let price = 0;
+                let priceLabel = '';
+                let desc = '';
+                let duration = '';
+                let extras = [];
+                let totalNote = '';
 
-                switch (goal) {
-                    case 'single':
-                        rec = 'Quick Session';
-                        price = '£80';
-                        desc = 'Perfect for recording 1–2 singles';
-                        duration = '3 hours studio time';
-                        break;
-                    case 'ep':
-                        rec = 'Half Day Package';
-                        price = '£140';
-                        desc = 'Ideal for recording an EP (3–4 songs)';
-                        duration = '5 hours studio time';
-                        break;
-                    case 'project':
-                        rec = 'Full Day Project';
-                        price = '£240';
-                        desc = 'Best for complete projects (5+ songs)';
-                        duration = '10 hours studio time';
-                        break;
-                    case 'mixing':
-                        rec = 'Mixing & Mastering';
-                        price = 'From £60';
-                        desc = 'Studio-quality mixing and mastering only';
-                        duration = 'No studio time needed';
-                        break;
-                    default:
-                        rec = 'Half Day Package';
-                        price = '£140';
-                        desc = 'Ideal for recording an EP';
-                        duration = '5 hours studio time';
+                // Base package recommendation
+                if (goal === 'single') {
+                    rec = 'Quick Session';
+                    price = 80;
+                    priceLabel = '£80';
+                    desc = 'Best for recording 1–2 singles';
+                    duration = '3 hours studio time with engineer';
+                } else if (goal === 'ep') {
+                    rec = 'Half Day Package';
+                    price = 140;
+                    priceLabel = '£140';
+                    desc = 'Ideal for an EP (3–4 songs)';
+                    duration = '5 hours studio time with engineer';
+                } else if (goal === 'project') {
+                    rec = 'Full Day Project';
+                    price = 240;
+                    priceLabel = '£240';
+                    desc = 'Best for complete projects (5+ songs)';
+                    duration = '10 hours studio time with engineer';
+                } else if (goal === 'mixing') {
+                    rec = 'Full Mix & Master';
+                    price = 60;
+                    priceLabel = 'From £60';
+                    desc = 'Professional mix and master only (no studio time)';
+                    duration = 'Remote / offline service';
+                } else if (goal === 'hourly') {
+                    rec = 'Hourly Session';
+                    price = 30;
+                    priceLabel = '£30/hour';
+                    desc = 'Flexible time with a professional engineer';
+                    duration = 'Book as many hours as you need';
+                    extras.push('<p><i class="fas fa-info-circle"></i> Dry hire (no engineer) available at <strong>£10/hour</strong></p>');
                 }
 
-                let extra = '';
+                // Beats
                 if (beats === 'no' && goal !== 'mixing') {
-                    extra = '<p><i class="fas fa-drum"></i> Custom beats available for £120 – we can make instrumentals for you</p>';
+                    extras.push('<p><i class="fas fa-drum"></i> Custom beat: <strong>£120</strong> each</p>');
+                    if (goal !== 'hourly') price += 120;
                 } else if (beats === 'some' && goal !== 'mixing') {
-                    extra = '<p><i class="fas fa-drum"></i> We can produce additional beats as needed (£120 each)</p>';
+                    extras.push('<p><i class="fas fa-drum"></i> Extra custom beats available at <strong>£120</strong> each</p>');
                 }
+
+                // Mix & master add-on
+                if (mix === 'yes' && goal !== 'mixing') {
+                    extras.push('<p><i class="fas fa-sliders-h"></i> Full Mix &amp; Master: <strong>from £60</strong></p>');
+                    if (goal !== 'hourly') price += 60;
+                }
+
+                // Build price display
+                let displayPrice = priceLabel;
+                if (goal !== 'mixing' && goal !== 'hourly' && (beats === 'no' || mix === 'yes')) {
+                    displayPrice = 'From £' + price;
+                    totalNote = '<p style="margin-top:0.8rem; font-size:0.9rem; color:var(--text-muted);">Final price depends on exact needs – we\'ll confirm everything when you book.</p>';
+                }
+
+                const extrasHtml = extras.length ? extras.join('') : '';
 
                 const result = document.getElementById('calculatorResult');
                 if (result) {
                     result.innerHTML = `
                         <div class="result-title">RECOMMENDED: ${rec}</div>
-                        <div class="result-price">${price}</div>
+                        <div class="result-price">${displayPrice}</div>
                         <div class="result-description">${desc}</div>
                         <p><i class="fas fa-clock"></i> ${duration}</p>
-                        ${extra}
-                        <p><i class="fas fa-check"></i> Includes professional engineer &amp; equipment</p>
+                        ${extrasHtml}
+                        <p><i class="fas fa-check"></i> Includes professional equipment</p>
+                        ${totalNote}
                         <a href="#contact" class="btn-primary" style="margin-top:var(--space-md);">Book This Package</a>
                     `;
                 }
@@ -716,6 +751,7 @@
 
             if (projectGoal) projectGoal.addEventListener('change', updateCalculator);
             if (beatStatus)  beatStatus.addEventListener('change', updateCalculator);
+            if (mixStatus)   mixStatus.addEventListener('change', updateCalculator);
             updateCalculator();
 
             // ---- LIVE COUNTER ----
@@ -981,4 +1017,3 @@
     </script>
 </body>
 </html>
-

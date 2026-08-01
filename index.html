@@ -648,95 +648,146 @@
                 const mix   = mixStatus   ? mixStatus.value   : 'included';
 
                 let rec = '';
-                let price = 0;
                 let priceLabel = '';
                 let desc = '';
                 let duration = '';
+                let includes = [];
                 let extras = [];
+                let sessionType = 'custom';   // value for the contact form
+                let buttonText = 'Book This Package';
                 let totalNote = '';
 
-                // Base package recommendation
+                // ---- Base recommendation per goal ----
                 if (goal === 'single') {
                     rec = 'Quick Session';
-                    price = 80;
                     priceLabel = '£80';
-                    desc = 'Best for recording 1–2 singles';
-                    duration = '3 hours studio time with engineer';
+                    desc = 'Best for recording 1–2 singles with an engineer';
+                    duration = '3 hours studio time';
+                    includes = ['Professional engineer', 'Recording', 'Industry equipment'];
+                    sessionType = 'quick-session';
+                    buttonText = 'Book Quick Session';
                 } else if (goal === 'ep') {
                     rec = 'Half Day Package';
-                    price = 140;
                     priceLabel = '£140';
                     desc = 'Ideal for an EP (3–4 songs)';
-                    duration = '5 hours studio time with engineer';
+                    duration = '5 hours studio time';
+                    includes = ['Professional engineer', 'Recording + basic mixing', 'Up to 4 songs'];
+                    sessionType = 'half-day';
+                    buttonText = 'Book Half Day';
                 } else if (goal === 'project') {
                     rec = 'Full Day Project';
-                    price = 240;
                     priceLabel = '£240';
                     desc = 'Best for complete projects (5+ songs)';
-                    duration = '10 hours studio time with engineer';
+                    duration = '10 hours studio time';
+                    includes = ['Professional engineer', 'Full production support', 'Up to 8 songs', 'Priority support'];
+                    sessionType = 'full-day';
+                    buttonText = 'Book Full Day';
                 } else if (goal === 'mixing') {
                     rec = 'Full Mix & Master';
-                    price = 60;
                     priceLabel = 'From £60';
-                    desc = 'Professional mix and master only (no studio time)';
+                    desc = 'Professional mix and master only — no studio time needed';
                     duration = 'Remote / offline service';
+                    includes = ['Full mix', 'Mastering', 'Handled by Dsoul'];
+                    sessionType = 'custom';
+                    buttonText = 'Enquire about Mix & Master';
                 } else if (goal === 'hourly') {
                     rec = 'Hourly with Engineer';
-                    price = 30;
-                    priceLabel = '£30/hour';
-                    desc = 'Flexible time with a professional engineer';
+                    priceLabel = '£30 / hour';
+                    desc = 'Flexible time with a professional engineer on hand';
                     duration = 'Book as many hours as you need';
+                    includes = ['Professional engineer', 'Recording assistance', 'Full equipment access'];
+                    sessionType = 'hourly-engineer';
+                    buttonText = 'Book Hourly Session';
                 } else if (goal === 'dry') {
                     rec = 'Dry Hire';
-                    price = 10;
-                    priceLabel = '£10/hour';
-                    desc = 'Studio space and equipment only – no engineer';
-                    duration = 'You self-engineer / bring your own engineer';
-                    extras.push('<p><i class="fas fa-info-circle"></i> Need an engineer? Switch to <strong>Hourly with Engineer (£30/hr)</strong></p>');
+                    priceLabel = '£10 / hour';
+                    desc = 'Studio space and equipment only — you self-engineer';
+                    duration = 'Flexible hourly booking';
+                    includes = ['Studio room access', 'Use of equipment', 'No engineer included'];
+                    sessionType = 'dry-hire';
+                    buttonText = 'Book Dry Hire';
                 }
 
-                // Beats
-                if (beats === 'no' && goal !== 'mixing') {
-                    extras.push('<p><i class="fas fa-drum"></i> Custom beat: <strong>£120</strong> each</p>');
-                    if (goal !== 'hourly') price += 120;
-                } else if (beats === 'some' && goal !== 'mixing') {
-                    extras.push('<p><i class="fas fa-drum"></i> Extra custom beats available at <strong>£120</strong> each</p>');
+                // ---- Beats ----
+                if (goal !== 'mixing' && goal !== 'dry') {
+                    if (beats === 'no') {
+                        extras.push('Custom beat production: <strong>£120</strong> each');
+                        if (goal !== 'hourly') {
+                            // show combined "from" price for packages
+                            const base = parseInt(priceLabel.replace(/[^0-9]/g, ''), 10) || 0;
+                            if (base) priceLabel = 'From £' + (base + 120);
+                        }
+                    } else if (beats === 'some') {
+                        extras.push('Extra custom beats available at <strong>£120</strong> each');
+                    }
                 }
 
-                // Mix & master add-on
+                // ---- Mix & master add-on ----
                 if (mix === 'yes' && goal !== 'mixing') {
-                    extras.push('<p><i class="fas fa-sliders-h"></i> Full Mix &amp; Master: <strong>from £60</strong></p>');
-                    if (goal !== 'hourly') price += 60;
+                    extras.push('Full Mix &amp; Master: <strong>from £60</strong>');
+                    if (goal !== 'hourly' && goal !== 'dry') {
+                        const nums = priceLabel.match(/\d+/);
+                        if (nums) {
+                            const base = parseInt(nums[0], 10);
+                            priceLabel = 'From £' + (base + 60);
+                        }
+                    }
                 }
 
-                // Build price display
-                let displayPrice = priceLabel;
-                if (goal !== 'mixing' && goal !== 'hourly' && (beats === 'no' || mix === 'yes')) {
-                    displayPrice = 'From £' + price;
-                    totalNote = '<p style="margin-top:0.8rem; font-size:0.9rem; color:var(--text-muted);">Final price depends on exact needs – we\'ll confirm everything when you book.</p>';
+                if (extras.length || mix === 'yes' || beats === 'no') {
+                    totalNote = '<p style="margin-top:0.8rem; font-size:0.9rem; color:var(--text-muted);">Final price depends on exact needs — we\'ll confirm everything when you book.</p>';
                 }
 
-                const extrasHtml = extras.length ? extras.join('') : '';
+                const includesHtml = includes.map(i => `<p><i class="fas fa-check"></i> ${i}</p>`).join('');
+                const extrasHtml = extras.map(e => `<p><i class="fas fa-plus"></i> ${e}</p>`).join('');
 
                 const result = document.getElementById('calculatorResult');
                 if (result) {
                     result.innerHTML = `
                         <div class="result-title">RECOMMENDED: ${rec}</div>
-                        <div class="result-price">${displayPrice}</div>
+                        <div class="result-price">${priceLabel}</div>
                         <div class="result-description">${desc}</div>
                         <p><i class="fas fa-clock"></i> ${duration}</p>
+                        ${includesHtml}
                         ${extrasHtml}
-                        <p><i class="fas fa-check"></i> Includes professional equipment</p>
                         ${totalNote}
-                        <a href="#contact" class="btn-primary" style="margin-top:var(--space-md);">Book This Package</a>
+                        <a href="#contact" class="btn-primary calc-book-btn" data-session="${sessionType}" style="margin-top:var(--space-md);">${buttonText}</a>
                     `;
+
+                    // Wire the button to pre-select the form session type
+                    const btn = result.querySelector('.calc-book-btn');
+                    if (btn) {
+                        btn.addEventListener('click', function (e) {
+                            const sel = document.getElementById('session-type');
+                            if (sel) {
+                                sel.value = this.getAttribute('data-session') || 'custom';
+                            }
+                        });
+                    }
                 }
-            }
+            };
 
             if (projectGoal) projectGoal.addEventListener('change', updateCalculator);
             if (beatStatus)  beatStatus.addEventListener('change', updateCalculator);
             if (mixStatus)   mixStatus.addEventListener('change', updateCalculator);
             updateCalculator();
+
+
+            // ---- PRICING CARD BUTTONS → pre-select form ----
+            document.querySelectorAll('.pricing-tier .btn-primary').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const tier = this.closest('.pricing-tier');
+                    if (!tier) return;
+                    const title = (tier.querySelector('.tier-title') || {}).textContent || '';
+                    const sel = document.getElementById('session-type');
+                    if (!sel) return;
+                    if (title.includes('Quick')) sel.value = 'quick-session';
+                    else if (title.includes('Half')) sel.value = 'half-day';
+                    else if (title.includes('Full')) sel.value = 'full-day';
+                    else if (title.includes('Engineer') || title.includes('Hourly')) sel.value = 'hourly-engineer';
+                    else if (title.includes('Dry')) sel.value = 'dry-hire';
+                });
+            });
 
             // ---- LIVE COUNTER ----
             function updateLiveCounter() {
@@ -1001,3 +1052,4 @@
     </script>
 </body>
 </html>
+

@@ -460,7 +460,7 @@
                 <div class="guide-step"><div class="step-number">3</div><h3>Book &amp; Create</h3><p>Secure your session and start creating professional music.</p></div>
             </div>
             <div class="session-calculator">
-                <div class="calculator-header"><h3><i class="fas fa-calculator"></i> Smart Session Calculator</h3><p>Find the perfect session for your needs</p></div>
+                <div class="calculator-header"><h3><i class="fas fa-calculator"></i> Session Calculator</h3><p>Packages are better value than pure hourly — find your best fit</p></div>
                 <div class="calculator-controls">
                     <div class="control-group">
                         <label>What's your main goal?</label>
@@ -488,6 +488,19 @@
                             <option value="yes">Yes – add full mix &amp; master</option>
                         </select>
                     </div>
+                    <div class="control-group" id="hoursGroup" style="display:none;">
+                        <label>How many hours?</label>
+                        <select id="hoursSelect">
+                            <option value="1">1 hour</option>
+                            <option value="2">2 hours</option>
+                            <option value="3" selected>3 hours</option>
+                            <option value="4">4 hours</option>
+                            <option value="5">5 hours</option>
+                            <option value="6">6 hours</option>
+                            <option value="8">8 hours</option>
+                            <option value="10">10 hours</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="calculatorResult">
                     <div class="result-title">RECOMMENDED: EP Package</div><div class="result-price">£140</div>
@@ -497,25 +510,82 @@
                     <a href="#contact" class="btn-primary" style="margin-top:var(--space-md);">Book This Package</a>
                 </div>
             </div>
-            <div class="mix-master-notice"><h3>🎛️ Mix &amp; Master Section Coming Soon</h3><p>We're currently building out our dedicated mixing &amp; mastering service. All final mixes and masters are handled by Dsoul.</p><div class="coming-soon-badge">Launching Soon</div></div>
+            <!-- PRICE NETWORK -->
             <div class="pricing-tiers">
-                <div class="pricing-tier"><div class="tier-header"><div class="tier-icon">⚡</div><h3 class="tier-title">Quick Session</h3><div class="tier-price">£80<span>/song</span></div><p>3 hours studio time</p></div><ul class="tier-features"><li><i class="fas fa-check"></i> 3 hours studio time</li><li><i class="fas fa-check"></i> Professional engineer</li><li><i class="fas fa-check"></i> Basic mixing included</li><li><i class="fas fa-check"></i> Industry equipment</li><li><i class="fas fa-check"></i> Perfect for singles</li></ul><div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div></div>
-                <div class="pricing-tier popular"><div class="tier-badge">MOST POPULAR</div><div class="tier-header"><div class="tier-icon">🎯</div><h3 class="tier-title">Half Day</h3><div class="tier-price">£140</div><p>Best for EPs</p></div><ul class="tier-features"><li><i class="fas fa-check"></i> 5 hours studio time</li><li><i class="fas fa-check"></i> Recording + mixing</li><li><i class="fas fa-check"></i> Basic mastering</li><li><i class="fas fa-check"></i> Up to 4 songs</li><li><i class="fas fa-check"></i> Professional engineer</li></ul><div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div></div>
-                <div class="pricing-tier"><div class="tier-header"><div class="tier-icon">🔥</div><h3 class="tier-title">Full Day</h3><div class="tier-price">£240</div><p>Complete projects</p></div><ul class="tier-features"><li><i class="fas fa-check"></i> 10 hours studio time</li><li><i class="fas fa-check"></i> Complete production</li><li><i class="fas fa-check"></i> Professional mastering</li><li><i class="fas fa-check"></i> Up to 8 songs</li><li><i class="fas fa-check"></i> Priority support</li></ul><div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div></div>
+                <div class="pricing-tier">
+                    <div class="tier-header">
+                        <div class="tier-icon">⚡</div>
+                        <h3 class="tier-title">Quick Session</h3>
+                        <div class="tier-price">£80</div>
+                        <p>3 hours with engineer</p>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 3 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Professional engineer</li>
+                        <li><i class="fas fa-check"></i> Ideal for 1–2 singles</li>
+                        <li><i class="fas fa-check"></i> Save vs hourly (£90)</li>
+                    </ul>
+                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Quick Session</a></div>
+                </div>
+                <div class="pricing-tier popular">
+                    <div class="tier-badge">MOST POPULAR</div>
+                    <div class="tier-header">
+                        <div class="tier-icon">🎯</div>
+                        <h3 class="tier-title">Half Day</h3>
+                        <div class="tier-price">£140</div>
+                        <p>5 hours with engineer</p>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 5 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Recording + basic mix</li>
+                        <li><i class="fas fa-check"></i> Ideal for EPs (3–4 songs)</li>
+                        <li><i class="fas fa-check"></i> Save vs hourly (£150)</li>
+                    </ul>
+                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Half Day</a></div>
+                </div>
+                <div class="pricing-tier">
+                    <div class="tier-header">
+                        <div class="tier-icon">🔥</div>
+                        <h3 class="tier-title">Full Day</h3>
+                        <div class="tier-price">£240</div>
+                        <p>10 hours with engineer</p>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 10 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Full production support</li>
+                        <li><i class="fas fa-check"></i> Ideal for 5+ songs</li>
+                        <li><i class="fas fa-check"></i> Best value vs hourly (£300)</li>
+                    </ul>
+                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Full Day</a></div>
+                </div>
             </div>
 
-            <div style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:var(--space-xl); margin: var(--space-xxl) 0; text-align:center; backdrop-filter:blur(10px);">
-                <h3 style="color:var(--accent); margin-bottom:var(--space-sm); font-size:1.6rem;">Need something more flexible?</h3>
-                <p style="color:var(--text-body); margin-bottom:var(--space-lg); max-width:600px; margin-left:auto; margin-right:auto;">
-                    We also offer <strong style="color:#fff;">Hourly with Engineer (£30/hr)</strong> and <strong style="color:#fff;">Dry Hire (£10/hr)</strong> — studio space only, no engineer.
-                    Use the calculator above to see what fits your project.
-                </p>
-                <a href="#services" class="btn-primary" onclick="document.getElementById('projectGoal').value='dry'; if(typeof updateCalculator==='function') updateCalculator();" style="display:inline-block;">
-                    See Dry Hire in Calculator
-                </a>
+            <!-- Core rates strip -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:var(--space-md); margin:var(--space-xl) 0; text-align:center;">
+                <div style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:var(--space-lg);">
+                    <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">With Engineer</div>
+                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent); margin:0.3rem 0;">£30<span style="font-size:1rem; color:var(--text-muted);">/hr</span></div>
+                    <div style="font-size:0.9rem; color:var(--text-body);">Flexible hourly</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:var(--space-lg);">
+                    <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Dry Hire</div>
+                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent); margin:0.3rem 0;">£10<span style="font-size:1rem; color:var(--text-muted);">/hr</span></div>
+                    <div style="font-size:0.9rem; color:var(--text-body);">Studio only</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:var(--space-lg);">
+                    <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Custom Beat</div>
+                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent); margin:0.3rem 0;">£120</div>
+                    <div style="font-size:0.9rem; color:var(--text-body);">Original instrumental</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:var(--space-lg);">
+                    <div style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Mix &amp; Master</div>
+                    <div style="font-size:1.8rem; font-weight:900; color:var(--accent); margin:0.3rem 0;">From £60</div>
+                    <div style="font-size:0.9rem; color:var(--text-body);">Full professional finish</div>
+                </div>
             </div>
+
             <div class="addons-section">
-                <h3 style="text-align:center; color:var(--accent); margin-bottom:var(--space-xl); font-size:1.8rem;"><i class="fas fa-plus-circle"></i> Add-On Services</h3>
+                <h3 style="text-align:center; color:var(--accent); margin-bottom:var(--space-md); font-size:1.5rem;"><i class="fas fa-plus-circle"></i> Optional Add-Ons</h3>
                 <div class="addons-grid">
                     <div class="addon-card">
                         <div class="addon-icon"><i class="fas fa-sliders-h"></i></div>
@@ -537,11 +607,12 @@
                     </div>
                 </div>
                 <p style="text-align:center; color:var(--text-muted); margin-top:var(--space-lg); font-size:0.95rem;">
-                    All projects can be discussed in detail so we can work out the right price for your needs.
+                    Packages already include better value than pure hourly. All projects can be discussed in detail to lock in the right price.
                 </p>
             </div>
-            <div class="deposit-notice" role="note">⚠️ £30 deposit required to confirm all sessions. All sessions include professional engineering support.</div>
-        </div>
+
+            <div class="deposit-notice" role="note">⚠️ £30 deposit required to confirm all sessions.</div>
+</div>
     </section>
 
     <!-- Portfolio (shortened) -->
@@ -641,11 +712,14 @@
             const projectGoal = document.getElementById('projectGoal');
             const beatStatus  = document.getElementById('beatStatus');
             const mixStatus   = document.getElementById('mixStatus');
+            const hoursSelect = document.getElementById('hoursSelect');
+            const hoursGroup  = document.getElementById('hoursGroup');
 
             window.updateCalculator = function updateCalculator() {
                 const goal  = projectGoal ? projectGoal.value : 'ep';
                 const beats = beatStatus  ? beatStatus.value  : 'yes';
                 const mix   = mixStatus   ? mixStatus.value   : 'included';
+                const hours = hoursSelect ? parseInt(hoursSelect.value, 10) : 3;
 
                 let rec = '';
                 let priceLabel = '';
@@ -691,21 +765,23 @@
                     sessionType = 'custom';
                     buttonText = 'Enquire about Mix & Master';
                 } else if (goal === 'hourly') {
+                    const total = hours * 30;
                     rec = 'Hourly with Engineer';
-                    priceLabel = '£30 / hour';
-                    desc = 'Flexible time with a professional engineer on hand';
-                    duration = 'Book as many hours as you need';
-                    includes = ['Professional engineer', 'Recording assistance', 'Full equipment access'];
+                    priceLabel = '£' + total;
+                    desc = hours + ' hour' + (hours > 1 ? 's' : '') + ' with a professional engineer';
+                    duration = hours + ' × £30/hour = £' + total;
+                    includes = ['Professional engineer', 'Recording assistance', 'Full equipment access', hours + ' hour' + (hours > 1 ? 's' : '') + ' studio time'];
                     sessionType = 'hourly-engineer';
-                    buttonText = 'Book Hourly Session';
+                    buttonText = 'Book ' + hours + ' Hour' + (hours > 1 ? 's' : '');
                 } else if (goal === 'dry') {
+                    const total = hours * 10;
                     rec = 'Dry Hire';
-                    priceLabel = '£10 / hour';
-                    desc = 'Studio space and equipment only — you self-engineer';
-                    duration = 'Flexible hourly booking';
-                    includes = ['Studio room access', 'Use of equipment', 'No engineer included'];
+                    priceLabel = '£' + total;
+                    desc = hours + ' hour' + (hours > 1 ? 's' : '') + ' studio space only — you self-engineer';
+                    duration = hours + ' × £10/hour = £' + total;
+                    includes = ['Studio room access', 'Use of equipment', 'No engineer included', hours + ' hour' + (hours > 1 ? 's' : '') + ' studio time'];
                     sessionType = 'dry-hire';
-                    buttonText = 'Book Dry Hire';
+                    buttonText = 'Book ' + hours + ' Hour' + (hours > 1 ? 's' : '') + ' Dry Hire';
                 }
 
                 // ---- Beats ----
@@ -767,9 +843,27 @@
                 }
             };
 
-            if (projectGoal) projectGoal.addEventListener('change', updateCalculator);
-            if (beatStatus)  beatStatus.addEventListener('change', updateCalculator);
-            if (mixStatus)   mixStatus.addEventListener('change', updateCalculator);
+            function toggleSecondaryOptions() {
+                const goal = projectGoal ? projectGoal.value : 'ep';
+                const beatGroup = beatStatus ? beatStatus.closest('.control-group') : null;
+                const mixGroup  = mixStatus  ? mixStatus.closest('.control-group')  : null;
+                const hideExtras = (goal === 'dry' || goal === 'mixing');
+                if (beatGroup) beatGroup.style.display = hideExtras ? 'none' : '';
+                if (mixGroup)  mixGroup.style.display  = (goal === 'mixing' || goal === 'dry') ? 'none' : '';
+                // Hours selector only for hourly / dry hire
+                if (hoursGroup) hoursGroup.style.display = (goal === 'hourly' || goal === 'dry') ? '' : 'none';
+            }
+
+            if (projectGoal) {
+                projectGoal.addEventListener('change', function() {
+                    toggleSecondaryOptions();
+                    updateCalculator();
+                });
+            }
+            if (beatStatus) beatStatus.addEventListener('change', updateCalculator);
+            if (mixStatus)  mixStatus.addEventListener('change', updateCalculator);
+            if (hoursSelect) hoursSelect.addEventListener('change', updateCalculator);
+            toggleSecondaryOptions();
             updateCalculator();
 
 
@@ -1052,4 +1146,3 @@
     </script>
 </body>
 </html>
-

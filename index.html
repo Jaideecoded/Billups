@@ -469,7 +469,8 @@
                             <option value="ep" selected>Record an EP (3–4 songs)</option>
                             <option value="project">Full project (5+ songs)</option>
                             <option value="mixing">Just mix &amp; master</option>
-                            <option value="hourly">Hourly / flexible session</option>
+                            <option value="hourly">Hourly with engineer (£30/hr)</option>
+                            <option value="dry">Dry hire – studio only (£10/hr)</option>
                         </select>
                     </div>
                     <div class="control-group">
@@ -503,38 +504,15 @@
                 <div class="pricing-tier"><div class="tier-header"><div class="tier-icon">🔥</div><h3 class="tier-title">Full Day</h3><div class="tier-price">£240</div><p>Complete projects</p></div><ul class="tier-features"><li><i class="fas fa-check"></i> 10 hours studio time</li><li><i class="fas fa-check"></i> Complete production</li><li><i class="fas fa-check"></i> Professional mastering</li><li><i class="fas fa-check"></i> Up to 8 songs</li><li><i class="fas fa-check"></i> Priority support</li></ul><div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div></div>
             </div>
 
-            <h3 style="text-align:center; color:var(--accent); margin: var(--space-xxl) 0 var(--space-xl); font-size:1.8rem;">Hourly Rates</h3>
-            <div class="pricing-tiers">
-                <div class="pricing-tier">
-                    <div class="tier-header">
-                        <div class="tier-icon">🎚️</div>
-                        <h3 class="tier-title">With Engineer</h3>
-                        <div class="tier-price">£30<span>/hour</span></div>
-                        <p>Full support session</p>
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> Professional engineer included</li>
-                        <li><i class="fas fa-check"></i> Recording assistance</li>
-                        <li><i class="fas fa-check"></i> Industry equipment</li>
-                        <li><i class="fas fa-check"></i> Flexible booking</li>
-                    </ul>
-                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div>
-                </div>
-                <div class="pricing-tier">
-                    <div class="tier-header">
-                        <div class="tier-icon">🏠</div>
-                        <h3 class="tier-title">Dry Hire</h3>
-                        <div class="tier-price">£10<span>/hour</span></div>
-                        <p>Studio space only</p>
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> Studio room access</li>
-                        <li><i class="fas fa-check"></i> Use of equipment</li>
-                        <li><i class="fas fa-check"></i> No engineer included</li>
-                        <li><i class="fas fa-check"></i> Ideal if you self-engineer</li>
-                    </ul>
-                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div>
-                </div>
+            <div style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:var(--space-xl); margin: var(--space-xxl) 0; text-align:center; backdrop-filter:blur(10px);">
+                <h3 style="color:var(--accent); margin-bottom:var(--space-sm); font-size:1.6rem;">Need something more flexible?</h3>
+                <p style="color:var(--text-body); margin-bottom:var(--space-lg); max-width:600px; margin-left:auto; margin-right:auto;">
+                    We also offer <strong style="color:#fff;">Hourly with Engineer (£30/hr)</strong> and <strong style="color:#fff;">Dry Hire (£10/hr)</strong> — studio space only, no engineer.
+                    Use the calculator above to see what fits your project.
+                </p>
+                <a href="#services" class="btn-primary" onclick="document.getElementById('projectGoal').value='dry'; if(typeof updateCalculator==='function') updateCalculator();" style="display:inline-block;">
+                    See Dry Hire in Calculator
+                </a>
             </div>
             <div class="addons-section">
                 <h3 style="text-align:center; color:var(--accent); margin-bottom:var(--space-xl); font-size:1.8rem;"><i class="fas fa-plus-circle"></i> Add-On Services</h3>
@@ -664,7 +642,7 @@
             const beatStatus  = document.getElementById('beatStatus');
             const mixStatus   = document.getElementById('mixStatus');
 
-            function updateCalculator() {
+            window.updateCalculator = function updateCalculator() {
                 const goal  = projectGoal ? projectGoal.value : 'ep';
                 const beats = beatStatus  ? beatStatus.value  : 'yes';
                 const mix   = mixStatus   ? mixStatus.value   : 'included';
@@ -703,12 +681,18 @@
                     desc = 'Professional mix and master only (no studio time)';
                     duration = 'Remote / offline service';
                 } else if (goal === 'hourly') {
-                    rec = 'Hourly Session';
+                    rec = 'Hourly with Engineer';
                     price = 30;
                     priceLabel = '£30/hour';
                     desc = 'Flexible time with a professional engineer';
                     duration = 'Book as many hours as you need';
-                    extras.push('<p><i class="fas fa-info-circle"></i> Dry hire (no engineer) available at <strong>£10/hour</strong></p>');
+                } else if (goal === 'dry') {
+                    rec = 'Dry Hire';
+                    price = 10;
+                    priceLabel = '£10/hour';
+                    desc = 'Studio space and equipment only – no engineer';
+                    duration = 'You self-engineer / bring your own engineer';
+                    extras.push('<p><i class="fas fa-info-circle"></i> Need an engineer? Switch to <strong>Hourly with Engineer (£30/hr)</strong></p>');
                 }
 
                 // Beats

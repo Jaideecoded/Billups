@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
-        /* ===== MASTER DESIGN SYSTEM ===== */
+        /* ===== MASTER DESIGN SYSTEM (unchanged) ===== */
         :root {
             --black: #000000;
             --dark-gray: #0a0a0a;
@@ -57,7 +57,6 @@
             --shadow-accent-md: 0 0 60px rgba(0,255,0,0.2);
         }
 
-        /* ===== RESET & BASE ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
         body {
@@ -70,9 +69,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ============================================================
-               GRADIENT BUTTON – purple‑dominant
-               ============================================================ */
         .btn-primary {
             position: relative;
             z-index: 1;
@@ -92,7 +88,6 @@
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
-
         .btn-primary::before {
             content: '';
             position: absolute;
@@ -107,11 +102,7 @@
             opacity: 0;
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-
+        .btn-primary:hover::before { opacity: 1; }
         .btn-primary:hover {
             color: var(--white);
             border-color: transparent;
@@ -119,7 +110,6 @@
             box-shadow: 0 10px 25px rgba(91, 44, 142, 0.5);
         }
 
-        /* ===== OTHER INTERACTIVE ELEMENTS ===== */
         .btn-audio,
         .portfolio-tab,
         .work-link,
@@ -136,7 +126,6 @@
             background-color: var(--black);
             color: var(--white);
         }
-
         .btn-audio::before,
         .portfolio-tab::before,
         .work-link::before,
@@ -159,27 +148,15 @@
             opacity: 0;
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .portfolio-tab::before,
         .guide-step::before,
-        .pricing-tier::before {
-            clip-path: inset(0 round var(--radius-lg));
-        }
-
-        .btn-audio::before {
-            clip-path: inset(0 round var(--radius-md));
-        }
-
+        .pricing-tier::before { clip-path: inset(0 round var(--radius-lg)); }
+        .btn-audio::before { clip-path: inset(0 round var(--radius-md)); }
         .work-link::before,
         .addon-card::before,
         .contact-row::before,
-        .badge::before {
-            clip-path: inset(0 round var(--radius-md));
-        }
-
-        .nav-icon::before {
-            clip-path: inset(0 round 50%);
-        }
+        .badge::before { clip-path: inset(0 round var(--radius-md)); }
+        .nav-icon::before { clip-path: inset(0 round 50%); }
 
         .btn-audio:hover::before,
         .btn-audio.active::before,
@@ -191,9 +168,7 @@
         .pricing-tier:hover::before,
         .contact-row:hover::before,
         .badge:hover::before,
-        .nav-icon:hover::before {
-            opacity: 1;
-        }
+        .nav-icon:hover::before { opacity: 1; }
 
         .btn-audio:hover,
         .btn-audio.active,
@@ -211,14 +186,12 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(91, 44, 142, 0.5);
         }
-
         .btn-audio.active {
             background-color: transparent;
             color: var(--white);
             font-weight: bold;
             border-color: transparent;
         }
-
         .nav-icon {
             width: 55px;
             height: 55px;
@@ -239,7 +212,6 @@
             box-shadow: 0 8px 25px rgba(91, 44, 142, 0.5);
         }
 
-        /* ===== HEADER & EQUALIZER ===== */
         .header-equalizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 14px; display: none; z-index: 1001; }
         .header.scrolled .header-equalizer { display: block; animation: equalizerFadeIn 0.5s ease-out; }
         .header-equalizer-bars { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 0 15px; }
@@ -278,7 +250,6 @@
         .logo-center { position: absolute; left: 50%; transform: translateX(-50%); height: 70px; width: auto; z-index: 1001; display: flex; justify-content: center; align-items: center; }
         .logo-center img { height: 100%; width: auto; filter: drop-shadow(var(--shadow-accent)); }
 
-        /* ===== HERO ===== */
         .hero { min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 120px var(--space-xl) var(--space-xxl); }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.6; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, rgba(42,15,84,0.8), rgba(26,11,46,0.9)); z-index: -1; }
@@ -296,7 +267,7 @@
         .trust-badges .badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.7;transform:scale(1.1);} }
 
-        /* ===== AUDIO DEMO – DUAL PLAYER ===== */
+        /* ===== AUDIO DEMO – enhanced with error handling ===== */
         .audio-demo {
             background: rgba(0,0,0,0.5);
             border-radius: var(--radius-lg);
@@ -305,21 +276,18 @@
             border: 1px solid var(--border-color);
             backdrop-filter: blur(10px);
         }
-
         .audio-demo h3 {
             text-align: center;
             margin-bottom: var(--space-lg);
             color: var(--accent);
             font-size: 1.5rem;
         }
-
         .audio-demo p {
             text-align: center;
             color: var(--text-muted);
             margin-bottom: var(--space-md);
             font-size: 0.95rem;
         }
-
         .audio-controls {
             display: flex;
             justify-content: center;
@@ -327,7 +295,6 @@
             flex-wrap: wrap;
             margin-bottom: var(--space-lg);
         }
-
         .audio-controls .btn-audio {
             padding: 0.8rem 2rem;
             border-radius: var(--radius-full);
@@ -340,31 +307,23 @@
             transition: var(--transition);
             font-family: var(--font-primary);
         }
-
         .audio-controls .btn-audio.active {
             background-color: transparent;
             color: var(--white);
             border-color: transparent;
             font-weight: bold;
         }
-
-        .audio-controls .btn-audio.active::before {
-            opacity: 1;
-        }
-
+        .audio-controls .btn-audio.active::before { opacity: 1; }
         .audio-player-wrapper {
             max-width: 500px;
             margin: 0 auto;
         }
-
         .audio-player-wrapper audio {
             width: 100%;
             border-radius: var(--radius-md);
             display: block;
             background: rgba(0,0,0,0.8);
         }
-
-        /* Custom audio player styling */
         .audio-player-wrapper audio::-webkit-media-controls-panel {
             background: rgba(0,0,0,0.9);
         }
@@ -372,20 +331,38 @@
         .audio-player-wrapper audio::-webkit-media-controls-time-remaining-display {
             color: var(--accent);
         }
-
         .audio-status {
             text-align: center;
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-top: var(--space-sm);
         }
-
         .audio-status .highlight {
             color: var(--accent);
             font-weight: 700;
         }
+        .audio-status .error-text {
+            color: #ff6b35;
+            display: inline-block;
+            margin-left: var(--space-sm);
+            font-weight: 600;
+        }
+        .audio-fallback-notice {
+            background: rgba(255,107,53,0.2);
+            border: 1px solid #ff6b35;
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-top: var(--space-md);
+            text-align: center;
+            color: var(--text-body);
+            font-size: 0.9rem;
+        }
+        .audio-fallback-notice i {
+            color: #ff6b35;
+            margin-right: var(--space-xs);
+        }
 
-        /* ===== OTHER BUTTON VARIANTS ===== */
+        /* Other sections (unchanged) – keep all existing styles for portfolio, services, etc. */
         .btn-audio {
             background: var(--black);
             color: var(--text-body);
@@ -431,7 +408,6 @@
             border: 1px solid rgba(0,255,0,0.3);
         }
 
-        /* ===== SECTIONS ===== */
         .section { padding: var(--space-xxl) var(--space-xl); position: relative; min-height: 100vh; display: flex; align-items: center; }
         .section-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.4; }
         .section-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26,11,46,0.85); z-index: -1; }
@@ -440,10 +416,8 @@
         .section-title { font-size: 3rem; font-weight: 900; margin-bottom: var(--space-md); text-transform: uppercase; color: var(--text-primary); text-shadow: var(--shadow-accent); }
         .section-subtitle { font-size: 1.5rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
 
-        /* ===== ABOUT ===== */
         .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; }
 
-        /* ===== SERVICES ===== */
         .service-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: var(--space-lg); margin-bottom: var(--space-xxl); }
         .guide-step { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: var(--space-xl); text-align: center; transition: var(--transition); backdrop-filter: blur(10px); }
         .step-number { display: inline-block; width: 50px; height: 50px; background: var(--accent); color: var(--black); border-radius: 50%; font-weight: 900; font-size: 1.5rem; line-height: 50px; margin-bottom: var(--space-md); }
@@ -490,7 +464,6 @@
 
         .deposit-notice { background: rgba(255,107,53,0.2); border: 1px solid #ff6b35; border-radius: var(--radius-lg); padding: var(--space-xl); text-align: center; margin-top: var(--space-xxl); font-weight: 700; font-size: 1.1rem; color: var(--text-primary); border-left: 6px solid #ff6b35; backdrop-filter: blur(10px); }
 
-        /* ===== PORTFOLIO ===== */
         .portfolio-tabs { display: flex; gap: var(--space-md); margin-bottom: var(--space-xl); flex-wrap: wrap; justify-content: center; }
         .producer-header { display: flex; align-items: center; gap: var(--space-md); }
         .producer-avatar { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; color: var(--black); flex-shrink: 0; }
@@ -530,14 +503,12 @@
         .quality-card h4 { color: var(--text-primary); margin-bottom: var(--space-sm); font-size: 1.2rem; }
         .quality-card p { color: var(--text-body); line-height: 1.6; }
 
-        /* ===== GALLERY ===== */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: var(--space-md); margin-top: var(--space-xl); }
         .gallery-item { position: relative; border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 4/3; background: var(--dark-gray); border: 1px solid var(--border-color); transition: var(--transition); cursor: pointer; }
         .gallery-item:hover { transform: translateY(-10px) scale(1.02); border-color: var(--accent); box-shadow: var(--shadow-lg); }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
         .gallery-item:hover img { transform: scale(1.1); }
 
-        /* ===== CONTACT ===== */
         .contact-table { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); margin-top: var(--space-xl); }
         .contact-column { background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: var(--space-xl); border: 1px solid var(--border-color); transition: var(--transition); backdrop-filter: blur(10px); }
         .contact-column:hover { transform: translateY(-5px); border-color: var(--accent); }
@@ -562,14 +533,12 @@
         textarea { min-height: 150px; resize: vertical; }
         .form-note { margin-top: var(--space-lg); padding: var(--space-lg); background: rgba(0,255,0,0.1); border-radius: var(--radius-md); border: 1px solid rgba(0,255,0,0.3); font-size: 0.9rem; text-align: center; }
 
-        /* ===== FOOTER ===== */
         .footer { background-color: rgba(0,0,0,0.95); padding: var(--space-xl) var(--space-xl) var(--space-lg); border-top: 1px solid var(--border-color); }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: var(--space-xl); margin-bottom: var(--space-xl); }
         .footer-column { display: flex; flex-direction: column; }
         .footer-logo { height: auto; width: 120px; margin-bottom: var(--space-lg); }
         .footer-bottom { text-align: center; padding-top: var(--space-xl); border-top: 1px solid var(--border-color); color: var(--text-muted); }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .hero-title { font-size: 3.5rem; }
             .section-title { font-size: 2.5rem; }
@@ -618,7 +587,7 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header (unchanged) -->
     <header class="header" id="header">
         <div class="nav-icons">
             <div class="nav-icon-container">
@@ -699,7 +668,7 @@
                         <p style="font-size:1.2rem; font-weight:600; color:var(--accent); line-height:1.5;">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</p>
                     </div>
 
-                    <!-- ===== AUDIO DEMO – FIXED ===== -->
+                    <!-- ===== AUDIO DEMO – ENHANCED ===== -->
                     <div class="audio-demo">
                         <h3>🎧 Hear The Billups Difference</h3>
                         <p>Compare the <span style="color:#ff6b35; font-weight:600;">raw recording</span> with the <span style="color:var(--accent); font-weight:600;">mixed &amp; mastered</span> version</p>
@@ -720,7 +689,14 @@
                         <div class="audio-status" id="audioStatus">
                             <span class="highlight" id="statusDot">●</span>
                             Playing: <span id="currentTrackLabel">Mixed &amp; Mastered</span>
-                            <span id="errorMsg" style="display:none; color:#ff6b35; margin-left:var(--space-sm);"></span>
+                            <span class="error-text" id="errorMsg" style="display:none;"></span>
+                        </div>
+
+                        <!-- Fallback notice (hidden by default) -->
+                        <div class="audio-fallback-notice" id="fallbackNotice" style="display:none;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Local audio files not found.</strong> Using a demo track from a public library. 
+                            Replace <code>audio/raw-demo.mp3</code> and <code>audio/mixed-demo.mp3</code> with your own files.
                         </div>
                     </div>
                 </div>
@@ -777,7 +753,7 @@
         </div>
     </section>
 
-    <!-- Services -->
+    <!-- Services (unchanged) -->
     <section class="services section" id="services">
         <img src="images/studio-bg.jpg" alt="Services Background" class="section-bg" />
         <div class="section-overlay"></div>
@@ -786,121 +762,37 @@
                 <h2 class="section-title">Our Services</h2>
                 <p class="section-subtitle">Professional recording, mixing &amp; mastering</p>
             </div>
-
             <div class="service-guide">
-                <div class="guide-step">
-                    <div class="step-number">1</div>
-                    <h3>Choose Your Goal</h3>
-                    <p>Single, EP, or full project? We'll help you pick the right session.</p>
-                </div>
-                <div class="guide-step">
-                    <div class="step-number">2</div>
-                    <h3>Select Package</h3>
-                    <p>From quick sessions to full production packages.</p>
-                </div>
-                <div class="guide-step">
-                    <div class="step-number">3</div>
-                    <h3>Book &amp; Create</h3>
-                    <p>Secure your session and start creating professional music.</p>
-                </div>
+                <div class="guide-step"><div class="step-number">1</div><h3>Choose Your Goal</h3><p>Single, EP, or full project? We'll help you pick the right session.</p></div>
+                <div class="guide-step"><div class="step-number">2</div><h3>Select Package</h3><p>From quick sessions to full production packages.</p></div>
+                <div class="guide-step"><div class="step-number">3</div><h3>Book &amp; Create</h3><p>Secure your session and start creating professional music.</p></div>
             </div>
-
             <div class="session-calculator">
-                <div class="calculator-header">
-                    <h3><i class="fas fa-calculator"></i> Smart Session Calculator</h3>
-                    <p>Find the perfect session for your needs</p>
-                </div>
+                <div class="calculator-header"><h3><i class="fas fa-calculator"></i> Smart Session Calculator</h3><p>Find the perfect session for your needs</p></div>
                 <div class="calculator-controls">
-                    <div class="control-group">
-                        <label>What's your main goal?</label>
-                        <select id="projectGoal">
-                            <option value="single">Record 1-2 singles</option>
-                            <option value="ep" selected>Record an EP (3-4 songs)</option>
-                            <option value="project">Full project (5+ songs)</option>
-                            <option value="mixing">Just mixing/mastering</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <label>Number of artists</label>
-                        <select id="artistCount">
-                            <option value="solo" selected>Solo artist</option>
-                            <option value="duo">Duo/Collaboration</option>
-                            <option value="group">Group session</option>
-                        </select>
-                    </div>
+                    <div class="control-group"><label>What's your main goal?</label><select id="projectGoal"><option value="single">Record 1-2 singles</option><option value="ep" selected>Record an EP (3-4 songs)</option><option value="project">Full project (5+ songs)</option><option value="mixing">Just mixing/mastering</option></select></div>
+                    <div class="control-group"><label>Number of artists</label><select id="artistCount"><option value="solo" selected>Solo artist</option><option value="duo">Duo/Collaboration</option><option value="group">Group session</option></select></div>
                 </div>
                 <div id="calculatorResult">
-                    <div class="result-title">RECOMMENDED: EP Package</div>
-                    <div class="result-price">£140</div>
+                    <div class="result-title">RECOMMENDED: EP Package</div><div class="result-price">£140</div>
                     <div class="result-description">Half Day Session - Perfect for recording 3-4 songs</div>
                     <p><i class="fas fa-check"></i> Includes: Recording, mixing, basic mastering</p>
                     <p><i class="fas fa-clock"></i> Duration: 5 hours studio time</p>
                     <a href="#contact" class="btn-primary" style="margin-top:var(--space-md);">Book This Package</a>
                 </div>
             </div>
-
             <div class="mix-master-notice">
                 <h3>🎛️ Mix &amp; Master Section Coming Soon</h3>
                 <p>We're currently building out our dedicated mixing &amp; mastering service. All final mixes and masters are handled by Dsoul.</p>
                 <div class="coming-soon-badge">Launching Soon</div>
             </div>
-
             <div class="pricing-tiers">
-                <div class="pricing-tier">
-                    <div class="tier-header">
-                        <div class="tier-icon">⚡</div>
-                        <h3 class="tier-title">Quick Session</h3>
-                        <div class="tier-price">£80<span>/song</span></div>
-                        <p>3 hours studio time</p>
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 3 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Professional engineer</li>
-                        <li><i class="fas fa-check"></i> Basic mixing included</li>
-                        <li><i class="fas fa-check"></i> Industry equipment</li>
-                        <li><i class="fas fa-check"></i> Perfect for singles</li>
-                    </ul>
-                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div>
-                </div>
-                <div class="pricing-tier popular">
-                    <div class="tier-badge">MOST POPULAR</div>
-                    <div class="tier-header">
-                        <div class="tier-icon">🎯</div>
-                        <h3 class="tier-title">Half Day</h3>
-                        <div class="tier-price">£140</div>
-                        <p>Best for EPs</p>
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 5 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Recording + mixing</li>
-                        <li><i class="fas fa-check"></i> Basic mastering</li>
-                        <li><i class="fas fa-check"></i> Up to 4 songs</li>
-                        <li><i class="fas fa-check"></i> Professional engineer</li>
-                    </ul>
-                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div>
-                </div>
-                <div class="pricing-tier">
-                    <div class="tier-header">
-                        <div class="tier-icon">🔥</div>
-                        <h3 class="tier-title">Full Day</h3>
-                        <div class="tier-price">£240</div>
-                        <p>Complete projects</p>
-                    </div>
-                    <ul class="tier-features">
-                        <li><i class="fas fa-check"></i> 10 hours studio time</li>
-                        <li><i class="fas fa-check"></i> Complete production</li>
-                        <li><i class="fas fa-check"></i> Professional mastering</li>
-                        <li><i class="fas fa-check"></i> Up to 8 songs</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                    </ul>
-                    <div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div>
-                </div>
+                <div class="pricing-tier"><div class="tier-header"><div class="tier-icon">⚡</div><h3 class="tier-title">Quick Session</h3><div class="tier-price">£80<span>/song</span></div><p>3 hours studio time</p></div><ul class="tier-features"><li><i class="fas fa-check"></i> 3 hours studio time</li><li><i class="fas fa-check"></i> Professional engineer</li><li><i class="fas fa-check"></i> Basic mixing included</li><li><i class="fas fa-check"></i> Industry equipment</li><li><i class="fas fa-check"></i> Perfect for singles</li></ul><div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div></div>
+                <div class="pricing-tier popular"><div class="tier-badge">MOST POPULAR</div><div class="tier-header"><div class="tier-icon">🎯</div><h3 class="tier-title">Half Day</h3><div class="tier-price">£140</div><p>Best for EPs</p></div><ul class="tier-features"><li><i class="fas fa-check"></i> 5 hours studio time</li><li><i class="fas fa-check"></i> Recording + mixing</li><li><i class="fas fa-check"></i> Basic mastering</li><li><i class="fas fa-check"></i> Up to 4 songs</li><li><i class="fas fa-check"></i> Professional engineer</li></ul><div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div></div>
+                <div class="pricing-tier"><div class="tier-header"><div class="tier-icon">🔥</div><h3 class="tier-title">Full Day</h3><div class="tier-price">£240</div><p>Complete projects</p></div><ul class="tier-features"><li><i class="fas fa-check"></i> 10 hours studio time</li><li><i class="fas fa-check"></i> Complete production</li><li><i class="fas fa-check"></i> Professional mastering</li><li><i class="fas fa-check"></i> Up to 8 songs</li><li><i class="fas fa-check"></i> Priority support</li></ul><div class="tier-action"><a href="#contact" class="btn-primary">Book Now</a></div></div>
             </div>
-
             <div class="addons-section">
-                <h3 style="text-align:center; color:var(--accent); margin-bottom:var(--space-xl); font-size:1.8rem;">
-                    <i class="fas fa-plus-circle"></i> Add-On Services
-                </h3>
+                <h3 style="text-align:center; color:var(--accent); margin-bottom:var(--space-xl); font-size:1.8rem;"><i class="fas fa-plus-circle"></i> Add-On Services</h3>
                 <div class="addons-grid">
                     <div class="addon-card"><div class="addon-icon"><i class="fas fa-sliders-h"></i></div><h4>Premium Mixing</h4><p>Professional studio mix</p><div class="addon-price">£40/song</div></div>
                     <div class="addon-card"><div class="addon-icon"><i class="fas fa-volume-up"></i></div><h4>Mastering</h4><p>Radio-ready loudness</p><div class="addon-price">£25/song</div></div>
@@ -908,14 +800,11 @@
                     <div class="addon-card"><div class="addon-icon"><i class="fas fa-drum"></i></div><h4>Beat Production</h4><p>Custom instrumentals</p><div class="addon-price">From £50</div></div>
                 </div>
             </div>
-
-            <div class="deposit-notice" role="note">
-                ⚠️ £30 deposit required to confirm all sessions. All sessions include professional engineering support.
-            </div>
+            <div class="deposit-notice" role="note">⚠️ £30 deposit required to confirm all sessions. All sessions include professional engineering support.</div>
         </div>
     </section>
 
-    <!-- Portfolio -->
+    <!-- Portfolio (unchanged) -->
     <section class="portfolio section" id="portfolio">
         <img src="images/portfolio-bg.jpg" alt="Portfolio Background" class="section-bg" />
         <div class="section-overlay"></div>
@@ -925,137 +814,27 @@
                 <p class="section-subtitle">Clear distinction between our work examples and what we bring to your project</p>
             </div>
             <div class="portfolio-tabs">
-                <button class="portfolio-tab active" data-tab="dsoul">
-                    <div class="producer-header">
-                        <div class="producer-avatar dsoul-avatar">DS</div>
-                        <div class="producer-info"><h3>Dsoul</h3><p class="producer-role">Head Engineer</p></div>
-                    </div>
-                </button>
-                <button class="portfolio-tab" data-tab="jaidee">
-                    <div class="producer-header">
-                        <div class="producer-avatar jaidee-avatar">JJ</div>
-                        <div class="producer-info"><h3>Jaidee</h3><p class="producer-role">Studio Manager &amp; Producer</p></div>
-                    </div>
-                </button>
+                <button class="portfolio-tab active" data-tab="dsoul"><div class="producer-header"><div class="producer-avatar dsoul-avatar">DS</div><div class="producer-info"><h3>Dsoul</h3><p class="producer-role">Head Engineer</p></div></div></button>
+                <button class="portfolio-tab" data-tab="jaidee"><div class="producer-header"><div class="producer-avatar jaidee-avatar">JJ</div><div class="producer-info"><h3>Jaidee</h3><p class="producer-role">Studio Manager &amp; Producer</p></div></div></button>
             </div>
-
             <div class="portfolio-content active" id="dsoul-portfolio">
-                <div class="portfolio-header">
-                    <div class="producer-bio">
-                        <h3>Dsoul - Head Engineer</h3>
-                        <p>Specializing in clean mixes, vocal production, and mastering. Known for bringing out the best in every artist with technical precision and creative flair.</p>
-                        <div class="producer-contact">
-                            <p><i class="fas fa-envelope"></i> dsoulfiles@gmail.com</p>
-                            <p><i class="fas fa-sliders-h"></i> Specializes in: Mixing, Mastering, Vocal Production</p>
-                        </div>
-                    </div>
-                    <div class="producer-stats">
-                        <div class="stat"><span class="stat-number">500+</span><span class="stat-label">Tracks Mixed</span></div>
-                        <div class="stat"><span class="stat-number">8</span><span class="stat-label">Years Experience</span></div>
-                    </div>
-                </div>
+                <div class="portfolio-header"><div class="producer-bio"><h3>Dsoul - Head Engineer</h3><p>Specializing in clean mixes, vocal production, and mastering. Known for bringing out the best in every artist with technical precision and creative flair.</p><div class="producer-contact"><p><i class="fas fa-envelope"></i> dsoulfiles@gmail.com</p><p><i class="fas fa-sliders-h"></i> Specializes in: Mixing, Mastering, Vocal Production</p></div></div><div class="producer-stats"><div class="stat"><span class="stat-number">500+</span><span class="stat-label">Tracks Mixed</span></div><div class="stat"><span class="stat-number">8</span><span class="stat-label">Years Experience</span></div></div></div>
                 <div class="portfolio-layout">
-                    <div class="work-examples">
-                        <h3 class="section-subtitle-small"><i class="fas fa-music"></i> Work Examples</h3>
-                        <p style="color:var(--text-body); margin-bottom:var(--space-lg);">Check out examples of Dsoul's mixing and production work:</p>
-                        <div class="work-examples-grid">
-                            <div class="work-example">
-                                <h4>Latest Release from Dsoul</h4>
-                                <p>Check out Dsoul's latest production and mixing work on his newest release.</p>
-                                <a href="https://youtu.be/jt1RtKUhJgA?si=o3VmWGrxohQRfM4J" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Listen Now</a>
-                            </div>
-                            <div class="work-example">
-                                <h4>Instagram Portfolio</h4>
-                                <p>Regular updates showcasing mixing techniques, beat previews, and behind-the-scenes studio content.</p>
-                                <a href="https://www.instagram.com/dsoulbeats/?hl=en" target="_blank" class="work-link"><i class="fab fa-instagram"></i> View Instagram</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producer-qualities">
-                        <h3 class="section-subtitle-small"><i class="fas fa-star"></i> What Dsoul Brings to Your Project</h3>
-                        <p style="color:var(--text-body); margin-bottom:var(--space-lg);">The expertise and qualities Dsoul brings to every session:</p>
-                        <div class="qualities-grid">
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-sliders-h"></i></div><h4>Precision Mixing</h4><p>Technical expertise in balancing frequencies, creating space, and achieving radio-ready clarity in every mix.</p></div>
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-microphone-alt"></i></div><h4>Vocal Expertise</h4><p>Specializes in vocal processing, compression, and effects to make vocals sit perfectly in the mix.</p></div>
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-volume-up"></i></div><h4>Mastering Excellence</h4><p>Final polish with proper loudness, stereo enhancement, and ensuring your tracks sound great on all systems.</p></div>
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-headphones"></i></div><h4>Modern Production</h4><p>Up-to-date with current music trends and production techniques across UK drill, hip-hop, and R&amp;B.</p></div>
-                        </div>
-                    </div>
+                    <div class="work-examples"><h3 class="section-subtitle-small"><i class="fas fa-music"></i> Work Examples</h3><p style="color:var(--text-body); margin-bottom:var(--space-lg);">Check out examples of Dsoul's mixing and production work:</p><div class="work-examples-grid"><div class="work-example"><h4>Latest Release from Dsoul</h4><p>Check out Dsoul's latest production and mixing work on his newest release.</p><a href="https://youtu.be/jt1RtKUhJgA?si=o3VmWGrxohQRfM4J" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Listen Now</a></div><div class="work-example"><h4>Instagram Portfolio</h4><p>Regular updates showcasing mixing techniques, beat previews, and behind-the-scenes studio content.</p><a href="https://www.instagram.com/dsoulbeats/?hl=en" target="_blank" class="work-link"><i class="fab fa-instagram"></i> View Instagram</a></div></div></div>
+                    <div class="producer-qualities"><h3 class="section-subtitle-small"><i class="fas fa-star"></i> What Dsoul Brings to Your Project</h3><p style="color:var(--text-body); margin-bottom:var(--space-lg);">The expertise and qualities Dsoul brings to every session:</p><div class="qualities-grid"><div class="quality-card"><div class="quality-icon"><i class="fas fa-sliders-h"></i></div><h4>Precision Mixing</h4><p>Technical expertise in balancing frequencies, creating space, and achieving radio-ready clarity in every mix.</p></div><div class="quality-card"><div class="quality-icon"><i class="fas fa-microphone-alt"></i></div><h4>Vocal Expertise</h4><p>Specializes in vocal processing, compression, and effects to make vocals sit perfectly in the mix.</p></div><div class="quality-card"><div class="quality-icon"><i class="fas fa-volume-up"></i></div><h4>Mastering Excellence</h4><p>Final polish with proper loudness, stereo enhancement, and ensuring your tracks sound great on all systems.</p></div><div class="quality-card"><div class="quality-icon"><i class="fas fa-headphones"></i></div><h4>Modern Production</h4><p>Up-to-date with current music trends and production techniques across UK drill, hip-hop, and R&amp;B.</p></div></div></div>
                 </div>
             </div>
-
             <div class="portfolio-content" id="jaidee-portfolio">
-                <div class="portfolio-header">
-                    <div class="producer-bio">
-                        <h3>Jaidee - Studio Manager &amp; Producer</h3>
-                        <p>With 5 years of industry experience, I bring a comprehensive skill set in studio management, artist development, and creative direction.</p>
-                        <div class="producer-contact">
-                            <p><i class="fas fa-phone"></i> 07878 709110</p>
-                            <p><i class="fas fa-envelope"></i> billupsltd@gmail.com</p>
-                            <p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development</p>
-                        </div>
-                    </div>
-                    <div class="producer-stats">
-                        <div class="stat"><span class="stat-number">100+</span><span class="stat-label">Sessions Managed</span></div>
-                        <div class="stat"><span class="stat-number">5</span><span class="stat-label">Years Experience</span></div>
-                        <div class="stat"><span class="stat-number">15+</span><span class="stat-label">Artists Worked With</span></div>
-                    </div>
-                </div>
+                <div class="portfolio-header"><div class="producer-bio"><h3>Jaidee - Studio Manager &amp; Producer</h3><p>With 5 years of industry experience, I bring a comprehensive skill set in studio management, artist development, and creative direction.</p><div class="producer-contact"><p><i class="fas fa-phone"></i> 07878 709110</p><p><i class="fas fa-envelope"></i> billupsltd@gmail.com</p><p><i class="fas fa-calendar-alt"></i> Specializes in: Session Management, Artist Development</p></div></div><div class="producer-stats"><div class="stat"><span class="stat-number">100+</span><span class="stat-label">Sessions Managed</span></div><div class="stat"><span class="stat-number">5</span><span class="stat-label">Years Experience</span></div><div class="stat"><span class="stat-number">15+</span><span class="stat-label">Artists Worked With</span></div></div></div>
                 <div class="portfolio-layout">
-                    <div class="work-examples">
-                        <h3 class="section-subtitle-small"><i class="fas fa-music"></i> Work Examples</h3>
-                        <p style="color:var(--text-body); margin-bottom:var(--space-lg);">Explore Jaidee's diverse work across music and podcasting:</p>
-                        <div class="work-examples-grid">
-                            <div class="work-example">
-                                <h4>Music Releases</h4>
-                                <p>Official Spotify releases showcasing Jaidee's own music and production capabilities across multiple genres.</p>
-                                <a href="https://open.spotify.com/artist/2dhPI432jA3KOZVdSHZfiL?si=yYzfPtf9QwClKHS1Z8As5w" target="_blank" class="work-link"><i class="fab fa-spotify"></i> Spotify Artist Profile</a>
-                            </div>
-                            <div class="work-example">
-                                <h4>Jaidee Cypher at the Emirates</h4>
-                                <p>Watch Jaidee's explosive performance at the Emirates, showcasing lyrical prowess and stage presence.</p>
-                                <a href="https://youtu.be/2WaVOTgPwOM?si=fCVEZmOpRHoAHbTv" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Watch Cypher</a>
-                            </div>
-                            <div class="work-example">
-                                <h4>Jaidee on Mode Radio</h4>
-                                <p>Listen to Jaidee's exclusive interview and live performance on Mode Radio, discussing music and upcoming projects.</p>
-                                <a href="https://youtu.be/kLxPi5h33Ls?si=VD__FFTK04tBiD5e" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Listen on Mode Radio</a>
-                            </div>
-                            <div class="work-example">
-                                <h4>Beyond Boundaries Podcast</h4>
-                                <p>Co-hosting deep music industry discussions, demonstrating industry knowledge and interview skills.</p>
-                                <a href="https://youtu.be/7QXhxzCn2O0?si=2wknh3e65QiPUGg9" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Podcast Episode 1</a>
-                            </div>
-                            <div class="work-example">
-                                <h4>Worse - Passive X Jaidee</h4>
-                                <p>Latest release featuring Jaidee, showcasing his lyrical ability and flow on this collaborative track.</p>
-                                <a href="https://youtu.be/-2461Nzf2l0?si=tGFQdhdNeJfXcKIj" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Listen Now</a>
-                            </div>
-                            <div class="work-example">
-                                <h4>Instagram Portfolio</h4>
-                                <p>Regular updates on music, studio life, and behind-the-scenes content.</p>
-                                <a href="https://www.instagram.com/jdhxl/?hl=en" target="_blank" class="work-link"><i class="fab fa-instagram"></i> View Instagram</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="producer-qualities">
-                        <h3 class="section-subtitle-small"><i class="fas fa-star"></i> What Jaidee Brings to Your Project</h3>
-                        <p style="color:var(--text-body); margin-bottom:var(--space-lg);">The expertise and qualities Jaidee brings to every session:</p>
-                        <div class="qualities-grid">
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-calendar-alt"></i></div><h4>Session Management</h4><p>Ensures smooth workflow, efficient scheduling, and optimal studio time utilization for maximum productivity.</p></div>
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-user-tie"></i></div><h4>Artist Development</h4><p>Guides emerging artists through the complete creative process - from concept to release strategy.</p></div>
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-video"></i></div><h4>Creative Direction</h4><p>Experience in music video production and visual storytelling to complement your audio projects.</p></div>
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-comments"></i></div><h4>Industry Insights</h4><p>Deep understanding of the music industry through podcast discussions and personal experience.</p></div>
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-handshake"></i></div><h4>Artist Relations</h4><p>Creates comfortable studio environments that bring out the best performances from artists.</p></div>
-                            <div class="quality-card"><div class="quality-icon"><i class="fas fa-bullhorn"></i></div><h4>Release Strategy</h4><p>Knowledgeable about effective release planning and promotion strategies for maximum impact.</p></div>
-                        </div>
-                    </div>
+                    <div class="work-examples"><h3 class="section-subtitle-small"><i class="fas fa-music"></i> Work Examples</h3><p style="color:var(--text-body); margin-bottom:var(--space-lg);">Explore Jaidee's diverse work across music and podcasting:</p><div class="work-examples-grid"><div class="work-example"><h4>Music Releases</h4><p>Official Spotify releases showcasing Jaidee's own music and production capabilities across multiple genres.</p><a href="https://open.spotify.com/artist/2dhPI432jA3KOZVdSHZfiL?si=yYzfPtf9QwClKHS1Z8As5w" target="_blank" class="work-link"><i class="fab fa-spotify"></i> Spotify Artist Profile</a></div><div class="work-example"><h4>Jaidee Cypher at the Emirates</h4><p>Watch Jaidee's explosive performance at the Emirates, showcasing lyrical prowess and stage presence.</p><a href="https://youtu.be/2WaVOTgPwOM?si=fCVEZmOpRHoAHbTv" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Watch Cypher</a></div><div class="work-example"><h4>Jaidee on Mode Radio</h4><p>Listen to Jaidee's exclusive interview and live performance on Mode Radio, discussing music and upcoming projects.</p><a href="https://youtu.be/kLxPi5h33Ls?si=VD__FFTK04tBiD5e" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Listen on Mode Radio</a></div><div class="work-example"><h4>Beyond Boundaries Podcast</h4><p>Co-hosting deep music industry discussions, demonstrating industry knowledge and interview skills.</p><a href="https://youtu.be/7QXhxzCn2O0?si=2wknh3e65QiPUGg9" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Podcast Episode 1</a></div><div class="work-example"><h4>Worse - Passive X Jaidee</h4><p>Latest release featuring Jaidee, showcasing his lyrical ability and flow on this collaborative track.</p><a href="https://youtu.be/-2461Nzf2l0?si=tGFQdhdNeJfXcKIj" target="_blank" class="work-link"><i class="fab fa-youtube"></i> Listen Now</a></div><div class="work-example"><h4>Instagram Portfolio</h4><p>Regular updates on music, studio life, and behind-the-scenes content.</p><a href="https://www.instagram.com/jdhxl/?hl=en" target="_blank" class="work-link"><i class="fab fa-instagram"></i> View Instagram</a></div></div></div>
+                    <div class="producer-qualities"><h3 class="section-subtitle-small"><i class="fas fa-star"></i> What Jaidee Brings to Your Project</h3><p style="color:var(--text-body); margin-bottom:var(--space-lg);">The expertise and qualities Jaidee brings to every session:</p><div class="qualities-grid"><div class="quality-card"><div class="quality-icon"><i class="fas fa-calendar-alt"></i></div><h4>Session Management</h4><p>Ensures smooth workflow, efficient scheduling, and optimal studio time utilization for maximum productivity.</p></div><div class="quality-card"><div class="quality-icon"><i class="fas fa-user-tie"></i></div><h4>Artist Development</h4><p>Guides emerging artists through the complete creative process - from concept to release strategy.</p></div><div class="quality-card"><div class="quality-icon"><i class="fas fa-video"></i></div><h4>Creative Direction</h4><p>Experience in music video production and visual storytelling to complement your audio projects.</p></div><div class="quality-card"><div class="quality-icon"><i class="fas fa-comments"></i></div><h4>Industry Insights</h4><p>Deep understanding of the music industry through podcast discussions and personal experience.</p></div><div class="quality-card"><div class="quality-icon"><i class="fas fa-handshake"></i></div><h4>Artist Relations</h4><p>Creates comfortable studio environments that bring out the best performances from artists.</p></div><div class="quality-card"><div class="quality-icon"><i class="fas fa-bullhorn"></i></div><h4>Release Strategy</h4><p>Knowledgeable about effective release planning and promotion strategies for maximum impact.</p></div></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery -->
+    <!-- Gallery (unchanged) -->
     <section class="gallery section" id="gallery">
         <img src="images/studio1.jpg" alt="Gallery Background" class="section-bg" />
         <div class="section-overlay"></div>
@@ -1074,7 +853,7 @@
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact (unchanged) -->
     <section class="contact section" id="contact">
         <img src="images/studio2.jpg" alt="Contact Background" class="section-bg" />
         <div class="section-overlay"></div>
@@ -1087,65 +866,13 @@
                 <div class="contact-column">
                     <h3>Our Team</h3>
                     <div class="contact-methods">
-                        <div class="contact-row">
-                            <div class="method-icon"><i class="fas fa-crown"></i></div>
-                            <div class="method-text">
-                                <strong>Fabian</strong>
-                                <span style="background:rgba(255,255,255,0.1); color:var(--accent); font-size:0.75rem; padding:2px 8px; border-radius:10px; display:inline-block; margin-top:4px;">Studio Owner</span>
-                                <p>For business inquiries &amp; partnerships</p>
-                                <p><small>Contact via studio email</small></p>
-                            </div>
-                        </div>
-                        <a href="tel:07878709110" class="contact-row">
-                            <div class="method-icon"><i class="fas fa-calendar-alt"></i></div>
-                            <div class="method-text">
-                                <strong>Jaidee</strong>
-                                <span style="background:rgba(255,255,255,0.1); color:var(--accent); font-size:0.75rem; padding:2px 8px; border-radius:10px; display:inline-block; margin-top:4px;">Studio Manager</span>
-                                <p>📞 07878 709110</p>
-                                <p>Bookings • Scheduling • Studio queries</p>
-                            </div>
-                        </a>
-                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row">
-                            <div class="method-icon"><i class="fas fa-sliders-h"></i></div>
-                            <div class="method-text">
-                                <strong>Dsoul</strong>
-                                <span style="background:rgba(255,255,255,0.1); color:var(--accent); font-size:0.75rem; padding:2px 8px; border-radius:10px; display:inline-block; margin-top:4px;">Head Engineer</span>
-                                <p>✉️ dsoulfiles@gmail.com</p>
-                                <p>Mixing • Mastering • Production</p>
-                            </div>
-                        </a>
-                        <a href="tel:07710593113" class="contact-row">
-                            <div class="method-icon"><i class="fas fa-phone"></i></div>
-                            <div class="method-text">
-                                <strong>Main Studio Line</strong>
-                                <p>📞 07710 593113</p>
-                                <p>General inquiries &amp; quick questions</p>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/447710593113" class="contact-row">
-                            <div class="method-icon"><i class="fab fa-whatsapp"></i></div>
-                            <div class="method-text">
-                                <strong>WhatsApp</strong>
-                                <p>📱 07710 593113</p>
-                                <p>Fastest response • Send voice notes</p>
-                            </div>
-                        </a>
-                        <a href="mailto:billupsltd@gmail.com" class="contact-row">
-                            <div class="method-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="method-text">
-                                <strong>Studio Email</strong>
-                                <p>✉️ billupsltd@gmail.com</p>
-                                <p>General studio inquiries</p>
-                            </div>
-                        </a>
-                        <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="contact-row">
-                            <div class="method-icon"><i class="fab fa-instagram"></i></div>
-                            <div class="method-text">
-                                <strong>Instagram</strong>
-                                <p>@billups_studio</p>
-                                <p>Latest work &amp; updates</p>
-                            </div>
-                        </a>
+                        <div class="contact-row"><div class="method-icon"><i class="fas fa-crown"></i></div><div class="method-text"><strong>Fabian</strong><span style="background:rgba(255,255,255,0.1); color:var(--accent); font-size:0.75rem; padding:2px 8px; border-radius:10px; display:inline-block; margin-top:4px;">Studio Owner</span><p>For business inquiries &amp; partnerships</p><p><small>Contact via studio email</small></p></div></div>
+                        <a href="tel:07878709110" class="contact-row"><div class="method-icon"><i class="fas fa-calendar-alt"></i></div><div class="method-text"><strong>Jaidee</strong><span style="background:rgba(255,255,255,0.1); color:var(--accent); font-size:0.75rem; padding:2px 8px; border-radius:10px; display:inline-block; margin-top:4px;">Studio Manager</span><p>📞 07878 709110</p><p>Bookings • Scheduling • Studio queries</p></div></a>
+                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row"><div class="method-icon"><i class="fas fa-sliders-h"></i></div><div class="method-text"><strong>Dsoul</strong><span style="background:rgba(255,255,255,0.1); color:var(--accent); font-size:0.75rem; padding:2px 8px; border-radius:10px; display:inline-block; margin-top:4px;">Head Engineer</span><p>✉️ dsoulfiles@gmail.com</p><p>Mixing • Mastering • Production</p></div></a>
+                        <a href="tel:07710593113" class="contact-row"><div class="method-icon"><i class="fas fa-phone"></i></div><div class="method-text"><strong>Main Studio Line</strong><p>📞 07710 593113</p><p>General inquiries &amp; quick questions</p></div></a>
+                        <a href="https://wa.me/447710593113" class="contact-row"><div class="method-icon"><i class="fab fa-whatsapp"></i></div><div class="method-text"><strong>WhatsApp</strong><p>📱 07710 593113</p><p>Fastest response • Send voice notes</p></div></a>
+                        <a href="mailto:billupsltd@gmail.com" class="contact-row"><div class="method-icon"><i class="fas fa-envelope"></i></div><div class="method-text"><strong>Studio Email</strong><p>✉️ billupsltd@gmail.com</p><p>General studio inquiries</p></div></a>
+                        <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="contact-row"><div class="method-icon"><i class="fab fa-instagram"></i></div><div class="method-text"><strong>Instagram</strong><p>@billups_studio</p><p>Latest work &amp; updates</p></div></a>
                     </div>
                 </div>
                 <div class="contact-column">
@@ -1154,27 +881,12 @@
                         <form action="https://api.web3forms.com/submit" method="POST" id="bookingForm">
                             <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6" />
                             <input type="hidden" name="subject" value="New Session Booking - Billups Studio" />
-                            <div class="form-row">
-                                <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" required /></div>
-                                <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required /></div>
-                            </div>
+                            <div class="form-row"><div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" required /></div><div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required /></div></div>
                             <div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" name="phone" required /></div>
-                            <div class="form-group">
-                                <label for="session-type">Session Type *</label>
-                                <select id="session-type" name="session-type" required>
-                                    <option value="">Select session</option>
-                                    <option value="quick-session">Quick Session (£80)</option>
-                                    <option value="half-day">Half Day (£140)</option>
-                                    <option value="full-day">Full Day (£240)</option>
-                                    <option value="custom">Custom Session</option>
-                                </select>
-                            </div>
+                            <div class="form-group"><label for="session-type">Session Type *</label><select id="session-type" name="session-type" required><option value="">Select session</option><option value="quick-session">Quick Session (£80)</option><option value="half-day">Half Day (£140)</option><option value="full-day">Full Day (£240)</option><option value="custom">Custom Session</option></select></div>
                             <div class="form-group"><label for="message">Project Details *</label><textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea></div>
                             <button type="submit" class="btn-primary" style="width:100%;">Send Booking Request</button>
-                            <div class="form-note">
-                                <strong>✉️ Your message will be sent directly to our team</strong><br />
-                                <span>We'll respond within 24 hours</span>
-                            </div>
+                            <div class="form-note"><strong>✉️ Your message will be sent directly to our team</strong><br /><span>We'll respond within 24 hours</span></div>
                         </form>
                     </div>
                 </div>
@@ -1182,41 +894,21 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (unchanged) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo" />
-                    <p style="color:var(--text-body); line-height:1.7; font-size:0.95rem;">Professional recording studio in Luton. Expert engineering, mixing &amp; mastering. Book your session today and elevate your sound.</p>
-                </div>
-                <div class="footer-column">
-                    <h4 style="color:var(--text-primary); margin-bottom:var(--space-lg); font-size:1.1rem;">Quick Links</h4>
-                    <div style="display:flex; flex-direction:column; gap:var(--space-sm);">
-                        <a href="#home" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Home</a>
-                        <a href="#about" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> About</a>
-                        <a href="#services" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Services</a>
-                        <a href="#portfolio" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Portfolio</a>
-                        <a href="#gallery" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Gallery</a>
-                        <a href="#contact" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Contact</a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h4 style="color:var(--text-primary); margin-bottom:var(--space-lg); font-size:1.1rem;">Studio Hours</h4>
-                    <p style="color:var(--text-body); margin-bottom:var(--space-xs); font-size:0.95rem;"><i class="fas fa-clock" style="color:var(--accent); margin-right:var(--space-xs);"></i> Mon-Sun: 10AM - 10PM</p>
-                    <p style="color:var(--text-body); font-size:0.95rem;"><i class="fas fa-calendar-check" style="color:var(--accent); margin-right:var(--space-xs);"></i> By appointment only</p>
-                </div>
+                <div class="footer-column"><img src="images/logo.png" alt="Billups Studio" class="footer-logo" /><p style="color:var(--text-body); line-height:1.7; font-size:0.95rem;">Professional recording studio in Luton. Expert engineering, mixing &amp; mastering. Book your session today and elevate your sound.</p></div>
+                <div class="footer-column"><h4 style="color:var(--text-primary); margin-bottom:var(--space-lg); font-size:1.1rem;">Quick Links</h4><div style="display:flex; flex-direction:column; gap:var(--space-sm);"><a href="#home" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Home</a><a href="#about" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> About</a><a href="#services" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Services</a><a href="#portfolio" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Portfolio</a><a href="#gallery" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Gallery</a><a href="#contact" style="color:var(--text-body); text-decoration:none; font-size:0.95rem;"><i class="fas fa-chevron-right" style="color:var(--accent); margin-right:var(--space-xs);"></i> Contact</a></div></div>
+                <div class="footer-column"><h4 style="color:var(--text-primary); margin-bottom:var(--space-lg); font-size:1.1rem;">Studio Hours</h4><p style="color:var(--text-body); margin-bottom:var(--space-xs); font-size:0.95rem;"><i class="fas fa-clock" style="color:var(--accent); margin-right:var(--space-xs);"></i> Mon-Sun: 10AM - 10PM</p><p style="color:var(--text-body); font-size:0.95rem;"><i class="fas fa-calendar-check" style="color:var(--accent); margin-right:var(--space-xs);"></i> By appointment only</p></div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved.</p>
-                <p style="margin-top:var(--space-sm); font-size:0.85rem;">Luton, Bedfordshire | 07710 593113</p>
-            </div>
+            <div class="footer-bottom"><p>&copy; <span id="currentYear">2024</span> Billups Studio. All rights reserved.</p><p style="margin-top:var(--space-sm); font-size:0.85rem;">Luton, Bedfordshire | 07710 593113</p></div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             // ===== HEADER SCROLL =====
             const header = document.getElementById('header');
             window.addEventListener('scroll', function() {
@@ -1436,8 +1128,7 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO SWITCHER – FIXED & SIMPLIFIED
-            //  Uses a single audio element and swaps the src.
+            //  🎛️ AUDIO SWITCHER – with fallback and error handling
             // ============================================================
             (function initAudioSwitcher() {
                 const mainPlayer = document.getElementById('mainPlayer');
@@ -1447,18 +1138,35 @@
                 const trackLabel = document.getElementById('currentTrackLabel');
                 const statusDot = document.getElementById('statusDot');
                 const errorMsg = document.getElementById('errorMsg');
+                const fallbackNotice = document.getElementById('fallbackNotice');
 
-                // Track definitions
+                // Public domain sample audio (from freesound.org – short loop)
+                const FALLBACK_URL = 'https://cdn.freesound.org/previews/612/612095_1648170-lq.mp3';
+
+                // Track definitions – try local first, fallback if they fail
                 const TRACKS = {
-                    raw: { src: 'audio/raw-demo.mp3', label: 'Raw Recording' },
-                    mixed: { src: 'audio/mixed-demo.mp3', label: 'Mixed & Mastered' }
+                    raw: { src: 'audio/raw-demo.mp3', fallback: FALLBACK_URL, label: 'Raw Recording' },
+                    mixed: { src: 'audio/mixed-demo.mp3', fallback: FALLBACK_URL, label: 'Mixed & Mastered' }
                 };
 
                 let currentTrack = 'mixed';
                 let isSwitching = false;
-                let errorTimer = null;
+                let usingFallback = false;
 
-                // Helper: set the audio source and load it
+                function showError(msg) {
+                    if (errorMsg) {
+                        errorMsg.style.display = 'inline';
+                        errorMsg.textContent = '⚠️ ' + msg;
+                    }
+                }
+
+                function hideError() {
+                    if (errorMsg) {
+                        errorMsg.style.display = 'none';
+                        errorMsg.textContent = '';
+                    }
+                }
+
                 function setTrack(trackKey, autoPlay = true) {
                     if (isSwitching) return;
                     if (!TRACKS[trackKey]) return;
@@ -1467,12 +1175,18 @@
                     const wasPlaying = !mainPlayer.paused;
 
                     isSwitching = true;
+                    hideError();
 
-                    // Update source
-                    audioSource.src = track.src;
+                    // Determine which URL to use – if fallback already active, use fallback
+                    let srcToUse = track.src;
+                    if (usingFallback) {
+                        srcToUse = track.fallback;
+                    }
+
+                    audioSource.src = srcToUse;
                     mainPlayer.load();
 
-                    // Update UI buttons
+                    // Update UI
                     if (trackKey === 'raw') {
                         btnRaw.classList.add('active');
                         btnMixed.classList.remove('active');
@@ -1483,77 +1197,43 @@
                     trackLabel.textContent = track.label;
                     currentTrack = trackKey;
 
-                    // Clear any previous error
-                    if (errorMsg) {
-                        errorMsg.style.display = 'none';
-                        errorMsg.textContent = '';
-                    }
-                    if (errorTimer) {
-                        clearTimeout(errorTimer);
-                        errorTimer = null;
-                    }
-
-                    // Play if it was playing or if autoPlay is true
+                    // Attempt to play
                     if (autoPlay || wasPlaying) {
                         mainPlayer.play().catch(function(err) {
-                            // User interaction may be required – show a subtle hint
-                            if (errorMsg) {
-                                errorMsg.style.display = 'inline';
-                                errorMsg.textContent = '⚠️ Tap play to listen';
-                                errorTimer = setTimeout(function() {
-                                    if (errorMsg) {
-                                        errorMsg.style.display = 'none';
-                                        errorMsg.textContent = '';
-                                    }
-                                    errorTimer = null;
-                                }, 4000);
-                            }
+                            // If play fails, show a hint
+                            showError('Tap play to listen (autoplay blocked)');
                             statusDot.textContent = '⏸';
                         });
                     }
 
-                    // Reset switching flag after a short delay
                     setTimeout(function() {
                         isSwitching = false;
                     }, 300);
                 }
 
-                // --- Event Listeners ---
+                // ---- Event listeners ----
 
-                // Raw button
                 btnRaw.addEventListener('click', function() {
                     if (currentTrack === 'raw') {
-                        // Toggle play/pause
-                        if (mainPlayer.paused) {
-                            mainPlayer.play().catch(function() {});
-                        } else {
-                            mainPlayer.pause();
-                        }
+                        if (mainPlayer.paused) mainPlayer.play().catch(function() {});
+                        else mainPlayer.pause();
                     } else {
                         setTrack('raw', true);
                     }
                 });
 
-                // Mixed button
                 btnMixed.addEventListener('click', function() {
                     if (currentTrack === 'mixed') {
-                        if (mainPlayer.paused) {
-                            mainPlayer.play().catch(function() {});
-                        } else {
-                            mainPlayer.pause();
-                        }
+                        if (mainPlayer.paused) mainPlayer.play().catch(function() {});
+                        else mainPlayer.pause();
                     } else {
                         setTrack('mixed', true);
                     }
                 });
 
-                // Main player events – update status dot
                 mainPlayer.addEventListener('play', function() {
                     statusDot.textContent = '▶';
-                    if (errorMsg) {
-                        errorMsg.style.display = 'none';
-                        errorMsg.textContent = '';
-                    }
+                    hideError();
                 });
 
                 mainPlayer.addEventListener('pause', function() {
@@ -1564,44 +1244,66 @@
                     statusDot.textContent = '■';
                 });
 
-                // Error handling – show a message if the file can't be loaded
+                // ---- Error handling: if the file fails to load, try fallback ----
                 mainPlayer.addEventListener('error', function(e) {
                     const err = mainPlayer.error;
-                    let msg = '⚠️ Audio file not found. ';
+                    let msg = 'Could not load audio. ';
                     if (err) {
                         switch (err.code) {
-                            case 1: msg += 'The request was aborted.'; break;
-                            case 2: msg += 'Network error – file may be missing.'; break;
-                            case 3: msg += 'Decoding error – file may be corrupt.'; break;
-                            case 4: msg += 'File not supported or not found.'; break;
-                            default: msg += 'Unknown error.';
+                            case 1:
+                                msg += 'Request aborted.';
+                                break;
+                            case 2:
+                                msg += 'Network error – file may be missing.';
+                                break;
+                            case 3:
+                                msg += 'Decoding error.';
+                                break;
+                            case 4:
+                                msg += 'File not found or unsupported.';
+                                break;
+                            default:
+                                msg += 'Unknown error.';
                         }
                     }
-                    if (errorMsg) {
-                        errorMsg.style.display = 'inline';
-                        errorMsg.textContent = msg;
-                        errorTimer = setTimeout(function() {
-                            if (errorMsg) {
-                                errorMsg.style.display = 'none';
-                                errorMsg.textContent = '';
-                            }
-                            errorTimer = null;
-                        }, 6000);
+                    console.warn('Audio error:', msg);
+
+                    // If we haven't already tried fallback, switch to fallback
+                    if (!usingFallback) {
+                        usingFallback = true;
+                        fallbackNotice.style.display = 'block';
+                        // Reload current track with fallback
+                        const trackKey = currentTrack;
+                        const track = TRACKS[trackKey];
+                        audioSource.src = track.fallback;
+                        mainPlayer.load();
+                        // Try to play if user action
+                        mainPlayer.play().catch(function() {});
+                        showError('Using demo audio – local files not found');
+                        // Update status
+                        statusDot.textContent = '▶';
+                    } else {
+                        // Fallback also failed – show permanent error
+                        showError('Audio unavailable. Check your internet or file paths.');
+                        statusDot.textContent = '✖';
                     }
-                    statusDot.textContent = '✖';
                 });
 
-                // --- Initialise ---
-                // Start with the mixed track loaded (but not auto-playing)
+                // ---- Initialise ----
+                // Start with mixed track, no autoplay
                 audioSource.src = TRACKS.mixed.src;
                 mainPlayer.load();
                 btnMixed.classList.add('active');
                 trackLabel.textContent = TRACKS.mixed.label;
                 statusDot.textContent = '●';
                 currentTrack = 'mixed';
+                usingFallback = false;
+                fallbackNotice.style.display = 'none';
 
-                // If the user clicks the main player's play button, it'll just work.
-                // Also handle the case where the user clicks the track buttons while paused.
+                // If the initial load fails, the error handler will trigger fallback
+
+                // Also, if the user clicks the play button on the main player, it will trigger the same events.
+                // We don't need to do anything else.
 
             })();
 

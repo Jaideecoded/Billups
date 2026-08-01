@@ -827,16 +827,55 @@
                         ${includesHtml}
                         ${extrasHtml}
                         ${totalNote}
-                        <a href="#contact" class="btn-primary calc-book-btn" data-session="${sessionType}" style="margin-top:var(--space-md);">${buttonText}</a>
+                        <a href="#contact" class="btn-primary calc-book-btn"
+                           data-session="${sessionType}"
+                           data-hours="${(goal === 'hourly' || goal === 'dry') ? hours : ''}"
+                           data-summary="${rec} — ${priceLabel}${(goal === 'hourly' || goal === 'dry') ? ' (' + hours + ' hour' + (hours > 1 ? 's' : '') + ')' : ''}"
+                           style="margin-top:var(--space-md);">${buttonText}</a>
                     `;
 
-                    // Wire the button to pre-select the form session type
+                    // Wire the button to pre-select form + pass hours into details
                     const btn = result.querySelector('.calc-book-btn');
                     if (btn) {
-                        btn.addEventListener('click', function (e) {
+                        btn.addEventListener('click', function () {
                             const sel = document.getElementById('session-type');
+                            const msg = document.getElementById('message');
+                            const session = this.getAttribute('data-session') || 'custom';
+                            const hrs = this.getAttribute('data-hours') || '';
+                            const summary = this.getAttribute('data-summary') || '';
+
                             if (sel) {
-                                sel.value = this.getAttribute('data-session') || 'custom';
+                                // For hourly/dry, use a value that includes hours so the form captures it
+                                if ((session === 'hourly-engineer' || session === 'dry-hire') && hrs) {
+                                    const label = session === 'dry-hire'
+                                        ? 'Dry Hire — ' + hrs + ' hour' + (hrs > 1 ? 's' : '') + ' (£' + (hrs * 10) + ')'
+                                        : 'Hourly with Engineer — ' + hrs + ' hour' + (hrs > 1 ? 's' : '') + ' (£' + (hrs * 30) + ')';
+                                    // Add/update a temporary option so the select shows the hours
+                                    let opt = sel.querySelector('option[data-calc="1"]');
+                                    if (!opt) {
+                                        opt = document.createElement('option');
+                                        opt.setAttribute('data-calc', '1');
+                                        sel.appendChild(opt);
+                                    }
+                                    opt.value = session + '-' + hrs + 'h';
+                                    opt.textContent = label;
+                                    sel.value = opt.value;
+                                } else {
+                                    sel.value = session;
+                                }
+                            }
+
+                            if (msg) {
+                                const line = 'Calculator selection: ' + summary;
+                                // Replace previous calculator line if present, otherwise prepend
+                                if (msg.value.indexOf('Calculator selection:') === 0) {
+                                    const rest = msg.value.split('\n').slice(1).join('\n').replace(/^\n/, '');
+                                    msg.value = line + (rest ? '\n' + rest : '');
+                                } else if (!msg.value.trim()) {
+                                    msg.value = line;
+                                } else if (msg.value.indexOf('Calculator selection:') === -1) {
+                                    msg.value = line + '\n\n' + msg.value;
+                                }
                             }
                         });
                     }
@@ -1146,4 +1185,3 @@
     </script>
 </body>
 </html>
-

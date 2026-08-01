@@ -391,7 +391,7 @@
 
                         <div class="audio-player-wrapper">
                             <audio id="mainPlayer" controls preload="metadata">
-                                <source src="audio/mixed-demo.mp3" type="audio/mpeg" id="audioSource">
+                                <source src="audio/mixed-demo.mp3" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
                         </div>
@@ -404,7 +404,7 @@
 
                         <div class="audio-fallback-notice" id="fallbackNotice" style="display:none;">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <strong>Using public demo tracks.</strong> Your local files (<code>audio/raw-demo.mp3</code> &amp; <code>audio/mixed-demo.mp3</code>) could not be loaded.
+                            <strong>Demo files not found.</strong> Make sure <code>audio/mixed-demo.mp3</code> and <code>audio/raw-demo.mp3</code> are uploaded to the server.
                         </div>
                     </div>
                 </div>
@@ -745,176 +745,154 @@
             }
 
             // ============================================================
-            //  🎛️ AUDIO SWITCHER – USES YOUR REAL TRACKS
-            //  - Strongly prefers local files: audio/mixed-demo.mp3 + audio/raw-demo.mp3
-            //  - Only falls back to public demos if the local file truly fails (404 / error)
-            //  - No short timeout that forces fallback (large files need time to start)
+            //  🎛️ AUDIO DEMO – Relative paths + existence check
+            //  Uses audio/mixed-demo.mp3 and audio/raw-demo.mp3
             // ============================================================
-            (function initAudioSwitcher() {
-                const mainPlayer     = document.getElementById('mainPlayer');
-                const audioSource    = document.getElementById('audioSource');
-                const btnRaw         = document.getElementById('btnRaw');
-                const btnMixed       = document.getElementById('btnMixed');
-                const trackLabel     = document.getElementById('currentTrackLabel');
-                const statusDot      = document.getElementById('statusDot');
-                const errorMsg       = document.getElementById('errorMsg');
-                const fallbackNotice = document.getElementById('fallbackNotice');
-
-                if (!mainPlayer || !audioSource || !btnRaw || !btnMixed) return;
-
-                // Your real files (relative to index.html)
-                const LOCAL = {
+            (function initAudioDemo() {
+                const tracks = {
                     mixed: 'audio/mixed-demo.mp3',
                     raw:   'audio/raw-demo.mp3'
                 };
 
-                // Public fallbacks only used if local files are missing
-                const PUBLIC = {
-                    mixed: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-                    raw:   'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
-                };
+                const btnMixed         = document.getElementById('btnMixed');
+                const btnRaw           = document.getElementById('btnRaw');
+                const mainPlayer       = document.getElementById('mainPlayer');
+                const currentTrackLabel = document.getElementById('currentTrackLabel');
+                const errorMsg         = document.getElementById('errorMsg');
+                const fallbackNotice   = document.getElementById('fallbackNotice');
+                const statusDot        = document.getElementById('statusDot');
 
-                const LABELS = {
-                    mixed: 'Mixed & Mastered',
-                    raw:   'Raw Recording'
-                };
+                if (!mainPlayer || !btnMixed || !btnRaw) return;
 
-                let currentTrack  = 'mixed';
-                let usingFallback = false;
-                let isSwitching   = false;
+                let currentTrack = 'mixed';
 
-                function showError(msg) {
-                    if (errorMsg) {
-                        errorMsg.style.display = 'inline';
-                        errorMsg.textContent = '⚠️ ' + msg;
-                    }
-                }
-
-                function hideError() {
-                    if (errorMsg) {
-                        errorMsg.style.display = 'none';
-                        errorMsg.textContent = '';
-                    }
-                }
-
-                function updateUI(trackKey) {
-                    if (trackKey === 'raw') {
-                        btnRaw.classList.add('active');
-                        btnMixed.classList.remove('active');
-                    } else {
+                function setActiveButton(track) {
+                    if (track === 'mixed') {
                         btnMixed.classList.add('active');
                         btnRaw.classList.remove('active');
+                    } else {
+                        btnRaw.classList.add('active');
+                        btnMixed.classList.remove('active');
                     }
-                    trackLabel.textContent = LABELS[trackKey];
+                }
+
+                function setStatus(text, isError) {
+                    if (statusDot) {
+                        statusDot.textContent = isError ? '✖' : '●';
+                        statusDot.style.color = isError ? '#ff6b35' : '';
+                    }
+                    if (errorMsg) {
+                        if (isError) {
+                            errorMsg.style.display = 'inline';
+                            errorMsg.textContent = text;
+                        } else {
+                            errorMsg.style.display = 'none';
+                            errorMsg.textContent = '';
+                        }
+                    }
+                }
+
+                async function fileExists(url) {
+                    try {
+                        const res = await fetch(url, { method: 'HEAD' });
+                        return res.ok;
+                    } catch (e) {
+                        return false;
+                    }
+                }
+
+                async function switchTrack(trackKey, shouldPlay) {
+                    const url = tracks[trackKey];
                     currentTrack = trackKey;
 
-                    fallbackNotice.style.display = usingFallback ? 'block' : 'none';
-                }
+                    setActiveButton(trackKey);
+                    if (currentTrackLabel) {
+                        currentTrackLabel.textContent = trackKey === 'mixed' ? 'Mixed & Mastered' : 'Raw Recording';
+                    }
 
-                function getSrc(trackKey) {
-                    return usingFallback ? PUBLIC[trackKey] : LOCAL[trackKey];
-                }
+                    setStatus('Checking track...', false);
 
-                function setTrack(trackKey, autoPlay) {
-                    if (isSwitching || !LABELS[trackKey]) return;
-                    isSwitching = true;
-                    hideError();
+                    const exists = await fileExists(url);
 
-                    const wasPlaying = !mainPlayer.paused;
-                    const src = getSrc(trackKey);
+                    if (!exists) {
+                        if (fallbackNotice) fallbackNotice.style.display = 'block';
+                        setStatus('Track not found: ' + url, true);
+                        return;
+                    }
 
-                    console.log('Loading track:', trackKey, '→', src);
+                    if (fallbackNotice) fallbackNotice.style.display = 'none';
+                    setStatus('', false);
 
-                    audioSource.src = src;
+                    // Set source and load
+                    mainPlayer.src = url;
                     mainPlayer.load();
-                    updateUI(trackKey);
 
-                    if (autoPlay || wasPlaying) {
-                        const playPromise = mainPlayer.play();
-                        if (playPromise !== undefined) {
-                            playPromise.catch(function () {
-                                showError('Tap the play button to listen');
-                                statusDot.textContent = '⏸';
-                            });
-                        }
+                    if (shouldPlay) {
+                        try {
+                            const p = mainPlayer.play();
+                            if (p && p.catch) {
+                                p.catch(function () {
+                                    setStatus('Tap play to listen', false);
+                                });
+                            }
+                        } catch (err) {}
                     }
-
-                    setTimeout(function () { isSwitching = false; }, 300);
                 }
 
-                // ---- Button clicks ----
-                btnRaw.addEventListener('click', function () {
-                    if (currentTrack === 'raw') {
-                        if (mainPlayer.paused) {
-                            mainPlayer.play().catch(function () {});
-                        } else {
-                            mainPlayer.pause();
-                        }
-                    } else {
-                        setTrack('raw', true);
-                    }
-                });
-
-                btnMixed.addEventListener('click', function () {
+                // Button clicks
+                btnMixed.addEventListener('click', function (e) {
+                    e.preventDefault();
                     if (currentTrack === 'mixed') {
-                        if (mainPlayer.paused) {
-                            mainPlayer.play().catch(function () {});
-                        } else {
-                            mainPlayer.pause();
-                        }
+                        if (mainPlayer.paused) mainPlayer.play().catch(function(){});
+                        else mainPlayer.pause();
                     } else {
-                        setTrack('mixed', true);
+                        switchTrack('mixed', true);
                     }
                 });
 
-                // ---- Player events ----
+                btnRaw.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (currentTrack === 'raw') {
+                        if (mainPlayer.paused) mainPlayer.play().catch(function(){});
+                        else mainPlayer.pause();
+                    } else {
+                        switchTrack('raw', true);
+                    }
+                });
+
+                // Player events
                 mainPlayer.addEventListener('play', function () {
-                    statusDot.textContent = '▶';
-                    hideError();
+                    if (statusDot) statusDot.textContent = '▶';
+                    setStatus('', false);
                 });
 
                 mainPlayer.addEventListener('pause', function () {
-                    statusDot.textContent = '⏸';
+                    if (statusDot) statusDot.textContent = '⏸';
                 });
 
                 mainPlayer.addEventListener('ended', function () {
-                    statusDot.textContent = '■';
+                    if (statusDot) statusDot.textContent = '■';
                 });
 
-                // Only fall back on a real error (file not found, network fail, etc.)
                 mainPlayer.addEventListener('error', function () {
-                    const err = mainPlayer.error;
-                    let msg = 'Could not load audio';
-                    if (err) {
-                        switch (err.code) {
-                            case 2: msg = 'Network error – file may be missing'; break;
-                            case 3: msg = 'Decoding error'; break;
-                            case 4: msg = 'File not found or unsupported format'; break;
-                        }
-                    }
-                    console.warn('Audio error:', msg, 'src was:', audioSource.src);
-
-                    if (!usingFallback) {
-                        // Local file failed → switch to public demos
-                        usingFallback = true;
-                        fallbackNotice.style.display = 'block';
-                        showError('Using demo audio – local files not found');
-                        setTrack(currentTrack, false);
-                    } else {
-                        showError('Audio unavailable. Check your connection.');
-                        statusDot.textContent = '✖';
-                    }
+                    setStatus('Playback error (see console)', true);
+                    console.warn('Audio element error', mainPlayer.error);
                 });
 
-                // ---- Initialise – start with YOUR local mixed track ----
-                usingFallback = false;
-                fallbackNotice.style.display = 'none';
-                audioSource.src = LOCAL.mixed;
-                mainPlayer.load();
-                updateUI('mixed');
-                statusDot.textContent = '●';
+                // On load – check which files exist and pick the best one
+                (async function init() {
+                    const mixedExists = await fileExists(tracks.mixed);
+                    const rawExists   = await fileExists(tracks.raw);
 
-                console.log('Audio player ready – trying local files first');
+                    if (!mixedExists && !rawExists) {
+                        if (fallbackNotice) fallbackNotice.style.display = 'block';
+                        setStatus('No demo files found on server', true);
+                    } else if (mixedExists) {
+                        switchTrack('mixed', false);
+                    } else {
+                        switchTrack('raw', false);
+                    }
+                })();
 
             })();
 

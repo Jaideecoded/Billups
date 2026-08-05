@@ -1,725 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Billups Studio | Luton Recording Studio</title>
-  <meta name="description" content="Professional recording studio in Luton. Expert engineering, mixing & mastering." />
-  <link rel="icon" href="images/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Billups Studio | Luton Recording Studio</title>
+<meta name="description" content="Professional recording studio in Luton. Expert engineering, mixing & mastering.">
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --black: #000;
+  --dark: #0a0a0a;
+  --purple-dark: #1a0b2e;
+  --purple: #2d1b4e;
+  --accent: #00ff00;
+  --accent-dim: rgba(0,255,0,0.15);
+  --orange: #ff6b35;
+  --white: #fff;
+  --text: rgba(255,255,255,0.9);
+  --text-muted: rgba(255,255,255,0.65);
+  --border: rgba(255,255,255,0.12);
+  --font: 'Inter', system-ui, sans-serif;
+  --radius: 14px;
+  --radius-lg: 18px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--font);background:var(--black);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:100%;max-width:1160px;margin:0 auto;padding:0 1.5rem}
 
-  <style>
-    :root {
-      --black: #000;
-      --dark: #0a0a0a;
-      --purple-dark: #1a0b2e;
-      --accent: #00ff00;
-      --accent-dim: rgba(0, 255, 0, 0.15);
-      --orange: #ff6b35;
-      --white: #fff;
-      --text: rgba(255, 255, 255, 0.88);
-      --text-muted: rgba(255, 255, 255, 0.6);
-      --border: rgba(255, 255, 255, 0.12);
-      --font: 'Inter', system-ui, sans-serif;
-      --radius: 12px;
-      --radius-lg: 16px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body {
-      font-family: var(--font);
-      background: var(--black);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+/* Header */
+.header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.3rem 0;background:transparent;transition:all .3s ease}
+.header.scrolled{background:rgba(0,0,0,.96);backdrop-filter:blur(16px);padding:.9rem 0;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.logo img{height:54px;width:auto;filter:drop-shadow(0 0 14px rgba(0,255,0,.35))}
+.nav{display:flex;gap:2rem}
+.nav a{font-size:.93rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;opacity:.88;transition:.2s}
+.nav a:hover{opacity:1;color:var(--accent)}
 
-    /* Header */
-    .header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      padding: 1.25rem 0; background: transparent; transition: all 0.3s ease;
-    }
-    .header.scrolled {
-      background: rgba(0,0,0,0.95);
-      backdrop-filter: blur(14px);
-      padding: 0.85rem 0;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.5);
-    }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; }
-    .logo img { height: 52px; width: auto; filter: drop-shadow(0 0 12px rgba(0,255,0,0.3)); }
-    .nav-left, .nav-right { display: flex; gap: 1.8rem; }
-    .nav-link {
-      font-size: 0.92rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.05em; opacity: 0.85; transition: 0.2s ease;
-    }
-    .nav-link:hover { opacity: 1; color: var(--accent); }
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:1.1rem 2.4rem;border-radius:999px;font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.05em;border:2px solid transparent;cursor:pointer;transition:all .3s ease;position:relative;z-index:1}
+.btn-primary{background:var(--black);color:var(--white);overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#5B2C8E,#8B4BD4,#66ff99,#00ff00);z-index:-1;opacity:0;transition:opacity .35s}
+.btn-primary:hover::before{opacity:1}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(91,44,142,.5)}
+.btn-outline{background:transparent;border-color:rgba(255,255,255,.3);color:var(--white)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.btn-sm{padding:.85rem 1.8rem;font-size:.93rem}
+.btn-block{width:100%}
 
-    /* Buttons */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-      padding: 1.05rem 2.3rem; border-radius: 999px; font-weight: 800; font-size: 1rem;
-      text-transform: uppercase; letter-spacing: 0.05em; border: 2px solid transparent;
-      cursor: pointer; transition: all 0.3s ease; position: relative; z-index: 1;
-    }
-    .btn-primary { background: var(--black); color: var(--white); overflow: hidden; }
-    .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, #5B2C8E, #8B4BD4, #66ff99, #00ff00);
-      z-index: -1; opacity: 0; transition: opacity 0.35s ease;
-    }
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(91,44,142,0.5); }
-    .btn-outline { background: transparent; border-color: rgba(255,255,255,0.28); color: var(--white); }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
-    .btn-sm { padding: 0.8rem 1.7rem; font-size: 0.92rem; }
-    .btn-block { width: 100%; }
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:9rem 0 6rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('images/hero-bg.jpg') center/cover no-repeat;opacity:.4;z-index:-2}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(45deg,rgba(42,15,84,.88),rgba(26,11,46,.94));z-index:-1}
+.hero-content{position:relative;z-index:1;max-width:860px}
+.hero-logo{height:180px;width:auto;margin:0 auto 2.6rem;border-radius:50%;border:3px solid rgba(0,255,0,.3);padding:1.15rem;background:rgba(0,0,0,.35);filter:drop-shadow(0 0 30px rgba(0,255,0,.35));transition:transform .6s}
+.hero-logo:hover{transform:rotateY(180deg) scale(1.06);border-color:var(--accent)}
+.hero-title{font-size:clamp(3rem,8.5vw,5.2rem);font-weight:900;text-transform:uppercase;line-height:1;color:var(--white);margin-bottom:1.1rem;text-shadow:0 0 50px rgba(0,255,0,.3)}
+.hero-subtitle{font-size:clamp(1.35rem,3.3vw,1.85rem);color:rgba(255,255,255,.93);margin-bottom:3rem;line-height:1.4}
+.hero-buttons{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.4rem}
+.hero-proof{display:flex;flex-direction:column;align-items:center;gap:1.15rem}
+.live-badge{display:flex;align-items:center;gap:.7rem;font-size:1rem;font-weight:500}
+.pulse{width:12px;height:12px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.trust-row{display:flex;gap:1rem;font-size:.95rem;color:var(--text-muted);flex-wrap:wrap;justify-content:center}
 
-    /* Hero */
-    .hero {
-      position: relative; min-height: 100vh; display: flex; align-items: center;
-      justify-content: center; text-align: center; padding: 8rem 0 5rem; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: url('images/hero-bg.jpg') center/cover no-repeat;
-      opacity: 0.42; z-index: -2;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(45deg, rgba(42,15,84,0.88), rgba(26,11,46,0.93));
-      z-index: -1;
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 820px; }
-    .hero-logo {
-      height: 170px; width: auto; margin: 0 auto 2.5rem; border-radius: 50%;
-      border: 3px solid rgba(0,255,0,0.28); padding: 1.1rem; background: rgba(0,0,0,0.35);
-      filter: drop-shadow(0 0 28px rgba(0,255,0,0.35)); transition: transform 0.6s ease;
-    }
-    .hero-logo:hover { transform: rotateY(180deg) scale(1.06); border-color: var(--accent); }
-    .hero-title {
-      font-size: clamp(2.9rem, 8vw, 5rem); font-weight: 900; text-transform: uppercase;
-      line-height: 1; color: var(--white); margin-bottom: 1rem;
-      text-shadow: 0 0 45px rgba(0,255,0,0.3);
-    }
-    .hero-subtitle {
-      font-size: clamp(1.3rem, 3.2vw, 1.8rem); color: rgba(255,255,255,0.92);
-      margin-bottom: 2.8rem; line-height: 1.4;
-    }
-    .hero-buttons { display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.2rem; }
-    .hero-proof { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
-    .live-badge { display: flex; align-items: center; gap: 0.65rem; font-size: 0.98rem; font-weight: 500; }
-    .pulse {
-      width: 11px; height: 11px; background: var(--accent); border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(1.35); }
-    }
-    .trust-row { display: flex; gap: 0.9rem; font-size: 0.92rem; color: var(--text-muted); flex-wrap: wrap; justify-content: center; }
+/* Sections */
+.section{padding:7rem 0}
+.section-header{text-align:center;margin-bottom:4rem}
+.section-title{font-size:clamp(2.2rem,5.2vw,3.2rem);font-weight:900;text-transform:uppercase;color:var(--white);margin-bottom:.85rem;text-shadow:0 0 40px rgba(0,255,0,.22)}
+.section-subtitle{font-size:1.3rem;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto}
 
-    /* Sections */
-    .section { padding: 6.5rem 0; }
-    .section-header { text-align: center; margin-bottom: 3.8rem; }
-    .section-title {
-      font-size: clamp(2.1rem, 5vw, 3.1rem); font-weight: 900; text-transform: uppercase;
-      color: var(--white); margin-bottom: 0.8rem;
-      text-shadow: 0 0 35px rgba(0,255,0,0.22);
-    }
-    .section-subtitle { font-size: 1.28rem; color: rgba(255,255,255,0.85); max-width: 580px; margin: 0 auto; }
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem}
+.about-grid h3{font-size:1.8rem;color:var(--white);margin-bottom:1.4rem}
+.about-grid p{margin-bottom:1.35rem;font-size:1.08rem}
+.callout{background:var(--accent-dim);border-left:5px solid var(--accent);padding:1.4rem 1.7rem;border-radius:var(--radius);font-weight:600;color:var(--accent);font-size:1.1rem}
+.features{display:grid;gap:1.7rem}
+.feature{display:flex;gap:1.2rem;align-items:flex-start}
+.feature span{font-size:1.9rem}
+.feature strong{display:block;color:var(--white);margin-bottom:.35rem;font-size:1.18rem}
 
-    /* About */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; margin-bottom: 4.5rem; }
-    .about-grid h3 { font-size: 1.7rem; color: var(--white); margin-bottom: 1.3rem; }
-    .about-grid p { margin-bottom: 1.3rem; font-size: 1.05rem; }
-    .callout {
-      background: var(--accent-dim); border-left: 5px solid var(--accent);
-      padding: 1.35rem 1.6rem; border-radius: var(--radius); font-weight: 600;
-      color: var(--accent); font-size: 1.08rem;
-    }
-    .features { display: grid; gap: 1.6rem; }
-    .feature { display: flex; gap: 1.1rem; align-items: flex-start; }
-    .feature span { font-size: 1.85rem; }
-    .feature strong { display: block; color: var(--white); margin-bottom: 0.3rem; font-size: 1.15rem; }
+/* Audio */
+.audio-demo{background:rgba(0,0,0,.55);border:1px solid var(--border);border-radius:var(--radius-lg);padding:3rem;text-align:center;box-shadow:0 12px 48px rgba(0,0,0,.45)}
+.audio-demo h3{color:var(--accent);font-size:1.7rem;margin-bottom:.7rem}
+.audio-demo>p{color:var(--text-muted);margin-bottom:2.4rem;font-size:1.08rem}
+.audio-demo .raw{color:var(--orange);font-weight:600}
+.audio-demo .mixed{color:var(--accent);font-weight:600}
+.crossfade{max-width:460px;margin:0 auto 2rem}
+.crossfade-labels{display:flex;justify-content:space-between;font-size:1rem;font-weight:700;margin-bottom:.75rem}
+#crossfadeSlider{width:100%;height:10px;-webkit-appearance:none;appearance:none;background:linear-gradient(to right,var(--orange),var(--accent));border-radius:6px;outline:none;cursor:pointer}
+#crossfadeSlider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--accent);box-shadow:0 0 14px rgba(0,255,0,.55);cursor:pointer}
+.audio-btns{display:flex;gap:1.1rem;justify-content:center;margin-bottom:1.3rem}
+.audio-status{font-size:1rem;color:var(--text-muted)}
 
-    /* Audio Demo */
-    .audio-demo {
-      background: rgba(0,0,0,0.5); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 2.8rem; text-align: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
-    .audio-demo h3 { color: var(--accent); font-size: 1.6rem; margin-bottom: 0.6rem; }
-    .audio-demo > p { color: var(--text-muted); margin-bottom: 2.2rem; font-size: 1.05rem; }
-    .audio-demo .raw { color: var(--orange); font-weight: 600; }
-    .audio-demo .mixed { color: var(--accent); font-weight: 600; }
-    .crossfade { max-width: 440px; margin: 0 auto 1.8rem; }
-    .crossfade-labels { display: flex; justify-content: space-between; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.7rem; }
-    #crossfadeSlider {
-      width: 100%; height: 9px; -webkit-appearance: none; appearance: none;
-      background: linear-gradient(to right, var(--orange), var(--accent));
-      border-radius: 5px; outline: none; cursor: pointer;
-    }
-    #crossfadeSlider::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%;
-      background: #fff; border: 3px solid var(--accent);
-      box-shadow: 0 0 12px rgba(0,255,0,0.5); cursor: pointer;
-    }
-    .audio-btns { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.2rem; }
-    .audio-status { font-size: 0.95rem; color: var(--text-muted); }
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-bottom:3.8rem}
+.price-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem 2rem;text-align:center;position:relative;transition:.3s}
+.price-card:hover{transform:translateY(-9px);border-color:rgba(0,255,0,.4);box-shadow:0 18px 45px rgba(0,0,0,.45)}
+.price-card.popular{border:2px solid var(--accent)}
+.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--black);font-weight:900;font-size:.84rem;padding:.4rem 1.2rem;border-radius:999px;text-transform:uppercase}
+.price-icon{font-size:2.5rem;margin-bottom:1rem}
+.price-card h3{font-size:1.6rem;color:var(--white);margin-bottom:.55rem}
+.price{font-size:3.2rem;font-weight:900;color:var(--accent);line-height:1;margin-bottom:.45rem}
+.price-desc{color:var(--text-muted);margin-bottom:1.7rem}
+.price-card ul{list-style:none;margin-bottom:2rem;text-align:left}
+.price-card li{padding:.65rem 0;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:.75rem}
+.price-card li::before{content:"✓";color:var(--accent);font-weight:700}
 
-    /* Pricing + Calculator */
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.9rem; margin-bottom: 3.5rem;
-    }
-    .price-card {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 2.3rem 1.9rem; text-align: center;
-      position: relative; transition: 0.3s ease;
-    }
-    .price-card:hover { transform: translateY(-8px); border-color: rgba(0,255,0,0.4); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
-    .price-card.popular { border: 2px solid var(--accent); }
-    .popular-badge {
-      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-      background: var(--accent); color: var(--black); font-weight: 900; font-size: 0.82rem;
-      padding: 0.35rem 1.1rem; border-radius: 999px; text-transform: uppercase;
-    }
-    .price-icon { font-size: 2.4rem; margin-bottom: 0.9rem; }
-    .price-card h3 { font-size: 1.55rem; color: var(--white); margin-bottom: 0.5rem; }
-    .price { font-size: 3rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
-    .price-desc { color: var(--text-muted); margin-bottom: 1.6rem; }
-    .price-card ul { list-style: none; margin-bottom: 1.9rem; text-align: left; }
-    .price-card li {
-      padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);
-      display: flex; align-items: center; gap: 0.7rem;
-    }
-    .price-card li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+.calculator{background:rgba(0,0,0,.55);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.8rem;margin-bottom:3.2rem}
+.calculator h3{text-align:center;color:var(--white);margin-bottom:2rem;font-size:1.55rem}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:2rem}
+.calc-group label{display:block;font-weight:600;margin-bottom:.45rem}
+.calc-group select{width:100%;padding:1rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:var(--radius);color:var(--white);font:inherit}
+.calc-result{text-align:center;background:var(--accent-dim);border-radius:var(--radius);padding:1.6rem;font-size:1.5rem;font-weight:800;color:var(--accent)}
 
-    .calculator {
-      background: rgba(0,0,0,0.5); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 3rem;
-    }
-    .calculator h3 { text-align: center; color: var(--white); margin-bottom: 1.8rem; font-size: 1.5rem; }
-    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.8rem; }
-    .calc-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; }
-    .calc-group select {
-      width: 100%; padding: 0.9rem 1rem; background: rgba(255,255,255,0.07);
-      border: 1px solid var(--border); border-radius: var(--radius); color: var(--white); font: inherit;
-    }
-    .calc-result {
-      text-align: center; background: var(--accent-dim); border-radius: var(--radius);
-      padding: 1.5rem; font-size: 1.4rem; font-weight: 800; color: var(--accent);
-    }
+.rates{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;margin-bottom:2.4rem;text-align:center}
+.rate{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius);padding:1.45rem 1.1rem}
+.rate span{display:block;font-size:.9rem;color:var(--text-muted);margin-bottom:.4rem}
+.rate strong{font-size:1.55rem;color:var(--accent)}
+.deposit-note{text-align:center;background:rgba(255,107,53,.16);border:1px solid var(--orange);border-radius:var(--radius);padding:1.45rem;font-weight:700;font-size:1.08rem}
 
-    .rates {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 1.1rem; margin-bottom: 2.2rem; text-align: center;
-    }
-    .rate {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.35rem 1rem;
-    }
-    .rate span { display: block; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.4rem; }
-    .rate strong { font-size: 1.5rem; color: var(--accent); }
+/* Testimonials */
+.testimonials{background:rgba(26,11,46,.48)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.8rem}
+.testimonial{background:rgba(0,0,0,.42);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.2rem}
+.testimonial p{font-size:1.18rem;margin-bottom:1.5rem;font-style:italic;line-height:1.55}
+.author{color:var(--accent);font-weight:600;font-size:1rem}
 
-    .deposit-note {
-      text-align: center; background: rgba(255,107,53,0.16); border: 1px solid var(--orange);
-      border-radius: var(--radius); padding: 1.35rem; font-weight: 700; font-size: 1.05rem;
-    }
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:2.2rem}
+.team-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.3rem;text-align:center;transition:.3s}
+.team-card:hover{transform:translateY(-7px);border-color:rgba(0,255,0,.38)}
+.team-card h3{color:var(--white);font-size:1.5rem;margin-bottom:.35rem}
+.team-role{color:var(--accent);font-weight:600;margin-bottom:1.1rem}
+.team-card p{font-size:1rem;color:var(--text-muted)}
 
-    /* Testimonials */
-    .testimonials { background: rgba(26,11,46,0.45); }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.7rem; }
-    .testimonial {
-      background: rgba(0,0,0,0.4); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 2rem;
-    }
-    .testimonial p { font-size: 1.15rem; margin-bottom: 1.4rem; font-style: italic; line-height: 1.55; }
-    .author { color: var(--accent); font-weight: 600; font-size: 0.98rem; }
+/* Portfolio */
+.portfolio-tabs{display:flex;gap:1.2rem;justify-content:center;margin-bottom:2.8rem;flex-wrap:wrap}
+.portfolio-tab{padding:1.05rem 2.1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:999px;color:var(--white);font-weight:600;cursor:pointer;transition:.3s}
+.portfolio-tab.active,.portfolio-tab:hover{background:transparent;border-color:var(--accent);color:var(--accent)}
+.portfolio-content{display:none;text-align:center;max-width:720px;margin:0 auto}
+.portfolio-content.active{display:block}
+.portfolio-content p{margin-bottom:1.1rem;font-size:1.1rem}
 
-    /* Team */
-    .team-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;
-    }
-    .team-card {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 2rem; text-align: center; transition: 0.3s ease;
-    }
-    .team-card:hover { transform: translateY(-6px); border-color: rgba(0,255,0,0.35); }
-    .team-card h3 { color: var(--white); font-size: 1.4rem; margin-bottom: 0.3rem; }
-    .team-role { color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
-    .team-card p { font-size: 0.98rem; color: var(--text-muted); }
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.6rem}
+.gallery-item{aspect-ratio:4/3;background:rgba(255,255,255,.05);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.gallery-item:hover img{transform:scale(1.06)}
 
-    /* Portfolio */
-    .portfolio-tabs { display: flex; gap: 1.1rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
-    .portfolio-tab {
-      padding: 1rem 2rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-      border-radius: 999px; color: var(--white); font-weight: 600; cursor: pointer; transition: 0.3s ease;
-    }
-    .portfolio-tab.active, .portfolio-tab:hover {
-      background: transparent; border-color: var(--accent); color: var(--accent);
-    }
-    .portfolio-content { display: none; text-align: center; max-width: 700px; margin: 0 auto; }
-    .portfolio-content.active { display: block; }
-    .portfolio-content p { margin-bottom: 1rem; font-size: 1.08rem; }
+/* Contact */
+.contact-form{max-width:680px;margin:0 auto;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-lg);padding:3rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.form-group{margin-bottom:1.5rem}
+label{display:block;font-weight:600;margin-bottom:.5rem;color:rgba(255,255,255,.9)}
+input,select,textarea{width:100%;padding:1.05rem 1.15rem;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:var(--radius);color:var(--white);font:inherit;transition:.2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{resize:vertical;min-height:140px}
 
-    /* Gallery */
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
-    }
-    .gallery-item {
-      aspect-ratio: 4/3; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg);
-      overflow: hidden; border: 1px solid var(--border);
-    }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s ease; }
-    .gallery-item:hover img { transform: scale(1.05); }
+/* Footer */
+.footer{background:#050505;border-top:1px solid var(--border);padding:3rem 0;text-align:center;color:var(--text-muted);font-size:.98rem}
 
-    /* Contact */
-    .contact-form {
-      max-width: 660px; margin: 0 auto; background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.8rem;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
-    .form-group { margin-bottom: 1.4rem; }
-    label { display: block; font-weight: 600; margin-bottom: 0.45rem; color: rgba(255,255,255,0.88); }
-    input, select, textarea {
-      width: 100%; padding: 1rem 1.1rem; background: rgba(255,255,255,0.07);
-      border: 1px solid var(--border); border-radius: var(--radius); color: var(--white);
-      font: inherit; transition: 0.2s ease;
-    }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
-    textarea { resize: vertical; min-height: 130px; }
-
-    /* Footer */
-    .footer {
-      background: #050505; border-top: 1px solid var(--border);
-      padding: 2.8rem 0; text-align: center; color: var(--text-muted); font-size: 0.95rem;
-    }
-
-    @media (max-width: 768px) {
-      .nav-left, .nav-right { display: none; }
-      .about-grid, .calc-grid, .form-row { grid-template-columns: 1fr; }
-      .hero-logo { height: 130px; }
-      .hero-buttons { flex-direction: column; align-items: center; }
-      .btn { width: 100%; max-width: 290px; }
-    }
-  </style>
+@media(max-width:768px){
+  .nav{display:none}
+  .about-grid,.calc-grid,.form-row{grid-template-columns:1fr}
+  .hero-logo{height:140px}
+  .hero-buttons{flex-direction:column;align-items:center}
+  .btn{width:100%;max-width:300px}
+}
+</style>
 </head>
 <body>
 
-  <header class="header" id="header">
-    <div class="container header-inner">
-      <nav class="nav-left">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#services" class="nav-link">Services</a>
-      </nav>
-      <a href="#home" class="logo"><img src="images/logo.png" alt="Billups Studio"></a>
-      <nav class="nav-right">
-        <a href="#portfolio" class="nav-link">Portfolio</a>
-        <a href="#gallery" class="nav-link">Gallery</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#home" class="logo"><img src="images/logo.png" alt="Billups Studio"></a>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <img src="images/logo.png" alt="Billups Studio" class="hero-logo">
+      <h1 class="hero-title">Billups Studio</h1>
+      <p class="hero-subtitle">Pick up the mic.<br>Elevate — create.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Book Your Session</a>
+        <a href="#audio-demo" class="btn btn-outline">Hear the Difference</a>
+      </div>
+      <div class="hero-proof">
+        <div class="live-badge"><span class="pulse"></span> <span><strong id="sessionCount">14</strong> sessions booked this month</span></div>
+        <div class="trust-row"><span>★ 4.9/5</span><span>•</span><span>Free Consult</span><span>•</span><span>24h Response</span></div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
-        <img src="images/logo.png" alt="Billups Studio" class="hero-logo">
-        <h1 class="hero-title">Billups Studio</h1>
-        <p class="hero-subtitle">Pick up the mic.<br>Elevate — create.</p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">Book Your Session</a>
-          <a href="#audio-demo" class="btn btn-outline">Hear the Difference</a>
-        </div>
-        <div class="hero-proof">
-          <div class="live-badge"><span class="pulse"></span> <span><strong id="sessionCount">14</strong> sessions booked this month</span></div>
-          <div class="trust-row"><span>★ 4.9/5</span><span>•</span><span>Free Consult</span><span>•</span><span>24h Response</span></div>
-        </div>
+  <!-- ABOUT + AUDIO -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Real Studio. Real Energy.</h2>
+        <p class="section-subtitle">Where culture meets clean sound</p>
       </div>
-    </section>
-
-    <!-- ABOUT + AUDIO -->
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Real Studio. Real Energy.</h2>
-          <p class="section-subtitle">Where culture meets clean sound</p>
+      <div class="about-grid">
+        <div>
+          <h3>Our Studio</h3>
+          <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. From quick bars to full tape lock-ins, this is the studio where your best work comes alive.</p>
+          <p>We deliver expert engineering, mixing and mastering for emerging and established artists with industry-standard equipment and a dedicated team.</p>
+          <div class="callout">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</div>
         </div>
-        <div class="about-grid">
-          <div>
-            <h3>Our Studio</h3>
-            <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. From quick bars to full tape lock-ins, this is the studio where your best work comes alive.</p>
-            <p>We deliver expert engineering, mixing and mastering for emerging and established artists with industry-standard equipment and a dedicated team.</p>
-            <div class="callout">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</div>
-          </div>
-          <div>
-            <h3>Studio Features</h3>
-            <div class="features">
-              <div class="feature"><span>🎚️</span><div><strong>Pro Sound</strong><p>Industry-standard equipment with pristine acoustic treatment.</p></div></div>
-              <div class="feature"><span>🧹</span><div><strong>Clean Space</strong><p>Immaculate environment designed for creativity and focus.</p></div></div>
-              <div class="feature"><span>👥</span><div><strong>Good People</strong><p>Engineers who understand artists and bring out your best.</p></div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="audio-demo" id="audio-demo">
-          <h3>🎧 Hear The Billups Difference</h3>
-          <p>Drag the slider to crossfade between the <span class="raw">raw recording</span> and the <span class="mixed">mixed & mastered</span> version</p>
-          <audio id="audioRaw" preload="auto" crossorigin="anonymous"></audio>
-          <audio id="audioMixed" preload="auto" crossorigin="anonymous"></audio>
-          <div class="crossfade">
-            <div class="crossfade-labels">
-              <span>🎤 Raw</span>
-              <span id="crossfadeLabel">50% / 50%</span>
-              <span>✨ Mixed</span>
-            </div>
-            <input type="range" id="crossfadeSlider" min="0" max="100" value="50">
-          </div>
-          <div class="audio-btns">
-            <button id="playPauseBtn" class="btn btn-primary btn-sm">▶ Play</button>
-            <button id="resetBtn" class="btn btn-outline btn-sm">↺ Reset</button>
-          </div>
-          <div class="audio-status" id="audioStatus">Ready – drag the slider to compare</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES + CALCULATOR -->
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Our Services</h2>
-          <p class="section-subtitle">Professional recording, mixing & mastering</p>
-        </div>
-
-        <div class="pricing-grid">
-          <div class="price-card">
-            <div class="price-icon">⚡</div>
-            <h3>Quick Session</h3>
-            <div class="price">£80</div>
-            <p class="price-desc">3 hours with engineer</p>
-            <ul>
-              <li>3 hours studio time</li>
-              <li>Professional engineer</li>
-              <li>Ideal for 1–2 singles</li>
-              <li>Save vs hourly (£90)</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary btn-sm">Book Quick Session</a>
-          </div>
-          <div class="price-card popular">
-            <div class="popular-badge">Most Popular</div>
-            <div class="price-icon">🎯</div>
-            <h3>Half Day</h3>
-            <div class="price">£140</div>
-            <p class="price-desc">5 hours with engineer</p>
-            <ul>
-              <li>5 hours studio time</li>
-              <li>Recording + basic mix</li>
-              <li>Ideal for EPs (3–4 songs)</li>
-              <li>Save vs hourly (£150)</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary btn-sm">Book Half Day</a>
-          </div>
-          <div class="price-card">
-            <div class="price-icon">🔥</div>
-            <h3>Full Day</h3>
-            <div class="price">£240</div>
-            <p class="price-desc">10 hours with engineer</p>
-            <ul>
-              <li>10 hours studio time</li>
-              <li>Full production support</li>
-              <li>Ideal for 5+ songs</li>
-              <li>Best value vs hourly (£300)</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary btn-sm">Book Full Day</a>
-          </div>
-        </div>
-
-        <!-- Calculator -->
-        <div class="calculator">
-          <h3>Session Calculator</h3>
-          <div class="calc-grid">
-            <div class="calc-group">
-              <label>What do you need?</label>
-              <select id="calcGoal">
-                <option value="quick">Quick Session (3hrs)</option>
-                <option value="half">Half Day (5hrs)</option>
-                <option value="full">Full Day (10hrs)</option>
-                <option value="hourly">Hourly with Engineer</option>
-                <option value="dry">Dry Hire</option>
-              </select>
-            </div>
-            <div class="calc-group">
-              <label>Hours (if hourly)</label>
-              <select id="calcHours">
-                <option value="1">1 hour</option>
-                <option value="2">2 hours</option>
-                <option value="3">3 hours</option>
-                <option value="4">4 hours</option>
-                <option value="5">5 hours</option>
-                <option value="6">6 hours</option>
-                <option value="8">8 hours</option>
-                <option value="10">10 hours</option>
-              </select>
-            </div>
-          </div>
-          <div class="calc-result" id="calcResult">Estimated: £80</div>
-        </div>
-
-        <div class="rates">
-          <div class="rate"><span>With Engineer</span><strong>£30/hr</strong></div>
-          <div class="rate"><span>Dry Hire</span><strong>£10/hr</strong></div>
-          <div class="rate"><span>Custom Beat</span><strong>£120</strong></div>
-          <div class="rate"><span>Mix & Master</span><strong>From £60</strong></div>
-        </div>
-        <p class="deposit-note">⚠️ £30 deposit required to confirm all sessions</p>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="section testimonials">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">What Artists Say</h2>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <p>“The mix was radio-ready. Dsoul understood exactly what I was going for.”</p>
-            <div class="author">— Jayden R. • @jaydenmusic</div>
-          </div>
-          <div class="testimonial">
-            <p>“Best studio vibe in Luton. Clean, professional, and the energy is unmatched.”</p>
-            <div class="author">— Lila M. • @lilamakes</div>
-          </div>
-          <div class="testimonial">
-            <p>“Booked a half day and walked out with 4 songs ready. Will be back.”</p>
-            <div class="author">— Kairo • @kairouk</div>
+        <div>
+          <h3>Studio Features</h3>
+          <div class="features">
+            <div class="feature"><span>🎚️</span><div><strong>Pro Sound</strong><p>Industry-standard equipment with pristine acoustic treatment.</p></div></div>
+            <div class="feature"><span>🧹</span><div><strong>Clean Space</strong><p>Immaculate environment designed for creativity and focus.</p></div></div>
+            <div class="feature"><span>👥</span><div><strong>Good People</strong><p>Engineers who understand artists and bring out your best.</p></div></div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- TEAM -->
-    <section class="section" id="team">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">The Team</h2>
+      <div class="audio-demo" id="audio-demo">
+        <h3>🎧 Hear The Billups Difference</h3>
+        <p>Drag the slider to crossfade between the <span class="raw">raw recording</span> and the <span class="mixed">mixed & mastered</span> version</p>
+        <audio id="audioRaw" preload="auto" crossorigin="anonymous"></audio>
+        <audio id="audioMixed" preload="auto" crossorigin="anonymous"></audio>
+        <div class="crossfade">
+          <div class="crossfade-labels"><span>🎤 Raw</span><span id="crossfadeLabel">50% / 50%</span><span>✨ Mixed</span></div>
+          <input type="range" id="crossfadeSlider" min="0" max="100" value="50">
         </div>
-        <div class="team-grid">
-          <div class="team-card">
-            <h3>Fabian</h3>
-            <div class="team-role">Founder</div>
-            <p>Vision and leadership behind Billups Studio. Building a space where artists can create without limits.</p>
-          </div>
-          <div class="team-card">
-            <h3>Dsoul</h3>
-            <div class="team-role">Head Engineer</div>
-            <p>Specialising in clean mixes, vocal production and mastering. Known for bringing out the best in every artist.</p>
-          </div>
-          <div class="team-card">
-            <h3>Jaidee</h3>
-            <div class="team-role">Studio Manager</div>
-            <p>Studio management, artist development and creative direction. 5 years industry experience.</p>
-          </div>
+        <div class="audio-btns">
+          <button id="playPauseBtn" class="btn btn-primary btn-sm">▶ Play</button>
+          <button id="resetBtn" class="btn btn-outline btn-sm">↺ Reset</button>
+        </div>
+        <div class="audio-status" id="audioStatus">Ready – drag the slider to compare</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Professional recording, mixing & mastering</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-icon">⚡</div>
+          <h3>Quick Session</h3>
+          <div class="price">£80</div>
+          <p class="price-desc">3 hours with engineer</p>
+          <ul>
+            <li>3 hours studio time</li>
+            <li>Professional engineer</li>
+            <li>Ideal for 1–2 singles</li>
+            <li>Save vs hourly (£90)</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm">Book Quick Session</a>
+        </div>
+        <div class="price-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="price-icon">🎯</div>
+          <h3>Half Day</h3>
+          <div class="price">£140</div>
+          <p class="price-desc">5 hours with engineer</p>
+          <ul>
+            <li>5 hours studio time</li>
+            <li>Recording + basic mix</li>
+            <li>Ideal for EPs (3–4 songs)</li>
+            <li>Save vs hourly (£150)</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm">Book Half Day</a>
+        </div>
+        <div class="price-card">
+          <div class="price-icon">🔥</div>
+          <h3>Full Day</h3>
+          <div class="price">£240</div>
+          <p class="price-desc">10 hours with engineer</p>
+          <ul>
+            <li>10 hours studio time</li>
+            <li>Full production support</li>
+            <li>Ideal for 5+ songs</li>
+            <li>Best value vs hourly (£300)</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm">Book Full Day</a>
         </div>
       </div>
-    </section>
 
-    <!-- PORTFOLIO -->
-    <section class="section" id="portfolio">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Our Producers</h2>
-        </div>
-        <div class="portfolio-tabs">
-          <button class="portfolio-tab active" data-tab="dsoul">Dsoul — Head Engineer</button>
-          <button class="portfolio-tab" data-tab="jaidee">Jaidee — Studio Manager</button>
-        </div>
-        <div class="portfolio-content active" id="dsoul-portfolio">
-          <p>Specialising in clean mixes, vocal production and mastering. Technical precision with creative flair.</p>
-          <p><strong>Contact:</strong> dsoulfiles@gmail.com</p>
-        </div>
-        <div class="portfolio-content" id="jaidee-portfolio">
-          <p>Studio management, artist development and creative direction. Helping artists from concept to release.</p>
-          <p><strong>Contact:</strong> 07878 709110 • billupsltd@gmail.com</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section class="section" id="gallery">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">The Studio</h2>
-          <p class="section-subtitle">A space built for creation</p>
-        </div>
-        <div class="gallery-grid">
-          <div class="gallery-item"><img src="images/gallery1.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
-          <div class="gallery-item"><img src="images/gallery2.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
-          <div class="gallery-item"><img src="images/gallery3.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
-          <div class="gallery-item"><img src="images/gallery4.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Book Your Session</h2>
-          <p class="section-subtitle">We’ll respond within 24 hours</p>
-        </div>
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6" />
-          <input type="hidden" name="subject" value="New Session Booking - Billups Studio" />
-          <div class="form-row">
-            <div class="form-group">
-              <label>Full Name *</label>
-              <input type="text" name="name" required>
-            </div>
-            <div class="form-group">
-              <label>Email *</label>
-              <input type="email" name="email" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Phone *</label>
-            <input type="tel" name="phone" required>
-          </div>
-          <div class="form-group">
-            <label>Session Type *</label>
-            <select name="session-type" id="formSession" required>
-              <option value="">Select session</option>
-              <option value="quick-session">Quick Session (£80)</option>
-              <option value="half-day">Half Day (£140)</option>
-              <option value="full-day">Full Day (£240)</option>
-              <option value="hourly">Hourly with Engineer (£30/hr)</option>
-              <option value="dry-hire">Dry Hire (£10/hr)</option>
+      <div class="calculator">
+        <h3>Session Calculator</h3>
+        <div class="calc-grid">
+          <div class="calc-group">
+            <label>What do you need?</label>
+            <select id="calcGoal">
+              <option value="quick">Quick Session (3hrs)</option>
+              <option value="half">Half Day (5hrs)</option>
+              <option value="full">Full Day (10hrs)</option>
+              <option value="hourly">Hourly with Engineer</option>
+              <option value="dry">Dry Hire</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>Project Details *</label>
-            <textarea name="message" rows="4" required placeholder="Tell us about your project..."></textarea>
+          <div class="calc-group">
+            <label>Hours (if hourly)</label>
+            <select id="calcHours">
+              <option value="1">1 hour</option>
+              <option value="2">2 hours</option>
+              <option value="3">3 hours</option>
+              <option value="4">4 hours</option>
+              <option value="5">5 hours</option>
+              <option value="6">6 hours</option>
+              <option value="8">8 hours</option>
+              <option value="10">10 hours</option>
+            </select>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Send Booking Request</button>
-        </form>
+        </div>
+        <div class="calc-result" id="calcResult">Estimated: £80</div>
       </div>
-    </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Billups Studio • Luton • 07710 593113</p>
+      <div class="rates">
+        <div class="rate"><span>With Engineer</span><strong>£30/hr</strong></div>
+        <div class="rate"><span>Dry Hire</span><strong>£10/hr</strong></div>
+        <div class="rate"><span>Custom Beat</span><strong>£120</strong></div>
+        <div class="rate"><span>Mix & Master</span><strong>From £60</strong></div>
+      </div>
+      <p class="deposit-note">⚠️ £30 deposit required to confirm all sessions</p>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Year
-      document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials">
+    <div class="container">
+      <div class="section-header"><h2 class="section-title">What Artists Say</h2></div>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p>“The mix was radio-ready. Dsoul understood exactly what I was going for.”</p>
+          <div class="author">— Jayden R. • @jaydenmusic</div>
+        </div>
+        <div class="testimonial">
+          <p>“Best studio vibe in Luton. Clean, professional, and the energy is unmatched.”</p>
+          <div class="author">— Lila M. • @lilamakes</div>
+        </div>
+        <div class="testimonial">
+          <p>“Booked a half day and walked out with 4 songs ready. Will be back.”</p>
+          <div class="author">— Kairo • @kairouk</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      // Header
-      const header = document.getElementById('header');
-      window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 50);
-      }, { passive: true });
+  <!-- TEAM -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section-header"><h2 class="section-title">The Team</h2></div>
+      <div class="team-grid">
+        <div class="team-card">
+          <h3>Fabian</h3>
+          <div class="team-role">Founder</div>
+          <p>Vision and leadership behind Billups Studio. Building a space where artists can create without limits.</p>
+        </div>
+        <div class="team-card">
+          <h3>Dsoul</h3>
+          <div class="team-role">Head Engineer</div>
+          <p>Specialising in clean mixes, vocal production and mastering. Known for bringing out the best in every artist.</p>
+        </div>
+        <div class="team-card">
+          <h3>Jaidee</h3>
+          <div class="team-role">Studio Manager</div>
+          <p>Studio management, artist development and creative direction. 5 years industry experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      // Counter
-      document.getElementById('sessionCount').textContent = 8 + Math.floor(new Date().getDate() * 0.7);
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio">
+    <div class="container">
+      <div class="section-header"><h2 class="section-title">Our Producers</h2></div>
+      <div class="portfolio-tabs">
+        <button class="portfolio-tab active" data-tab="dsoul">Dsoul — Head Engineer</button>
+        <button class="portfolio-tab" data-tab="jaidee">Jaidee — Studio Manager</button>
+      </div>
+      <div class="portfolio-content active" id="dsoul-portfolio">
+        <p>Specialising in clean mixes, vocal production and mastering. Technical precision with creative flair.</p>
+        <p><strong>Contact:</strong> dsoulfiles@gmail.com</p>
+      </div>
+      <div class="portfolio-content" id="jaidee-portfolio">
+        <p>Studio management, artist development and creative direction. Helping artists from concept to release.</p>
+        <p><strong>Contact:</strong> 07878 709110 • billupsltd@gmail.com</p>
+      </div>
+    </div>
+  </section>
 
-      // Portfolio tabs
-      document.querySelectorAll('.portfolio-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-          document.querySelectorAll('.portfolio-tab').forEach(t => t.classList.remove('active'));
-          document.querySelectorAll('.portfolio-content').forEach(c => c.classList.remove('active'));
-          tab.classList.add('active');
-          document.getElementById(tab.dataset.tab + '-portfolio').classList.add('active');
-        });
-      });
+  <!-- GALLERY -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">The Studio</h2>
+        <p class="section-subtitle">A space built for creation</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="images/gallery1.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
+        <div class="gallery-item"><img src="images/gallery2.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
+        <div class="gallery-item"><img src="images/gallery3.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
+        <div class="gallery-item"><img src="images/gallery4.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
+      </div>
+    </div>
+  </section>
 
-      // Calculator
-      const goal = document.getElementById('calcGoal');
-      const hours = document.getElementById('calcHours');
-      const result = document.getElementById('calcResult');
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Book Your Session</h2>
+        <p class="section-subtitle">We’ll respond within 24 hours</p>
+      </div>
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6">
+        <input type="hidden" name="subject" value="New Session Booking - Billups Studio">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone *</label>
+          <input type="tel" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label>Session Type *</label>
+          <select name="session-type" required>
+            <option value="">Select session</option>
+            <option value="quick-session">Quick Session (£80)</option>
+            <option value="half-day">Half Day (£140)</option>
+            <option value="full-day">Full Day (£240)</option>
+            <option value="hourly">Hourly with Engineer (£30/hr)</option>
+            <option value="dry-hire">Dry Hire (£10/hr)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Project Details *</label>
+          <textarea name="message" rows="4" required placeholder="Tell us about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send Booking Request</button>
+      </form>
+    </div>
+  </section>
+</main>
 
-      function updateCalc() {
-        let price = 0;
-        const g = goal.value;
-        const h = parseInt(hours.value);
+<footer class="footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Billups Studio • Luton • 07710 593113</p>
+  </div>
+</footer>
 
-        if (g === 'quick') price = 80;
-        else if (g === 'half') price = 140;
-        else if (g === 'full') price = 240;
-        else if (g === 'hourly') price = h * 30;
-        else if (g === 'dry') price = h * 10;
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('year').textContent=new Date().getFullYear();
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>50),{passive:true});
+  document.getElementById('sessionCount').textContent=8+Math.floor(new Date().getDate()*0.7);
 
-        result.textContent = 'Estimated: £' + price;
-      }
-      goal.addEventListener('change', updateCalc);
-      hours.addEventListener('change', updateCalc);
-      updateCalc();
-
-      // Audio
-      const raw = document.getElementById('audioRaw');
-      const mixed = document.getElementById('audioMixed');
-      const slider = document.getElementById('crossfadeSlider');
-      const label = document.getElementById('crossfadeLabel');
-      const playBtn = document.getElementById('playPauseBtn');
-      const resetBtn = document.getElementById('resetBtn');
-      const status = document.getElementById('audioStatus');
-
-      raw.src = 'https://jaideecoded.github.io/Billups/raw-demo.mp3';
-      mixed.src = 'https://jaideecoded.github.io/Billups/mixed-demo.mp3';
-      raw.volume = 0.5;
-      mixed.volume = 0.5;
-      let playing = false;
-
-      function updateCrossfade() {
-        const v = slider.value / 100;
-        mixed.volume = v;
-        raw.volume = 1 - v;
-        label.textContent = Math.round((1-v)*100) + '% Raw  /  ' + Math.round(v*100) + '% Mixed';
-      }
-      slider.addEventListener('input', updateCrossfade);
-
-      playBtn.addEventListener('click', () => {
-        if (playing) {
-          raw.pause(); mixed.pause();
-          playing = false;
-          playBtn.innerHTML = '▶ Play';
-          status.textContent = 'Paused';
-        } else {
-          mixed.currentTime = raw.currentTime;
-          Promise.all([raw.play(), mixed.play()]).then(() => {
-            playing = true;
-            playBtn.innerHTML = '⏸ Pause';
-            status.textContent = 'Playing – drag the slider to compare';
-          }).catch(() => status.textContent = 'Tap Play again');
-        }
-      });
-
-      resetBtn.addEventListener('click', () => {
-        raw.pause(); mixed.pause();
-        raw.currentTime = 0; mixed.currentTime = 0;
-        playing = false;
-        playBtn.innerHTML = '▶ Play';
-        slider.value = 50;
-        updateCrossfade();
-        status.textContent = 'Ready – drag the slider to compare';
-      });
-      updateCrossfade();
+  // Portfolio tabs
+  document.querySelectorAll('.portfolio-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.portfolio-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.portfolio-content').forEach(c=>c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab+'-portfolio').classList.add('active');
     });
-  </script>
+  });
+
+  // Calculator
+  const goal=document.getElementById('calcGoal'),hours=document.getElementById('calcHours'),result=document.getElementById('calcResult');
+  function updateCalc(){
+    let price=0,g=goal.value,h=parseInt(hours.value);
+    if(g==='quick')price=80;
+    else if(g==='half')price=140;
+    else if(g==='full')price=240;
+    else if(g==='hourly')price=h*30;
+    else if(g==='dry')price=h*10;
+    result.textContent='Estimated: £'+price;
+  }
+  goal.addEventListener('change',updateCalc);
+  hours.addEventListener('change',updateCalc);
+  updateCalc();
+
+  // Audio
+  const raw=document.getElementById('audioRaw'),mixed=document.getElementById('audioMixed');
+  const slider=document.getElementById('crossfadeSlider'),label=document.getElementById('crossfadeLabel');
+  const playBtn=document.getElementById('playPauseBtn'),resetBtn=document.getElementById('resetBtn'),status=document.getElementById('audioStatus');
+  raw.src='https://jaideecoded.github.io/Billups/raw-demo.mp3';
+  mixed.src='https://jaideecoded.github.io/Billups/mixed-demo.mp3';
+  raw.volume=0.5;mixed.volume=0.5;
+  let playing=false;
+  function updateCrossfade(){
+    const v=slider.value/100;
+    mixed.volume=v;raw.volume=1-v;
+    label.textContent=Math.round((1-v)*100)+'% Raw  /  '+Math.round(v*100)+'% Mixed';
+  }
+  slider.addEventListener('input',updateCrossfade);
+  playBtn.addEventListener('click',()=>{
+    if(playing){raw.pause();mixed.pause();playing=false;playBtn.innerHTML='▶ Play';status.textContent='Paused';}
+    else{mixed.currentTime=raw.currentTime;Promise.all([raw.play(),mixed.play()]).then(()=>{playing=true;playBtn.innerHTML='⏸ Pause';status.textContent='Playing – drag the slider to compare';}).catch(()=>status.textContent='Tap Play again');}
+  });
+  resetBtn.addEventListener('click',()=>{raw.pause();mixed.pause();raw.currentTime=0;mixed.currentTime=0;playing=false;playBtn.innerHTML='▶ Play';slider.value=50;updateCrossfade();status.textContent='Ready – drag the slider to compare';});
+  updateCrossfade();
+});
+</script>
 </body>
 </html>

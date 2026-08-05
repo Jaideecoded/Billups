@@ -1,10 +1,3 @@
-You’re right. The last working version was simplified so it would load.  
-
-Now that styling is working, I’ll give you the **fuller, better design** (closer to the improved version I showed earlier) still in one self-contained file so it keeps working.
-
-### Replace your entire `index.html` with this upgraded version:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +16,6 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       --black: #000;
       --dark: #0a0a0a;
       --purple-dark: #1a0b2e;
-      --purple: #2d1b4e;
       --accent: #00ff00;
       --accent-dim: rgba(0, 255, 0, 0.15);
       --orange: #ff6b35;
@@ -51,8 +43,7 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
     /* Header */
     .header {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      padding: 1.25rem 0; background: transparent;
-      transition: all 0.3s ease;
+      padding: 1.25rem 0; background: transparent; transition: all 0.3s ease;
     }
     .header.scrolled {
       background: rgba(0,0,0,0.95);
@@ -76,25 +67,16 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       text-transform: uppercase; letter-spacing: 0.05em; border: 2px solid transparent;
       cursor: pointer; transition: all 0.3s ease; position: relative; z-index: 1;
     }
-    .btn-primary {
-      background: var(--black); color: var(--white); overflow: hidden;
-    }
+    .btn-primary { background: var(--black); color: var(--white); overflow: hidden; }
     .btn-primary::before {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(135deg, #5B2C8E, #8B4BD4, #66ff99, #00ff00);
       z-index: -1; opacity: 0; transition: opacity 0.35s ease;
     }
     .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(91,44,142,0.5);
-    }
-    .btn-outline {
-      background: transparent; border-color: rgba(255,255,255,0.28); color: var(--white);
-    }
-    .btn-outline:hover {
-      border-color: var(--accent); color: var(--accent); transform: translateY(-3px);
-    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(91,44,142,0.5); }
+    .btn-outline { background: transparent; border-color: rgba(255,255,255,0.28); color: var(--white); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
     .btn-sm { padding: 0.8rem 1.7rem; font-size: 0.92rem; }
     .btn-block { width: 100%; }
 
@@ -119,10 +101,7 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       border: 3px solid rgba(0,255,0,0.28); padding: 1.1rem; background: rgba(0,0,0,0.35);
       filter: drop-shadow(0 0 28px rgba(0,255,0,0.35)); transition: transform 0.6s ease;
     }
-    .hero-logo:hover {
-      transform: rotateY(180deg) scale(1.06);
-      border-color: var(--accent);
-    }
+    .hero-logo:hover { transform: rotateY(180deg) scale(1.06); border-color: var(--accent); }
     .hero-title {
       font-size: clamp(2.9rem, 8vw, 5rem); font-weight: 900; text-transform: uppercase;
       line-height: 1; color: var(--white); margin-bottom: 1rem;
@@ -132,13 +111,9 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       font-size: clamp(1.3rem, 3.2vw, 1.8rem); color: rgba(255,255,255,0.92);
       margin-bottom: 2.8rem; line-height: 1.4;
     }
-    .hero-buttons {
-      display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.2rem;
-    }
+    .hero-buttons { display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.2rem; }
     .hero-proof { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
-    .live-badge {
-      display: flex; align-items: center; gap: 0.65rem; font-size: 0.98rem; font-weight: 500;
-    }
+    .live-badge { display: flex; align-items: center; gap: 0.65rem; font-size: 0.98rem; font-weight: 500; }
     .pulse {
       width: 11px; height: 11px; background: var(--accent); border-radius: 50%;
       animation: pulse 2s infinite;
@@ -147,10 +122,7 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.45; transform: scale(1.35); }
     }
-    .trust-row {
-      display: flex; gap: 0.9rem; font-size: 0.92rem; color: var(--text-muted);
-      flex-wrap: wrap; justify-content: center;
-    }
+    .trust-row { display: flex; gap: 0.9rem; font-size: 0.92rem; color: var(--text-muted); flex-wrap: wrap; justify-content: center; }
 
     /* Sections */
     .section { padding: 6.5rem 0; }
@@ -160,14 +132,10 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       color: var(--white); margin-bottom: 0.8rem;
       text-shadow: 0 0 35px rgba(0,255,0,0.22);
     }
-    .section-subtitle {
-      font-size: 1.28rem; color: rgba(255,255,255,0.85); max-width: 580px; margin: 0 auto;
-    }
+    .section-subtitle { font-size: 1.28rem; color: rgba(255,255,255,0.85); max-width: 580px; margin: 0 auto; }
 
     /* About */
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; margin-bottom: 4.5rem;
-    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; margin-bottom: 4.5rem; }
     .about-grid h3 { font-size: 1.7rem; color: var(--white); margin-bottom: 1.3rem; }
     .about-grid p { margin-bottom: 1.3rem; font-size: 1.05rem; }
     .callout {
@@ -191,10 +159,7 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
     .audio-demo .raw { color: var(--orange); font-weight: 600; }
     .audio-demo .mixed { color: var(--accent); font-weight: 600; }
     .crossfade { max-width: 440px; margin: 0 auto 1.8rem; }
-    .crossfade-labels {
-      display: flex; justify-content: space-between; font-size: 0.95rem;
-      font-weight: 700; margin-bottom: 0.7rem;
-    }
+    .crossfade-labels { display: flex; justify-content: space-between; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.7rem; }
     #crossfadeSlider {
       width: 100%; height: 9px; -webkit-appearance: none; appearance: none;
       background: linear-gradient(to right, var(--orange), var(--accent));
@@ -208,20 +173,17 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
     .audio-btns { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.2rem; }
     .audio-status { font-size: 0.95rem; color: var(--text-muted); }
 
-    /* Pricing */
+    /* Pricing + Calculator */
     .pricing-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.9rem; margin-bottom: 3.2rem;
+      gap: 1.9rem; margin-bottom: 3.5rem;
     }
     .price-card {
       background: rgba(255,255,255,0.04); border: 1px solid var(--border);
       border-radius: var(--radius-lg); padding: 2.3rem 1.9rem; text-align: center;
       position: relative; transition: 0.3s ease;
     }
-    .price-card:hover {
-      transform: translateY(-8px); border-color: rgba(0,255,0,0.4);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-    }
+    .price-card:hover { transform: translateY(-8px); border-color: rgba(0,255,0,0.4); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
     .price-card.popular { border: 2px solid var(--accent); }
     .popular-badge {
       position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
@@ -230,9 +192,7 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
     }
     .price-icon { font-size: 2.4rem; margin-bottom: 0.9rem; }
     .price-card h3 { font-size: 1.55rem; color: var(--white); margin-bottom: 0.5rem; }
-    .price {
-      font-size: 3rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.4rem;
-    }
+    .price { font-size: 3rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
     .price-desc { color: var(--text-muted); margin-bottom: 1.6rem; }
     .price-card ul { list-style: none; margin-bottom: 1.9rem; text-align: left; }
     .price-card li {
@@ -240,6 +200,22 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       display: flex; align-items: center; gap: 0.7rem;
     }
     .price-card li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+
+    .calculator {
+      background: rgba(0,0,0,0.5); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 3rem;
+    }
+    .calculator h3 { text-align: center; color: var(--white); margin-bottom: 1.8rem; font-size: 1.5rem; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.8rem; }
+    .calc-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; }
+    .calc-group select {
+      width: 100%; padding: 0.9rem 1rem; background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border); border-radius: var(--radius); color: var(--white); font: inherit;
+    }
+    .calc-result {
+      text-align: center; background: var(--accent-dim); border-radius: var(--radius);
+      padding: 1.5rem; font-size: 1.4rem; font-weight: 800; color: var(--accent);
+    }
 
     .rates {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -259,9 +235,7 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
 
     /* Testimonials */
     .testimonials { background: rgba(26,11,46,0.45); }
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.7rem;
-    }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.7rem; }
     .testimonial {
       background: rgba(0,0,0,0.4); border: 1px solid var(--border);
       border-radius: var(--radius-lg); padding: 2rem;
@@ -269,10 +243,21 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
     .testimonial p { font-size: 1.15rem; margin-bottom: 1.4rem; font-style: italic; line-height: 1.55; }
     .author { color: var(--accent); font-weight: 600; font-size: 0.98rem; }
 
-    /* Portfolio */
-    .portfolio-tabs {
-      display: flex; gap: 1.1rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap;
+    /* Team */
+    .team-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;
     }
+    .team-card {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2rem; text-align: center; transition: 0.3s ease;
+    }
+    .team-card:hover { transform: translateY(-6px); border-color: rgba(0,255,0,0.35); }
+    .team-card h3 { color: var(--white); font-size: 1.4rem; margin-bottom: 0.3rem; }
+    .team-role { color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
+    .team-card p { font-size: 0.98rem; color: var(--text-muted); }
+
+    /* Portfolio */
+    .portfolio-tabs { display: flex; gap: 1.1rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
     .portfolio-tab {
       padding: 1rem 2rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
       border-radius: 999px; color: var(--white); font-weight: 600; cursor: pointer; transition: 0.3s ease;
@@ -280,9 +265,20 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
     .portfolio-tab.active, .portfolio-tab:hover {
       background: transparent; border-color: var(--accent); color: var(--accent);
     }
-    .portfolio-content { display: none; text-align: center; max-width: 620px; margin: 0 auto; }
+    .portfolio-content { display: none; text-align: center; max-width: 700px; margin: 0 auto; }
     .portfolio-content.active { display: block; }
     .portfolio-content p { margin-bottom: 1rem; font-size: 1.08rem; }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg);
+      overflow: hidden; border: 1px solid var(--border);
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s ease; }
+    .gallery-item:hover img { transform: scale(1.05); }
 
     /* Contact */
     .contact-form {
@@ -306,11 +302,9 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       padding: 2.8rem 0; text-align: center; color: var(--text-muted); font-size: 0.95rem;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .nav-left, .nav-right { display: none; }
-      .about-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
+      .about-grid, .calc-grid, .form-row { grid-template-columns: 1fr; }
       .hero-logo { height: 130px; }
       .hero-buttons { flex-direction: column; align-items: center; }
       .btn { width: 100%; max-width: 290px; }
@@ -329,6 +323,7 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       <a href="#home" class="logo"><img src="images/logo.png" alt="Billups Studio"></a>
       <nav class="nav-right">
         <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
     </div>
@@ -348,13 +343,8 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
           <a href="#audio-demo" class="btn btn-outline">Hear the Difference</a>
         </div>
         <div class="hero-proof">
-          <div class="live-badge">
-            <span class="pulse"></span>
-            <span><strong id="sessionCount">14</strong> sessions booked this month</span>
-          </div>
-          <div class="trust-row">
-            <span>★ 4.9/5</span><span>•</span><span>Free Consult</span><span>•</span><span>24h Response</span>
-          </div>
+          <div class="live-badge"><span class="pulse"></span> <span><strong id="sessionCount">14</strong> sessions booked this month</span></div>
+          <div class="trust-row"><span>★ 4.9/5</span><span>•</span><span>Free Consult</span><span>•</span><span>24h Response</span></div>
         </div>
       </div>
     </section>
@@ -405,13 +395,14 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- SERVICES + CALCULATOR -->
     <section class="section" id="services">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Our Services</h2>
           <p class="section-subtitle">Professional recording, mixing & mastering</p>
         </div>
+
         <div class="pricing-grid">
           <div class="price-card">
             <div class="price-icon">⚡</div>
@@ -454,6 +445,38 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
             <a href="#contact" class="btn btn-primary btn-sm">Book Full Day</a>
           </div>
         </div>
+
+        <!-- Calculator -->
+        <div class="calculator">
+          <h3>Session Calculator</h3>
+          <div class="calc-grid">
+            <div class="calc-group">
+              <label>What do you need?</label>
+              <select id="calcGoal">
+                <option value="quick">Quick Session (3hrs)</option>
+                <option value="half">Half Day (5hrs)</option>
+                <option value="full">Full Day (10hrs)</option>
+                <option value="hourly">Hourly with Engineer</option>
+                <option value="dry">Dry Hire</option>
+              </select>
+            </div>
+            <div class="calc-group">
+              <label>Hours (if hourly)</label>
+              <select id="calcHours">
+                <option value="1">1 hour</option>
+                <option value="2">2 hours</option>
+                <option value="3">3 hours</option>
+                <option value="4">4 hours</option>
+                <option value="5">5 hours</option>
+                <option value="6">6 hours</option>
+                <option value="8">8 hours</option>
+                <option value="10">10 hours</option>
+              </select>
+            </div>
+          </div>
+          <div class="calc-result" id="calcResult">Estimated: £80</div>
+        </div>
+
         <div class="rates">
           <div class="rate"><span>With Engineer</span><strong>£30/hr</strong></div>
           <div class="rate"><span>Dry Hire</span><strong>£10/hr</strong></div>
@@ -487,6 +510,32 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       </div>
     </section>
 
+    <!-- TEAM -->
+    <section class="section" id="team">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">The Team</h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <h3>Fabian</h3>
+            <div class="team-role">Founder</div>
+            <p>Vision and leadership behind Billups Studio. Building a space where artists can create without limits.</p>
+          </div>
+          <div class="team-card">
+            <h3>Dsoul</h3>
+            <div class="team-role">Head Engineer</div>
+            <p>Specialising in clean mixes, vocal production and mastering. Known for bringing out the best in every artist.</p>
+          </div>
+          <div class="team-card">
+            <h3>Jaidee</h3>
+            <div class="team-role">Studio Manager</div>
+            <p>Studio management, artist development and creative direction. 5 years industry experience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- PORTFOLIO -->
     <section class="section" id="portfolio">
       <div class="container">
@@ -498,12 +547,28 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
           <button class="portfolio-tab" data-tab="jaidee">Jaidee — Studio Manager</button>
         </div>
         <div class="portfolio-content active" id="dsoul-portfolio">
-          <p>Specializing in clean mixes, vocal production and mastering. Known for bringing out the best in every artist with technical precision and creative flair.</p>
+          <p>Specialising in clean mixes, vocal production and mastering. Technical precision with creative flair.</p>
           <p><strong>Contact:</strong> dsoulfiles@gmail.com</p>
         </div>
         <div class="portfolio-content" id="jaidee-portfolio">
-          <p>Studio management, artist development and creative direction. 5 years of industry experience helping artists from concept to release.</p>
+          <p>Studio management, artist development and creative direction. Helping artists from concept to release.</p>
           <p><strong>Contact:</strong> 07878 709110 • billupsltd@gmail.com</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">The Studio</h2>
+          <p class="section-subtitle">A space built for creation</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item"><img src="images/gallery1.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
+          <div class="gallery-item"><img src="images/gallery2.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
+          <div class="gallery-item"><img src="images/gallery3.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
+          <div class="gallery-item"><img src="images/gallery4.jpg" alt="Studio" onerror="this.src='images/logo.png'"></div>
         </div>
       </div>
     </section>
@@ -534,7 +599,7 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
           </div>
           <div class="form-group">
             <label>Session Type *</label>
-            <select name="session-type" required>
+            <select name="session-type" id="formSession" required>
               <option value="">Select session</option>
               <option value="quick-session">Quick Session (£80)</option>
               <option value="half-day">Half Day (£140)</option>
@@ -561,17 +626,19 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const yearEl = document.getElementById('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
 
+      // Header
       const header = document.getElementById('header');
       window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 50);
       }, { passive: true });
 
-      const countEl = document.getElementById('sessionCount');
-      if (countEl) countEl.textContent = 8 + Math.floor(new Date().getDate() * 0.7);
+      // Counter
+      document.getElementById('sessionCount').textContent = 8 + Math.floor(new Date().getDate() * 0.7);
 
+      // Portfolio tabs
       document.querySelectorAll('.portfolio-tab').forEach(tab => {
         tab.addEventListener('click', () => {
           document.querySelectorAll('.portfolio-tab').forEach(t => t.classList.remove('active'));
@@ -580,6 +647,28 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
           document.getElementById(tab.dataset.tab + '-portfolio').classList.add('active');
         });
       });
+
+      // Calculator
+      const goal = document.getElementById('calcGoal');
+      const hours = document.getElementById('calcHours');
+      const result = document.getElementById('calcResult');
+
+      function updateCalc() {
+        let price = 0;
+        const g = goal.value;
+        const h = parseInt(hours.value);
+
+        if (g === 'quick') price = 80;
+        else if (g === 'half') price = 140;
+        else if (g === 'full') price = 240;
+        else if (g === 'hourly') price = h * 30;
+        else if (g === 'dry') price = h * 10;
+
+        result.textContent = 'Estimated: £' + price;
+      }
+      goal.addEventListener('change', updateCalc);
+      hours.addEventListener('change', updateCalc);
+      updateCalc();
 
       // Audio
       const raw = document.getElementById('audioRaw');
@@ -590,53 +679,47 @@ Now that styling is working, I’ll give you the **fuller, better design** (clos
       const resetBtn = document.getElementById('resetBtn');
       const status = document.getElementById('audioStatus');
 
-      if (raw && mixed && slider) {
-        raw.src = 'https://jaideecoded.github.io/Billups/raw-demo.mp3';
-        mixed.src = 'https://jaideecoded.github.io/Billups/mixed-demo.mp3';
-        raw.volume = 0.5;
-        mixed.volume = 0.5;
-        let playing = false;
+      raw.src = 'https://jaideecoded.github.io/Billups/raw-demo.mp3';
+      mixed.src = 'https://jaideecoded.github.io/Billups/mixed-demo.mp3';
+      raw.volume = 0.5;
+      mixed.volume = 0.5;
+      let playing = false;
 
-        function updateCrossfade() {
-          const v = slider.value / 100;
-          mixed.volume = v;
-          raw.volume = 1 - v;
-          label.textContent = Math.round((1-v)*100) + '% Raw  /  ' + Math.round(v*100) + '% Mixed';
-        }
-        slider.addEventListener('input', updateCrossfade);
+      function updateCrossfade() {
+        const v = slider.value / 100;
+        mixed.volume = v;
+        raw.volume = 1 - v;
+        label.textContent = Math.round((1-v)*100) + '% Raw  /  ' + Math.round(v*100) + '% Mixed';
+      }
+      slider.addEventListener('input', updateCrossfade);
 
-        playBtn.addEventListener('click', () => {
-          if (playing) {
-            raw.pause(); mixed.pause();
-            playing = false;
-            playBtn.innerHTML = '▶ Play';
-            status.textContent = 'Paused';
-          } else {
-            mixed.currentTime = raw.currentTime;
-            Promise.all([raw.play(), mixed.play()]).then(() => {
-              playing = true;
-              playBtn.innerHTML = '⏸ Pause';
-              status.textContent = 'Playing – drag the slider to compare';
-            }).catch(() => status.textContent = 'Tap Play again (browser blocked autoplay)');
-          }
-        });
-
-        resetBtn.addEventListener('click', () => {
+      playBtn.addEventListener('click', () => {
+        if (playing) {
           raw.pause(); mixed.pause();
-          raw.currentTime = 0; mixed.currentTime = 0;
           playing = false;
           playBtn.innerHTML = '▶ Play';
-          slider.value = 50;
-          updateCrossfade();
-          status.textContent = 'Ready – drag the slider to compare';
-        });
+          status.textContent = 'Paused';
+        } else {
+          mixed.currentTime = raw.currentTime;
+          Promise.all([raw.play(), mixed.play()]).then(() => {
+            playing = true;
+            playBtn.innerHTML = '⏸ Pause';
+            status.textContent = 'Playing – drag the slider to compare';
+          }).catch(() => status.textContent = 'Tap Play again');
+        }
+      });
+
+      resetBtn.addEventListener('click', () => {
+        raw.pause(); mixed.pause();
+        raw.currentTime = 0; mixed.currentTime = 0;
+        playing = false;
+        playBtn.innerHTML = '▶ Play';
+        slider.value = 50;
         updateCrossfade();
-      }
+        status.textContent = 'Ready – drag the slider to compare';
+      });
+      updateCrossfade();
     });
   </script>
 </body>
 </html>
-```
-
-Replace the whole file with this and refresh.  
-This version is closer to the stronger design I had before (better spacing, stronger cards, elevated audio section, clearer hierarchy).

@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Billups Studio | Luton Recording Studio</title>
   <meta name="description" content="Professional recording studio in Luton. Expert engineering, mixing & mastering." />
+  <link rel="icon" href="images/logo.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -27,11 +23,7 @@
         <a href="#about" class="nav-link">About</a>
         <a href="#services" class="nav-link">Services</a>
       </nav>
-
-      <a href="#home" class="logo">
-        <img src="images/logo.png" alt="Billups Studio" />
-      </a>
-
+      <a href="#home" class="logo"><img src="images/logo.png" alt="Billups Studio"></a>
       <nav class="nav-right">
         <a href="#portfolio" class="nav-link">Portfolio</a>
         <a href="#gallery" class="nav-link">Gallery</a>
@@ -40,4 +32,249 @@
     </div>
   </header>
 
- 
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <img src="images/logo.png" alt="Billups Studio" class="hero-logo">
+        <h1 class="hero-title">Billups Studio</h1>
+        <p class="hero-subtitle">Pick up the mic.<br>Elevate — create.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Book Your Session</a>
+          <a href="#audio-demo" class="btn btn-outline">Hear the Difference</a>
+        </div>
+        <div class="hero-proof">
+          <div class="live-badge"><span class="pulse"></span> <span><strong id="sessionCount">14</strong> sessions booked this month</span></div>
+          <div class="trust-row"><span>★ 4.9/5</span><span>•</span><span>Free Consult</span><span>•</span><span>24h Response</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + AUDIO DEMO -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Real Studio. Real Energy.</h2>
+          <p class="section-subtitle">Where culture meets clean sound</p>
+        </div>
+
+        <div class="about-grid">
+          <div>
+            <h3>Our Studio</h3>
+            <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. From quick bars to full tape lock-ins, this is the studio where your best work comes alive.</p>
+            <p>We deliver expert engineering, mixing and mastering for emerging and established artists with industry-standard equipment and a dedicated team.</p>
+            <div class="callout">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</div>
+          </div>
+          <div>
+            <h3>Studio Features</h3>
+            <div class="features">
+              <div class="feature"><span>🎚️</span><div><strong>Pro Sound</strong><p>Industry-standard equipment with pristine acoustic treatment.</p></div></div>
+              <div class="feature"><span>🧹</span><div><strong>Clean Space</strong><p>Immaculate environment designed for creativity and focus.</p></div></div>
+              <div class="feature"><span>👥</span><div><strong>Good People</strong><p>Engineers who understand artists and bring out your best.</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elevated Audio Demo -->
+        <div class="audio-demo" id="audio-demo">
+          <h3>🎧 Hear The Billups Difference</h3>
+          <p>Drag the slider to crossfade between the <span class="raw">raw recording</span> and the <span class="mixed">mixed & mastered</span> version</p>
+          
+          <audio id="audioRaw" preload="auto" crossorigin="anonymous"></audio>
+          <audio id="audioMixed" preload="auto" crossorigin="anonymous"></audio>
+
+          <div class="crossfade">
+            <div class="crossfade-labels">
+              <span>🎤 Raw</span>
+              <span id="crossfadeLabel">50% / 50%</span>
+              <span>✨ Mixed</span>
+            </div>
+            <input type="range" id="crossfadeSlider" min="0" max="100" value="50">
+          </div>
+
+          <div class="audio-btns">
+            <button id="playPauseBtn" class="btn btn-primary btn-sm">▶ Play</button>
+            <button id="resetBtn" class="btn btn-outline btn-sm">↺ Reset</button>
+          </div>
+          <div class="audio-status" id="audioStatus">Ready – drag the slider to compare</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Our Services</h2>
+          <p class="section-subtitle">Professional recording, mixing & mastering</p>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="pricing-grid">
+          <div class="price-card">
+            <div class="price-icon">⚡</div>
+            <h3>Quick Session</h3>
+            <div class="price">£80</div>
+            <p class="price-desc">3 hours with engineer</p>
+            <ul>
+              <li>3 hours studio time</li>
+              <li>Professional engineer</li>
+              <li>Ideal for 1–2 singles</li>
+              <li>Save vs hourly (£90)</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-sm">Book Quick Session</a>
+          </div>
+
+          <div class="price-card popular">
+            <div class="popular-badge">Most Popular</div>
+            <div class="price-icon">🎯</div>
+            <h3>Half Day</h3>
+            <div class="price">£140</div>
+            <p class="price-desc">5 hours with engineer</p>
+            <ul>
+              <li>5 hours studio time</li>
+              <li>Recording + basic mix</li>
+              <li>Ideal for EPs (3–4 songs)</li>
+              <li>Save vs hourly (£150)</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-sm">Book Half Day</a>
+          </div>
+
+          <div class="price-card">
+            <div class="price-icon">🔥</div>
+            <h3>Full Day</h3>
+            <div class="price">£240</div>
+            <p class="price-desc">10 hours with engineer</p>
+            <ul>
+              <li>10 hours studio time</li>
+              <li>Full production support</li>
+              <li>Ideal for 5+ songs</li>
+              <li>Best value vs hourly (£300)</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-sm">Book Full Day</a>
+          </div>
+        </div>
+
+        <!-- Rates -->
+        <div class="rates">
+          <div class="rate"><span>With Engineer</span><strong>£30/hr</strong></div>
+          <div class="rate"><span>Dry Hire</span><strong>£10/hr</strong></div>
+          <div class="rate"><span>Custom Beat</span><strong>£120</strong></div>
+          <div class="rate"><span>Mix & Master</span><strong>From £60</strong></div>
+        </div>
+
+        <p class="deposit-note">⚠️ £30 deposit required to confirm all sessions</p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (filler) -->
+    <section class="section testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">What Artists Say</h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <p>“The mix was radio-ready. Dsoul understood exactly what I was going for.”</p>
+            <div class="author">— Jayden R. • @jaydenmusic</div>
+          </div>
+          <div class="testimonial">
+            <p>“Best studio vibe in Luton. Clean, professional, and the energy is unmatched.”</p>
+            <div class="author">— Lila M. • @lilamakes</div>
+          </div>
+          <div class="testimonial">
+            <p>“Booked a half day and walked out with 4 songs ready. Will be back.”</p>
+            <div class="author">— Kairo • @kairouk</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="section" id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Our Producers</h2>
+        </div>
+
+        <div class="portfolio-tabs">
+          <button class="portfolio-tab active" data-tab="dsoul">Dsoul — Head Engineer</button>
+          <button class="portfolio-tab" data-tab="jaidee">Jaidee — Studio Manager</button>
+        </div>
+
+        <div class="portfolio-content active" id="dsoul-portfolio">
+          <p>Specializing in clean mixes, vocal production and mastering. Known for bringing out the best in every artist.</p>
+          <p><strong>Contact:</strong> dsoulfiles@gmail.com</p>
+        </div>
+
+        <div class="portfolio-content" id="jaidee-portfolio">
+          <p>Studio management, artist development and creative direction. 5 years industry experience.</p>
+          <p><strong>Contact:</strong> 07878 709110 • billupsltd@gmail.com</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Book Your Session</h2>
+          <p class="section-subtitle">We’ll respond within 24 hours</p>
+        </div>
+
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6" />
+          <input type="hidden" name="subject" value="New Session Booking - Billups Studio" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" name="email" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" name="phone" required>
+          </div>
+
+          <div class="form-group">
+            <label>Session Type *</label>
+            <select name="session-type" required>
+              <option value="">Select session</option>
+              <option value="quick-session">Quick Session (£80)</option>
+              <option value="half-day">Half Day (£140)</option>
+              <option value="full-day">Full Day (£240)</option>
+              <option value="hourly">Hourly with Engineer (£30/hr)</option>
+              <option value="dry-hire">Dry Hire (£10/hr)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Project Details *</label>
+            <textarea name="message" rows="4" required placeholder="Tell us about your project..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Send Booking Request</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Billups Studio • Luton • 07710 593113</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

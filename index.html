@@ -1,283 +1,729 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Billups Studio | Luton Recording Studio</title>
-  <meta name="description" content="Professional recording studio in Luton. Expert engineering, mixing & mastering." />
-  <link rel="icon" href="images/logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billups Studio | Luton Recording Studio</title>
+    <meta name="description" content="Professional recording studio in Luton. Expert engineering, mixing & mastering. Book your session today." />
+    <meta name="keywords" content="recording studio, Luton, music production, mixing, mastering, audio engineering" />
+    <meta property="og:title" content="Billups Studio | Luton Recording Studio" />
+    <meta property="og:description" content="Professional recording studio in Luton. Elevate your sound with expert engineering." />
+    <meta property="og:image" content="images/hero-bg.jpg" />
+    <meta property="og:url" content="https://billupsstudio.co.uk" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" href="images/logo.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
-  <!-- Link to your external CSS file -->
-  <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- EXTERNAL CSS -->
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="container header-inner">
-      <nav class="nav-left">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#services" class="nav-link">Services</a>
-      </nav>
-      <a href="#home" class="logo"><img src="images/logo.png" alt="Billups Studio"></a>
-      <nav class="nav-right">
-        <a href="#portfolio" class="nav-link">Portfolio</a>
-        <a href="#gallery" class="nav-link">Gallery</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
-        <img src="images/logo.png" alt="Billups Studio" class="hero-logo">
-        <h1 class="hero-title">Billups Studio</h1>
-        <p class="hero-subtitle">Pick up the mic.<br>Elevate — create.</p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">Book Your Session</a>
-          <a href="#audio-demo" class="btn btn-outline">Hear the Difference</a>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-icons">
+            <div class="nav-item">
+                <a href="#home" class="nav-icon" aria-label="Home"><i class="fas fa-home"></i></a>
+                <span class="nav-label">Home</span>
+            </div>
+            <div class="nav-item">
+                <a href="#about" class="nav-icon" aria-label="About"><i class="fas fa-info-circle"></i></a>
+                <span class="nav-label">About</span>
+            </div>
+            <div class="nav-item">
+                <a href="#portfolio" class="nav-icon" aria-label="Portfolio"><i class="fas fa-star"></i></a>
+                <span class="nav-label">Portfolio</span>
+            </div>
         </div>
-        <div class="hero-proof">
-          <div class="live-badge"><span class="pulse"></span> <span><strong id="sessionCount">14</strong> sessions booked this month</span></div>
-          <div class="trust-row"><span>★ 4.9/5</span><span>•</span><span>Free Consult</span><span>•</span><span>24h Response</span></div>
+        <div class="logo-center">
+            <img src="images/logo.png" alt="Billups Studio" />
         </div>
-      </div>
+        <div class="nav-icons">
+            <div class="nav-item">
+                <a href="#services" class="nav-icon" aria-label="Services"><i class="fas fa-headphones"></i></a>
+                <span class="nav-label">Services</span>
+            </div>
+            <div class="nav-item">
+                <a href="#gallery" class="nav-icon" aria-label="Gallery"><i class="fas fa-images"></i></a>
+                <span class="nav-label">Gallery</span>
+            </div>
+            <div class="nav-item">
+                <a href="#contact" class="nav-icon" aria-label="Contact"><i class="fas fa-envelope"></i></a>
+                <span class="nav-label">Contact</span>
+            </div>
+        </div>
+        <div class="header-equalizer" id="headerEqualizer">
+            <div class="eq-bars" id="eqBars"></div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero section" id="home">
+        <img src="images/hero-bg.jpg" alt="" class="section-bg hero-bg" />
+        <div class="section-overlay hero-overlay"></div>
+        <div class="container">
+            <img src="images/logo.png" alt="Billups Studio" class="hero-logo" id="mainLogo" />
+            <h1 class="hero-title">Billups Studio</h1>
+            <p class="hero-subtitle">Pick up the mic,<br />elevate — create.</p>
+            <a href="#contact" class="btn">Book Your Session</a>
+            <div class="social-proof">
+                <div class="live-counter">
+                    <span class="pulse"></span>
+                    <span><span id="sessionCount">12</span> sessions booked this month</span>
+                </div>
+                <div class="badges">
+                    <span class="badge">⭐ 4.9/5 Rating</span>
+                    <span class="badge">🎧 Free Consult</span>
+                    <span class="badge">⚡ 24h Response</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- ABOUT + AUDIO DEMO -->
+    <!-- About -->
     <section class="section" id="about">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Real Studio. Real Energy.</h2>
-          <p class="section-subtitle">Where culture meets clean sound</p>
-        </div>
-
-        <div class="about-grid">
-          <div>
-            <h3>Our Studio</h3>
-            <p>Based in the heart of Luton, Billups Studio is where culture meets clean sound. From quick bars to full tape lock-ins, this is the studio where your best work comes alive.</p>
-            <p>We deliver expert engineering, mixing and mastering for emerging and established artists with industry-standard equipment and a dedicated team.</p>
-            <div class="callout">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</div>
-          </div>
-          <div>
-            <h3>Studio Features</h3>
-            <div class="features">
-              <div class="feature"><span>🎚️</span><div><strong>Pro Sound</strong><p>Industry-standard equipment with pristine acoustic treatment.</p></div></div>
-              <div class="feature"><span>🧹</span><div><strong>Clean Space</strong><p>Immaculate environment designed for creativity and focus.</p></div></div>
-              <div class="feature"><span>👥</span><div><strong>Good People</strong><p>Engineers who understand artists and bring out your best.</p></div></div>
+        <img src="images/about-studio.jpg" alt="" class="section-bg" />
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Real Studio. Real Energy.</h2>
+                <p class="section-subtitle">Where culture meets clean sound</p>
             </div>
-          </div>
-        </div>
+            <div class="about-grid">
+                <div>
+                    <h3 style="font-size:2.1rem; color:var(--white); margin-bottom:1.25rem;">Our Studio</h3>
+                    <p class="about-lead">Based in the heart of Luton, Billups Studio is where culture meets clean sound. From quick bars to full tape lock-ins, this is the studio where your best work comes alive.</p>
+                    <p class="about-lead">Our Luton-based recording studio delivers expert engineering, mixing, and mastering for emerging and established artists. Industry-standard equipment and a dedicated team help you achieve professional-grade sound every time.</p>
+                    <div class="callout">No gimmicks. Just professional setup, local roots, and that unmatched vibe.</div>
 
-        <!-- Elevated Audio Demo -->
-        <div class="audio-demo" id="audio-demo">
-          <h3>🎧 Hear The Billups Difference</h3>
-          <p>Drag the slider to crossfade between the <span class="raw">raw recording</span> and the <span class="mixed">mixed & mastered</span> version</p>
-          
-          <audio id="audioRaw" preload="auto" crossorigin="anonymous"></audio>
-          <audio id="audioMixed" preload="auto" crossorigin="anonymous"></audio>
+                    <!-- Audio Demo -->
+                    <div class="audio-demo">
+                        <h3>🎧 Hear The Billups Difference</h3>
+                        <p>Drag the slider to crossfade between the <span style="color:var(--orange);font-weight:600;">raw recording</span> and the <span style="color:var(--accent);font-weight:600;">mixed &amp; mastered</span> version</p>
+                        <audio id="audioRaw" preload="auto" crossorigin="anonymous"></audio>
+                        <audio id="audioMixed" preload="auto" crossorigin="anonymous"></audio>
+                        <div class="crossfade-labels">
+                            <span>🎤 Raw</span>
+                            <span id="crossfadeLabel">50% / 50%</span>
+                            <span>✨ Mixed</span>
+                        </div>
+                        <input type="range" id="crossfadeSlider" min="0" max="100" value="50" aria-label="Crossfade between raw and mixed" />
+                        <div class="audio-btns">
+                            <button type="button" id="playPauseBtn" class="btn btn-sm">▶ Play</button>
+                            <button type="button" id="resetBtn" class="btn btn-sm">↺ Reset</button>
+                        </div>
+                        <div class="audio-status" id="audioStatus">
+                            <span class="dot" id="statusDot">●</span>
+                            <span id="statusText">Ready – drag the slider to compare</span>
+                        </div>
+                    </div>
+                </div>
 
-          <div class="crossfade">
-            <div class="crossfade-labels">
-              <span>🎤 Raw</span>
-              <span id="crossfadeLabel">50% / 50%</span>
-              <span>✨ Mixed</span>
+                <div>
+                    <h4 style="font-size:1.35rem; color:var(--white); margin-bottom:1.25rem;">Studio Features</h4>
+                    <div class="surface" style="padding:1.75rem;">
+                        <div class="feature-list">
+                            <div class="feature">
+                                <span class="feature-icon">🎚️</span>
+                                <div>
+                                    <strong>Pro Sound</strong>
+                                    <p>Industry-standard equipment with pristine acoustic treatment for radio-ready recordings.</p>
+                                </div>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🧹</span>
+                                <div>
+                                    <strong>Clean Space</strong>
+                                    <p>Immaculate, inspiring environment designed for creativity and focus.</p>
+                                </div>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">👥</span>
+                                <div>
+                                    <strong>Good People</strong>
+                                    <p>Experienced engineers who understand artists and bring out your best performance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-size:1.35rem; color:var(--white); margin:2rem 0 1rem;">Our Team</h4>
+                    <div class="team-list">
+                        <div class="team-card">
+                            <strong>Fabian</strong><span class="team-role">Studio Owner</span>
+                            <p>Business inquiries &amp; partnerships</p>
+                        </div>
+                        <div class="team-card">
+                            <strong>Jaidee</strong><span class="team-role">Studio Manager</span>
+                            <p>Bookings • Scheduling • Artist Development</p>
+                        </div>
+                        <div class="team-card">
+                            <strong>Dsoul</strong><span class="team-role">Head Engineer</span>
+                            <p>Mixing • Mastering • Production</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <input type="range" id="crossfadeSlider" min="0" max="100" value="50">
-          </div>
-
-          <div class="audio-btns">
-            <button id="playPauseBtn" class="btn btn-primary btn-sm">▶ Play</button>
-            <button id="resetBtn" class="btn btn-outline btn-sm">↺ Reset</button>
-          </div>
-          <div class="audio-status" id="audioStatus">Ready – drag the slider to compare</div>
         </div>
-      </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- Services -->
     <section class="section" id="services">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Our Services</h2>
-          <p class="section-subtitle">Professional recording, mixing & mastering</p>
+        <img src="images/studio-bg.jpg" alt="" class="section-bg" />
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Professional recording, mixing &amp; mastering</p>
+            </div>
+
+            <div class="guide">
+                <div class="guide-step surface">
+                    <div class="step-num">1</div>
+                    <h3>Choose Your Goal</h3>
+                    <p>Single, EP, or full project? We’ll help you pick the right session.</p>
+                </div>
+                <div class="guide-step surface">
+                    <div class="step-num">2</div>
+                    <h3>Select Package</h3>
+                    <p>From quick sessions to full production packages.</p>
+                </div>
+                <div class="guide-step surface">
+                    <div class="step-num">3</div>
+                    <h3>Book &amp; Create</h3>
+                    <p>Secure your session and start creating professional music.</p>
+                </div>
+            </div>
+
+            <!-- Calculator -->
+            <div class="calculator surface">
+                <h3><i class="fas fa-calculator"></i> Session Calculator</h3>
+                <p>Packages are better value than pure hourly — find your best fit</p>
+                <div class="calc-controls">
+                    <div class="control">
+                        <label for="projectGoal">What’s your main goal?</label>
+                        <select id="projectGoal">
+                            <option value="single">Record 1–2 singles</option>
+                            <option value="ep" selected>Record an EP (3–4 songs)</option>
+                            <option value="project">Full project (5+ songs)</option>
+                            <option value="mixing">Just mix &amp; master</option>
+                            <option value="hourly">Hourly with engineer (£30/hr)</option>
+                            <option value="dry">Dry hire – studio only (£10/hr)</option>
+                        </select>
+                    </div>
+                    <div class="control" id="beatGroup">
+                        <label for="beatStatus">Do you already have beats?</label>
+                        <select id="beatStatus">
+                            <option value="yes" selected>Yes – I have instrumentals</option>
+                            <option value="no">No – I need custom beats</option>
+                            <option value="some">Some, may need more</option>
+                        </select>
+                    </div>
+                    <div class="control" id="mixGroup">
+                        <label for="mixStatus">Need full mix &amp; master?</label>
+                        <select id="mixStatus">
+                            <option value="included" selected>Included in package / not needed yet</option>
+                            <option value="yes">Yes – add full mix &amp; master</option>
+                        </select>
+                    </div>
+                    <div class="control" id="hoursGroup" style="display:none;">
+                        <label for="hoursSelect">How many hours?</label>
+                        <select id="hoursSelect">
+                            <option value="1">1 hour</option>
+                            <option value="2">2 hours</option>
+                            <option value="3" selected>3 hours</option>
+                            <option value="4">4 hours</option>
+                            <option value="5">5 hours</option>
+                            <option value="6">6 hours</option>
+                            <option value="8">8 hours</option>
+                            <option value="10">10 hours</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="calculatorResult"></div>
+            </div>
+
+            <!-- Pricing tiers -->
+            <div class="pricing">
+                <div class="tier surface">
+                    <div class="tier-header">
+                        <div class="tier-icon">⚡</div>
+                        <h3 class="tier-title">Quick Session</h3>
+                        <div class="tier-price">£80</div>
+                        <p>3 hours with engineer</p>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 3 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Professional engineer</li>
+                        <li><i class="fas fa-check"></i> Ideal for 1–2 singles</li>
+                        <li><i class="fas fa-check"></i> Save vs hourly (£90)</li>
+                    </ul>
+                    <div class="tier-action"><a href="#contact" class="btn" data-session="quick-session">Book Quick Session</a></div>
+                </div>
+                <div class="tier surface popular">
+                    <div class="tier-badge">Most Popular</div>
+                    <div class="tier-header">
+                        <div class="tier-icon">🎯</div>
+                        <h3 class="tier-title">Half Day</h3>
+                        <div class="tier-price">£140</div>
+                        <p>5 hours with engineer</p>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 5 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Recording + basic mix</li>
+                        <li><i class="fas fa-check"></i> Ideal for EPs (3–4 songs)</li>
+                        <li><i class="fas fa-check"></i> Save vs hourly (£150)</li>
+                    </ul>
+                    <div class="tier-action"><a href="#contact" class="btn" data-session="half-day">Book Half Day</a></div>
+                </div>
+                <div class="tier surface">
+                    <div class="tier-header">
+                        <div class="tier-icon">🔥</div>
+                        <h3 class="tier-title">Full Day</h3>
+                        <div class="tier-price">£240</div>
+                        <p>10 hours with engineer</p>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> 10 hours studio time</li>
+                        <li><i class="fas fa-check"></i> Full production support</li>
+                        <li><i class="fas fa-check"></i> Ideal for 5+ songs</li>
+                        <li><i class="fas fa-check"></i> Best value vs hourly (£300)</li>
+                    </ul>
+                    <div class="tier-action"><a href="#contact" class="btn" data-session="full-day">Book Full Day</a></div>
+                </div>
+            </div>
+
+            <div class="rates">
+                <div class="rate surface">
+                    <div class="rate-label">With Engineer</div>
+                    <div class="rate-value">£30<span>/hr</span></div>
+                    <div>Flexible hourly</div>
+                </div>
+                <div class="rate surface">
+                    <div class="rate-label">Dry Hire</div>
+                    <div class="rate-value">£10<span>/hr</span></div>
+                    <div>Studio only</div>
+                </div>
+                <div class="rate surface">
+                    <div class="rate-label">Custom Beat</div>
+                    <div class="rate-value">£120</div>
+                    <div>Original instrumental</div>
+                </div>
+                <div class="rate surface">
+                    <div class="rate-label">Mix &amp; Master</div>
+                    <div class="rate-value">From £60</div>
+                    <div>Full professional finish</div>
+                </div>
+            </div>
+
+            <div class="addons">
+                <h3><i class="fas fa-plus-circle"></i> Optional Add-Ons</h3>
+                <div class="addons-grid">
+                    <div class="addon surface">
+                        <div class="addon-icon"><i class="fas fa-sliders-h"></i></div>
+                        <h4>Full Mix &amp; Master</h4>
+                        <p>Complete professional mix and master</p>
+                        <div class="addon-price">From £60</div>
+                    </div>
+                    <div class="addon surface">
+                        <div class="addon-icon"><i class="fas fa-drum"></i></div>
+                        <h4>Custom Beat</h4>
+                        <p>Original instrumental production</p>
+                        <div class="addon-price">£120</div>
+                    </div>
+                    <div class="addon surface">
+                        <div class="addon-icon"><i class="fas fa-microphone-alt"></i></div>
+                        <h4>Vocal Tuning</h4>
+                        <p>Professional pitch correction</p>
+                        <div class="addon-price">£15/song</div>
+                    </div>
+                </div>
+                <p style="text-align:center; color:var(--text-muted); margin-top:1.5rem; font-size:0.95rem;">
+                    Packages already include better value than pure hourly. All projects can be discussed to lock in the right price.
+                </p>
+            </div>
+
+            <div class="deposit" role="note">⚠️ £30 deposit required to confirm all sessions.</div>
         </div>
-
-        <!-- Pricing Cards -->
-        <div class="pricing-grid">
-          <div class="price-card">
-            <div class="price-icon">⚡</div>
-            <h3>Quick Session</h3>
-            <div class="price">£80</div>
-            <p class="price-desc">3 hours with engineer</p>
-            <ul>
-              <li>3 hours studio time</li>
-              <li>Professional engineer</li>
-              <li>Ideal for 1–2 singles</li>
-              <li>Save vs hourly (£90)</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary btn-sm">Book Quick Session</a>
-          </div>
-
-          <div class="price-card popular">
-            <div class="popular-badge">Most Popular</div>
-            <div class="price-icon">🎯</div>
-            <h3>Half Day</h3>
-            <div class="price">£140</div>
-            <p class="price-desc">5 hours with engineer</p>
-            <ul>
-              <li>5 hours studio time</li>
-              <li>Recording + basic mix</li>
-              <li>Ideal for EPs (3–4 songs)</li>
-              <li>Save vs hourly (£150)</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary btn-sm">Book Half Day</a>
-          </div>
-
-          <div class="price-card">
-            <div class="price-icon">🔥</div>
-            <h3>Full Day</h3>
-            <div class="price">£240</div>
-            <p class="price-desc">10 hours with engineer</p>
-            <ul>
-              <li>10 hours studio time</li>
-              <li>Full production support</li>
-              <li>Ideal for 5+ songs</li>
-              <li>Best value vs hourly (£300)</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary btn-sm">Book Full Day</a>
-          </div>
-        </div>
-
-        <!-- Rates -->
-        <div class="rates">
-          <div class="rate"><span>With Engineer</span><strong>£30/hr</strong></div>
-          <div class="rate"><span>Dry Hire</span><strong>£10/hr</strong></div>
-          <div class="rate"><span>Custom Beat</span><strong>£120</strong></div>
-          <div class="rate"><span>Mix & Master</span><strong>From £60</strong></div>
-        </div>
-
-        <p class="deposit-note">⚠️ £30 deposit required to confirm all sessions</p>
-      </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="section testimonials">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">What Artists Say</h2>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <p>“The mix was radio-ready. Dsoul understood exactly what I was going for.”</p>
-            <div class="author">— Jayden R. • @jaydenmusic</div>
-          </div>
-          <div class="testimonial">
-            <p>“Best studio vibe in Luton. Clean, professional, and the energy is unmatched.”</p>
-            <div class="author">— Lila M. • @lilamakes</div>
-          </div>
-          <div class="testimonial">
-            <p>“Booked a half day and walked out with 4 songs ready. Will be back.”</p>
-            <div class="author">— Kairo • @kairouk</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTFOLIO -->
+    <!-- Portfolio -->
     <section class="section" id="portfolio">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Our Producers</h2>
-        </div>
+        <img src="images/portfolio-bg.jpg" alt="" class="section-bg" />
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Producers’ Work</h2>
+                <p class="section-subtitle">Clear distinction between our work examples and what we bring to your project</p>
+            </div>
 
-        <div class="portfolio-tabs">
-          <button class="portfolio-tab active" data-tab="dsoul">Dsoul — Head Engineer</button>
-          <button class="portfolio-tab" data-tab="jaidee">Jaidee — Studio Manager</button>
-        </div>
+            <div class="portfolio-tabs">
+                <button type="button" class="portfolio-tab active" data-tab="dsoul">
+                    <div class="producer-header">
+                        <div class="avatar dsoul-avatar">DS</div>
+                        <div class="producer-info">
+                            <h3>Dsoul</h3>
+                            <p class="producer-role">Head Engineer</p>
+                        </div>
+                    </div>
+                </button>
+                <button type="button" class="portfolio-tab" data-tab="jaidee">
+                    <div class="producer-header">
+                        <div class="avatar jaidee-avatar">JJ</div>
+                        <div class="producer-info">
+                            <h3>Jaidee</h3>
+                            <p class="producer-role">Studio Manager &amp; Producer</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
 
-        <div class="portfolio-content active" id="dsoul-portfolio">
-          <p>Specializing in clean mixes, vocal production and mastering. Known for bringing out the best in every artist.</p>
-          <p><strong>Contact:</strong> dsoulfiles@gmail.com</p>
-        </div>
+            <!-- Dsoul -->
+            <div class="portfolio-content active" id="dsoul-portfolio">
+                <div class="portfolio-header surface">
+                    <div class="producer-bio">
+                        <h3>Dsoul – Head Engineer</h3>
+                        <p>Specializing in clean mixes, vocal production, and mastering. Known for bringing out the best in every artist with technical precision and creative flair.</p>
+                        <div class="producer-contact">
+                            <p><i class="fas fa-envelope"></i> dsoulfiles@gmail.com</p>
+                            <p><i class="fas fa-sliders-h"></i> Mixing, Mastering, Vocal Production</p>
+                        </div>
+                    </div>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Tracks Mixed</span></div>
+                        <div class="stat"><span class="stat-num">8</span><span class="stat-label">Years Experience</span></div>
+                    </div>
+                </div>
+                <div class="portfolio-layout">
+                    <div class="work-block surface">
+                        <h3 class="block-title"><i class="fas fa-music"></i> Work Examples</h3>
+                        <div class="work-example">
+                            <h4>Latest Release from Dsoul</h4>
+                            <p>Check out Dsoul’s latest production and mixing work on his newest release.</p>
+                            <a href="https://youtu.be/jt1RtKUhJgA?si=o3VmWGrxohQRfM4J" target="_blank" rel="noopener" class="work-link"><i class="fab fa-youtube"></i> Listen Now</a>
+                        </div>
+                        <div class="work-example">
+                            <h4>Instagram Portfolio</h4>
+                            <p>Regular updates showcasing mixing techniques, beat previews, and studio content.</p>
+                            <a href="https://www.instagram.com/dsoulbeats/?hl=en" target="_blank" rel="noopener" class="work-link"><i class="fab fa-instagram"></i> View Instagram</a>
+                        </div>
+                    </div>
+                    <div class="qualities-block surface">
+                        <h3 class="block-title"><i class="fas fa-star"></i> What Dsoul Brings</h3>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-sliders-h"></i></div>
+                            <h4>Precision Mixing</h4>
+                            <p>Technical expertise in balancing frequencies and achieving radio-ready clarity.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-microphone-alt"></i></div>
+                            <h4>Vocal Expertise</h4>
+                            <p>Specialises in vocal processing, compression and effects so vocals sit perfectly.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-volume-up"></i></div>
+                            <h4>Mastering Excellence</h4>
+                            <p>Final polish with proper loudness and stereo enhancement for every system.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-headphones"></i></div>
+                            <h4>Modern Production</h4>
+                            <p>Up-to-date with current trends across UK drill, hip-hop and R&amp;B.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="portfolio-content" id="jaidee-portfolio">
-          <p>Studio management, artist development and creative direction. 5 years industry experience.</p>
-          <p><strong>Contact:</strong> 07878 709110 • billupsltd@gmail.com</p>
+            <!-- Jaidee -->
+            <div class="portfolio-content" id="jaidee-portfolio">
+                <div class="portfolio-header surface">
+                    <div class="producer-bio">
+                        <h3>Jaidee – Studio Manager &amp; Producer</h3>
+                        <p>With 5 years of industry experience, bringing comprehensive skill in studio management, artist development and creative direction.</p>
+                        <div class="producer-contact">
+                            <p><i class="fas fa-phone"></i> 07878 709110</p>
+                            <p><i class="fas fa-envelope"></i> billupsltd@gmail.com</p>
+                            <p><i class="fas fa-calendar-alt"></i> Session Management, Artist Development</p>
+                        </div>
+                    </div>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-num">100+</span><span class="stat-label">Sessions Managed</span></div>
+                        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Years Experience</span></div>
+                        <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Artists Worked With</span></div>
+                    </div>
+                </div>
+                <div class="portfolio-layout">
+                    <div class="work-block surface">
+                        <h3 class="block-title"><i class="fas fa-music"></i> Work Examples</h3>
+                        <div class="work-example">
+                            <h4>Music Releases</h4>
+                            <p>Official Spotify releases showcasing Jaidee’s music and production across genres.</p>
+                            <a href="https://open.spotify.com/artist/2dhPI432jA3KOZVdSHZfiL?si=yYzfPtf9QwClKHS1Z8As5w" target="_blank" rel="noopener" class="work-link"><i class="fab fa-spotify"></i> Spotify Artist Profile</a>
+                        </div>
+                        <div class="work-example">
+                            <h4>Jaidee Cypher at the Emirates</h4>
+                            <p>Explosive performance showcasing lyrical prowess and stage presence.</p>
+                            <a href="https://youtu.be/2WaVOTgPwOM?si=fCVEZmOpRHoAHbTv" target="_blank" rel="noopener" class="work-link"><i class="fab fa-youtube"></i> Watch Cypher</a>
+                        </div>
+                        <div class="work-example">
+                            <h4>Jaidee on Mode Radio</h4>
+                            <p>Exclusive interview and live performance discussing music and upcoming projects.</p>
+                            <a href="https://youtu.be/kLxPi5h33Ls?si=VD__FFTK04tBiD5e" target="_blank" rel="noopener" class="work-link"><i class="fab fa-youtube"></i> Listen on Mode Radio</a>
+                        </div>
+                        <div class="work-example">
+                            <h4>Beyond Boundaries Podcast</h4>
+                            <p>Co-hosting deep music industry discussions and interviews.</p>
+                            <a href="https://youtu.be/7QXhxzCn2O0?si=2wknh3e65QiPUGg9" target="_blank" rel="noopener" class="work-link"><i class="fab fa-youtube"></i> Podcast Episode 1</a>
+                        </div>
+                        <div class="work-example">
+                            <h4>Worse – Passive X Jaidee</h4>
+                            <p>Latest collaborative release showcasing flow and lyricism.</p>
+                            <a href="https://youtu.be/-2461Nzf2l0?si=tGFQdhdNeJfXcKIj" target="_blank" rel="noopener" class="work-link"><i class="fab fa-youtube"></i> Listen Now</a>
+                        </div>
+                        <div class="work-example">
+                            <h4>Instagram Portfolio</h4>
+                            <p>Regular updates on music, studio life and behind-the-scenes content.</p>
+                            <a href="https://www.instagram.com/jdhxl/?hl=en" target="_blank" rel="noopener" class="work-link"><i class="fab fa-instagram"></i> View Instagram</a>
+                        </div>
+                    </div>
+                    <div class="qualities-block surface">
+                        <h3 class="block-title"><i class="fas fa-star"></i> What Jaidee Brings</h3>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <h4>Session Management</h4>
+                            <p>Smooth workflow, efficient scheduling and maximum productivity in the studio.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-user-tie"></i></div>
+                            <h4>Artist Development</h4>
+                            <p>Guides emerging artists from concept through to release strategy.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-video"></i></div>
+                            <h4>Creative Direction</h4>
+                            <p>Experience in music video production and visual storytelling.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-comments"></i></div>
+                            <h4>Industry Insights</h4>
+                            <p>Deep understanding of the music industry through podcasts and experience.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-handshake"></i></div>
+                            <h4>Artist Relations</h4>
+                            <p>Creates comfortable environments that bring out the best performances.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-icon"><i class="fas fa-bullhorn"></i></div>
+                            <h4>Release Strategy</h4>
+                            <p>Knowledgeable about effective release planning and promotion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- Gallery -->
+    <section class="section" id="gallery">
+        <img src="images/studio1.jpg" alt="" class="section-bg" />
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Studio Gallery</h2>
+                <p class="section-subtitle">Take a look inside our professional recording space</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-placeholder">
+                    <i class="fas fa-camera"></i>
+                    <h3 style="color:var(--white); margin-bottom:0.75rem;">Studio Gallery</h3>
+                    <p style="color:var(--text); max-width:420px; margin:0 auto;">Loading images…</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
     <section class="section" id="contact">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Book Your Session</h2>
-          <p class="section-subtitle">We’ll respond within 24 hours</p>
+        <img src="images/studio2.jpg" alt="" class="section-bg" />
+        <div class="section-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Direct contact with our team</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-col surface">
+                    <h3>Our Team</h3>
+                    <div class="contact-methods">
+                        <div class="contact-row">
+                            <div class="method-icon"><i class="fas fa-crown"></i></div>
+                            <div class="method-text">
+                                <strong>Fabian</strong>
+                                <span class="team-role" style="margin-left:0;">Studio Owner</span>
+                                <p>Business inquiries &amp; partnerships</p>
+                                <small>Contact via studio email</small>
+                            </div>
+                        </div>
+                        <a href="tel:07878709110" class="contact-row">
+                            <div class="method-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <div class="method-text">
+                                <strong>Jaidee</strong>
+                                <span class="team-role" style="margin-left:0;">Studio Manager</span>
+                                <p>📞 07878 709110</p>
+                                <p>Bookings • Scheduling • Studio queries</p>
+                            </div>
+                        </a>
+                        <a href="mailto:dsoulfiles@gmail.com" class="contact-row">
+                            <div class="method-icon"><i class="fas fa-sliders-h"></i></div>
+                            <div class="method-text">
+                                <strong>Dsoul</strong>
+                                <span class="team-role" style="margin-left:0;">Head Engineer</span>
+                                <p>✉️ dsoulfiles@gmail.com</p>
+                                <p>Mixing • Mastering • Production</p>
+                            </div>
+                        </a>
+                        <a href="tel:07710593113" class="contact-row">
+                            <div class="method-icon"><i class="fas fa-phone"></i></div>
+                            <div class="method-text">
+                                <strong>Main Studio Line</strong>
+                                <p>📞 07710 593113</p>
+                                <p>General inquiries &amp; quick questions</p>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/447710593113" class="contact-row" target="_blank" rel="noopener">
+                            <div class="method-icon"><i class="fab fa-whatsapp"></i></div>
+                            <div class="method-text">
+                                <strong>WhatsApp</strong>
+                                <p>📱 07710 593113</p>
+                                <p>Fastest response • Send voice notes</p>
+                            </div>
+                        </a>
+                        <a href="mailto:billupsltd@gmail.com" class="contact-row">
+                            <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="method-text">
+                                <strong>Studio Email</strong>
+                                <p>✉️ billupsltd@gmail.com</p>
+                                <p>General studio inquiries</p>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com/billups_studio" target="_blank" rel="noopener" class="contact-row">
+                            <div class="method-icon"><i class="fab fa-instagram"></i></div>
+                            <div class="method-text">
+                                <strong>Instagram</strong>
+                                <p>@billups_studio</p>
+                                <p>Latest work &amp; updates</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-col surface">
+                    <h3>Book Your Session</h3>
+                    <form action="https://api.web3forms.com/submit" method="POST" id="bookingForm">
+                        <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6" />
+                        <input type="hidden" name="subject" value="New Session Booking - Billups Studio" />
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="session-type">Session Type *</label>
+                            <select id="session-type" name="session-type" required>
+                                <option value="">Select session</option>
+                                <option value="quick-session">Quick Session (£80)</option>
+                                <option value="half-day">Half Day (£140)</option>
+                                <option value="full-day">Full Day (£240)</option>
+                                <option value="hourly-engineer">Hourly with Engineer (£30/hr)</option>
+                                <option value="dry-hire">Dry Hire (£10/hr)</option>
+                                <option value="custom">Custom Session</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="preferred-date">Preferred Date *</label>
+                                <input type="date" id="preferred-date" name="preferred-date" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="preferred-time">Preferred Time</label>
+                                <select id="preferred-time" name="preferred-time">
+                                    <option value="">Flexible / any time</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block">Send Booking Request</button>
+                        <div class="form-note">
+                            <strong>✉️ Your message will be sent directly to our team</strong><br />
+                            <span>We’ll respond within 24 hours</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="c3249a0f-f203-4eff-83e1-69c1e4f46fb6" />
-          <input type="hidden" name="subject" value="New Session Booking - Billups Studio" />
-
-          <div class="form-row">
-            <div class="form-group">
-              <label>Full Name *</label>
-              <input type="text" name="name" required>
-            </div>
-            <div class="form-group">
-              <label>Email *</label>
-              <input type="email" name="email" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Phone *</label>
-            <input type="tel" name="phone" required>
-          </div>
-
-          <div class="form-group">
-            <label>Session Type *</label>
-            <select name="session-type" required>
-              <option value="">Select session</option>
-              <option value="quick-session">Quick Session (£80)</option>
-              <option value="half-day">Half Day (£140)</option>
-              <option value="full-day">Full Day (£240)</option>
-              <option value="hourly">Hourly with Engineer (£30/hr)</option>
-              <option value="dry-hire">Dry Hire (£10/hr)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Project Details *</label>
-            <textarea name="message" rows="4" required placeholder="Tell us about your project..."></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block">Send Booking Request</button>
-        </form>
-      </div>
     </section>
 
-  </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="images/logo.png" alt="Billups Studio" class="footer-logo" />
+                    <p style="font-size:0.95rem; line-height:1.7;">Professional recording studio in Luton. Expert engineering, mixing &amp; mastering. Book your session today and elevate your sound.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#home"><i class="fas fa-chevron-right"></i> Home</a>
+                        <a href="#about"><i class="fas fa-chevron-right"></i> About</a>
+                        <a href="#services"><i class="fas fa-chevron-right"></i> Services</a>
+                        <a href="#portfolio"><i class="fas fa-chevron-right"></i> Portfolio</a>
+                        <a href="#gallery"><i class="fas fa-chevron-right"></i> Gallery</a>
+                        <a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Studio Hours</h4>
+                    <p style="margin-bottom:0.4rem;"><i class="fas fa-clock" style="color:var(--accent); margin-right:0.4rem;"></i> Mon–Sun: 10AM – 10PM</p>
+                    <p><i class="fas fa-calendar-check" style="color:var(--accent); margin-right:0.4rem;"></i> By appointment only</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear">2025</span> Billups Studio. All rights reserved.</p>
+                <p style="margin-top:0.5rem; font-size:0.85rem;">Luton, Bedfordshire | 07710 593113</p>
+            </div>
+        </div>
+    </footer>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Billups Studio • Luton • 07710 593113</p>
-    </div>
-  </footer>
-
-  <!-- Link to your external JavaScript file -->
-  <script src="js/script.js" defer></script>
+    <!-- EXTERNAL JS -->
+    <script src="js/script.js" defer></script>
 </body>
 </html>

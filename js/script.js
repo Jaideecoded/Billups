@@ -237,14 +237,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Gallery
     const galleryGrid = document.getElementById('galleryGrid');
+    // FIXED: Added 'images/' prefix to all gallery filenames
     const photoFiles = [
-        'C2530.00_00_01_02.Still003.jpg',
-        'C2530.00_00_01_04.Still005.jpg',
-        'C2530.00_00_01_08.Still009.jpg',
-        'C2530.00_00_01_09.Still010.jpg',
-        'C2530.00_00_01_10.Still011.jpg',
-        'C2530.00_00_01_12.Still013.jpg',
-        'C2530.00_00_01_19.Still020.jpg'
+        'images/C2530.00_00_01_02.Still003.jpg',
+        'images/C2530.00_00_01_04.Still005.jpg',
+        'images/C2530.00_00_01_08.Still009.jpg',
+        'images/C2530.00_00_01_09.Still010.jpg',
+        'images/C2530.00_00_01_10.Still011.jpg',
+        'images/C2530.00_00_01_12.Still013.jpg',
+        'images/C2530.00_00_01_19.Still020.jpg'
     ];
 
     if (galleryGrid) {
